@@ -1,0 +1,15 @@
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2020_05_04_025144_create_groups_table', 1),
+(3, '2014_10_12_100000_create_password_resets_table', 3),
+(4, '2019_08_19_000000_create_failed_jobs_table', 3),
+(5, '2020_05_04_025634_create_offices_table', 3),
+(6, '2014_10_12_000000_create_users_table', 4),
+(7, '2020_05_11_140614_create_surveys_table', 5),
+(8, '2020_05_12_172642_create_survey_sections_table', 6),
+(9, '2020_05_12_174222_create_section_items_table', 7),
+(10, '2020_05_12_174943_create_section_item_values_table', 8),
+(11, '2020_05_12_175814_create_siv_sub_items_table', 9),
+(12, '2020_05_12_190604_create_section_aspects_table', 10),
+(13, '2020_05_12_190847_create_aspect_items_table', 11),
+(14, '2020_05_12_191222_create_aspect_item_values_table', 12),
+(15, '2020_05_12_191502_create_aiv_sub_items_table', 13);

@@ -1,0 +1,105 @@
+.images-container::after {
+  display: block;
+  clear: both;
+  content: ""; }
+
+.images-container .image-container {
+  float: left;
+  padding: 3px;
+  margin-right: 10px;
+  margin-bottom: 35px;
+  position: relative;
+  border: 1px solid #e6eaee;
+  overflow: hidden;
+}
+
+.images-container .image-container.active {
+    border-color: #85CE36;
+}
+
+.images-container .image-container:hover .controls {
+    bottom: 0;
+    opacity: 1;
+}
+
+.images-container .controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  bottom: -35px;
+  text-align: center;
+  height: 35px;
+  font-size: 12px;
+  -webkit-transition: bottom 0.2s ease, opacity 0.2s ease;
+  transition: bottom 0.2s ease, opacity 0.2s ease;
+  background-color: #b6e286;
+}
+  
+.images-container .controls::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.images-container .controls .control-btn {
+    display: inline-block;
+    color: #4f5f6f;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    opacity: 0.5;
+    -webkit-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+}
+
+.images-container .controls .control-btn:hover {
+    opacity: 1;
+}
+
+.images-container .image-container.main {
+  border-color: #FFB300;
+}
+
+.images-container .image-container.new {
+  opacity: 0.6;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  border-style: dashed;
+  border: 1px #85CE36 solid;
+  color: #85CE36;
+}
+
+.images-container .image-container.new:hover {
+    opacity: 1;
+}
+
+.ssi-infographic {
+  width: 236px;
+  height: 236px;	
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  line-height: 236px;
+  text-align: center;
+}
+
+.image-container.new .ssi-infographic {
+    font-size: 2.5rem;
+}
+
+.siv-infographic {
+  width: 50px;
+  height: 50px;	
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  line-height: 50px;
+  text-align: center;
+}
+
+.image-container.new .siv-infographic {
+    font-size: 1rem;
+}
