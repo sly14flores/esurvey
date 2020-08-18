@@ -2152,6 +2152,38 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     item: function item() {
       return this.$store.getters.currentItem;
+    },
+    values: function values() {
+      return this.$store.getters.currentItem.values;
+    },
+    allowed: function allowed() {
+      return this.$store.getters.currentItem.max_checkbox_selections;
+    }
+  },
+  methods: {
+    countChecks: function countChecks(value) {
+      var selecteds = this.values.filter(function (value) {
+        return value.answer === true;
+      });
+
+      if (selecteds.length > 3) {
+        var index = this.values.indexOf(value);
+        this.values[index].answer = false;
+        /*
+        this.values.forEach((value,i) => {
+        
+        	if (i==index) value.answer = false
+        
+        })
+        */
+
+        Swal.fire({
+          title: 'Warning!',
+          text: 'Please select only ' + this.allowed + ' item(s)',
+          icon: 'warning',
+          confirmButtonText: 'Close'
+        });
+      }
     }
   },
   created: function created() {},
@@ -68895,7 +68927,7 @@ var render = function() {
             _c(
               "div",
               { staticClass: "col-lg-6 offset-lg-3" },
-              _vm._l(_vm.item.values, function(value) {
+              _vm._l(_vm.values, function(value) {
                 return _c(
                   "div",
                   { key: value.id, staticClass: "form-check mb-1" },
@@ -68915,33 +68947,39 @@ var render = function() {
                         id: "checkboxItem" + value.id
                       },
                       domProps: {
+                        checked: value.answer,
                         checked: Array.isArray(value.answer)
                           ? _vm._i(value.answer, null) > -1
                           : value.answer
                       },
                       on: {
-                        change: function($event) {
-                          var $$a = value.answer,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = null,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                _vm.$set(value, "answer", $$a.concat([$$v]))
+                        change: [
+                          function($event) {
+                            var $$a = value.answer,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(value, "answer", $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    value,
+                                    "answer",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
                             } else {
-                              $$i > -1 &&
-                                _vm.$set(
-                                  value,
-                                  "answer",
-                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                )
+                              _vm.$set(value, "answer", $$c)
                             }
-                          } else {
-                            _vm.$set(value, "answer", $$c)
+                          },
+                          function($event) {
+                            return _vm.countChecks(value)
                           }
-                        }
+                        ]
                       }
                     }),
                     _vm._v(" "),

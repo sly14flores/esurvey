@@ -23,6 +23,7 @@ class CreateSectionItemsTable extends Migration
 			$table->string('translated')->nullable();
 			$table->integer('item_type')->nullable();
 			$table->integer('item_presentation')->nullable();
+			$table->integer('max_checkbox_selections')->nullable();
 			$table->longText('item_infographic')->nullable();
 			$table->tinyInteger('use_images')->nullable();	
 			$table->tinyInteger('text_is_multiple')->nullable();	

@@ -13,8 +13,8 @@
 			<div class="d-flex flex-column mt-2 justify-content-center">
 				<div class="row">
 					<div class="col-lg-6 offset-lg-3">
-						<div class="form-check mb-1" v-for="value in item.values" :key="value.id">
-						  <input class="form-check-input mt-2" type="checkbox" v-model="value.answer" :id="'checkboxItem'+value.id">
+						<div class="form-check mb-1" v-for="value in values" :key="value.id">
+						  <input class="form-check-input mt-2" type="checkbox" v-model="value.answer" :checked="value.answer" :id="'checkboxItem'+value.id" @change="countChecks(value)">
 						  <label class="form-check-label" :for="'checkboxItem'+value.id">
 							<p class="lead pointerize">{{ value.display }}</p>
 						  </label>
@@ -39,7 +39,7 @@
 
 	import survey from './mixins/survey'
 	import wizard from './mixins/wizard'
-	import items from './mixins/items'	
+	import items from './mixins/items'
 
     export default {
 
@@ -48,11 +48,60 @@
 		computed: {
 
 			item() {
-
+			
 				return this.$store.getters.currentItem
 
+			},
+			
+			values() {
+
+				return this.$store.getters.currentItem.values
+			
+			},
+			
+			allowed() {
+			
+				return this.$store.getters.currentItem.max_checkbox_selections
+			
 			}
 
+		},
+		
+		methods: {
+		
+			countChecks(value) {
+
+				let selecteds = this.values.filter(value => {
+				
+					return value.answer === true
+					
+				})
+				
+				if (selecteds.length>3) {
+				
+					let index = this.values.indexOf(value)
+
+					this.values[index].answer = false
+
+					/*
+					this.values.forEach((value,i) => {
+					
+						if (i==index) value.answer = false
+					
+					})
+					*/
+				
+					Swal.fire({
+					  title: 'Warning!',
+					  text: 'Please select only '+this.allowed+' item(s)',
+					  icon: 'warning',
+					  confirmButtonText: 'Close'
+					})
+				
+				}
+
+			}
+			
 		},
 
         created() {

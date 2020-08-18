@@ -38,6 +38,7 @@ class SurveyResource extends JsonResource
 				'translated',
 				'item_type',
 				'item_presentation',
+				'max_checkbox_selections',
 				'item_infographic',
 				'use_images',
 				'text_is_multiple'
@@ -85,6 +86,7 @@ class SurveyResource extends JsonResource
 					
 					$values[$vi]['sub_items'] = $sub_items;
 					$values[$vi]['index'] = $vi+1;
+					$values[$vi]['answer'] = false;
 					
 				}
 				
@@ -111,6 +113,7 @@ class SurveyResource extends JsonResource
 					'translated',
 					'item_type',
 					'item_presentation',
+					'max_checkbox_selections',
 					'item_infographic',
 					'use_images',
 					'text_is_multiple'

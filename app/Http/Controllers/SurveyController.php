@@ -258,6 +258,7 @@ class SurveyController extends Controller
 							$item->translated = $section_item['translated'];
 							$item->item_type = $section_item['item_type'];
 							$item->item_presentation = $section_item['item_presentation'];
+							$item->max_checkbox_selections = $section_item['max_checkbox_selections'];
 							$item->item_infographic = $section_item['item_infographic'];
 							$item->use_images = $section_item['use_images'];
 							$item->text_is_multiple = $section_item['text_is_multiple'];
@@ -352,6 +353,7 @@ class SurveyController extends Controller
 									$aspect_item->translated = $section_aspect_item['translated'];
 									$aspect_item->item_type = $section_aspect_item['item_type'];
 									$aspect_item->item_presentation = $section_aspect_item['item_presentation'];
+									$aspect_item->max_checkbox_selections = $section_aspect_item['max_checkbox_selections'];
 									$aspect_item->item_infographic = $section_aspect_item['item_infographic'];
 									$aspect_item->use_images = $section_aspect_item['use_images'];									
 									$aspect_item->text_is_multiple = $section_aspect_item['text_is_multiple'];									

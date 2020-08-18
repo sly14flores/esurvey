@@ -51,7 +51,12 @@
 													<input class="form-check-input" type="checkbox" v-model="item.text_is_multiple" :disabled="oldSurvey && !onEdit"> Multiple
 												</label>
 											</div>											
-											<div class="invalid-feedback">Type is required</div>											
+											<div class="invalid-feedback">Type is required</div>
+											<div class="form-group mt-1" v-if="item.item_type==2">
+												<label>Maximum selections allowed</label>
+												<input class="form-control" type="number" v-model="$v.items.$each[ii].max_checkbox_selections.$model" :class="{'is-invalid': $v.items.$each[ii].max_checkbox_selections.$error}" :disabled="oldSurvey && !onEdit">
+												<div class="invalid-feedback">Please enter maximum selections allowed</div>
+											</div>											
 										</div>
 									</div>
 									<div class="form-row">
@@ -198,6 +203,9 @@
 					item_type: {required},
 					item_presentation: {required: requiredIf((model) => {
 						return model.item_type == 6
+					})},
+					max_checkbox_selections: {required: requiredIf((model) => {
+						return model.item_type == 2
 					})}
 				}
 			}
@@ -221,6 +229,7 @@
 						translated: '',
 						item_type: null,
 						item_presentation: null,
+						max_checkbox_selections: null,
 						item_infographic: null,
 						use_images: 0,
 						values: [],

@@ -541,6 +541,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -594,6 +599,11 @@ __webpack_require__.r(__webpack_exports__);
           required: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["requiredIf"])(function (model) {
             return model.item_type == 6;
           })
+        },
+        max_checkbox_selections: {
+          required: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["requiredIf"])(function (model) {
+            return model.item_type == 2;
+          })
         }
       }
     }
@@ -616,6 +626,7 @@ __webpack_require__.r(__webpack_exports__);
           translated: '',
           item_type: null,
           item_presentation: null,
+          max_checkbox_selections: null,
           item_infographic: null,
           use_images: 0,
           values: [],
@@ -1907,6 +1918,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -1959,6 +1975,11 @@ __webpack_require__.r(__webpack_exports__);
           required: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["requiredIf"])(function (model) {
             return model.item_type == 6;
           })
+        },
+        max_checkbox_selections: {
+          required: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["requiredIf"])(function (model) {
+            return model.item_type == 2;
+          })
         }
       }
     }
@@ -1981,6 +2002,7 @@ __webpack_require__.r(__webpack_exports__);
           translated: '',
           item_type: null,
           item_presentation: null,
+          max_checkbox_selections: null,
           item_infographic: null,
           use_images: 0,
           values: [],
@@ -5080,7 +5102,71 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "invalid-feedback" }, [
                                 _vm._v("Type is required")
-                              ])
+                              ]),
+                              _vm._v(" "),
+                              item.item_type == 2
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-group mt-1" },
+                                    [
+                                      _c("label", [
+                                        _vm._v("Maximum selections allowed")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value:
+                                              _vm.$v.items.$each[ii]
+                                                .max_checkbox_selections.$model,
+                                            expression:
+                                              "$v.items.$each[ii].max_checkbox_selections.$model"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        class: {
+                                          "is-invalid":
+                                            _vm.$v.items.$each[ii]
+                                              .max_checkbox_selections.$error
+                                        },
+                                        attrs: {
+                                          type: "number",
+                                          disabled: _vm.oldSurvey && !_vm.onEdit
+                                        },
+                                        domProps: {
+                                          value:
+                                            _vm.$v.items.$each[ii]
+                                              .max_checkbox_selections.$model
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.$v.items.$each[ii]
+                                                .max_checkbox_selections,
+                                              "$model",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "invalid-feedback" },
+                                        [
+                                          _vm._v(
+                                            "Please enter maximum selections allowed"
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
                             ])
                           ]),
                           _vm._v(" "),
@@ -8112,7 +8198,71 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "invalid-feedback" }, [
                                 _vm._v("Type is required")
-                              ])
+                              ]),
+                              _vm._v(" "),
+                              item.item_type == 2
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-group mt-1" },
+                                    [
+                                      _c("label", [
+                                        _vm._v("Maximum selections allowed")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value:
+                                              _vm.$v.items.$each[ii]
+                                                .max_checkbox_selections.$model,
+                                            expression:
+                                              "$v.items.$each[ii].max_checkbox_selections.$model"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        class: {
+                                          "is-invalid":
+                                            _vm.$v.items.$each[ii]
+                                              .max_checkbox_selections.$error
+                                        },
+                                        attrs: {
+                                          type: "number",
+                                          disabled: _vm.oldSurvey && !_vm.onEdit
+                                        },
+                                        domProps: {
+                                          value:
+                                            _vm.$v.items.$each[ii]
+                                              .max_checkbox_selections.$model
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.$v.items.$each[ii]
+                                                .max_checkbox_selections,
+                                              "$model",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "invalid-feedback" },
+                                        [
+                                          _vm._v(
+                                            "Please enter maximum selections allowed"
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
                             ])
                           ]),
                           _vm._v(" "),

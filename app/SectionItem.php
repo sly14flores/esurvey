@@ -14,6 +14,7 @@ class SectionItem extends Model
 		'translated',
 		'item_type',
 		'item_presentation',
+		'max_checkbox_selections',
 		'item_infographic',
 		'use_images',
 		'text_is_multiple'
