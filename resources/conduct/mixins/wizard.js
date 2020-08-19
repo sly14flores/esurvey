@@ -2,12 +2,6 @@ export default {
 
 	computed: {
 		
-		item() {
-			
-			return this.$store.getters.currentItem
-			
-		},
-		
 		itemIsRequired() {
 			
 			return this.$store.getters.currentItem.required

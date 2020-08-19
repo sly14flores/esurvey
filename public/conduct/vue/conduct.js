@@ -2153,8 +2153,18 @@ __webpack_require__.r(__webpack_exports__);
     item: function item() {
       return this.$store.getters.currentItem;
     },
-    values: function values() {
-      return this.$store.getters.currentItem.values;
+    values: {
+      get: function get() {
+        return this.$store.getters.currentItem.values;
+      },
+      set: function set(value) {
+        this.$store.commit('itemValues', {
+          section: this.$store.getters.currentItemIndexes.section,
+          aspect: this.$store.getters.currentItemIndexes.aspect,
+          item: this.$store.getters.currentItemIndexes.item,
+          values: value
+        });
+      }
     },
     allowed: function allowed() {
       return this.$store.getters.currentItem.max_checkbox_selections;
@@ -2168,21 +2178,20 @@ __webpack_require__.r(__webpack_exports__);
 
       if (selecteds.length > 3) {
         var index = this.values.indexOf(value);
-        this.values[index].answer = false;
-        /*
-        this.values.forEach((value,i) => {
-        
-        	if (i==index) value.answer = false
-        
-        })
-        */
 
+        var values = _.cloneDeep(this.values);
+
+        values[index].answer = false;
+        this.values = values;
+        this.$parent.currentComponent = 'checkbox';
+        /*
         Swal.fire({
           title: 'Warning!',
-          text: 'Please select only ' + this.allowed + ' item(s)',
+          text: 'Please select only '+this.allowed+' item(s)',
           icon: 'warning',
           confirmButtonText: 'Close'
-        });
+        })
+        */
       }
     }
   },
@@ -2677,8 +2686,13 @@ __webpack_require__.r(__webpack_exports__);
     thankYou: _thankYou__WEBPACK_IMPORTED_MODULE_10__["default"]
   },
   computed: {
-    currentComponent: function currentComponent() {
-      return this.$store.getters.currentComponent;
+    currentComponent: {
+      get: function get() {
+        return this.$store.getters.currentComponent;
+      },
+      set: function set(value) {
+        console.log(this.currentComponent);
+      }
     }
   },
   created: function created() {},
@@ -68947,7 +68961,6 @@ var render = function() {
                         id: "checkboxItem" + value.id
                       },
                       domProps: {
-                        checked: value.answer,
                         checked: Array.isArray(value.answer)
                           ? _vm._i(value.answer, null) > -1
                           : value.answer
@@ -86976,9 +86989,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
-    item: function item() {
-      return this.$store.getters.currentItem;
-    },
     itemIsRequired: function itemIsRequired() {
       return this.$store.getters.currentItem.required;
     },
@@ -87626,6 +87636,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     finish: false
   },
   mutations: {
+    itemValues: function itemValues(state, values) {
+      if (values.aspect == null) {
+        state.survey.sections[values.section].items[values.item].values = values.values;
+      } else {
+        state.survey.sections[values.section].aspects[values.aspect].items[values.item] = values.values;
+      }
+    },
     load: function load(state, survey) {
       state.survey = survey;
     },

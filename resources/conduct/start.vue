@@ -62,9 +62,19 @@
             
         computed: {
 
-            currentComponent() {
+            currentComponent: {
 
-                return this.$store.getters.currentComponent
+				get() {
+
+					return this.$store.getters.currentComponent
+					
+				},
+				
+				set(value) {
+				
+					console.log(this.currentComponent)
+				
+				}
 
             }
 

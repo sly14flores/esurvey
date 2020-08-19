@@ -52,6 +52,19 @@ export default new Vuex.Store({
 		finish: false
 	},
 	mutations: {
+		itemValues(state, values) {
+			
+			if (values.aspect==null) {
+				
+				state.survey.sections[values.section].items[values.item].values = values.values
+
+			} else {
+
+				state.survey.sections[values.section].aspects[values.aspect].items[values.item] = values.values
+
+			}			
+			
+		},
 		load(state, survey) {
 
 			state.survey = survey

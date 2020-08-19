@@ -14,7 +14,7 @@
 				<div class="row">
 					<div class="col-lg-6 offset-lg-3">
 						<div class="form-check mb-1" v-for="value in values" :key="value.id">
-						  <input class="form-check-input mt-2" type="checkbox" v-model="value.answer" :checked="value.answer" :id="'checkboxItem'+value.id" @change="countChecks(value)">
+						  <input class="form-check-input mt-2" type="checkbox" v-model="value.answer" :id="'checkboxItem'+value.id" @change="countChecks(value)">
 						  <label class="form-check-label" :for="'checkboxItem'+value.id">
 							<p class="lead pointerize">{{ value.display }}</p>
 						  </label>
@@ -53,10 +53,20 @@
 
 			},
 			
-			values() {
+			values: {
 
-				return this.$store.getters.currentItem.values
-			
+				get() {
+
+					return this.$store.getters.currentItem.values				
+
+				},
+
+				set(value) {
+
+					this.$store.commit('itemValues',{section: this.$store.getters.currentItemIndexes.section, aspect: this.$store.getters.currentItemIndexes.aspect, item: this.$store.getters.currentItemIndexes.item, values: value})
+
+				}
+
 			},
 			
 			allowed() {
@@ -78,26 +88,24 @@
 				})
 				
 				if (selecteds.length>3) {
-				
+
 					let index = this.values.indexOf(value)
 
-					this.values[index].answer = false
+					let values = _.cloneDeep(this.values)
+					values[index].answer = false
+					this.values = values
+
+					this.$parent.currentComponent = 'checkbox'
 
 					/*
-					this.values.forEach((value,i) => {
-					
-						if (i==index) value.answer = false
-					
-					})
-					*/
-				
 					Swal.fire({
 					  title: 'Warning!',
 					  text: 'Please select only '+this.allowed+' item(s)',
 					  icon: 'warning',
 					  confirmButtonText: 'Close'
 					})
-				
+					*/
+
 				}
 
 			}
