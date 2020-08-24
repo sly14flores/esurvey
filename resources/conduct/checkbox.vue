@@ -13,7 +13,7 @@
 			<div class="d-flex flex-column mt-2 justify-content-center">
 				<div class="row">
 					<div class="col-lg-6 offset-lg-3">
-						<div class="form-check mb-1" v-for="value in values" :key="value.id">
+						<div class="form-check mb-1" v-for="value in values" :key="value.index">
 						  <input class="form-check-input mt-2" type="checkbox" v-model="value.answer" :id="'checkboxItem'+value.id" @change="countChecks(value)">
 						  <label class="form-check-label" :for="'checkboxItem'+value.id">
 							<p class="lead pointerize">{{ value.display }}</p>
@@ -89,22 +89,22 @@
 				
 				if (selecteds.length>3) {
 
-					let index = this.values.indexOf(value)
+					this.$nextTick(() => {
+					
+						let index = this.values.indexOf(value)
 
-					let values = _.cloneDeep(this.values)
-					values[index].answer = false
-					this.values = values
+						let values = _.cloneDeep(this.values)
+						values[index].answer = false
+						this.values = values					
 
-					this.$parent.currentComponent = 'checkbox'
+					})
 
-					/*
 					Swal.fire({
 					  title: 'Warning!',
 					  text: 'Please select only '+this.allowed+' item(s)',
 					  icon: 'warning',
 					  confirmButtonText: 'Close'
 					})
-					*/
 
 				}
 

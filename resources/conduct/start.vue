@@ -72,8 +72,6 @@
 				
 				set(value) {
 				
-					console.log(this.currentComponent)
-				
 				}
 
             }

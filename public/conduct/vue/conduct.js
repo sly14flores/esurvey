@@ -2172,26 +2172,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     countChecks: function countChecks(value) {
+      var _this = this;
+
       var selecteds = this.values.filter(function (value) {
         return value.answer === true;
       });
 
       if (selecteds.length > 3) {
-        var index = this.values.indexOf(value);
+        this.$nextTick(function () {
+          var index = _this.values.indexOf(value);
 
-        var values = _.cloneDeep(this.values);
+          var values = _.cloneDeep(_this.values);
 
-        values[index].answer = false;
-        this.values = values;
-        this.$parent.currentComponent = 'checkbox';
-        /*
+          values[index].answer = false;
+          _this.values = values;
+        });
         Swal.fire({
           title: 'Warning!',
-          text: 'Please select only '+this.allowed+' item(s)',
+          text: 'Please select only ' + this.allowed + ' item(s)',
           icon: 'warning',
           confirmButtonText: 'Close'
-        })
-        */
+        });
       }
     }
   },
@@ -2690,9 +2691,7 @@ __webpack_require__.r(__webpack_exports__);
       get: function get() {
         return this.$store.getters.currentComponent;
       },
-      set: function set(value) {
-        console.log(this.currentComponent);
-      }
+      set: function set(value) {}
     }
   },
   created: function created() {},
@@ -68944,7 +68943,7 @@ var render = function() {
               _vm._l(_vm.values, function(value) {
                 return _c(
                   "div",
-                  { key: value.id, staticClass: "form-check mb-1" },
+                  { key: value.index, staticClass: "form-check mb-1" },
                   [
                     _c("input", {
                       directives: [
