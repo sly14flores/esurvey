@@ -66,7 +66,7 @@
 												<option disabled :value="null">Select presentation</option>
 												<option v-for="presentation in presentations" :value="presentation.id" :key="presentation.id">{{presentation.description}}</option>
 											</select>
-											<div class="invalid-feedback">Presentation is required</div>											
+											<div class="invalid-feedback">Presentation is required</div>
 										</div>
 									</div>
 								</form>

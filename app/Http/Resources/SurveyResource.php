@@ -86,7 +86,10 @@ class SurveyResource extends JsonResource
 					
 					$values[$vi]['sub_items'] = $sub_items;
 					$values[$vi]['index'] = $vi+1;
-					$values[$vi]['answer'] = false;
+					
+					$item_value_answer = ($item['item_type'] == 3)?"":false;
+					
+					$values[$vi]['answer'] = $item_value_answer;
 					
 				}
 				
@@ -161,6 +164,10 @@ class SurveyResource extends JsonResource
 						
 						$aspect_item_values[$aivi]['sub_items'] = $aspect_item_value_sub_items;
 						$aspect_item_values[$aivi]['index'] = $aivi+1;
+						
+						$aspect_item_value_answer = ($aspect_item['item_type'] == 3)?"":false;
+					
+						$aspect_item_values[$aivi]['answer'] = $aspect_item_value_answer;						
 						
 					}
 					

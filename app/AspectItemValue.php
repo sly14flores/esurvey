@@ -36,7 +36,8 @@ class AspectItemValue extends Model
 		'min_below' => 'boolean',
 		'max_above' => 'boolean',
 		'highest' => 'boolean',
-		'lowest' => 'boolean'
+		'lowest' => 'boolean',
+		'required' => 'boolean'	
     ];
 
 }

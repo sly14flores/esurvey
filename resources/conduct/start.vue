@@ -25,6 +25,10 @@
 
 <script>
 
+	import Vue from 'vue'
+	import Vuelidate from "vuelidate";
+	Vue.use(Vuelidate)
+
     import startConduct from './startConduct.vue'
     import surveySection from './surveySection.vue'
     import bracket from './bracket.vue'

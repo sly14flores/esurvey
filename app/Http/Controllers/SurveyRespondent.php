@@ -32,6 +32,8 @@ class SurveyRespondent extends Controller
 					$section_item_answer = new AspectItemAnswer($section_aspect_item);
 					$respondent->aspect_item_answers()->save($section_item_answer);
 					
+					# aspect item value answers
+					
 					# section aspect item sub item
 					
 				}
@@ -43,6 +45,8 @@ class SurveyRespondent extends Controller
 				$section_item['section_item_id'] = $section_item['id'];
 				$section_item_answer = new SectionItemAnswer($section_item);
 				$respondent->section_item_answers()->save($section_item_answer);
+				
+				# section item value answers
 				
 				# section item sub item
 				

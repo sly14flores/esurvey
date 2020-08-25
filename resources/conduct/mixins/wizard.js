@@ -51,7 +51,7 @@ export default {
 
 				valid = this.item.answer!=null
 
-				if (this.isCheckboxes) {
+				if (this.isCheckboxes) { // Checkboxes
 
 					// validate limit
 					
@@ -60,7 +60,16 @@ export default {
 					})
 
 				}
-
+				
+				// Text Inputs
+				if (this.item.item_type == 3 && this.item.text_is_multiple) {
+					
+					this.$v.values.$touch()
+					
+					valid = !this.$v.values.$invalid
+					
+				}
+				
 				if (!valid) {
 
 					Swal.fire({
