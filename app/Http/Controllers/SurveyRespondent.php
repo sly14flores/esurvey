@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Respondent;
 use App\SectionItemAnswer;
+use App\SectionItemValueAnswer;
 use App\SectionItemSubItemAnswer;
 use App\AspectItemAnswer;
 use App\AspectItemSubItemAnswer;
@@ -47,6 +48,17 @@ class SurveyRespondent extends Controller
 				$respondent->section_item_answers()->save($section_item_answer);
 				
 				# section item value answers
+				if ( ($section_item['item_type']==2) || (($section_item['item_type']==3)&&($section_item['text_is_multiple'])) ) {
+					
+					foreach ($section_item['values'] as $section_item_value) {
+						
+						$section_item_value['section_item_value_id'] = $section_item_value['id'];
+						$section_item_value_answer = new SectionItemValueAnswer($section_item_value);
+						$respondent->section_item_value_answers()->save($section_item_value_answer);
+						
+					}
+
+				}
 				
 				# section item sub item
 				

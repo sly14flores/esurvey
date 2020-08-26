@@ -20,6 +20,13 @@ class Respondent extends Model
 		
 	}
 	
+	public function section_item_value_answers()
+	{
+		
+		return $this->hasMany('App\SectionItemValueAnswer');		
+		
+	}	
+	
 	public function section_item_sub_item_answers()
 	{
 		
