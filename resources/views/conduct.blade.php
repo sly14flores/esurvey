@@ -6,7 +6,7 @@
     <title>{{ config('app.name') }}</title>
 	<link href="{{ mix('conduct/css/index.css') }}" rel="stylesheet">
   </head>
-  <body class="app">
+  <body class="app survey-backdrop">
 	
 	<div id="app">
 		<sly-spinner ref="pSpinner"></sly-spinner>

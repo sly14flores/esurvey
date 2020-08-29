@@ -19,17 +19,20 @@ export default new Vuex.Store({
 			{ 
 				id: 2,
 				description: "Checkbox",
-				component: "checkbox"
+				// component: "checkbox"
+				component: "sopa-checkbox"
 			},
 			{ 
 				id: 3,
 				description: "Text Input",
-				component: "text-input"
+				// component: "text-input"
+				component: "sopa-text-input"
 			},
 			{ 
 				id: 4,
 				description: "Radios",
-				component: "radios"
+				// component: "radios"
+				component: "sopa-radios"
 			},
 			{ 
 				id: 5,
@@ -274,9 +277,11 @@ export default new Vuex.Store({
 		},
 		currentComponent: (state, getters) => {
 			
-			if (state.finish) return 'thank-you'
+			// if (state.finish) return 'thank-you'
+			if (state.finish) return 'sopa-thank-you'
 
-			let currentComponent = 'start-conduct'
+			// let currentComponent = 'start-conduct'
+			let currentComponent = 'sopa-start-conduct'
 
 			state.item_types.forEach((value) => {
 

@@ -5,20 +5,31 @@
 </template>
 
 <style>
-
-	.survey-backdrop {
-		width: 100%;
-		height: 100%;
-		background-image: url("/conduct/images/backdrop.jpg");
-		position: fixed;
-	}
-	
-	.hred {
-		border: 1px solid red;
-	}
 	
 	.pointerize {
 		cursor: pointer;
+	}
+	
+	.steppers {
+	  position: fixed;
+	  top: 0;
+	  right: 0;
+	}
+	
+	.stepper-fill {
+	  border-radius: 25px;
+	  background: #73AD21;
+	  padding: 2px;
+	  width: 50px;
+	  height: 50px;	  
+	}
+	
+	.stepper-outline {
+	  border-radius: 25px;
+	  border: 2px solid #73AD21;
+	  padding: 2px;
+	  width: 50px;
+	  height: 50px;
 	}
 
 </style>
@@ -43,6 +54,13 @@
 	import thankYou from './thankYou'
 	
 	import survey from './mixins/survey'
+	
+	// For SOPA
+    import sopaStartConduct from './sopaStartConduct.vue'	
+    import sopaRadios from './sopaRadios.vue'	
+    import sopaTextInput from './sopaTextInput.vue'	
+    import sopaCheckbox from './sopaCheckbox.vue'	
+    import sopaThankYou from './sopaThankYou.vue'	
 
     export default {
 
@@ -61,7 +79,12 @@
             singleRow,
             multiRows,
 			introduction,
-			thankYou
+			thankYou,
+			sopaStartConduct,
+			sopaRadios,
+			sopaTextInput,
+			sopaCheckbox,
+			sopaThankYou,
         },
             
         computed: {
