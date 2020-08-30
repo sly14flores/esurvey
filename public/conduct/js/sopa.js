@@ -67513,7 +67513,7 @@ var render = function() {
         },
         [
           _c("iframe", {
-            staticStyle: { height: "100%", width: "100%" },
+            staticStyle: { height: "600px", width: "100%" },
             attrs: {
               src: "https://survey.launion.gov.ph/survey#/Ux6PqvC2UA",
               title: "One Kaprobinsiaan for A Stronger La Union"
