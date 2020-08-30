@@ -67505,6 +67505,7 @@ var render = function() {
           "no-close-on-backdrop": "",
           "no-close-on-esc": "",
           "hide-header-close": "",
+          "hide-header": "",
           "hide-footer": ""
         }
       })
