@@ -1934,8 +1934,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_M
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: {
-    height: window.innerHeight
+  data: function data() {
+    return {
+      height: window.innerHeight
+    };
   },
   created: function created() {
     this.height = window.innerHeight;
@@ -1948,6 +1950,20 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_M
 
     if (sopa == undefined) {
       this.$bvModal.show('sopa-2020-survey');
+    }
+
+    if (window.requestIdleCallback) {
+      requestIdleCallback(function () {
+        Fingerprint2.get(function (components) {
+          console.log(components); // an array of components: {key: ..., value: ...}
+        });
+      });
+    } else {
+      setTimeout(function () {
+        Fingerprint2.get(function (components) {
+          console.log(components); // an array of components: {key: ..., value: ...}
+        });
+      }, 500);
     }
   }
 });

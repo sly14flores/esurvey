@@ -23,8 +23,10 @@
 
 	export default {
 	
-		data: {
-			height: window.innerHeight
+		data() {
+			return {
+				height: window.innerHeight
+			}
 		},
 	
 		created() {
@@ -53,7 +55,7 @@
 					  console.log(components) // an array of components: {key: ..., value: ...}
 					})
 				})
-			} else {
+			} else { 
 				setTimeout(function () {
 					Fingerprint2.get(function (components) {
 					  console.log(components) // an array of components: {key: ..., value: ...}
