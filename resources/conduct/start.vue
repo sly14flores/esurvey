@@ -9,28 +9,6 @@
 	.pointerize {
 		cursor: pointer;
 	}
-	
-	.steppers {
-	  position: fixed;
-	  top: 0;
-	  right: 0;
-	}
-	
-	.stepper-fill {
-	  border-radius: 25px;
-	  background: #73AD21;
-	  padding: 2px;
-	  width: 50px;
-	  height: 50px;	  
-	}
-	
-	.stepper-outline {
-	  border-radius: 25px;
-	  border: 2px solid #73AD21;
-	  padding: 2px;
-	  width: 50px;
-	  height: 50px;
-	}
 
 </style>
 
@@ -60,7 +38,7 @@
     import sopaRadios from './sopaRadios.vue'	
     import sopaTextInput from './sopaTextInput.vue'	
     import sopaCheckbox from './sopaCheckbox.vue'	
-    import sopaThankYou from './sopaThankYou.vue'	
+    import sopaThankYou from './sopaThankYou.vue'
 
     export default {
 
@@ -84,7 +62,7 @@
 			sopaRadios,
 			sopaTextInput,
 			sopaCheckbox,
-			sopaThankYou,
+			sopaThankYou
         },
             
         computed: {

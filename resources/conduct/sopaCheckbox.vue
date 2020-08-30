@@ -7,6 +7,7 @@
 		</div>
 		<div class="col-sm col-md-7 bg-white-right g-white">
 			<div class="nmp">
+				<steppers></steppers>			
 				<h4 style="margin-top: 15%; text-align: center; font-style: italic;" class="display-on-mobile-only font-weight-bold">ONE KAPROBINSIAAN FOR A</h4>			
 				<img :src="right_infog" class="display-on-mobile-only img-fluid right_infog" alt="Stronger La Union">				
 				<h2 style="margin-top: 8%; margin-left: 5%;">{{sectionName}}</h2>			
@@ -116,8 +117,14 @@
 	import survey from './mixins/survey'
 	import wizard from './mixins/wizard'
 	import items from './mixins/items'
+	
+	import steppers from './steppers'		
 
     export default {
+	
+		components: {
+			steppers
+		},	
 	
 		data() {
 		

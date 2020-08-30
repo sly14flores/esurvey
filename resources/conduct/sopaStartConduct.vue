@@ -12,12 +12,6 @@
 		</div>
 		<div class="col-sm col-md-7 bg-white d-none d-md-block">
 			<div class="nmp">
-				<div class="steppers">
-					<button class="stepper-fill"></button>
-					<button class="stepper-outline"></button>
-					<button class="stepper-outline"></button>
-					<button class="stepper-outline"></button>
-				</div>
 				<h4 style="margin-left: 30px; margin-top: 20%;" class="font-weight-bold">ONE KAPROBINSIAAN FOR A</h4>
 				<img :src="right_infog" class="img-fluid right_infog" alt="Stronger La Union">
 				<button style="margin-top: 20px; margin-left: 30px; border-radius: 20px!important;" class="btn btn-secondary" @click="start"><span class="font-weight-bold">START THE SURVEY</span></button>

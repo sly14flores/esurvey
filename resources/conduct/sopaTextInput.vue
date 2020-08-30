@@ -7,6 +7,7 @@
 		</div>
 		<div class="col-sm col-md-7 bg-white-right g-white" v-bind:style="{height: height+'px'}">
 			<div class="nmp">
+				<steppers></steppers>
 				<h4 style="margin-top: 20%; text-align: center; font-style: italic;" class="display-on-mobile-only font-weight-bold">ONE KAPROBINSIAAN FOR A</h4>			
 				<img :src="right_infog" class="display-on-mobile-only img-fluid right_infog" alt="Stronger La Union">				
 				<h2 style="margin-top: 8%; margin-left: 5%;">{{sectionName}}</h2>			
@@ -108,9 +109,15 @@
 	import { required, email, minLength, requiredIf, requiredUnless } from "vuelidate/lib/validators";
 	import survey from './mixins/survey'
 	import wizard from './mixins/wizard'
-	import items from './mixins/items'	
+	import items from './mixins/items'
+	
+	import steppers from './steppers'	
 
     export default {
+	
+		components: {
+			steppers
+		},	
 	
 		data() {
 		
