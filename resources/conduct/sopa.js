@@ -24,6 +24,12 @@ const app = new Vue({
 		
 		console.log('SOPA 2020 mounted')
 		console.log(localStorage)
+		
+		let sopa = localStorage.sopa_survey
+		
+		if (sopa==undefined) {
+			alert('SURVEY')
+		}
 
 	}
 }).$mount('#sopa')

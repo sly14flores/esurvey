@@ -78813,6 +78813,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   mounted: function mounted() {
     console.log('SOPA 2020 mounted');
     console.log(localStorage);
+    var sopa = localStorage.sopa_survey;
+
+    if (sopa == undefined) {
+      alert('SURVEY');
+    }
   }
 }).$mount('#sopa');
 
