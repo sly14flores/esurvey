@@ -1920,6 +1920,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__["BootstrapVue"]);
@@ -1931,7 +1934,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_M
     console.log(localStorage);
     var sopa = localStorage.sopa_survey;
 
-    if (sopa == undefined) {}
+    if (sopa == undefined) {
+      $bvModal.show('sopa-2020-survey');
+    }
   }
 });
 
@@ -66789,7 +66794,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c("b-modal", { attrs: { id: "sopa-2020-survey", "hide-footer": "" } }, [
+        _c("div", [_vm._v("Survey Here")])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
