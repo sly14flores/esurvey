@@ -23,6 +23,7 @@ const app = new Vue({
 	mounted() {
 		
 		console.log('SOPA 2020 mounted')
+		console.log(localStorage)
 
 	}
 }).$mount('#sopa')
