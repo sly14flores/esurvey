@@ -44735,7 +44735,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.left_infog[data-v-a437e2dc] {\n\twidth: 50%;\n\tmargin-top: 82%\n}\n.right_infog[data-v-a437e2dc] {\n\twidth: 80%;\n\tmargin-left: 30px;\n\tmargin-top: -6%;\n}\n.display-on-mobile-only[data-v-a437e2dc] {\n\tdisplay: none;\n}\n\n/* Mobile rules */\n@media (max-width: 280px) {\n.display-on-mobile-only[data-v-a437e2dc] {\n\t\tdisplay: block;\n}\n.g-white[data-v-a437e2dc] {\n\t\theight: 80%;\n\t\tbackground-image: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0));\n}\n.left_infog[data-v-a437e2dc] {\n\t\twidth: 60%;\n\t\tmargin: 0%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t\tposition: fixed;\n\t\tbottom: 3%;\n\t\tleft: 20%;\n}\n.right_infog[data-v-a437e2dc] {\n\t\twidth: 60%;\n\t\tmargin: 0;\n}\n}\n\n", ""]);
+exports.push([module.i, "\n.left_infog[data-v-a437e2dc] {\n\twidth: 50%;\n\tmargin-top: 82%\n}\n.right_infog[data-v-a437e2dc] {\n\twidth: 80%;\n\tmargin-left: 30px;\n\tmargin-top: -6%;\n}\n.display-on-mobile-only[data-v-a437e2dc] {\n\tdisplay: none;\n}\n\n/* Mobile rules */\n@media (max-width: 575.98px) {\n.display-on-mobile-only[data-v-a437e2dc] {\n\t\tdisplay: block;\n}\n.g-white[data-v-a437e2dc] {\n\t\theight: 80%;\n\t\tbackground-image: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0));\n}\n.left_infog[data-v-a437e2dc] {\n\t\twidth: 60%;\n\t\tmargin: 0%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t\tposition: fixed;\n\t\tbottom: 3%;\n\t\tleft: 20%;\n}\n.right_infog[data-v-a437e2dc] {\n\t\twidth: 60%;\n\t\tmargin: 0;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -71719,7 +71719,7 @@ var render = function() {
               {
                 staticClass: "btn btn-outline-light",
                 staticStyle: {
-                  "margin-top": "40%",
+                  "margin-top": "50%",
                   "border-radius": "20px!important"
                 },
                 on: { click: _vm.start }
