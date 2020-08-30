@@ -28,7 +28,7 @@ const app = new Vue({
 		let sopa = localStorage.sopa_survey
 		
 		if (sopa==undefined) {
-			alert('SURVEY')
+
 		}
 
 	}

@@ -78815,9 +78815,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     console.log(localStorage);
     var sopa = localStorage.sopa_survey;
 
-    if (sopa == undefined) {
-      alert('SURVEY');
-    }
+    if (sopa == undefined) {}
   }
 }).$mount('#sopa');
 
