@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<b-modal id="sopa-2020-survey" size="xl" title="One Kaprobinsiaan for A Stronger La Union" no-close-on-backdrop no-close-on-esc hide-header-close hide-header hide-footer>
+		<b-modal id="sopa-2020-survey" size="xl" title="One Kaprobinsiaan for A Stronger La Union" no-close-on-backdrop no-close-on-esc hide-header-close hide-footer>
 			<iframe src="https://survey.launion.gov.ph/survey#/Ux6PqvC2UA" title="One Kaprobinsiaan for A Stronger La Union" :style="{height: height+'px', width: '100%'}"></iframe>
 		</b-modal>	
 	</div>
@@ -21,8 +21,6 @@
 	import 'bootstrap/dist/css/bootstrap.css'
 	import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-	const uuidv4 = require("uuid")	
-
 	export default {
 	
 		data() {
@@ -40,7 +38,6 @@
 		mounted() {
 		
 			console.log('SOPA 2020 mounted')
-			console.log(uuidv4())
 			
 			let sopa = window.localStorage.sopa_survey
 			
