@@ -28,6 +28,8 @@
 		},
 	
 		created() {
+
+			this.height = window.innerHeight		
 		
 		},
 		

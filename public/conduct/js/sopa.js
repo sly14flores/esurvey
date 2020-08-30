@@ -1937,7 +1937,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_M
   data: {
     height: window.innerHeight
   },
-  created: function created() {},
+  created: function created() {
+    this.height = window.innerHeight;
+  },
   mounted: function mounted() {
     console.log('SOPA 2020 mounted');
     console.log(localStorage);
