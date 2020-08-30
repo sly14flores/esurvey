@@ -1,14 +1,14 @@
 @import '~bootstrap/scss/bootstrap';
 
 .survey-backdrop {
-	background-repeat: no-repeat;
+	background-repeat: repeat-y;
 	background-image: url("/conduct/images/capitol-aerial-1080-80.jpg");
 }
 
 /* Mobile rules */
 @media (max-width: 575.98px) {
 	.survey-backdrop {
-		background-repeat: no-repeat;
+		background-repeat: repeat-y;
 		background-image: url("/conduct/images/capitol-aerial-1080-70.jpg");
 		background-attachment: fixed;		
 		background-position: 8% 0%;
@@ -17,7 +17,7 @@
 
 @media (max-height: 812px) { /* for Iphone X */
 	.survey-backdrop {
-		background-repeat: no-repeat;
+		background-repeat: repeat-y;
 		background-image: url("/conduct/images/capitol-aerial-1080-80.jpg");
 		background-attachment: fixed;		
 		background-position: 8% 0%;
@@ -26,7 +26,7 @@
 
 @media (max-height: 823px) { /* for Iphone X */
 	.survey-backdrop {
-		background-repeat: no-repeat;
+		background-repeat: repeat-y;
 		background-image: url("/conduct/images/capitol-aerial-1080-80.jpg");
 		background-attachment: fixed;		
 		background-position: 8% 0%;
