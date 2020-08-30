@@ -67497,18 +67497,29 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("b-modal", {
-        attrs: {
-          id: "sopa-2020-survey",
-          size: "xl",
-          title: "One Kaprobinsiaan for A Stronger La Union",
-          "no-close-on-backdrop": "",
-          "no-close-on-esc": "",
-          "hide-header-close": "",
-          "hide-header": "",
-          "hide-footer": ""
-        }
-      })
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "sopa-2020-survey",
+            size: "xl",
+            title: "One Kaprobinsiaan for A Stronger La Union",
+            "no-close-on-backdrop": "",
+            "no-close-on-esc": "",
+            "hide-header-close": "",
+            "hide-header": "",
+            "hide-footer": ""
+          }
+        },
+        [
+          _c("iframe", {
+            attrs: {
+              src: "https://survey.launion.gov.ph/survey#/Ux6PqvC2UA",
+              title: "One Kaprobinsiaan for A Stronger La Union"
+            }
+          })
+        ]
+      )
     ],
     1
   )
