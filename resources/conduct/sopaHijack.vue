@@ -13,6 +13,7 @@
 <script>
 
 	import Vue from 'vue'
+	import Fingerprint2 from 'fingerprintjs2'
 
 	import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 	Vue.use(BootstrapVue)
