@@ -1935,7 +1935,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_M
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: {
-    height: window.innerHeight
+    height: window.innerHeight,
+    done: 0
   },
   created: function created() {
     this.height = window.innerHeight;
@@ -67521,6 +67522,7 @@ var render = function() {
           _c("iframe", {
             style: { height: _vm.height + "px", width: "100%" },
             attrs: {
+              "data-survey": _vm.done,
               src: "https://survey.launion.gov.ph/survey#/Ux6PqvC2UA",
               title: "One Kaprobinsiaan for A Stronger La Union"
             }
