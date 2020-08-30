@@ -218,8 +218,6 @@
 				this.height = window.innerHeight
 			});
 
-			console.log(window.innerHeight);
-
         } 
 
     }

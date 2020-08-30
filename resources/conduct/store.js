@@ -3,7 +3,15 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+import VuexPersist from 'vuex-persist'
+
+const vuexPersist = new VuexPersist({
+  key: 'sopa_survey',
+  storage: window.localStorage
+})
+
 export default new Vuex.Store({
+	plugins: [vuexPersist.plugin],	
 	state: {
 		item_types: [
 			{
@@ -100,7 +108,8 @@ export default new Vuex.Store({
 		},
 		finish(state, status) {
 			
-			state.finish = true
+			state.finish = status
+			state.currentItemIndex = -1
 			
 		}
 	},
@@ -278,7 +287,7 @@ export default new Vuex.Store({
 		currentComponent: (state, getters) => {
 			
 			// if (state.finish) return 'thank-you'
-			if (state.finish) return 'sopa-thank-you'
+			if ((state.finish) && (state.currentItemIndex == -1)) return 'sopa-thank-you'
 
 			// let currentComponent = 'start-conduct'
 			let currentComponent = 'sopa-start-conduct'

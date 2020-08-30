@@ -99,7 +99,17 @@
 
                 vm.fetchSurvey(vm.$route.params.token).then(response => {
 
-                    vm.$store.commit('load',response.data.data)
+					console.log(vm.$store.state.finish)
+					
+                    if (vm.$store.state.finish) {
+					
+						vm.$store.commit('start')
+					
+					} else {
+					
+						vm.$store.commit('load',response.data.data)
+						
+					}
                     vm.$parent.$refs.pSpinner.off();
 
                 }).catch(e => {

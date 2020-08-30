@@ -136,16 +136,28 @@ export default {
 			if (!this.validateItem()) return
 
 			this.$root.$refs.pSpinner.on();
-			
-			this.respondent().then(response => {
+
+			if (!this.$store.state.finish) {
+				
+				this.respondent().then(response => {
+					
+					this.$store.dispatch('finish').then(response => {
+
+						this.$root.$refs.pSpinner.off()
+
+					});
+					
+				})				
+				
+			} else {
 				
 				this.$store.dispatch('finish').then(response => {
 
 					this.$root.$refs.pSpinner.off()
 
-				});
-				
-			})
+				});			
+
+			}
 
 		},
 		
