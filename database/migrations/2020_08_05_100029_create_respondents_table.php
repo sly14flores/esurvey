@@ -18,6 +18,7 @@ class CreateRespondentsTable extends Migration
 			$table->foreignId('survey_id')->constrained()
 				  ->onDelete('cascade')
 				  ->onUpdate('no action');				  
+            $table->string('anon_id')->nullable();
             $table->timestamps();
         });
     }
