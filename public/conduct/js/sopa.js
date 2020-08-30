@@ -67513,7 +67513,7 @@ var render = function() {
           attrs: {
             id: "sopa-2020-survey",
             size: "xl",
-            title: "One Kaprobinsiaan for A Stronger La Union",
+            title: "",
             "no-close-on-backdrop": "",
             "no-close-on-esc": "",
             "hide-footer": ""
