@@ -1927,9 +1927,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__["BootstrapVue"]);
@@ -67500,24 +67497,16 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "b-modal",
-        {
-          attrs: { id: "sopa-2020-survey", "hide-footer": "" },
-          scopedSlots: _vm._u([
-            {
-              key: "modal-title",
-              fn: function() {
-                return [
-                  _vm._v("\n\t\tOne Kaprobinsiaan for A Stronger La Union\n\t")
-                ]
-              },
-              proxy: true
-            }
-          ])
-        },
-        [_vm._v(" "), _c("div", [_vm._v("Survey Here")])]
-      )
+      _c("b-modal", {
+        attrs: {
+          id: "sopa-2020-survey",
+          size: "xl",
+          title: "One Kaprobinsiaan for A Stronger La Union",
+          "no-close-on-backdrop": "",
+          "no-close-on-esc": "",
+          "hide-footer": ""
+        }
+      })
     ],
     1
   )
