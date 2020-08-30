@@ -5,7 +5,7 @@
 				<div class="display-on-mobile-only">
 					<h4 style="margin-top: 20%; font-style: italic;" class="font-weight-bold">ONE KAPROBINSIAAN FOR A</h4>
 					<img :src="right_infog" class="img-fluid right_infog" alt="Stronger La Union">					
-					<button style="margin-top: 75%; border-radius: 20px!important;" class="btn btn-outline-light" @click="start"><span class="font-weight-bold">START THE SURVEY</span></button>
+					<button style="margin-top: 40%; border-radius: 20px!important;" class="btn btn-outline-light" @click="start"><span class="font-weight-bold">START THE SURVEY</span></button>
 				</div>			
 				<img :src="left_infog" class="img-fluid left_infog" alt="SOPA 2020">
 			</div>
@@ -38,7 +38,8 @@
 	}
 	
 	/* Mobile rules */
-	@media (max-width: 575.98px) {
+	
+	@media (max-width: 280px) {
 	
 		.display-on-mobile-only {
 			display: block;
