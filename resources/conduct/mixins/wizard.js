@@ -53,11 +53,26 @@ export default {
 
 				if (this.isCheckboxes) { // Checkboxes
 
-					// validate limit
+					// validate minimum
 					
-					valid = this.item.values.some(value => {
+					let checkeds = this.item.values.filter(value => {
 						return value.answer == true
 					})
+
+					valid = checkeds.length == this.$store.getters.currentItem.max_checkbox_selections
+					
+					if (!valid) {
+						
+						Swal.fire({
+						  title: 'Notification',
+						  text: 'Please select your top ' + this.$store.getters.currentItem.max_checkbox_selections,
+						  icon: 'warning',
+						  confirmButtonText: 'Close'
+						})						
+						
+						return
+						
+					}
 
 				}
 				

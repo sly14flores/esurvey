@@ -2795,7 +2795,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.values = values;
         });
         Swal.fire({
-          title: 'Warning!',
+          title: 'Notification',
           text: 'Please select only ' + this.allowed + ' item(s)',
           icon: 'warning',
           confirmButtonText: 'Close'
@@ -93633,10 +93633,21 @@ __webpack_require__.r(__webpack_exports__);
 
         if (this.isCheckboxes) {
           // Checkboxes
-          // validate limit
-          valid = this.item.values.some(function (value) {
+          // validate minimum
+          var checkeds = this.item.values.filter(function (value) {
             return value.answer == true;
           });
+          valid = checkeds.length == this.$store.getters.currentItem.max_checkbox_selections;
+
+          if (!valid) {
+            Swal.fire({
+              title: 'Notification',
+              text: 'Please select your top ' + this.$store.getters.currentItem.max_checkbox_selections,
+              icon: 'warning',
+              confirmButtonText: 'Close'
+            });
+            return;
+          }
         } // Text Inputs
 
 

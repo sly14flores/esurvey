@@ -194,7 +194,7 @@
 					})
 
 					Swal.fire({
-					  title: 'Warning!',
+					  title: 'Notification',
 					  text: 'Please select only '+this.allowed+' item(s)',
 					  icon: 'warning',
 					  confirmButtonText: 'Close'
