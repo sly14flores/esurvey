@@ -21,6 +21,8 @@ const app = new Vue({
 		
 	},
 	mounted() {
+		
+		console.log('SOPA 2020 mounted')
 
 	}
 }).$mount('#sopa')

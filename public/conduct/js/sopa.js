@@ -78810,7 +78810,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   data: {},
   methods: {},
   created: function created() {},
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    console.log('SOPA 2020 mounted');
+  }
 }).$mount('#sopa');
 
 /***/ }),
