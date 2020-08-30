@@ -31,7 +31,11 @@
 	
 		created() {
 
-			this.height = window.innerHeight		
+			this.height = window.innerHeight
+
+			if (localStorage.anon_id == undefined) {
+				localStorage.anon_id = (Date.now().toString()) + (Math.floor(Math.random() * 100)).toString()
+			}
 		
 		},
 		
