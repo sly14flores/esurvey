@@ -1,6 +1,9 @@
 <template>
 	<div>
 	  <b-modal id="sopa-2020-survey" hide-footer>
+		<template v-slot:modal-title>
+			One Kaprobinsiaan for A Stronger La Union
+		</template>	  
 		<div>Survey Here</div>
 	  </b-modal>	
 	</div>
@@ -33,7 +36,7 @@
 			
 			if (sopa==undefined) {
 			
-				$bvModal.show('sopa-2020-survey')
+				this.$bvModal.show('sopa-2020-survey')
 
 			}
 		
