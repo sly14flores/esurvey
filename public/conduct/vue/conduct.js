@@ -74269,7 +74269,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", { staticClass: "lead center" }, [
-      _c("strong", [_vm._v("Thank you for your time")])
+      _c("strong", [_vm._v("Thank you for your time.")])
     ])
   }
 ]
@@ -93647,7 +93647,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (!valid) {
           Swal.fire({
-            title: 'Warning!',
+            title: 'Notification',
             text: 'Your answer is required',
             icon: 'warning',
             confirmButtonText: 'Close'

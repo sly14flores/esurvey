@@ -73,7 +73,7 @@ export default {
 				if (!valid) {
 
 					Swal.fire({
-					  title: 'Warning!',
+					  title: 'Notification',
 					  text: 'Your answer is required',
 					  icon: 'warning',
 					  confirmButtonText: 'Close'

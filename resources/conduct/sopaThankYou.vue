@@ -15,7 +15,7 @@
 					<!-- <b-icon icon="check-circle" variant="success" style="width: 120px; height: 120px;"></b-icon> -->
 				</div>
 				<h1 class="mt-2 center">Your answers were successfully submitted!</h1>
-				<p class="lead center"><strong>Thank you for your time</strong></p>
+				<p class="lead center"><strong>Thank you for your time.</strong></p>
 				<img :src="bottom_logo" class="img-fluid bottom-logo display-on-mobile-only" alt="SOPA 2020">
 			</div>
 		</div>
