@@ -29,7 +29,7 @@
 					 <button type="button" class="btn btn-primary mr-2" v-if="showNext" @click="next">Next</button>
 					 <button type="button" class="btn btn-primary" v-if="showFinish" @click="finish">Finish</button>			
 				</div>
-				<img :src="bottom_logo" class="img-fluid bottom-logo display-on-mobile-only" alt="SOPA 2020">
+				<img :src="bottom_logo" class="img-fluid bottom-logo display-on-mobile-only display-off" alt="SOPA 2020">
 			</div>
 		</div>		
 	</div>
@@ -101,6 +101,14 @@
 			bottom: 10px;
 		}
 	
+	}
+	
+	@media (max-width: 620px) {
+		
+		.display-off {
+			display: none;
+		}
+
 	}
 
 </style>
