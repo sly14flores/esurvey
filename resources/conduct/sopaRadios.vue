@@ -162,8 +162,6 @@
 				this.height = window.innerHeight
 			});
 
-			alert(this.height)
-
         } 
 
     }
