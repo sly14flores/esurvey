@@ -21,7 +21,7 @@
 	import 'bootstrap/dist/css/bootstrap.css'
 	import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-	const uuidv4 = require("uuid/v4")	
+	const uuidv4 = require("uuid")	
 
 	export default {
 	
