@@ -45,6 +45,7 @@
         "skycons": "^1.0.0",
         "socket.io-client": "^2.3.0",
         "sweetalert2": "^9.15.3",
+        "uuid": "^8.3.0",
         "vue-async-computed": "^3.8.2",
         "vue-router": "^3.1.6",
         "vuelidate": "^0.7.5",

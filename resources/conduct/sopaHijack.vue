@@ -13,14 +13,15 @@
 <script>
 
 	import Vue from 'vue'
-	import Fingerprint2 from 'fingerprintjs2'
 
 	import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 	Vue.use(BootstrapVue)
 	Vue.use(IconsPlugin)
 	
 	import 'bootstrap/dist/css/bootstrap.css'
-	import 'bootstrap-vue/dist/bootstrap-vue.css'	
+	import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+	const uuidv4 = require("uuid/v4")	
 
 	export default {
 	
@@ -39,29 +40,14 @@
 		mounted() {
 		
 			console.log('SOPA 2020 mounted')
-			console.log(localStorage)
+			console.log(uuidv4())
 			
 			let sopa = window.localStorage.sopa_survey
-			console.log(sopa)
 			
 			if (sopa==undefined) {
 			
 				this.$bvModal.show('sopa-2020-survey')
 
-			}
-			
-			if (window.requestIdleCallback) {
-				requestIdleCallback(function () {
-					Fingerprint2.get(function (components) {
-					  console.log(components) // an array of components: {key: ..., value: ...}
-					})
-				})
-			} else { 
-				setTimeout(function () {
-					Fingerprint2.get(function (components) {
-					  console.log(components) // an array of components: {key: ..., value: ...}
-					})  
-				}, 500)
 			}			
 		
 		}
