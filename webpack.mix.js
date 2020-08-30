@@ -115,3 +115,8 @@ mix.sass('resources/conduct/sass/index.scss', 'public/conduct/css').version()
 mix.js('resources/conduct/index.js', 'public/conduct/js').version()
 mix.js('resources/conduct/conduct.js', 'public/conduct/vue').version()
 mix.copyDirectory('resources/conduct/static/images', 'public/conduct/images')
+
+/*
+ * SOPA 2020
+*/
+mix.js('resources/conduct/sopa.js', 'public/conduct/js')
