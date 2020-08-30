@@ -1,6 +1,6 @@
 <template>
 	<div>
-	  <b-modal id="sopa-2020-survey" size="xl" title="One Kaprobinsiaan for A Stronger La Union" no-close-on-backdrop no-close-on-esc hide-footer>
+	  <b-modal id="sopa-2020-survey" size="xl" title="One Kaprobinsiaan for A Stronger La Union" no-close-on-backdrop no-close-on-esc hide-header-close hide-footer>
 		
 	  </b-modal>	
 	</div>

@@ -67504,6 +67504,7 @@ var render = function() {
           title: "One Kaprobinsiaan for A Stronger La Union",
           "no-close-on-backdrop": "",
           "no-close-on-esc": "",
+          "hide-header-close": "",
           "hide-footer": ""
         }
       })
