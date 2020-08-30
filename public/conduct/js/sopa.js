@@ -67505,8 +67505,46 @@ var e=function(){return(e=Object.assign||function(e){for(var t,r=1,s=arguments.l
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "sopa-2020-survey",
+            size: "xl",
+            title: "",
+            "no-close-on-backdrop": "",
+            "no-close-on-esc": "",
+            "hide-footer": ""
+          }
+        },
+        [
+          _c("iframe", {
+            style: { height: _vm.height + "px", width: "100%" },
+            attrs: {
+              src: "https://survey.launion.gov.ph/survey#/Ux6PqvC2UA",
+              title: "One Kaprobinsiaan for A Stronger La Union"
+            }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { id: "anon_id", type: "hidden" },
+        domProps: { value: _vm.anon_id }
+      })
+    ],
+    1
+  )
+}
 var staticRenderFns = []
+render._withStripped = true
 
 
 

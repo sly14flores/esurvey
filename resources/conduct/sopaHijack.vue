@@ -3,7 +3,7 @@
 		<b-modal id="sopa-2020-survey" size="xl" title="" no-close-on-backdrop no-close-on-esc hide-footer>
 			<iframe src="https://survey.launion.gov.ph/survey#/Ux6PqvC2UA" title="One Kaprobinsiaan for A Stronger La Union" :style="{height: height+'px', width: '100%'}"></iframe>
 		</b-modal>
-		<input id="anon_id" type="hidden" :value="">
+		<input id="anon_id" type="hidden" :value="anon_id">
 	</div>
 </template>
 
