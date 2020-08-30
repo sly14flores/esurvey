@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<b-modal id="sopa-2020-survey" size="xl" title="One Kaprobinsiaan for A Stronger La Union" no-close-on-backdrop no-close-on-esc hide-header-close hide-header hide-footer>
-			<iframe src="https://survey.launion.gov.ph/survey#/Ux6PqvC2UA" title="One Kaprobinsiaan for A Stronger La Union" style="height:500px;width:100%;"></iframe>
+			<iframe src="https://survey.launion.gov.ph/survey#/Ux6PqvC2UA" title="One Kaprobinsiaan for A Stronger La Union" :style="{height: height+'px', width: '100%'}"></iframe>
 		</b-modal>	
 	</div>
 </template>
@@ -22,6 +22,10 @@
 	import 'bootstrap-vue/dist/bootstrap-vue.css'	
 
 	export default {
+	
+		data: {
+			height: window.innerHeight
+		},
 	
 		created() {
 		

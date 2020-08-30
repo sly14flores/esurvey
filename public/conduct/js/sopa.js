@@ -1934,6 +1934,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_M
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: {
+    height: window.innerHeight
+  },
   created: function created() {},
   mounted: function mounted() {
     console.log('SOPA 2020 mounted');
@@ -67514,7 +67517,7 @@ var render = function() {
         },
         [
           _c("iframe", {
-            staticStyle: { height: "500px", width: "100%" },
+            style: { height: _vm.height + "px", width: "100%" },
             attrs: {
               src: "https://survey.launion.gov.ph/survey#/Ux6PqvC2UA",
               title: "One Kaprobinsiaan for A Stronger La Union"
