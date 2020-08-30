@@ -96,9 +96,6 @@
 
 		.bottom-logo {
 			width: 50%;
-			position: fixed;
-			right: 10px;
-			bottom: 10px;
 		}
 	
 	}
