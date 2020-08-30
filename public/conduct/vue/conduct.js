@@ -2967,6 +2967,7 @@ __webpack_require__.r(__webpack_exports__);
     $(window).resize(function () {
       _this.height = window.innerHeight;
     });
+    alert(this.height);
   }
 });
 
