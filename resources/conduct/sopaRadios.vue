@@ -29,9 +29,7 @@
 					 <button type="button" class="btn btn-primary mr-2" v-if="showNext" @click="next">Next</button>
 					 <button type="button" class="btn btn-primary" v-if="showFinish" @click="finish">Finish</button>			
 				</div>
-				<div class="clearfix">
-					<img :src="bottom_logo" class="img-fluid bottom-logo display-on-mobile-only" alt="SOPA 2020">
-				</div>
+				<img :src="bottom_logo" class="img-fluid bottom-logo display-on-mobile-only" alt="SOPA 2020">
 			</div>
 		</div>		
 	</div>
@@ -97,10 +95,10 @@
 		}
 
 		.bottom-logo {
-			margin-top: 25px;
-			margin-right: 10px;
 			width: 50%;
-			float: right;
+			position: fixed;
+			right: 10px;
+			bottom: 10px;
 		}
 	
 	}
