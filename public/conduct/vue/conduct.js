@@ -2934,6 +2934,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -44713,7 +44718,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\nhr[data-v-517a6ee8] {\n\tborder: 1px solid gray;\n\tmargin-left: 5%;\n}\n.left_infog[data-v-517a6ee8] {\n\twidth: 50%;\n\tmargin-top: 82%\n}\n.right_infog[data-v-517a6ee8] {\n\twidth: 80%;\n\tmargin-left: 30px;\n\tmargin-top: -6%;\n}\n.display-on-mobile-only[data-v-517a6ee8] {\n\tdisplay: none;\n}\n.bg-white-right[data-v-517a6ee8] {\n\tbackground-color: white;\n}\n\n/* Mobile rules */\n@media (max-width: 575.98px) {\n.display-on-mobile-only[data-v-517a6ee8] {\n\t\tdisplay: block;\n}\n.bg-white-right[data-v-517a6ee8] {\n\t\tbackground-color: transparent;\n}\n.g-white[data-v-517a6ee8] {\n\t\theight: 80%;\n\t\tbackground-image: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0.8));\n}\n.left_infog[data-v-517a6ee8] {\n\t\twidth: 60%;\n\t\tmargin: 0%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t\tposition: fixed;\n\t\tbottom: 3%;\n\t\tleft: 20%;\n}\n.right_infog[data-v-517a6ee8] {\n\t\twidth: 60%;\n\t\tmargin: 0;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n}\n.bottom-logo[data-v-517a6ee8] {\n\t\twidth: 50%;\n}\n}\n\n", ""]);
+exports.push([module.i, "\nhr[data-v-517a6ee8] {\n\tborder: 1px solid gray;\n\tmargin-left: 5%;\n}\n.left_infog[data-v-517a6ee8] {\n\twidth: 50%;\n\tmargin-top: 82%\n}\n.right_infog[data-v-517a6ee8] {\n\twidth: 80%;\n\tmargin-left: 30px;\n\tmargin-top: -6%;\n}\n.display-on-mobile-only[data-v-517a6ee8] {\n\tdisplay: none;\n}\n.bg-white-right[data-v-517a6ee8] {\n\tbackground-color: white;\n}\n\n/* Mobile rules */\n@media (max-width: 575.98px) {\n.display-on-mobile-only[data-v-517a6ee8] {\n\t\tdisplay: block;\n}\n.bg-white-right[data-v-517a6ee8] {\n\t\tbackground-color: transparent;\n}\n.g-white[data-v-517a6ee8] {\n\t\theight: 80%;\n\t\tbackground-image: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0.8));\n}\n.left_infog[data-v-517a6ee8] {\n\t\twidth: 60%;\n\t\tmargin: 0%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t\tposition: fixed;\n\t\tbottom: 3%;\n\t\tleft: 20%;\n}\n.right_infog[data-v-517a6ee8] {\n\t\twidth: 60%;\n\t\tmargin: 0;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n}\n.bottom-logo[data-v-517a6ee8] {\n\t\tmargin-top: 25px;\n\t\tmargin-right: 10px;\n\t\twidth: 50%;\n\t\tfloat: right;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -71656,10 +71661,12 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c("img", {
-                staticClass: "img-fluid bottom-logo display-on-mobile-only",
-                attrs: { src: _vm.bottom_logo, alt: "SOPA 2020" }
-              })
+              _c("div", { staticClass: "clearfix" }, [
+                _c("img", {
+                  staticClass: "img-fluid bottom-logo display-on-mobile-only",
+                  attrs: { src: _vm.bottom_logo, alt: "SOPA 2020" }
+                })
+              ])
             ],
             1
           )
