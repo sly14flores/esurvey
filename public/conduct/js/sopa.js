@@ -1938,7 +1938,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_M
   mounted: function mounted() {
     console.log('SOPA 2020 mounted');
     console.log(localStorage);
-    var sopa = localStorage.sopa_survey;
+    var sopa = window.localStorage.sopa_survey;
+    console.log(sopa);
 
     if (sopa == undefined) {
       this.$bvModal.show('sopa-2020-survey');

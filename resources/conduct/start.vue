@@ -88,6 +88,8 @@
         },
 
         mounted() {
+		
+			console.log(window.localStorage)
 
         },
 		

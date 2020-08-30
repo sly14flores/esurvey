@@ -3510,7 +3510,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuelidate__WEBPACK_IMPORTED_MODUL
     }
   },
   created: function created() {},
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    console.log(window.localStorage);
+  },
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
     next(function (vm) {
       vm.$parent.$refs.pSpinner.on();

@@ -32,7 +32,8 @@
 			console.log('SOPA 2020 mounted')
 			console.log(localStorage)
 			
-			let sopa = localStorage.sopa_survey
+			let sopa = window.localStorage.sopa_survey
+			console.log(sopa)
 			
 			if (sopa==undefined) {
 			
