@@ -10974,7 +10974,7 @@ a.text-dark:focus {
 }
 
 .survey-backdrop {
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-image: url("/conduct/images/capitol-aerial-1080-80.jpg");
 }
 
@@ -10982,7 +10982,7 @@ a.text-dark:focus {
 
 @media (max-width: 575.98px) {
   .survey-backdrop {
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-image: url("/conduct/images/capitol-aerial-1080-70.jpg");
     background-attachment: fixed;
     background-position: 8% 0%;
@@ -10993,7 +10993,7 @@ a.text-dark:focus {
   /* for Iphone X */
 
   .survey-backdrop {
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-image: url("/conduct/images/capitol-aerial-1080-80.jpg");
     background-attachment: fixed;
     background-position: 8% 0%;
@@ -11004,7 +11004,7 @@ a.text-dark:focus {
   /* for Iphone X */
 
   .survey-backdrop {
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-image: url("/conduct/images/capitol-aerial-1080-80.jpg");
     background-attachment: fixed;
     background-position: 8% 0%;
