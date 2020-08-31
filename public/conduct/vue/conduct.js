@@ -3390,6 +3390,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__["BootstrapVue"]);
@@ -3445,6 +3447,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sopaTextInput_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./sopaTextInput.vue */ "./resources/conduct/sopaTextInput.vue");
 /* harmony import */ var _sopaCheckbox_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./sopaCheckbox.vue */ "./resources/conduct/sopaCheckbox.vue");
 /* harmony import */ var _sopaThankYou_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./sopaThankYou.vue */ "./resources/conduct/sopaThankYou.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -44789,7 +44813,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.center[data-v-768e9365] {\n\ttext-align: center;\n}\nhr[data-v-768e9365] {\n\tborder: 1px solid gray;\n\tmargin-left: 5%;\n}\n.left_infog[data-v-768e9365] {\n\twidth: 50%;\n\tmargin-top: 82%\n}\n.right_infog[data-v-768e9365] {\n\twidth: 80%;\n\tmargin-left: 30px;\n\tmargin-top: -6%;\n}\n.display-on-mobile-only[data-v-768e9365] {\n\tdisplay: none;\n}\n.bg-white-right[data-v-768e9365] {\n\tbackground-color: white;\n}\n.ty-margin[data-v-768e9365] {\n\tmargin-top: 15%;\n}\n\n/* Mobile rules */\n@media (max-width: 575.98px) {\n.display-on-mobile-only[data-v-768e9365] {\n\t\tdisplay: block;\n}\n.ty-margin[data-v-768e9365] {\n\t\tmargin-top: 50%;\n}\n.bg-white-right[data-v-768e9365] {\n\t\tbackground-color: transparent;\n}\n.g-white[data-v-768e9365] {\n\t\theight: 80%;\n\t\tbackground-image: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0.8));\n}\n.left_infog[data-v-768e9365] {\n\t\twidth: 60%;\n\t\tmargin: 0%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t\tposition: fixed;\n\t\tbottom: 3%;\n\t\tleft: 20%;\n}\n.right_infog[data-v-768e9365] {\n\t\twidth: 60%;\n\t\tmargin: 0;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n}\n.bottom-logo[data-v-768e9365] {\n\t\twidth: 50%;\n\t\tposition: fixed;\n\t\tright: 10px;\n\t\tbottom: 10px;\n}\n}\t\n\n", ""]);
+exports.push([module.i, "\n.center[data-v-768e9365] {\n\ttext-align: center;\n}\nhr[data-v-768e9365] {\n\tborder: 1px solid gray;\n\tmargin-left: 5%;\n}\n.left_infog[data-v-768e9365] {\n\twidth: 50%;\n\tmargin-top: 82%\n}\n.right_infog[data-v-768e9365] {\n\twidth: 80%;\n\tmargin-left: 30px;\n\tmargin-top: -6%;\n}\n.display-on-mobile-only[data-v-768e9365] {\n\tdisplay: none;\n}\n.bg-white-right[data-v-768e9365] {\n\tbackground-color: white;\n}\n.ty-margin[data-v-768e9365] {\n\tmargin-top: 10%;\n}\n\n/* Mobile rules */\n@media (max-width: 575.98px) {\n.display-on-mobile-only[data-v-768e9365] {\n\t\tdisplay: block;\n}\n.ty-margin[data-v-768e9365] {\n\t\tmargin-top: 25px;\n}\n.bg-white-right[data-v-768e9365] {\n\t\tbackground-color: transparent;\n}\n.g-white[data-v-768e9365] {\n\t\theight: 80%;\n\t\tbackground-image: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0.8));\n}\n.left_infog[data-v-768e9365] {\n\t\twidth: 60%;\n\t\tmargin: 0%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t\tposition: fixed;\n\t\tbottom: 3%;\n\t\tleft: 20%;\n}\n.right_infog[data-v-768e9365] {\n\t\twidth: 60%;\n\t\tmargin: 0;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n}\n.bottom-logo[data-v-768e9365] {\n\t\twidth: 50%;\n\t\tposition: fixed;\n\t\tright: 10px;\n\t\tbottom: 10px;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -44808,7 +44832,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.pointerize {\n\tcursor: pointer;\n}\n\n", ""]);
+exports.push([module.i, "\n.pointerize {\n\tcursor: pointer;\n}\nhtml {\n  font-size: 1rem;\n}\n@include media-breakpoint-up(sm) {\nhtml {\n\tfont-size: 1.2rem;\n}\n}\n@include media-breakpoint-up(md) {\nhtml {\n\tfont-size: 1.4rem;\n}\n}\n@include media-breakpoint-up(lg) {\nhtml {\n\tfont-size: 1.6rem;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -74218,14 +74242,14 @@ var render = function() {
           style: { height: _vm.height + "px" }
         },
         [
-          _c("div", { staticClass: "nmp" }, [
+          _c("div", { staticStyle: { margin: "0 50px" } }, [
             _c(
               "div",
               { staticClass: "h2 center ty-margin" },
               [
                 _c(
                   "b-iconstack",
-                  { attrs: { "font-scale": "5" } },
+                  { attrs: { "font-scale": "3" } },
                   [
                     _c("b-icon", {
                       attrs: { stacked: "", icon: "circle", variant: "success" }
@@ -74247,11 +74271,9 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("h1", { staticClass: "mt-2 center" }, [
-              _vm._v("Your answers were successfully submitted!")
-            ]),
-            _vm._v(" "),
             _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
             _vm._v(" "),
             _c("img", {
               staticClass: "img-fluid bottom-logo display-on-mobile-only",
@@ -74268,8 +74290,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "lead center" }, [
-      _c("strong", [_vm._v("Thank you for your time.")])
+    return _c("h5", { staticClass: "mt-3 center" }, [
+      _vm._v(
+        "Thank you for participating in this survey. If you want to help in planning to make La Union a Province worth living in, you may proceed to Step 2 of the survey through this link: "
+      ),
+      _c("a", { attrs: { href: "http://bit.ly/StrongerLaUnionSurvey" } }, [
+        _vm._v("http://bit.ly/StrongerLaUnionSurvey")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", { staticClass: "mt-3 text-muted center" }, [
+      _vm._v(
+        "(Maraming salamat sa paglahok sa survey na ito. Kung nais mong magbigay ng suhestyon at makatulong sa pagpplano ng paglikha ng La Union upang maging Province worth living in, maaari kang magproceed sa step 2 ng survey gamit ang link na ito: "
+      ),
+      _c("a", { attrs: { href: "http://bit.ly/StrongerLaUnionSurvey" } }, [
+        _vm._v("http://bit.ly/StrongerLaUnionSurvey")
+      ]),
+      _vm._v(")")
     ])
   }
 ]
@@ -94950,8 +94991,10 @@ var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
       return currentItem;
     },
     currentComponent: function currentComponent(state, getters) {
+      // return 'sopa-thank-you'
       // if (state.finish) return 'thank-you'
-      if (state.finish && state.currentItemIndex == -1) return 'sopa-thank-you'; // let currentComponent = 'start-conduct'
+      if (state.finish && state.currentItemIndex == -1) return 'sopa-thank-you'; // if (state.finish) return 'sopa-thank-you'
+      // let currentComponent = 'start-conduct'
 
       var currentComponent = 'sopa-start-conduct';
       state.item_types.forEach(function (value) {

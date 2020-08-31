@@ -286,8 +286,11 @@ export default new Vuex.Store({
 		},
 		currentComponent: (state, getters) => {
 			
+			// return 'sopa-thank-you'
+			
 			// if (state.finish) return 'thank-you'
 			if ((state.finish) && (state.currentItemIndex == -1)) return 'sopa-thank-you'
+			// if (state.finish) return 'sopa-thank-you'
 
 			// let currentComponent = 'start-conduct'
 			let currentComponent = 'sopa-start-conduct'

@@ -6,16 +6,18 @@
 			</div>
 		</div>
 		<div class="col-sm col-md-7 bg-white-right g-white" v-bind:style="{height: height+'px'}">
-			<div class="nmp">				
+			<div style="margin: 0 50px;">				
 				<div class="h2 center ty-margin">
-					<b-iconstack font-scale="5">
+					<b-iconstack font-scale="3">
 					  <b-icon stacked icon="circle" variant="success"></b-icon>
 					  <b-icon stacked icon="check" variant="success" shift-v="-1" scale="0.85"></b-icon>
 					</b-iconstack>
 					<!-- <b-icon icon="check-circle" variant="success" style="width: 120px; height: 120px;"></b-icon> -->
 				</div>
-				<h1 class="mt-2 center">Your answers were successfully submitted!</h1>
-				<p class="lead center"><strong>Thank you for your time.</strong></p>
+				
+				<!-- <h1 class="mt-2 center">Your answers were successfully submitted!</h1> -->
+				<h5 class="mt-3 center">Thank you for participating in this survey. If you want to help in planning to make La Union a Province worth living in, you may proceed to Step 2 of the survey through this link: <a href="http://bit.ly/StrongerLaUnionSurvey">http://bit.ly/StrongerLaUnionSurvey</a></h5>
+				<h5 class="mt-3 text-muted center">(Maraming salamat sa paglahok sa survey na ito. Kung nais mong magbigay ng suhestyon at makatulong sa pagpplano ng paglikha ng La Union upang maging Province worth living in, maaari kang magproceed sa step 2 ng survey gamit ang link na ito: <a href="http://bit.ly/StrongerLaUnionSurvey">http://bit.ly/StrongerLaUnionSurvey</a>)</h5>			
 				<img :src="bottom_logo" class="img-fluid bottom-logo display-on-mobile-only" alt="SOPA 2020">
 			</div>
 		</div>
@@ -53,7 +55,7 @@
 	}
 	
 	.ty-margin {
-		margin-top: 15%;
+		margin-top: 10%;
 	}
 	
 	/* Mobile rules */
@@ -64,7 +66,7 @@
 		}
 		
 		.ty-margin {
-			margin-top: 50%;
+			margin-top: 25px;
 		}
 		
 		.bg-white-right {
@@ -100,7 +102,7 @@
 			bottom: 10px;
 		}
 	
-	}	
+	}
 
 </style>
 
