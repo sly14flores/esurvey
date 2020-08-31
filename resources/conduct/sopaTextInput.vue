@@ -11,7 +11,7 @@
 				<h4 style="margin-top: 20%; text-align: center; font-style: italic;" class="display-on-mobile-only font-weight-bold">ONE KAPROBINSIAAN FOR A</h4>			
 				<img :src="right_infog" class="display-on-mobile-only img-fluid right_infog" alt="Stronger La Union">				
 				<h2 style="margin-top: 8%; margin-left: 5%;">{{sectionName}}</h2>			
-				<h4 v-if="sectionNameTranslated!=null" class="text-muted" style="margin-top: 5px; margin-left: 5%; font-style: italic">( {{sectionNameTranslated}} )</h4>
+				<h4 v-if="sectionNameTranslated!=null" class="text-muted" style="margin-top: 5px; margin-left: 5%; font-style: italic">({{sectionNameTranslated}})</h4>
 				<hr>
 				<div v-if="!item.text_is_multiple" class="d-flex mt-1">
 					<form style="margin-left: 5%;">

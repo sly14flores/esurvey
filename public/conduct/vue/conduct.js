@@ -73400,7 +73400,7 @@ var render = function() {
                     "font-style": "italic"
                   }
                 },
-                [_vm._v("( " + _vm._s(_vm.sectionNameTranslated) + " )")]
+                [_vm._v("(" + _vm._s(_vm.sectionNameTranslated) + ")")]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -73649,7 +73649,7 @@ var render = function() {
                         "font-style": "italic"
                       }
                     },
-                    [_vm._v("( " + _vm._s(_vm.sectionNameTranslated) + " )")]
+                    [_vm._v("(" + _vm._s(_vm.sectionNameTranslated) + ")")]
                   )
                 : _vm._e(),
               _vm._v(" "),
@@ -73997,7 +73997,7 @@ var render = function() {
                         "font-style": "italic"
                       }
                     },
-                    [_vm._v("( " + _vm._s(_vm.sectionNameTranslated) + " )")]
+                    [_vm._v("(" + _vm._s(_vm.sectionNameTranslated) + ")")]
                   )
                 : _vm._e(),
               _vm._v(" "),
