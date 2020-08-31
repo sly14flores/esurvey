@@ -94806,7 +94806,7 @@ var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
   storage: window.localStorage
 });
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
-  plugins: [vuexPersist.plugin],
+  // plugins: [vuexPersist.plugin],
   state: {
     item_types: [{
       id: 'intro',
@@ -94993,8 +94993,8 @@ var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
     currentComponent: function currentComponent(state, getters) {
       // return 'sopa-thank-you'
       // if (state.finish) return 'thank-you'
-      if (state.finish && state.currentItemIndex == -1) return 'sopa-thank-you'; // if (state.finish) return 'sopa-thank-you'
-      // let currentComponent = 'start-conduct'
+      // if ((state.finish) && (state.currentItemIndex == -1)) return 'sopa-thank-you'
+      if (state.finish) return 'sopa-thank-you'; // let currentComponent = 'start-conduct'
 
       var currentComponent = 'sopa-start-conduct';
       state.item_types.forEach(function (value) {

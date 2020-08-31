@@ -11,7 +11,7 @@ const vuexPersist = new VuexPersist({
 })
 
 export default new Vuex.Store({
-	plugins: [vuexPersist.plugin],	
+	// plugins: [vuexPersist.plugin],
 	state: {
 		item_types: [
 			{
@@ -289,8 +289,8 @@ export default new Vuex.Store({
 			// return 'sopa-thank-you'
 			
 			// if (state.finish) return 'thank-you'
-			if ((state.finish) && (state.currentItemIndex == -1)) return 'sopa-thank-you'
-			// if (state.finish) return 'sopa-thank-you'
+			// if ((state.finish) && (state.currentItemIndex == -1)) return 'sopa-thank-you'
+			if (state.finish) return 'sopa-thank-you'
 
 			// let currentComponent = 'start-conduct'
 			let currentComponent = 'sopa-start-conduct'
