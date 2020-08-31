@@ -17,7 +17,7 @@
 				
 				<!-- <h1 class="mt-2 center">Your answers were successfully submitted!</h1> -->
 				<h5 class="mt-3 center">Thank you for participating in this survey. If you want to help in planning to make La Union a Province worth living in, you may proceed to Step 2 of the survey through this link: <a href="http://bit.ly/StrongerLaUnionSurvey">http://bit.ly/StrongerLaUnionSurvey</a></h5>
-				<h5 class="mt-3 text-muted center">(Maraming salamat sa paglahok sa survey na ito. Kung nais mong magbigay ng suhestyon at makatulong sa pagpplano ng paglikha ng La Union upang maging Province worth living in, maaari kang magproceed sa step 2 ng survey gamit ang link na ito: <a href="http://bit.ly/StrongerLaUnionSurvey">http://bit.ly/StrongerLaUnionSurvey</a>)</h5>			
+				<h5 class="mt-3 text-muted center">(Maraming salamat sa paglahok sa survey na ito. Kung nais mong magbigay ng suhestyon at makatulong sa pagpaplano ng paglikha ng La Union upang maging Province worth living in, maaari kang magproceed sa step 2 ng survey gamit ang link na ito: <a href="http://bit.ly/StrongerLaUnionSurvey">http://bit.ly/StrongerLaUnionSurvey</a>)</h5>			
 				<img :src="bottom_logo" class="img-fluid bottom-logo display-on-mobile-only" alt="SOPA 2020">
 			</div>
 		</div>

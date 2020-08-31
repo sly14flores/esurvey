@@ -74305,7 +74305,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("h5", { staticClass: "mt-3 text-muted center" }, [
       _vm._v(
-        "(Maraming salamat sa paglahok sa survey na ito. Kung nais mong magbigay ng suhestyon at makatulong sa pagpplano ng paglikha ng La Union upang maging Province worth living in, maaari kang magproceed sa step 2 ng survey gamit ang link na ito: "
+        "(Maraming salamat sa paglahok sa survey na ito. Kung nais mong magbigay ng suhestyon at makatulong sa pagpaplano ng paglikha ng La Union upang maging Province worth living in, maaari kang magproceed sa step 2 ng survey gamit ang link na ito: "
       ),
       _c("a", { attrs: { href: "http://bit.ly/StrongerLaUnionSurvey" } }, [
         _vm._v("http://bit.ly/StrongerLaUnionSurvey")
