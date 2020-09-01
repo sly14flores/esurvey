@@ -22,7 +22,17 @@
 						</div>
 					</div>
 				</div>
-				
+				<div class="row">
+					<div class="col-lg-12">
+						<form class="form-inline mt-4">
+						  <label class="my-1 mr-2">Choose a survey</label>
+						  <select class="custom-select my-1 mr-sm-2" v-model="survey">
+							<option v-for="survey in surveys" :value="survey.id" :key="survey.id">{{survey.name}}</option>
+						  </select>
+						  <button type="button" class="btn btn-primary my-1">Go!</button>
+						</form>					
+					</div>
+				</div>
 			</div>
 			<div class="page-body">
 				<Items></Items>
@@ -42,6 +52,15 @@
 	
 		name: 'Dashboard',
 		
+		data() {
+		
+			return {
+				survey: null,
+				surveys: []
+			}
+		
+		},
+		
 		components: {
 			Items
 		},
@@ -56,6 +75,18 @@
 	
 		methods: {
 		
+			fetchOfficeSurveys() {
+			
+				axios.get('/api/selections/surveys/'+this.$store.state.profile.office, {}, this.$store.state.config).then(response => {
+					
+						this.surveys = response.data
+					
+				}).catch(e => {
+					
+				})
+			
+			},		
+		
 		},
 		
 		created() {
@@ -64,7 +95,13 @@
 	
 		mounted() {
 		
-			this.$parent.hide()		
+			this.$parent.hide()
+			
+			this.$store.dispatch('api_token').then(() => {
+		
+				this.fetchOfficeSurveys()
+				
+			})
 		
 		}
 	

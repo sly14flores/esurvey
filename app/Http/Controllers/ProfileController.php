@@ -28,6 +28,7 @@ class ProfileController extends Controller
 			"firstname"=>$user->firstname,
 			"lastname"=>$user->lastname,
 			"api_token"=>$user->api_token,
+			"office"=>$user->office,
 			"avatar"=>$avatar
 		];
 		

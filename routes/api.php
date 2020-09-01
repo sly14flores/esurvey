@@ -48,9 +48,14 @@ Route::apiResource('/survey/section/aspect/item', 'AspectItemController')->only(
 Route::apiResource('/survey/section/aspect/item/value', 'AspectItemValueController')->only('destroy');
 Route::apiResource('/survey/section/aspect/item/value/sub_item', 'AivSubItemController')->only('destroy');
 
-Route::get('selections/offices','Selections@offices');
-Route::get('selections/groups','Selections@groups');
-Route::get('selections/surveys','Selections@surveys');
+Route::prefix('selections')->group(function() {
+
+	Route::get('offices','Selections@offices');
+	Route::get('groups','Selections@groups');
+	Route::get('surveys','Selections@surveys');
+	Route::get('surveys/{office}','Selections@surveys');
+
+});
 
 Route::post('/conduct/{token}', 'FetchSurvey');
 Route::post('/conduct/survey/respondent', 'SurveyRespondent');

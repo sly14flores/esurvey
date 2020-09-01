@@ -2246,19 +2246,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Dashboard',
+  data: function data() {
+    return {
+      survey: null,
+      surveys: []
+    };
+  },
   components: {
     Items: _Items__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
     next(function (vm) {});
   },
-  methods: {},
+  methods: {
+    fetchOfficeSurveys: function fetchOfficeSurveys() {
+      var _this = this;
+
+      axios.get('/api/selections/surveys/' + this.$store.state.profile.office, {}, this.$store.state.config).then(function (response) {
+        _this.surveys = response.data;
+      })["catch"](function (e) {});
+    }
+  },
   created: function created() {},
   mounted: function mounted() {
+    var _this2 = this;
+
     this.$parent.hide();
+    this.$store.dispatch('api_token').then(function () {
+      _this2.fetchOfficeSurveys();
+    });
   }
 });
 
@@ -79888,6 +79917,63 @@ var render = function() {
                   1
                 )
               ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c("form", { staticClass: "form-inline mt-4" }, [
+              _c("label", { staticClass: "my-1 mr-2" }, [
+                _vm._v("Choose a survey")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.survey,
+                      expression: "survey"
+                    }
+                  ],
+                  staticClass: "custom-select my-1 mr-sm-2",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.survey = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                _vm._l(_vm.surveys, function(survey) {
+                  return _c(
+                    "option",
+                    { key: survey.id, domProps: { value: survey.id } },
+                    [_vm._v(_vm._s(survey.name))]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary my-1",
+                  attrs: { type: "button" }
+                },
+                [_vm._v("Go!")]
+              )
             ])
           ])
         ])
