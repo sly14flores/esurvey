@@ -2210,6 +2210,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Items */ "./resources/js/dashboard/Items.vue");
+/* harmony import */ var _mixins_Data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mixins/Data */ "./resources/js/dashboard/mixins/Data.js");
 //
 //
 //
@@ -2257,13 +2258,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Dashboard',
+  mixins: [_mixins_Data__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
-    return {
-      survey: null,
-      surveys: []
-    };
+    return {};
   },
   components: {
     Items: _Items__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -2271,12 +2271,24 @@ __webpack_require__.r(__webpack_exports__);
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
     next(function (vm) {});
   },
+  computed: {
+    survey: function survey() {
+      return this.$store.state.dashboard.survey;
+    },
+    surveys: function surveys() {
+      return this.$store.state.dashboard.surveys;
+    }
+  },
   methods: {
     fetchOfficeSurveys: function fetchOfficeSurveys() {
       var _this = this;
 
       axios.get('/api/selections/surveys/' + this.$store.state.profile.office, {}, this.$store.state.config).then(function (response) {
-        _this.surveys = response.data;
+        _this.$store.commit('dashboardSurveys', response.data);
+
+        if (_.size(response.data)) _this.$store.commit('dashboardSurvey', _this.surveys[0].id);
+
+        _this.fetchData();
       })["catch"](function (e) {});
     }
   },
@@ -2349,40 +2361,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Items',
+  props: ['survey'],
   data: function data() {
-    return {
-      dashboard: {
-        counts: {
-          surveys: {},
-          answered: {}
-        }
-      }
-    };
+    return {};
   },
-  methods: {
-    fetchData: function fetchData() {
-      var _this = this;
-
-      axios.post('/api/dashboard/data', {}, this.$store.state.config).then(function (response) {
-        _this.dashboard = response.data;
-      })["catch"](function (e) {});
+  computed: {
+    dashboard: function dashboard() {
+      return this.$store.state.dashboard.data;
     }
   },
+  methods: {},
   created: function created() {
-    var _this2 = this;
+    var _this = this;
 
     var channel = window.Echo.channel('esurvey_dashboard');
     channel.listen('UpdateDashboard', function (e) {
-      _this2.fetchData();
+      _this.fetchData();
     });
   },
-  mounted: function mounted() {
-    var _this3 = this;
-
-    this.$store.dispatch('api_token').then(function () {
-      _this3.fetchData();
-    });
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -79979,7 +79976,12 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "page-body" }, [_c("Items")], 1)
+      _c(
+        "div",
+        { staticClass: "page-body" },
+        [_c("Items", { attrs: { survey: _vm.survey } })],
+        1
+      )
     ])
   ])
 }
@@ -100071,6 +100073,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/dashboard/mixins/Data.js":
+/*!***********************************************!*\
+  !*** ./resources/js/dashboard/mixins/Data.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    fetchData: function fetchData() {
+      var _this = this;
+
+      axios.post('/api/dashboard/data', {
+        id: this.$store.state.dashboard.survey
+      }, this.$store.state.config).then(function (response) {
+        _this.$store.commit('dashboardData', response.data);
+      })["catch"](function (e) {});
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/groups/GroupsList.vue":
 /*!********************************************!*\
   !*** ./resources/js/groups/GroupsList.vue ***!
@@ -100537,6 +100564,31 @@ var groups = {
   actions: {},
   getters: {}
 };
+var dashboard = {
+  state: {
+    data: {
+      counts: {
+        surveys: {},
+        answered: {}
+      }
+    },
+    survey: null,
+    surveys: []
+  },
+  mutations: {
+    dashboardData: function dashboardData(state, data) {
+      state.data = data;
+    },
+    dashboardSurvey: function dashboardSurvey(state, survey) {
+      state.survey = survey;
+    },
+    dashboardSurveys: function dashboardSurveys(state, surveys) {
+      state.surveys = surveys;
+    }
+  },
+  actions: {},
+  getters: {}
+};
 
 var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_1__["default"]({
   key: 'esurvey',
@@ -100551,7 +100603,8 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_3__
     surveys: surveys,
     users: users,
     offices: offices,
-    groups: groups
+    groups: groups,
+    dashboard: dashboard
   },
   state: {
     profile: {},

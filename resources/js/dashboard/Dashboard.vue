@@ -35,7 +35,7 @@
 				</div>
 			</div>
 			<div class="page-body">
-				<Items></Items>
+				<Items :survey="survey"></Items>
 			</div>
 		</div>
 	</div>
@@ -47,16 +47,19 @@
 <script>
 
 	import Items from './Items'
+	
+	import Data from './mixins/Data'	
 
 	export default {
 	
 		name: 'Dashboard',
-		
+
+		mixins: [Data],	
+	
 		data() {
 		
 			return {
-				survey: null,
-				surveys: []
+
 			}
 		
 		},
@@ -72,6 +75,22 @@
 			})
 
 		},
+		
+		computed: {
+		
+			survey() {
+
+				return this.$store.state.dashboard.survey
+			
+			},
+		
+			surveys() {
+			
+				return this.$store.state.dashboard.surveys
+			
+			}
+		
+		},
 	
 		methods: {
 		
@@ -79,7 +98,10 @@
 			
 				axios.get('/api/selections/surveys/'+this.$store.state.profile.office, {}, this.$store.state.config).then(response => {
 					
-						this.surveys = response.data
+					this.$store.commit('dashboardSurveys', response.data)
+					if (_.size(response.data)) this.$store.commit('dashboardSurvey', this.surveys[0].id)
+					
+					this.fetchData()
 					
 				}).catch(e => {
 					
@@ -89,19 +111,19 @@
 		
 		},
 		
-		created() {
+		created() {	
 		
 		},
 	
 		mounted() {
 		
-			this.$parent.hide()
-			
-			this.$store.dispatch('api_token').then(() => {
+			this.$parent.hide()		
 		
+			this.$store.dispatch('api_token').then(() => {
+
 				this.fetchOfficeSurveys()
 				
-			})
+			})	
 		
 		}
 	

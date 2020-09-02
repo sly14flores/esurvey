@@ -150,6 +150,36 @@ const groups = {
 	}
 }
 
+const dashboard = {
+	state: {
+		data: {
+			counts: {
+				surveys: {},
+				answered: {}
+			}
+		},
+		survey: null,
+		surveys: []
+	},
+	mutations: {
+		dashboardData(state, data) {
+			state.data = data
+		},
+		dashboardSurvey(state, survey) {
+			state.survey = survey
+		},
+		dashboardSurveys(state, surveys) {
+			state.surveys = surveys
+		}
+	},
+	actions: {
+		
+	},
+	getters: {
+		
+	}
+}
+
 import VuexPersist from 'vuex-persist'
 
 const vuexPersist = new VuexPersist({
@@ -167,7 +197,8 @@ export default new Vuex.Store({
 		surveys: surveys,
 		users: users,
 		offices: offices,
-		groups: groups
+		groups: groups,
+		dashboard: dashboard
 	},
 	state: {
 		profile: {},

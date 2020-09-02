@@ -49,32 +49,27 @@
 	
 		name: 'Items',
 		
+		props: ['survey'],
+		
 		data() {
 		
 			return {
-				dashboard: {
-					counts: {
-						surveys: {},
-						answered: {}
-					}
-				}
+
+			}
+		
+		},
+		
+		computed: {
+		
+			dashboard() {
+		
+				return this.$store.state.dashboard.data
+				
 			}
 		
 		},
 		
 		methods: {
-		
-			fetchData() {				
-			
-				axios.post('/api/dashboard/data', {}, this.$store.state.config).then(response => {
-					
-					this.dashboard = response.data
-					
-				}).catch(e => {
-					
-				})
-			
-			}
 		
 		},
 		
@@ -91,12 +86,7 @@
 		},
 		
 		mounted() {
-		
-			this.$store.dispatch('api_token').then(() => {	
-		
-				this.fetchData()
 				
-			})
 		
 		}
 	
