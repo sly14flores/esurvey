@@ -4,6 +4,7 @@ namespace App\System;
 
 use App\Group;
 use App\System\GatesPolicies;
+use Illuminate\Support\Facades\Schema;
 
 class Authorizations
 {
@@ -17,9 +18,13 @@ class Authorizations
 		
 		if ($user!=null) {
 			
-			$group = Group::find($user->group);
+			if (Schema::hasTable('groups')) {
+			
+				$group = Group::find($user->group);
 		
-			if ($group!=null) $this->id = $group->id;
+				if ($group!=null) $this->id = $group->id;
+			
+			}
 			
 		}
 		

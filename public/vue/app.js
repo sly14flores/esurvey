@@ -2272,8 +2272,13 @@ __webpack_require__.r(__webpack_exports__);
     next(function (vm) {});
   },
   computed: {
-    survey: function survey() {
-      return this.$store.state.dashboard.survey;
+    survey: {
+      get: function get() {
+        return this.$store.state.dashboard.survey;
+      },
+      set: function set(value) {
+        this.$store.commit('dashboardSurvey', value);
+      }
     },
     surveys: function surveys() {
       return this.$store.state.dashboard.surveys;
@@ -2297,7 +2302,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this2 = this;
 
     this.$parent.hide();
-    this.$store.dispatch('api_token').then(function () {
+    this.$store.dispatch('async_profile').then(function () {
       _this2.fetchOfficeSurveys();
     });
   }
@@ -79967,7 +79972,8 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-primary my-1",
-                  attrs: { type: "button" }
+                  attrs: { type: "button" },
+                  on: { click: _vm.fetchData }
                 },
                 [_vm._v("Go!")]
               )
@@ -80021,16 +80027,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-xl-3 col-md-6" }, [
+    _c("div", { staticClass: "col-md-6" }, [
       _c("div", { staticClass: "card bg-c-green update-card" }, [
         _c("div", { staticClass: "card-block" }, [
           _c("div", { staticClass: "row align-items-end" }, [
             _c("div", { staticClass: "col-8" }, [
-              _c("h4", { staticClass: "text-white" }, [
-                _vm._v(_vm._s(_vm.dashboard.counts.surveys.data))
-              ]),
+              _c("h4", { staticClass: "text-white" }, [_vm._v("Survey")]),
               _vm._v(" "),
-              _c("h6", { staticClass: "text-white m-b-0" }, [_vm._v("Surveys")])
+              _c("h6", { staticClass: "text-white m-b-0" }, [
+                _vm._v(_vm._s(_vm.dashboard.info.survey.data))
+              ])
             ]),
             _vm._v(" "),
             _vm._m(0)
@@ -80042,23 +80048,23 @@ var render = function() {
             _c("i", {
               staticClass: "feather icon-clock text-white f-14 m-r-10"
             }),
-            _vm._v(_vm._s(_vm.dashboard.counts.surveys.last_update))
+            _vm._v(_vm._s(_vm.dashboard.info.survey.last_update))
           ])
         ])
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-xl-3 col-md-6" }, [
+    _c("div", { staticClass: "col-md-3" }, [
       _c("div", { staticClass: "card bg-c-yellow update-card" }, [
         _c("div", { staticClass: "card-block" }, [
           _c("div", { staticClass: "row align-items-end" }, [
             _c("div", { staticClass: "col-8" }, [
               _c("h4", { staticClass: "text-white" }, [
-                _vm._v(_vm._s(_vm.dashboard.counts.answered.data))
+                _vm._v(_vm._s(_vm.dashboard.info.answered.data))
               ]),
               _vm._v(" "),
               _c("h6", { staticClass: "text-white m-b-0" }, [
-                _vm._v("Answered")
+                _vm._v("Respondents")
               ])
             ]),
             _vm._v(" "),
@@ -80071,7 +80077,7 @@ var render = function() {
             _c("i", {
               staticClass: "feather icon-clock text-white f-14 m-r-10"
             }),
-            _vm._v(_vm._s(_vm.dashboard.counts.answered.last_update))
+            _vm._v(_vm._s(_vm.dashboard.info.answered.last_update))
           ])
         ])
       ])
@@ -100567,8 +100573,8 @@ var groups = {
 var dashboard = {
   state: {
     data: {
-      counts: {
-        surveys: {},
+      info: {
+        survey: {},
         answered: {}
       }
     },
@@ -100633,20 +100639,20 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_3__
         context.commit('profile', response.data);
       })["catch"](function (e) {});
     },
-    api_token: function api_token(context) {
+    async_profile: function async_profile(context) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var api_token;
+        var profile;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios.post('api_token');
+                return axios.post('profile');
 
               case 3:
-                api_token = _context.sent;
-                context.commit('api_token', api_token.data);
+                profile = _context.sent;
+                context.commit('profile', profile.data);
                 _context.next = 10;
                 break;
 
@@ -100661,6 +100667,36 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_3__
             }
           }
         }, _callee, null, [[0, 7]]);
+      }))();
+    },
+    api_token: function api_token(context) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var api_token;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios.post('api_token');
+
+              case 3:
+                api_token = _context2.sent;
+                context.commit('api_token', api_token.data);
+                _context2.next = 10;
+                break;
+
+              case 7:
+                _context2.prev = 7;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 7]]);
       }))();
     }
   },

@@ -153,8 +153,8 @@ const groups = {
 const dashboard = {
 	state: {
 		data: {
-			counts: {
-				surveys: {},
+			info: {
+				survey: {},
 				answered: {}
 			}
 		},
@@ -233,6 +233,20 @@ export default new Vuex.Store({
 			})
 			
 		},
+		async async_profile(context) {
+			
+			try {
+				
+				const profile = await axios.post('profile')
+				context.commit('profile',profile.data)
+				
+			} catch(e) {
+				
+				console.log(e)				
+				
+			}
+			
+		},		
 		async api_token(context) {
 			
 			try {

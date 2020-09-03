@@ -29,7 +29,7 @@
 						  <select class="custom-select my-1 mr-sm-2" v-model="survey">
 							<option v-for="survey in surveys" :value="survey.id" :key="survey.id">{{survey.name}}</option>
 						  </select>
-						  <button type="button" class="btn btn-primary my-1">Go!</button>
+						  <button type="button" class="btn btn-primary my-1" @click="fetchData">Go!</button>
 						</form>					
 					</div>
 				</div>
@@ -78,9 +78,19 @@
 		
 		computed: {
 		
-			survey() {
+			survey: {
+				
+				get() {
 
-				return this.$store.state.dashboard.survey
+					return this.$store.state.dashboard.survey
+					
+				},
+				
+				set(value) {
+				
+					this.$store.commit('dashboardSurvey', value)
+				
+				}
 			
 			},
 		
@@ -117,9 +127,9 @@
 	
 		mounted() {
 		
-			this.$parent.hide()		
+			this.$parent.hide()
 		
-			this.$store.dispatch('api_token').then(() => {
+			this.$store.dispatch('async_profile').then(() => {
 
 				this.fetchOfficeSurveys()
 				

@@ -18,27 +18,19 @@ class DashboardData extends Controller
 	public function __invoke(Request $request)
 	{
 
-		$office = Auth::user()->office;
+		$id = $request->id;
 
-		$q_surveys = Survey::where('office',$office)->orderBy('created_at','desc');
-		$no_of_surveys = $q_surveys->count();
-		
-		$surveys = $q_surveys->get();
-		
-		$surveys_ids = [];
-		foreach ($surveys as $survey) {
-			
-			$surveys_ids[] = $survey->id;
-			
-		}
-		
-		$answers = Respondent::whereIn('survey_id',$surveys_ids)->orderBy('created_at','desc');
+		$q_survey = Survey::where('id',$id);
+
+		$survey = $q_survey->first();
+
+		$answers = Respondent::where('survey_id',$id);
 		
 		$data = array(
-			"counts"=>array(
-				"surveys"=>array(
-					"data"=>($no_of_surveys==null)?0:$no_of_surveys,
-					"last_update"=>($q_surveys->first()==null)?"":$q_surveys->first()->last_update()
+			"info"=>array(
+				"survey"=>array(
+					"data"=>($survey==null)?"":$survey->name,
+					"last_update"=>($answers->first()==null)?"":$answers->first()->last_update()
 				),
 				"answered"=>array(
 					"data"=>($answers==null)?0:$answers->count(),
