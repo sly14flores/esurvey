@@ -15,6 +15,7 @@ import UsersList from './users/UsersList.vue'
 import OfficesList from './offices/OfficesList.vue'
 import GroupsList from './groups/GroupsList.vue'
 import SurveysList from './surveys/SurveysList.vue'
+import SurveysReports from './surveys/SurveysReports.vue'
 import Conduct from './surveys/Conduct.vue'
 
 const routes = [
@@ -32,7 +33,8 @@ const routes = [
   { path: '/surveys', name: 'surveys_list', component: SurveysList },
   { path: '/survey', name: 'survey_new', component: SurveyForm },
   { path: '/survey/:survey_id', name: 'survey_view', component: SurveyForm },  
-  { path: '/conduct/survey', name: 'survey_conduct', component: Conduct }  
+  { path: '/survey/show/reports', name: 'survey_reports', component: SurveysReports },  
+  { path: '/conduct/survey', name: 'survey_conduct', component: Conduct }
 ]
 
 import Vue from 'vue'

@@ -185,7 +185,7 @@
 								</ul>
 								
 								<ul class="pcoded-item pcoded-left-item">
-									<li :class="{ 'pcoded-hasmenu': true, 'pcoded-trigger': activeRoute=='survey_new' || activeRoute=='survey_view' || activeRoute == 'surveys_list' || activeRoute == 'survey_conduct'}"><!-- pcoded-trigger -->
+									<li :class="{ 'pcoded-hasmenu': true, 'pcoded-trigger': activeRoute=='survey_new' || activeRoute=='survey_view' || activeRoute == 'surveys_list' || activeRoute == 'survey_conduct' || activeRoute == 'survey_reports'}"><!-- pcoded-trigger -->
 										<a href="javascript:void(0)">
 											<span class="pcoded-micon"><i class="feather icon-menu"></i></span>
 											<span class="pcoded-mtext">Surveys</span>
@@ -205,7 +205,12 @@
 												<router-link to="/conduct/survey">
 													<span class="pcoded-mtext">Conduct</span>
 												</router-link>
-											</li>											
+											</li>
+											<li :class="{active: activeRoute=='survey_reports'}">
+												<router-link to="/survey/show/reports">
+													<span class="pcoded-mtext">Reports</span>
+												</router-link>
+											</li>																					
 										</ul>
 									</li>									
 								</ul>

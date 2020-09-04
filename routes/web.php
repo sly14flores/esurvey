@@ -33,3 +33,5 @@ Route::get('preview/mail', function() {
                 ->toMail(null);	
 	
 });
+
+Route::get('/reports/survey', 'Reports\Survey@export');
