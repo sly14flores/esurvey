@@ -39,6 +39,12 @@
 				<div class="form-group">
 					<input type="text" class="form-control" v-model="section.translated" placeholder="Translation (Optional)">
 				</div>
+				<div class="form-group">				
+					<div class="border-checkbox-group border-checkbox-group-info">
+						<input class="border-checkbox" type="checkbox" id="section-is-hidden" v-model="section.is_hidden">
+						<label class="border-checkbox-label" for="section-is-hidden'">Hidden</label>
+					</div>
+				</div>				
 			</form>
 		</b-modal>		
 	</div>
@@ -117,6 +123,7 @@
 						id: 0,
 						section_name: '',
 						translated: '',
+						is_hidden: false,
 						items: [],
 						aspects: []
 					}

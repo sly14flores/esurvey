@@ -199,7 +199,10 @@
 					return this.items.length>0
 				}),
 				$each: {
-					item_name: {required},
+					// item_name: {required},
+					item_name: {required: requiredIf((model) => {
+						return model.item_type == 3 && model.text_is_multiple == false
+					})},
 					item_type: {required},
 					item_presentation: {required: requiredIf((model) => {
 						return model.item_type == 6

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SurveySection extends Model
 {
 	
-    protected $fillable = ['survey_id','section_name','translated'];	
+    protected $fillable = ['survey_id','section_name','translated','is_hidden'];	
 
 	public function aspects() {
 		
@@ -20,5 +20,9 @@ class SurveySection extends Model
 		return $this->hasMany('App\SectionItem','section_id');		
 		
 	}
+	
+    protected $casts = [
+		'is_hidden' => 'boolean'
+    ];		
 
 }

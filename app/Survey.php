@@ -9,7 +9,7 @@ use App\Events\UpdateDashboard;
 class Survey extends Model
 {
 
-    protected $fillable = ['name','description','office'];
+    protected $fillable = ['name','description','office','include_office'];
 
 	public function introductions() {
 		
@@ -43,6 +43,10 @@ class Survey extends Model
 	{
         return date("M j, Y h:i A",strtotime($this->created_at));
 	}
+	
+    protected $casts = [
+		'include_office' => 'boolean'
+    ];	
 	
     protected $dispatchesEvents = [
         'created' => UpdateDashboard::class

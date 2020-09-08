@@ -63,6 +63,7 @@ class SurveyController extends Controller
 		$survey->name = $request->name;
 		$survey->description = $request->description;
 		$survey->office = $request->office;
+		$survey->include_office = $request->include_office;
 
 		$survey->save();
 		
@@ -209,6 +210,7 @@ class SurveyController extends Controller
 		$survey->name = $request->name;
 		$survey->description = $request->description;
 		$survey->office = $request->office;
+		$survey->include_office = $request->include_office;
 		
 		$survey->save();
 		
@@ -240,6 +242,7 @@ class SurveyController extends Controller
 					$section = SurveySection::find($survey_section['id']);
 					$section->section_name = $survey_section['section_name'];
 					$section->translated = $survey_section['translated'];
+					$section->is_hidden = $survey_section['is_hidden'];
 				}
 				
 				$survey->sections()->save($section);

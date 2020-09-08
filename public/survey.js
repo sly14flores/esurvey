@@ -1965,8 +1965,11 @@ __webpack_require__.r(__webpack_exports__);
         return this.items.length > 0;
       }),
       $each: {
+        // item_name: {required},
         item_name: {
-          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+          required: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["requiredIf"])(function (model) {
+            return model.item_type == 3 && model.text_is_multiple == false;
+          })
         },
         item_type: {
           required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
@@ -2147,6 +2150,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SurveysHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SurveysHeader */ "./resources/js/surveys/SurveysHeader.vue");
 /* harmony import */ var _Introductions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Introductions */ "./resources/js/surveys/Introductions.vue");
 /* harmony import */ var _SurveySections__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SurveySections */ "./resources/js/surveys/SurveySections.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2511,6 +2523,7 @@ __webpack_require__.r(__webpack_exports__);
           name: null,
           description: null,
           office: vm.$store.state.profile.office,
+          include_office: false,
           introductions: [],
           sections: []
         });
@@ -2534,6 +2547,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _SectionItems__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SectionItems */ "./resources/js/surveys/SectionItems.vue");
 /* harmony import */ var _SectionAspects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SectionAspects */ "./resources/js/surveys/SectionAspects.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2634,6 +2653,7 @@ __webpack_require__.r(__webpack_exports__);
           id: 0,
           section_name: '',
           translated: '',
+          is_hidden: false,
           items: [],
           aspects: []
         };
@@ -8821,6 +8841,68 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
+                    _c("div", { staticClass: "form-row" }, [
+                      _c("div", { staticClass: "form-group col-lg-4" }, [
+                        _c("div", { staticClass: "form-check add-item" }, [
+                          _c("label", { staticClass: "form-check-label" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.survey.include_office,
+                                  expression: "survey.include_office"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "checkbox",
+                                disabled: _vm.oldSurvey && !_vm.onEdit
+                              },
+                              domProps: {
+                                checked: Array.isArray(
+                                  _vm.survey.include_office
+                                )
+                                  ? _vm._i(_vm.survey.include_office, null) > -1
+                                  : _vm.survey.include_office
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.survey.include_office,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.survey,
+                                          "include_office",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.survey,
+                                          "include_office",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.survey, "include_office", $$c)
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" Include office\n\t\t\t\t\t\t\t\t\t")
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
                     _c("introductions", { ref: "introductions" }),
                     _vm._v(" "),
                     _c("survey-sections", { ref: "survey-sections" }),
@@ -9222,6 +9304,72 @@ var render = function() {
                     }
                   }
                 })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "border-checkbox-group border-checkbox-group-info"
+                  },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.section.is_hidden,
+                          expression: "section.is_hidden"
+                        }
+                      ],
+                      staticClass: "border-checkbox",
+                      attrs: { type: "checkbox", id: "section-is-hidden" },
+                      domProps: {
+                        checked: Array.isArray(_vm.section.is_hidden)
+                          ? _vm._i(_vm.section.is_hidden, null) > -1
+                          : _vm.section.is_hidden
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.section.is_hidden,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.section,
+                                  "is_hidden",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.section,
+                                  "is_hidden",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.section, "is_hidden", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "border-checkbox-label",
+                        attrs: { for: "section-is-hidden'" }
+                      },
+                      [_vm._v("Hidden")]
+                    )
+                  ]
+                )
               ])
             ]
           )

@@ -27,7 +27,7 @@ class SurveyResource extends JsonResource
 			
 		}
 		
-		$sections = $this->sections()->get(['id','section_name','translated']);
+		$sections = $this->sections()->get(['id','section_name','translated','is_hidden']);
 		
 		foreach ($sections as $si => $section) {
 			
@@ -194,6 +194,7 @@ class SurveyResource extends JsonResource
 			"name"=>$this->name,
 			"description"=>$this->description,
 			"office"=>$this->office,
+			"include_office"=>$this->include_office,
 			"introductions"=>$introductions,
 			"sections"=>$sections,
 			// "start_intro"=>(count($introductions))?true:false

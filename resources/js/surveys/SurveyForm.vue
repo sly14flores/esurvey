@@ -34,6 +34,15 @@
 									<div class="invalid-feedback">Office is required</div>					  					  
 								</div>								
 							</div>
+							<div class="form-row">
+								<div class="form-group col-lg-4">
+									<div class="form-check add-item">
+										<label class="form-check-label">
+											<input class="form-check-input" type="checkbox" v-model="survey.include_office" :disabled="oldSurvey && !onEdit"> Include office
+										</label>
+									</div>									
+								</div>
+							</div>
 							<introductions ref="introductions"></introductions>
 							<survey-sections ref="survey-sections"></survey-sections>
 							<div class="f-right m-t-20">
@@ -418,6 +427,7 @@
 						name: null,
 						description: null,
 						office: vm.$store.state.profile.office,
+						include_office: false,
 						introductions: [],
 						sections: []
 					})
