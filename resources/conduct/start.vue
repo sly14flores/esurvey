@@ -110,8 +110,6 @@
         },
 
         mounted() {
-		
-			console.log(window.localStorage)
 
         },
 		
@@ -122,8 +120,9 @@
                 vm.$parent.$refs.pSpinner.on();
 
                 vm.fetchSurvey(vm.$route.params.token).then(response => {
-
-					console.log(vm.$store.state.finish)
+					
+					vm.$store.commit('recursive',(vm.$route.params.recursive=='recursive')?true:false)
+					vm.$store.commit('specific',(vm.$route.params.scope=='specific')?true:false)
 					
                     if (vm.$store.state.finish) {
 					

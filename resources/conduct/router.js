@@ -1,7 +1,7 @@
 import start from './start.vue'
 
 const routes = [
-    { path: '/:token', name: 'conduct', component: start }
+    { path: '/:scope/:recursive/:token', name: 'conduct', component: start }
 ]
 
 import Vue from 'vue'

@@ -31,27 +31,57 @@
 					<div class="col-lg-6">
 						<div class="card">
 							<div class="card-header">
-								<h5>Recursive conduct</h5>
+								<h5>General Survey</h5>
 							</div>
 							<div class="card-block">
 								<form class="needs-validation" novalidate>
 									<div class="form-row">
 										<div class="form-group col-lg-12">
 											<label>Select survey</label>
-											  <select class="form-control" v-model.trim="$v.conduct.survey.$model" :class="{'is-invalid': $v.conduct.survey.$error}">
+											  <select class="form-control" v-model.trim="$v.conduct.general.survey.$model" :class="{'is-invalid': $v.conduct.general.survey.$error}">
 												<option disabled :value="null"></option>
-												<option v-for="s in surveys" :value="s.token" :key="s.id">{{s.name}}</option>							  
+												<option v-for="s in general_surveys" :value="s.token" :key="s.id">{{s.name}}</option>							  
 											  </select>
 											  <div class="invalid-feedback">Survey is required</div>												
 										</div>
+										<div class="form-check">
+											<label class="form-check-label"><input type="checkbox" class="form-check-input" v-model="conduct.general.recursive"> Recursive</label>
+										</div>
 									</div>
 									<div class="f-right">
-										<button type="button" class="btn btn-info btn-sm" @click="conductSurvey">Go!</button>
+										<button type="button" class="btn btn-info btn-sm" @click="conductGeneralSurvey">Go!</button>
 									</div>
 								</form>
 							</div>
 						</div>
 					</div>
+					<div class="col-lg-6">
+						<div class="card">
+							<div class="card-header">
+								<h5>Office Specific Survey</h5>
+							</div>
+							<div class="card-block">
+								<form class="needs-validation" novalidate>
+									<div class="form-row">
+										<div class="form-group col-lg-12">
+											<label>Select survey</label>
+											  <select class="form-control" v-model.trim="$v.conduct.specific.survey.$model" :class="{'is-invalid': $v.conduct.specific.survey.$error}">
+												<option disabled :value="null"></option>
+												<option v-for="s in specific_surveys" :value="s.token" :key="s.id">{{s.name}}</option>							  
+											  </select>
+											  <div class="invalid-feedback">Survey is required</div>												
+										</div>
+										<div class="form-check">
+											<label class="form-check-label"><input type="checkbox" class="form-check-input" v-model="conduct.specific.recursive"> Recursive</label>
+										</div>
+									</div>
+									<div class="f-right">
+										<button type="button" class="btn btn-info btn-sm" @click="conductSpecificSurvey">Go!</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>					
 				</div>
 			</div>
 		</div>
@@ -85,7 +115,14 @@
 		
 			return {
 				conduct: {
-					survey: null
+					general: {
+						survey: null,
+						recursive: false
+					},
+					specific: {
+						survey: null,
+						recursive: true
+					}
 				}
 			}
 		
@@ -93,21 +130,38 @@
 		
 		methods: {
 		
-			conductSurvey() {
+			conductGeneralSurvey() {
 			
-				this.$v.conduct.$touch()
+				this.$v.conduct.general.$touch()
 
-				if (this.$v.conduct.$invalid) return
+				if (this.$v.conduct.general.$invalid) return
 				
-				window.open('/survey#/'+this.conduct.survey)
+				if (this.conduct.specific.recursive) window.open('/survey#/general/recursive/'+this.conduct.general.survey)
+				else window.open('/survey#/general/once/'+this.conduct.general.survey)
 			
-			}
+			},
+			
+			conductSpecificSurvey() {
+			
+				this.$v.conduct.specific.$touch()
+
+				if (this.$v.conduct.specific.$invalid) return
+				
+				if (this.conduct.specific.recursive) window.open('/survey#/specific/recursive/'+this.conduct.specific.survey)
+				else  window.open('/survey#/specific/once/'+this.conduct.specific.survey)
+			
+			}			
 		
 		},
 		
 		validations: {
 			conduct: {
-				survey: {required}
+				general: {
+					survey: {required}
+				},
+				specific: {
+					survey: {required}
+				}				
 			}
 		},
 		
@@ -118,7 +172,8 @@
 		mounted() {
 		
 			this.$parent.hide()
-			this.selectSurveys()
+			this.selectGeneralSurveys()
+			this.selectSpecificSurveys()
 		
 		}	
 	

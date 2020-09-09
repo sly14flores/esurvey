@@ -60,9 +60,17 @@ export default new Vuex.Store({
 		],
 		survey: {},
 		currentItemIndex: null,
-		finish: false
+		finish: false,
+		recursive: false,
+		specific: false
 	},
 	mutations: {
+		recursive(state, recursive) {
+			state.recursive = recursive
+		},
+		specific(state, specific) {
+			state.specific = specific
+		},
 		itemValues(state, values) {
 			
 			if (values.aspect==null) {

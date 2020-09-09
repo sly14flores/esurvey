@@ -178,7 +178,7 @@ export default {
 		
 		respondent() {
 			
-			return axios.post('/api/conduct/survey/respondent', this.$store.state.survey).then(response => {
+			return axios.post('/api/conduct/survey/respondent', {survey: this.$store.state.survey, specific: this.$store.state.specific}).then(response => {
 				
 				
 				

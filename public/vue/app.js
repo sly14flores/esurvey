@@ -2749,6 +2749,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2758,28 +2788,48 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       conduct: {
-        survey: null
+        general: {
+          survey: null,
+          recursive: false
+        },
+        specific: {
+          survey: null,
+          recursive: true
+        }
       }
     };
   },
   methods: {
-    conductSurvey: function conductSurvey() {
-      this.$v.conduct.$touch();
-      if (this.$v.conduct.$invalid) return;
-      window.open('/survey#/' + this.conduct.survey);
+    conductGeneralSurvey: function conductGeneralSurvey() {
+      this.$v.conduct.general.$touch();
+      if (this.$v.conduct.general.$invalid) return;
+      if (this.conduct.specific.recursive) window.open('/survey#/general/recursive/' + this.conduct.general.survey);else window.open('/survey#/general/once/' + this.conduct.general.survey);
+    },
+    conductSpecificSurvey: function conductSpecificSurvey() {
+      this.$v.conduct.specific.$touch();
+      if (this.$v.conduct.specific.$invalid) return;
+      if (this.conduct.specific.recursive) window.open('/survey#/specific/recursive/' + this.conduct.specific.survey);else window.open('/survey#/specific/once/' + this.conduct.specific.survey);
     }
   },
   validations: {
     conduct: {
-      survey: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      general: {
+        survey: {
+          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+        }
+      },
+      specific: {
+        survey: {
+          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+        }
       }
     }
   },
   created: function created() {},
   mounted: function mounted() {
     this.$parent.hide();
-    this.selectSurveys();
+    this.selectGeneralSurveys();
+    this.selectSpecificSurveys();
   }
 });
 
@@ -80571,14 +80621,14 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model.trim",
-                                value: _vm.$v.conduct.survey.$model,
-                                expression: "$v.conduct.survey.$model",
+                                value: _vm.$v.conduct.general.survey.$model,
+                                expression: "$v.conduct.general.survey.$model",
                                 modifiers: { trim: true }
                               }
                             ],
                             staticClass: "form-control",
                             class: {
-                              "is-invalid": _vm.$v.conduct.survey.$error
+                              "is-invalid": _vm.$v.conduct.general.survey.$error
                             },
                             on: {
                               change: function($event) {
@@ -80591,7 +80641,7 @@ var render = function() {
                                     return val
                                   })
                                 _vm.$set(
-                                  _vm.$v.conduct.survey,
+                                  _vm.$v.conduct.general.survey,
                                   "$model",
                                   $event.target.multiple
                                     ? $$selectedVal
@@ -80606,7 +80656,7 @@ var render = function() {
                               domProps: { value: null }
                             }),
                             _vm._v(" "),
-                            _vm._l(_vm.surveys, function(s) {
+                            _vm._l(_vm.general_surveys, function(s) {
                               return _c(
                                 "option",
                                 { key: s.id, domProps: { value: s.token } },
@@ -80620,6 +80670,66 @@ var render = function() {
                         _c("div", { staticClass: "invalid-feedback" }, [
                           _vm._v("Survey is required")
                         ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-check" }, [
+                        _c("label", { staticClass: "form-check-label" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.conduct.general.recursive,
+                                expression: "conduct.general.recursive"
+                              }
+                            ],
+                            staticClass: "form-check-input",
+                            attrs: { type: "checkbox" },
+                            domProps: {
+                              checked: Array.isArray(
+                                _vm.conduct.general.recursive
+                              )
+                                ? _vm._i(_vm.conduct.general.recursive, null) >
+                                  -1
+                                : _vm.conduct.general.recursive
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.conduct.general.recursive,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.conduct.general,
+                                        "recursive",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.conduct.general,
+                                        "recursive",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(
+                                    _vm.conduct.general,
+                                    "recursive",
+                                    $$c
+                                  )
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" Recursive")
+                        ])
                       ])
                     ]),
                     _vm._v(" "),
@@ -80629,7 +80739,160 @@ var render = function() {
                         {
                           staticClass: "btn btn-info btn-sm",
                           attrs: { type: "button" },
-                          on: { click: _vm.conductSurvey }
+                          on: { click: _vm.conductGeneralSurvey }
+                        },
+                        [_vm._v("Go!")]
+                      )
+                    ])
+                  ]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-6" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-block" }, [
+                _c(
+                  "form",
+                  {
+                    staticClass: "needs-validation",
+                    attrs: { novalidate: "" }
+                  },
+                  [
+                    _c("div", { staticClass: "form-row" }, [
+                      _c("div", { staticClass: "form-group col-lg-12" }, [
+                        _c("label", [_vm._v("Select survey")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model.trim",
+                                value: _vm.$v.conduct.specific.survey.$model,
+                                expression: "$v.conduct.specific.survey.$model",
+                                modifiers: { trim: true }
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid":
+                                _vm.$v.conduct.specific.survey.$error
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.$v.conduct.specific.survey,
+                                  "$model",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", {
+                              attrs: { disabled: "" },
+                              domProps: { value: null }
+                            }),
+                            _vm._v(" "),
+                            _vm._l(_vm.specific_surveys, function(s) {
+                              return _c(
+                                "option",
+                                { key: s.id, domProps: { value: s.token } },
+                                [_vm._v(_vm._s(s.name))]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "invalid-feedback" }, [
+                          _vm._v("Survey is required")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-check" }, [
+                        _c("label", { staticClass: "form-check-label" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.conduct.specific.recursive,
+                                expression: "conduct.specific.recursive"
+                              }
+                            ],
+                            staticClass: "form-check-input",
+                            attrs: { type: "checkbox" },
+                            domProps: {
+                              checked: Array.isArray(
+                                _vm.conduct.specific.recursive
+                              )
+                                ? _vm._i(_vm.conduct.specific.recursive, null) >
+                                  -1
+                                : _vm.conduct.specific.recursive
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.conduct.specific.recursive,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.conduct.specific,
+                                        "recursive",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.conduct.specific,
+                                        "recursive",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(
+                                    _vm.conduct.specific,
+                                    "recursive",
+                                    $$c
+                                  )
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" Recursive")
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "f-right" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-info btn-sm",
+                          attrs: { type: "button" },
+                          on: { click: _vm.conductSpecificSurvey }
                         },
                         [_vm._v("Go!")]
                       )
@@ -80670,7 +80933,15 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h5", [_vm._v("Recursive conduct")])
+      _c("h5", [_vm._v("General Survey")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", [_vm._v("Office Specific Survey")])
     ])
   }
 ]
@@ -100422,15 +100693,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      surveys: []
+      general_surveys: [],
+      specific_surveys: []
     };
   },
   methods: {
-    selectSurveys: function selectSurveys() {
+    selectGeneralSurveys: function selectGeneralSurveys() {
       var _this = this;
 
-      axios.get('api/selections/surveys', this.$store.state.config).then(function (response) {
-        _this.surveys = response.data;
+      axios.get('api/selections/general/surveys', this.$store.state.config).then(function (response) {
+        _this.general_surveys = response.data;
+      })["catch"](function (e) {});
+    },
+    selectSpecificSurveys: function selectSpecificSurveys() {
+      var _this2 = this;
+
+      axios.get('api/selections/specific/surveys', this.$store.state.config).then(function (response) {
+        _this2.specific_surveys = response.data;
       })["catch"](function (e) {});
     }
   }

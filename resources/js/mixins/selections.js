@@ -3,24 +3,37 @@ export default {
 	data() {
 		
 		return {
-			surveys: []
+			general_surveys: [],
+			specific_surveys: []
 		}
 		
 	},
 
 	methods: {
 
-		selectSurveys() {
+		selectGeneralSurveys() {
 			
-			axios.get('api/selections/surveys', this.$store.state.config).then(response => {
+			axios.get('api/selections/general/surveys', this.$store.state.config).then(response => {
 			
-				this.surveys = response.data
+				this.general_surveys = response.data
 			
 			}).catch(e => {
 			
 			})			
 			
-		}
+		},
+		
+		selectSpecificSurveys() {
+			
+			axios.get('api/selections/specific/surveys', this.$store.state.config).then(response => {
+			
+				this.specific_surveys = response.data
+			
+			}).catch(e => {
+			
+			})			
+			
+		}		
 	
 	}
 	

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Respondent;
 use App\SectionItemAnswer;
 use App\SectionItemValueAnswer;
@@ -15,15 +16,19 @@ class SurveyRespondent extends Controller
 
 	public function __invoke(Request $request)
 	{
-		
-		$survey = $request;
-		
+
+		$survey = $request->survey;
+		$specific = $request->specific;
+
 		$respondent = new Respondent;
-		$respondent->survey_id = $survey->id;
+		$respondent->survey_id = $survey['id'];
+		if ($specific) {
+
+		}
 		
 		$respondent->save();
 		
-		foreach ($survey->sections as $section) {
+		foreach ($survey['sections'] as $section) {
 			
 			foreach ($section['aspects'] as $section_aspect) {
 

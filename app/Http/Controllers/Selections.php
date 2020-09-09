@@ -46,5 +46,23 @@ class Selections extends Controller
 		return $surveys;
 	
 	}
+	
+	public function generalSurveys(Request $request)
+	{
+
+		$surveys = Survey::where('include_office',false)->get();
+
+		return $surveys;
+	
+	}
+
+	public function specificSurveys(Request $request)
+	{
+
+		$surveys = Survey::where('include_office',true)->get();
+
+		return $surveys;
+
+	}	
 
 }

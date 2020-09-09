@@ -3534,14 +3534,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuelidate__WEBPACK_IMPORTED_MODUL
     }
   },
   created: function created() {},
-  mounted: function mounted() {
-    console.log(window.localStorage);
-  },
+  mounted: function mounted() {},
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
     next(function (vm) {
       vm.$parent.$refs.pSpinner.on();
       vm.fetchSurvey(vm.$route.params.token).then(function (response) {
-        console.log(vm.$store.state.finish);
+        vm.$store.commit('recursive', vm.$route.params.recursive == 'recursive' ? true : false);
+        vm.$store.commit('specific', vm.$route.params.scope == 'specific' ? true : false);
 
         if (vm.$store.state.finish) {
           vm.$store.commit('start');
@@ -93759,7 +93758,10 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     respondent: function respondent() {
-      return axios.post('/api/conduct/survey/respondent', this.$store.state.survey).then(function (response) {})["catch"](function (e) {});
+      return axios.post('/api/conduct/survey/respondent', {
+        survey: this.$store.state.survey,
+        specific: this.$store.state.specific
+      }).then(function (response) {})["catch"](function (e) {});
     }
   }
 });
@@ -93919,7 +93921,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 
 var routes = [{
-  path: '/:token',
+  path: '/:scope/:recursive/:token',
   name: 'conduct',
   component: _start_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }];
@@ -94846,9 +94848,17 @@ var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
     }],
     survey: {},
     currentItemIndex: null,
-    finish: false
+    finish: false,
+    recursive: false,
+    specific: false
   },
   mutations: {
+    recursive: function recursive(state, _recursive) {
+      state.recursive = _recursive;
+    },
+    specific: function specific(state, _specific) {
+      state.specific = _specific;
+    },
     itemValues: function itemValues(state, values) {
       if (values.aspect == null) {
         state.survey.sections[values.section].items[values.item].values = values.values;
