@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 use App\Survey;
 use App\Introduction;
+use App\ThankYou;
 use App\SurveySection;
 use App\SectionItem;
 use App\SectionItemValue;
@@ -63,6 +64,9 @@ class SurveyController extends Controller
 		$survey->name = $request->name;
 		$survey->description = $request->description;
 		$survey->office = $request->office;
+		$survey->background = $request->background;
+		$survey->left_infographic = $request->left_infographic;
+		$survey->right_infographic = $request->right_infographic;
 		$survey->include_office = $request->include_office;
 
 		$survey->save();
@@ -78,6 +82,9 @@ class SurveyController extends Controller
 			}
 			
 		}
+
+		$thankyou = new ThankYou($request->thankyou);
+		$survey->thank_you()->save($thankyou);
 
 		if ($request->sections!=null) {
 
@@ -210,6 +217,9 @@ class SurveyController extends Controller
 		$survey->name = $request->name;
 		$survey->description = $request->description;
 		$survey->office = $request->office;
+		$survey->background = $request->background;
+		$survey->left_infographic = $request->left_infographic;
+		$survey->right_infographic = $request->right_infographic;		
 		$survey->include_office = $request->include_office;
 		
 		$survey->save();
@@ -232,6 +242,21 @@ class SurveyController extends Controller
 			
 		}		
 		
+		if ($request->thankyou['id']>0) { # update
+		
+			$thankyou = ThankYou::find($request->thankyou['id']);
+			$thankyou->infographic = $request->thankyou['infographic'];
+			$thankyou->message = $request->thankyou['message'];
+			$thankyou->translated = $request->thankyou['translated'];
+			$survey->thank_you()->save($thankyou);
+		
+		} else { # new
+		
+			$thankyou = new ThankYou($request->thankyou);
+			$survey->thank_you()->save($thankyou);
+		
+		}
+
 		if ($request->sections!=null) {
 
 			foreach ($request->sections as $survey_section) {

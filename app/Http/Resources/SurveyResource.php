@@ -189,14 +189,20 @@ class SurveyResource extends JsonResource
 			
 		}
 		
+		// Thank you
+
 		return [
 			"id"=>$this->id,
 			"name"=>$this->name,
 			"description"=>$this->description,
 			"office"=>$this->office,
+			"background"=>$this->background,
+			"left_infographic"=>$this->left_infographic,
+			"right_infographic"=>$this->right_infographic,
 			"include_office"=>$this->include_office,
 			"introductions"=>$introductions,
 			"sections"=>$sections,
+			"thankyou"=>(is_null($this->thank_you))?array("id"=>0,"infographic"=>null,"message"=>null,"translated"=>null):$this->thank_you
 			// "start_intro"=>(count($introductions))?true:false
 		];
     }

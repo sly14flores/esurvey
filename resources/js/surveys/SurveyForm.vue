@@ -36,6 +36,71 @@
 							</div>
 							<div class="form-row">
 								<div class="form-group col-lg-4">
+									<label>Background Image (1536x864)</label>
+									<div class="images-container images-container-margins">													
+										<div v-if="survey.background != null" class="image-container">
+											<div class="controls">
+												<a href="javascript:;" class="control-btn remove" @click="removeSIg('upload-background-infographic','background')">
+													<i class="ion-trash-a"></i>
+												</a>
+											</div>														
+											<img class="image ssi-infographic" :src="survey.background">
+										</div>
+										<input type="file" style="display: none;" id="upload-background-infographic" @change="sSIg('upload-background-infographic','background')">
+										<a v-if="survey.background == null" href="javascript:;" @click="addSIg('upload-background-infographic')">
+											<div class="image-container new">
+												<div class="ssi-infographic">
+													<i class="ion-plus"></i>
+												</div>
+											</div>
+										</a>	
+									</div>							
+								</div>
+								<div class="form-group col-lg-4">
+									<label>Welcome Left Infographic</label>
+									<div class="images-container images-container-margins">													
+										<div v-if="survey.left_infographic != null" class="image-container">
+											<div class="controls">
+												<a href="javascript:;" class="control-btn remove" @click="removeSIg('upload-left_infographic-infographic','left_infographic')">
+													<i class="ion-trash-a"></i>
+												</a>
+											</div>														
+											<img class="image ssi-infographic" :src="survey.left_infographic">
+										</div>
+										<input type="file" style="display: none;" id="upload-left_infographic-infographic" @change="sSIg('upload-left_infographic-infographic','left_infographic')">
+										<a v-if="survey.left_infographic == null" href="javascript:;" @click="addSIg('upload-left_infographic-infographic')">
+											<div class="image-container new">
+												<div class="ssi-infographic">
+													<i class="ion-plus"></i>
+												</div>
+											</div>
+										</a>	
+									</div>									
+								</div>
+								<div class="form-group col-lg-4">
+									<label>Welcome Right Infographic</label>
+									<div class="images-container images-container-margins">													
+										<div v-if="survey.right_infographic != null" class="image-container">
+											<div class="controls">
+												<a href="javascript:;" class="control-btn remove" @click="removeSIg('upload-right_infographic-infographic','right_infographic')">
+													<i class="ion-trash-a"></i>
+												</a>
+											</div>														
+											<img class="image ssi-infographic" :src="survey.right_infographic">
+										</div>
+										<input type="file" style="display: none;" id="upload-right_infographic-infographic" @change="sSIg('upload-right_infographic-infographic','right_infographic')">
+										<a v-if="survey.right_infographic == null" href="javascript:;" @click="addSIg('upload-right_infographic-infographic')">
+											<div class="image-container new">
+												<div class="ssi-infographic">
+													<i class="ion-plus"></i>
+												</div>
+											</div>
+										</a>	
+									</div>									
+								</div>									
+							</div>
+							<div class="form-row">
+								<div class="form-group col-lg-4">
 									<div class="form-check add-item">
 										<label class="form-check-label">
 											<input class="form-check-input" type="checkbox" v-model="survey.include_office" :disabled="oldSurvey && !onEdit"> Include office
@@ -44,6 +109,42 @@
 								</div>
 							</div>
 							<introductions ref="introductions"></introductions>
+							<div class="m-b-20">
+								<h4 class="sub-title">
+									Thank you message
+								</h4>
+								<div class="row">
+									<div class="form-group col-lg-4">
+										<label>Infographic</label>
+										<div class="images-container images-container-margins">													
+											<div v-if="survey.thankyou.infographic != null" class="image-container">
+												<div class="controls">
+													<a href="javascript:;" class="control-btn remove" @click="removeSIg('upload-survey-infographic','infographic')">
+														<i class="ion-trash-a"></i>
+													</a>
+												</div>														
+												<img class="image ssi-infographic" :src="survey.thankyou.infographic">
+											</div>
+											<input type="file" style="display: none;" id="upload-survey-infographic" @change="sSIg('upload-survey-infographic','infographic')">
+											<a v-if="survey.thankyou.infographic == null" href="javascript:;" @click="addSIg('upload-survey-infographic')">
+												<div class="image-container new">
+													<div class="ssi-infographic">
+														<i class="ion-plus"></i>
+													</div>
+												</div>
+											</a>	
+										</div>									
+									</div>
+									<div class="form-group col-lg-4">
+										<label>Message</label>
+										<textarea rows="5" class="form-control" v-model="survey.thankyou.message" :disabled="oldSurvey && !onEdit"></textarea>
+									</div>
+									<div class="form-group col-lg-4">
+										<label>Translated (Optional)</label>
+										<textarea rows="5" class="form-control" v-model="survey.thankyou.translated" :disabled="oldSurvey && !onEdit"></textarea>
+									</div>								
+								</div>								
+							</div>
 							<survey-sections ref="survey-sections"></survey-sections>
 							<div class="f-right m-t-20">
 								<button type="button" class="btn btn-info btn-sm" @click="confirmAdd" v-if="!oldSurvey">Save</button>
@@ -379,7 +480,53 @@
 				
 				})
 			
-			}
+			},
+			
+			addSIg(el) {
+			
+				if (!this.onEdit) return
+				$('#'+el)[0].click();				
+			
+			},
+
+			sSIg(el,p) {
+
+				let file = ($('#'+el)[0].files)[0];
+
+				let type = file.type.split("/");
+				
+				let valid_files = ["jpeg","png"];
+				if (!valid_files.includes(type[1])) return;
+				
+				let reader  = new FileReader();
+
+				reader.addEventListener("load", () => {
+					if (p=='infographic') {
+						this.survey.thankyou.infographic = reader.result;
+					} else {
+						this.survey[p] = reader.result;
+					}
+				}, false);
+
+				if (file) {
+					reader.readAsDataURL(file);
+				};
+			
+			},
+
+			removeSIg(el,p) {
+
+				if (!this.onEdit) return
+			
+				if (p=='infographic') {
+					this.survey.thankyou.infographic = null;
+				} else {
+					this.survey[p] = null;
+				}			
+
+				$('#'+el).val(null)
+			
+			},	
 		
 		},
 		
@@ -427,8 +574,17 @@
 						name: null,
 						description: null,
 						office: vm.$store.state.profile.office,
+						background: null,
+						left_infographic: null,
+						right_infographic: null,
 						include_office: false,
 						introductions: [],
+						thankyou: {
+							id: 0,
+							infographic: null,
+							message: null,
+							translated: null
+						},
 						sections: []
 					})
 					

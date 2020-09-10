@@ -59,7 +59,8 @@ class ModelsIncrement extends Command
 			'aspect_item_answers',
 			'aspect_item_sub_item_answers',
 			'section_item_value_answers',
-			'aspect_item_value_answers'
+			'aspect_item_value_answers',
+			'thank_yous'
 		];
 		
 		foreach ($tables as $table) {

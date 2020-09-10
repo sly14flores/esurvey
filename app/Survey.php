@@ -9,7 +9,7 @@ use App\Events\UpdateDashboard;
 class Survey extends Model
 {
 
-    protected $fillable = ['name','description','office','include_office'];
+    protected $fillable = ['name','description','office','background','left_infographic','right_infographic','include_office'];
 
 	public function introductions() {
 		
@@ -26,6 +26,12 @@ class Survey extends Model
 	public function survey_office() {
 
 		return $this->belongsTo('App\Office','office');
+	
+	}
+	
+	public function thank_you() {
+
+		return $this->hasOne('App\ThankYou');
 	
 	}
 
@@ -50,6 +56,6 @@ class Survey extends Model
 	
     protected $dispatchesEvents = [
         'created' => UpdateDashboard::class
-    ];	
+    ];
 
 }

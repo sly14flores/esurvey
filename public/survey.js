@@ -2246,6 +2246,107 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2490,16 +2591,53 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/selections/offices', this.$store.state.config).then(function (response) {
         _this5.offices = response.data;
       })["catch"](function (e) {});
+    },
+    addSIg: function addSIg(el) {
+      if (!this.onEdit) return;
+      $('#' + el)[0].click();
+    },
+    sSIg: function sSIg(el, p) {
+      var _this6 = this;
+
+      var file = $('#' + el)[0].files[0];
+      var type = file.type.split("/");
+      var valid_files = ["jpeg", "png"];
+      if (!valid_files.includes(type[1])) return;
+      var reader = new FileReader();
+      reader.addEventListener("load", function () {
+        if (p == 'infographic') {
+          _this6.survey.thankyou.infographic = reader.result;
+        } else {
+          _this6.survey[p] = reader.result;
+        }
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+
+      ;
+    },
+    removeSIg: function removeSIg(el, p) {
+      if (!this.onEdit) return;
+
+      if (p == 'infographic') {
+        this.survey.thankyou.infographic = null;
+      } else {
+        this.survey[p] = null;
+      }
+
+      $('#' + el).val(null);
     }
   },
   created: function created() {
     this.fetchOffices();
   },
   mounted: function mounted() {
-    var _this6 = this;
+    var _this7 = this;
 
     this.$nextTick(function () {
-      if (!_this6.oldSurvey) _this6.onEdit = true;
+      if (!_this7.oldSurvey) _this7.onEdit = true;
       $('[data-toggle="tooltip"]').tooltip({
         trigger: 'hover'
       });
@@ -2523,8 +2661,17 @@ __webpack_require__.r(__webpack_exports__);
           name: null,
           description: null,
           office: vm.$store.state.profile.office,
+          background: null,
+          left_infographic: null,
+          right_infographic: null,
           include_office: false,
           introductions: [],
+          thankyou: {
+            id: 0,
+            infographic: null,
+            message: null,
+            translated: null
+          },
           sections: []
         });
       }
@@ -8843,6 +8990,230 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-row" }, [
                       _c("div", { staticClass: "form-group col-lg-4" }, [
+                        _c("label", [_vm._v("Background Image (1536x864)")]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "images-container images-container-margins"
+                          },
+                          [
+                            _vm.survey.background != null
+                              ? _c("div", { staticClass: "image-container" }, [
+                                  _c("div", { staticClass: "controls" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "control-btn remove",
+                                        attrs: { href: "javascript:;" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.removeSIg(
+                                              "upload-background-infographic",
+                                              "background"
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_c("i", { staticClass: "ion-trash-a" })]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("img", {
+                                    staticClass: "image ssi-infographic",
+                                    attrs: { src: _vm.survey.background }
+                                  })
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticStyle: { display: "none" },
+                              attrs: {
+                                type: "file",
+                                id: "upload-background-infographic"
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.sSIg(
+                                    "upload-background-infographic",
+                                    "background"
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.survey.background == null
+                              ? _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "javascript:;" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.addSIg(
+                                          "upload-background-infographic"
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._m(0)]
+                                )
+                              : _vm._e()
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group col-lg-4" }, [
+                        _c("label", [_vm._v("Welcome Left Infographic")]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "images-container images-container-margins"
+                          },
+                          [
+                            _vm.survey.left_infographic != null
+                              ? _c("div", { staticClass: "image-container" }, [
+                                  _c("div", { staticClass: "controls" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "control-btn remove",
+                                        attrs: { href: "javascript:;" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.removeSIg(
+                                              "upload-left_infographic-infographic",
+                                              "left_infographic"
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_c("i", { staticClass: "ion-trash-a" })]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("img", {
+                                    staticClass: "image ssi-infographic",
+                                    attrs: { src: _vm.survey.left_infographic }
+                                  })
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticStyle: { display: "none" },
+                              attrs: {
+                                type: "file",
+                                id: "upload-left_infographic-infographic"
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.sSIg(
+                                    "upload-left_infographic-infographic",
+                                    "left_infographic"
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.survey.left_infographic == null
+                              ? _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "javascript:;" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.addSIg(
+                                          "upload-left_infographic-infographic"
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._m(1)]
+                                )
+                              : _vm._e()
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group col-lg-4" }, [
+                        _c("label", [_vm._v("Welcome Right Infographic")]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "images-container images-container-margins"
+                          },
+                          [
+                            _vm.survey.right_infographic != null
+                              ? _c("div", { staticClass: "image-container" }, [
+                                  _c("div", { staticClass: "controls" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "control-btn remove",
+                                        attrs: { href: "javascript:;" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.removeSIg(
+                                              "upload-right_infographic-infographic",
+                                              "right_infographic"
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_c("i", { staticClass: "ion-trash-a" })]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("img", {
+                                    staticClass: "image ssi-infographic",
+                                    attrs: { src: _vm.survey.right_infographic }
+                                  })
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticStyle: { display: "none" },
+                              attrs: {
+                                type: "file",
+                                id: "upload-right_infographic-infographic"
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.sSIg(
+                                    "upload-right_infographic-infographic",
+                                    "right_infographic"
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.survey.right_infographic == null
+                              ? _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "javascript:;" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.addSIg(
+                                          "upload-right_infographic-infographic"
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._m(2)]
+                                )
+                              : _vm._e()
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-row" }, [
+                      _c("div", { staticClass: "form-group col-lg-4" }, [
                         _c("div", { staticClass: "form-check add-item" }, [
                           _c("label", { staticClass: "form-check-label" }, [
                             _c("input", {
@@ -8904,6 +9275,166 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("introductions", { ref: "introductions" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "m-b-20" }, [
+                      _c("h4", { staticClass: "sub-title" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\tThank you message\n\t\t\t\t\t\t\t"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "form-group col-lg-4" }, [
+                          _c("label", [_vm._v("Infographic")]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "images-container images-container-margins"
+                            },
+                            [
+                              _vm.survey.thankyou.infographic != null
+                                ? _c(
+                                    "div",
+                                    { staticClass: "image-container" },
+                                    [
+                                      _c("div", { staticClass: "controls" }, [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "control-btn remove",
+                                            attrs: { href: "javascript:;" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.removeSIg(
+                                                  "upload-survey-infographic",
+                                                  "infographic"
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "ion-trash-a"
+                                            })
+                                          ]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("img", {
+                                        staticClass: "image ssi-infographic",
+                                        attrs: {
+                                          src: _vm.survey.thankyou.infographic
+                                        }
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticStyle: { display: "none" },
+                                attrs: {
+                                  type: "file",
+                                  id: "upload-survey-infographic"
+                                },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.sSIg(
+                                      "upload-survey-infographic",
+                                      "infographic"
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.survey.thankyou.infographic == null
+                                ? _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "javascript:;" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.addSIg(
+                                            "upload-survey-infographic"
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._m(3)]
+                                  )
+                                : _vm._e()
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group col-lg-4" }, [
+                          _c("label", [_vm._v("Message")]),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.survey.thankyou.message,
+                                expression: "survey.thankyou.message"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              rows: "5",
+                              disabled: _vm.oldSurvey && !_vm.onEdit
+                            },
+                            domProps: { value: _vm.survey.thankyou.message },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.survey.thankyou,
+                                  "message",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group col-lg-4" }, [
+                          _c("label", [_vm._v("Translated (Optional)")]),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.survey.thankyou.translated,
+                                expression: "survey.thankyou.translated"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              rows: "5",
+                              disabled: _vm.oldSurvey && !_vm.onEdit
+                            },
+                            domProps: { value: _vm.survey.thankyou.translated },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.survey.thankyou,
+                                  "translated",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c("survey-sections", { ref: "survey-sections" }),
                     _vm._v(" "),
@@ -8985,7 +9516,48 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "image-container new" }, [
+      _c("div", { staticClass: "ssi-infographic" }, [
+        _c("i", { staticClass: "ion-plus" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "image-container new" }, [
+      _c("div", { staticClass: "ssi-infographic" }, [
+        _c("i", { staticClass: "ion-plus" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "image-container new" }, [
+      _c("div", { staticClass: "ssi-infographic" }, [
+        _c("i", { staticClass: "ion-plus" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "image-container new" }, [
+      _c("div", { staticClass: "ssi-infographic" }, [
+        _c("i", { staticClass: "ion-plus" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
