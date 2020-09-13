@@ -3096,9 +3096,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      height: window.innerHeight,
-      left_infog: '/conduct/images/sopa-logo-white.png',
-      right_infog: '/conduct/images/stronger-launion.png'
+      height: window.innerHeight
     };
   },
   methods: {
@@ -3117,6 +3115,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     description: function description() {
       return this.$store.state.survey.description;
+    },
+    left_infog: function left_infog() {
+      return this.$store.state.survey.left_infographic;
+    },
+    right_infog: function right_infog() {
+      return this.$store.state.survey.right_infographic;
     }
   },
   created: function created() {},

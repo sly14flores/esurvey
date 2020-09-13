@@ -76,9 +76,7 @@
 		data() {
 		
 			return {
-				height: window.innerHeight,
-				left_infog: '/conduct/images/sopa-logo-white.png',
-				right_infog: '/conduct/images/stronger-launion.png'
+				height: window.innerHeight
 			}
 		
 		},
@@ -111,6 +109,18 @@
 
 				return this.$store.state.survey.description				
 
+			},
+			
+			left_infog() {
+			
+				return this.$store.state.survey.left_infographic
+			
+			},
+			
+			right_infog() {
+			
+				return this.$store.state.survey.right_infographic			
+			
 			}
 
 		},
