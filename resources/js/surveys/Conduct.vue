@@ -136,7 +136,7 @@
 
 				if (this.$v.conduct.general.$invalid) return
 				
-				if (this.conduct.specific.recursive) window.open('/survey#/general/recursive/'+this.conduct.general.survey)
+				if (this.conduct.general.recursive) window.open('/survey#/general/recursive/'+this.conduct.general.survey)
 				else window.open('/survey#/general/once/'+this.conduct.general.survey)
 			
 			},
