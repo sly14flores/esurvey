@@ -87,11 +87,11 @@
 
 			start() {
 
-				this.$root.$refs.pSpinner.on();
+				this.$root.$children[0].$refs.pSpinner.on();
 
 				this.$store.dispatch('next').then(response => {
 
-					this.$root.$refs.pSpinner.off();
+					this.$root.$children[0].$refs.pSpinner.off();
 
 				});
 

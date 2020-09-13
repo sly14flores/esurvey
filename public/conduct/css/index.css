@@ -330,6 +330,12 @@ legend {
   white-space: normal;
 }
 
+@media (max-width: 1200px) {
+  legend {
+    font-size: calc(1.275rem + 0.3vw);
+  }
+}
+
 progress {
   vertical-align: baseline;
 }
@@ -392,9 +398,23 @@ h1,
   font-size: 2.5rem;
 }
 
+@media (max-width: 1200px) {
+  h1,
+  .h1 {
+    font-size: calc(1.375rem + 1.5vw);
+  }
+}
+
 h2,
 .h2 {
   font-size: 2rem;
+}
+
+@media (max-width: 1200px) {
+  h2,
+  .h2 {
+    font-size: calc(1.325rem + 0.9vw);
+  }
 }
 
 h3,
@@ -402,9 +422,23 @@ h3,
   font-size: 1.75rem;
 }
 
+@media (max-width: 1200px) {
+  h3,
+  .h3 {
+    font-size: calc(1.3rem + 0.6vw);
+  }
+}
+
 h4,
 .h4 {
   font-size: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+  h4,
+  .h4 {
+    font-size: calc(1.275rem + 0.3vw);
+  }
 }
 
 h5,
@@ -428,10 +462,22 @@ h6,
   line-height: 1.2;
 }
 
+@media (max-width: 1200px) {
+  .display-1 {
+    font-size: calc(1.725rem + 5.7vw);
+  }
+}
+
 .display-2 {
   font-size: 5.5rem;
   font-weight: 300;
   line-height: 1.2;
+}
+
+@media (max-width: 1200px) {
+  .display-2 {
+    font-size: calc(1.675rem + 5.1vw);
+  }
 }
 
 .display-3 {
@@ -440,10 +486,22 @@ h6,
   line-height: 1.2;
 }
 
+@media (max-width: 1200px) {
+  .display-3 {
+    font-size: calc(1.575rem + 3.9vw);
+  }
+}
+
 .display-4 {
   font-size: 3.5rem;
   font-weight: 300;
   line-height: 1.2;
+}
+
+@media (max-width: 1200px) {
+  .display-4 {
+    font-size: calc(1.475rem + 2.7vw);
+  }
 }
 
 hr {
@@ -6092,6 +6150,12 @@ a.badge-dark.focus {
   opacity: 0.5;
 }
 
+@media (max-width: 1200px) {
+  .close {
+    font-size: calc(1.275rem + 0.3vw);
+  }
+}
+
 .close:hover {
   color: #000;
   text-decoration: none;
@@ -10906,44 +10970,6 @@ a.text-dark:focus {
   .table .thead-dark th {
     color: inherit;
     border-color: #dee2e6;
-  }
-}
-
-.survey-backdrop {
-  background-repeat: repeat-y;
-  background-image: url("/conduct/images/capitol-aerial-1080-80.jpg");
-}
-
-/* Mobile rules */
-
-@media (max-width: 575.98px) {
-  .survey-backdrop {
-    background-repeat: repeat-y;
-    background-image: url("/conduct/images/capitol-aerial-1080-70.jpg");
-    background-attachment: fixed;
-    background-position: 8% 0%;
-  }
-}
-
-@media (max-height: 812px) {
-  /* for Iphone X */
-
-  .survey-backdrop {
-    background-repeat: repeat-y;
-    background-image: url("/conduct/images/capitol-aerial-1080-80.jpg");
-    background-attachment: fixed;
-    background-position: 8% 0%;
-  }
-}
-
-@media (max-height: 823px) {
-  /* for Iphone X */
-
-  .survey-backdrop {
-    background-repeat: repeat-y;
-    background-image: url("/conduct/images/capitol-aerial-1080-80.jpg");
-    background-attachment: fixed;
-    background-position: 8% 0%;
   }
 }
 

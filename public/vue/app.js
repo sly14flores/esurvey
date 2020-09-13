@@ -100950,7 +100950,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var surveys = {
   state: {
-    survey: {},
+    survey: {
+      thankyou: {}
+    },
     surveys: []
   },
   mutations: {

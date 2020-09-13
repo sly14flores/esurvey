@@ -5,16 +5,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <title>{{ config('app.name') }}</title>
 	<link href="{{ mix('conduct/css/index.css') }}" rel="stylesheet">
+	<link href="{{ route('css.conduct') }}" rel="stylesheet">
   </head>
-  <body class="app survey-backdrop">
-	
-	<div id="app">
-		<sly-spinner ref="pSpinner"></sly-spinner>
-		<transition>
-			<router-view></router-view>
-		</transition>
-	</div>
-	
+  <body class="app">
+	<div id="app"></div>
 	<script type="text/javascript" src="{{ mix('conduct/js/index.js') }}"></script>
 	<script type="text/javascript" src="{{ mix('conduct/vue/conduct.js') }}"></script>
   </body>

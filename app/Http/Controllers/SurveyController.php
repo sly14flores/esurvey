@@ -288,6 +288,9 @@ class SurveyController extends Controller
 							$item->item_presentation = $section_item['item_presentation'];
 							$item->max_checkbox_selections = $section_item['max_checkbox_selections'];
 							$item->item_infographic = $section_item['item_infographic'];
+							$item->item_infographic_left = $section_item['item_infographic_left'];
+							$item->item_infographic_right = $section_item['item_infographic_right'];
+							$item->item_infographic_bottom_logo = $section_item['item_infographic_bottom_logo'];
 							$item->use_images = $section_item['use_images'];
 							$item->text_is_multiple = $section_item['text_is_multiple'];
 						}

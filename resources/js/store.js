@@ -1,6 +1,8 @@
 const surveys = {
 	state: {
-		survey: {},
+		survey: {
+			thankyou: {}
+		},
 		surveys: []
 	},
 	mutations: {

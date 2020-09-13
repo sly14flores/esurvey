@@ -8,26 +8,13 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
-import router from './router.js'
-import store from './store.js'
-
-import SlySpinner from './SlySpinner.vue'
-
 window.Swal = require('sweetalert2')
 
+import App from './App.vue'
+
+import store from './store.js'	
+
 const app = new Vue({
-	router,	
 	store,
-	components: {
-		SlySpinner,
-	},
-	methods: {
-
-	},
-	created() {
-		
-	},
-	mounted() {
-
-	}
+	render: h => h(App)
 }).$mount('#app')

@@ -108,13 +108,13 @@ export default {
 		
 		anotherSurvey() {
 			
-			this.$root.$refs.pSpinner.on();
+			this.$root.$children[0].$refs.pSpinner.on();
 
 			this.fetchSurvey(this.$route.params.token).then(response => {
 				
 				 this.$store.commit('load',response.data.data)
 				 this.$store.commit('start')
-				 this.$root.$refs.pSpinner.off()
+				 this.$root.$children[0].$refs.pSpinner.off()
 				
 			})
 			
@@ -124,11 +124,11 @@ export default {
 
 			if (!this.validateItem()) return
 
-			this.$root.$refs.pSpinner.on();
+			this.$root.$children[0].$refs.pSpinner.on();
 
 			this.$store.dispatch('next').then(response => {
 
-				this.$root.$refs.pSpinner.off();
+				this.$root.$children[0].$refs.pSpinner.off();
 
 			});	
 
@@ -136,11 +136,11 @@ export default {
 
 		previous() {
 
-			this.$root.$refs.pSpinner.on();
+			this.$root.$children[0].$refs.pSpinner.on();
 
 			this.$store.dispatch('previous').then(response => {
 
-				this.$root.$refs.pSpinner.off();
+				this.$root.$children[0].$refs.pSpinner.off();
 
 			});	
 
@@ -150,7 +150,7 @@ export default {
 
 			if (!this.validateItem()) return
 
-			this.$root.$refs.pSpinner.on();
+			this.$root.$children[0].$refs.pSpinner.on();
 
 			if (!this.$store.state.finish) {
 				
@@ -158,7 +158,7 @@ export default {
 					
 					this.$store.dispatch('finish').then(response => {
 
-						this.$root.$refs.pSpinner.off()
+						this.$root.$children[0].$refs.pSpinner.off()
 
 					});
 					
@@ -168,7 +168,7 @@ export default {
 				
 				this.$store.dispatch('finish').then(response => {
 
-					this.$root.$refs.pSpinner.off()
+					this.$root.$children[0].$refs.pSpinner.off()
 
 				});			
 

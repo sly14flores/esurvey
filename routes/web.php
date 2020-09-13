@@ -35,3 +35,5 @@ Route::get('preview/mail', function() {
 });
 
 Route::get('/reports/survey', 'Reports\Survey@export');
+
+Route::get('/css/conduct', 'ConductStyles')->name('css.conduct');

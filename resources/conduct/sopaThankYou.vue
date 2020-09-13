@@ -2,7 +2,7 @@
 	<div class="row no-gutters nmp" v-bind:style="{height: height+'px'}">
 		<div class="col-sm col-md-5 d-none d-md-block">
 			<div class="nmp ccenter">		
-				<img :src="left_infog" class="img-fluid left_infog" alt="SOPA 2020">
+				<img :src="infographic" class="img-fluid left_infog" alt="SOPA 2020">
 			</div>
 		</div>
 		<div class="col-sm col-md-7 bg-white-right g-white" v-bind:style="{height: height+'px'}">
@@ -14,11 +14,9 @@
 					</b-iconstack>
 					<!-- <b-icon icon="check-circle" variant="success" style="width: 120px; height: 120px;"></b-icon> -->
 				</div>
-				
-				<!-- <h1 class="mt-2 center">Your answers were successfully submitted!</h1> -->
-				<h5 class="mt-3 center">Thank you for participating in this survey. If you want to help in planning to make La Union a Province worth living in, you may proceed to Step 2 of the survey through this link: <a href="http://bit.ly/StrongerLaUnionSurvey">http://bit.ly/StrongerLaUnionSurvey</a></h5>
-				<h5 class="mt-3 text-muted center">(Maraming salamat sa paglahok sa survey na ito. Kung nais mong magbigay ng suhestyon at makatulong sa pagpaplano ng paglikha ng La Union upang maging Province worth living in, maaari kang magproceed sa step 2 ng survey gamit ang link na ito: <a href="http://bit.ly/StrongerLaUnionSurvey">http://bit.ly/StrongerLaUnionSurvey</a>)</h5>			
-				<img :src="bottom_logo" class="img-fluid bottom-logo display-on-mobile-only" alt="SOPA 2020">
+
+				<h5 class="mt-3 center" v-html="message"></h5>
+				<h5 class="mt-3 text-muted center" v-html="translated"></h5>
 			</div>
 		</div>
 	</div>
@@ -119,12 +117,31 @@
 		data() {
 		
 			return {
-				height: window.innerHeight,
-				left_infog: '/conduct/images/sopa-logo-white.png',
-				bottom_logo: '/conduct/images/sopa-logo-black.png',
-				right_infog: '/conduct/images/stronger-launion.png'
+				height: window.innerHeight
 			}
 
+		},
+		
+		computed: {
+		
+			infographic() {
+				
+				return this.$store.state.survey.thankyou.infographic
+				
+			},
+			
+			message() {
+			
+				return this.$store.state.survey.thankyou.message		
+			
+			},
+			
+			translated() {
+			
+				return '('+this.$store.state.survey.thankyou.message+')'		
+			
+			}
+		
 		},
 
         mounted() {

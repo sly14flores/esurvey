@@ -133,7 +133,7 @@
 						vm.$store.commit('load',response.data.data)
 						
 					}
-                    vm.$parent.$refs.pSpinner.off();
+                   vm.$parent.$refs.pSpinner.off();
 
                 }).catch(e => {
 

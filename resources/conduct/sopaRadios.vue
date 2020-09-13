@@ -130,10 +130,7 @@
 		data() {
 		
 			return {
-				height: window.innerHeight,
-				left_infog: '/conduct/images/sopa-logo-white.png',
-				bottom_logo: '/conduct/images/sopa-logo-black.png',
-				right_infog: '/conduct/images/stronger-launion.png'				
+				height: window.innerHeight			
 			}
 		
 		},	
