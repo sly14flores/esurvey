@@ -3,17 +3,17 @@
 		<div class="col-sm col-md-5 g-white">
 			<div class="nmp ccenter">
 				<div class="display-on-mobile-only">
-					<h4 style="margin-top: 20%; font-style: italic;" class="font-weight-bold">ONE KAPROBINSIAAN FOR A</h4>
-					<img :src="right_infog" class="img-fluid right_infog" alt="Stronger La Union">					
+					<h4 style="margin-top: 20%; font-style: italic;" class="font-weight-bold">{{description}}</h4>
+					<img v-if="right_infog!=null" :src="right_infog" class="img-fluid right_infog" alt="Stronger La Union">					
 					<button style="margin-top: 50%; border-radius: 20px!important;" class="btn btn-outline-light" @click="start"><span class="font-weight-bold">START THE SURVEY</span></button>
 				</div>			
-				<img :src="left_infog" class="img-fluid left_infog" alt="SOPA 2020">
+				<img v-if="left_infog!=null" :src="left_infog" class="img-fluid left_infog" alt="SOPA 2020">
 			</div>
 		</div>
 		<div class="col-sm col-md-7 bg-white d-none d-md-block">
 			<div class="nmp">
-				<h4 style="margin-left: 30px; margin-top: 20%;" class="font-weight-bold">ONE KAPROBINSIAAN FOR A</h4>
-				<img :src="right_infog" class="img-fluid right_infog" alt="Stronger La Union">
+				<h4 style="margin-left: 30px; margin-top: 20%;" class="font-weight-bold">{{description}}</h4>
+				<img v-if="right_infog!=null" :src="right_infog" class="img-fluid right_infog" alt="Stronger La Union">
 				<button style="margin-top: 20px; margin-left: 30px; border-radius: 20px!important;" class="btn btn-secondary" @click="start"><span class="font-weight-bold">START THE SURVEY</span></button>
 			</div>
 		</div>		

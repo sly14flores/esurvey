@@ -73940,13 +73940,15 @@ var render = function() {
                 staticClass: "font-weight-bold",
                 staticStyle: { "margin-top": "20%", "font-style": "italic" }
               },
-              [_vm._v("ONE KAPROBINSIAAN FOR A")]
+              [_vm._v(_vm._s(_vm.description))]
             ),
             _vm._v(" "),
-            _c("img", {
-              staticClass: "img-fluid right_infog",
-              attrs: { src: _vm.right_infog, alt: "Stronger La Union" }
-            }),
+            _vm.right_infog != null
+              ? _c("img", {
+                  staticClass: "img-fluid right_infog",
+                  attrs: { src: _vm.right_infog, alt: "Stronger La Union" }
+                })
+              : _vm._e(),
             _vm._v(" "),
             _c(
               "button",
@@ -73966,10 +73968,12 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("img", {
-            staticClass: "img-fluid left_infog",
-            attrs: { src: _vm.left_infog, alt: "SOPA 2020" }
-          })
+          _vm.left_infog != null
+            ? _c("img", {
+                staticClass: "img-fluid left_infog",
+                attrs: { src: _vm.left_infog, alt: "SOPA 2020" }
+              })
+            : _vm._e()
         ])
       ]),
       _vm._v(" "),
@@ -73981,13 +73985,15 @@ var render = function() {
               staticClass: "font-weight-bold",
               staticStyle: { "margin-left": "30px", "margin-top": "20%" }
             },
-            [_vm._v("ONE KAPROBINSIAAN FOR A")]
+            [_vm._v(_vm._s(_vm.description))]
           ),
           _vm._v(" "),
-          _c("img", {
-            staticClass: "img-fluid right_infog",
-            attrs: { src: _vm.right_infog, alt: "Stronger La Union" }
-          }),
+          _vm.right_infog != null
+            ? _c("img", {
+                staticClass: "img-fluid right_infog",
+                attrs: { src: _vm.right_infog, alt: "Stronger La Union" }
+              })
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "button",
