@@ -42,7 +42,7 @@
 				<div class="form-group">				
 					<div class="border-checkbox-group border-checkbox-group-info">
 						<input class="border-checkbox" type="checkbox" id="section-is-hidden" v-model="section.is_hidden">
-						<label class="border-checkbox-label" for="section-is-hidden'">Hidden</label>
+						<label class="border-checkbox-label" for="section-is-hidden'">Hidden section name in coduct survey form</label>
 					</div>
 				</div>				
 			</form>

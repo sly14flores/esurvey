@@ -10230,7 +10230,7 @@ var render = function() {
                         staticClass: "border-checkbox-label",
                         attrs: { for: "section-is-hidden'" }
                       },
-                      [_vm._v("Hidden")]
+                      [_vm._v("Hidden section name in coduct survey form")]
                     )
                   ]
                 )
