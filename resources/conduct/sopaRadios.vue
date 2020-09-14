@@ -8,7 +8,7 @@
 		<div class="col-sm col-md-7 bg-white-right g-white" v-bind:style="{height: height+'px'}">
 			<div class="nmp">
 				<steppers></steppers>
-				<h4 style="margin-top: 20%; text-align: center; font-style: italic;" class="display-on-mobile-only font-weight-bold">ONE KAPROBINSIAAN FOR A</h4>			
+				<h4 style="margin-top: 20%; text-align: center; font-style: italic;" class="display-on-mobile-only font-weight-bold">{{description}}</h4>			
 				<img :src="right_infog" class="display-on-mobile-only img-fluid right_infog" alt="Stronger La Union">				
 				<h2 style="margin-top: 8%; margin-left: 5%;">{{sectionName}}</h2>			
 				<h4 v-if="sectionNameTranslated!=null" class="text-muted" style="margin-top: 5px; margin-left: 5%; font-style: italic">({{sectionNameTranslated}})</h4>
@@ -138,6 +138,12 @@
 		mixins: [survey,wizard,items],
 
 		computed: {
+		
+			description() {
+			
+				return this.$store.state.survey.description
+			
+			},
 
 			item() {
 

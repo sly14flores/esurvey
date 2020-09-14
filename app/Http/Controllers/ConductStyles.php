@@ -18,7 +18,6 @@ class ConductStyles extends Controller
 				background-repeat: repeat-y;
 				background-image: url('$background_image');
 			}
-
 			/* Mobile rules */
 			@media (max-width: 575.98px) {
 				.survey-backdrop {
@@ -28,7 +27,6 @@ class ConductStyles extends Controller
 					background-position: 8% 0%;
 				}
 			}
-
 			@media (max-height: 812px) { /* for Iphone X */
 				.survey-backdrop {
 					background-repeat: repeat-y;
@@ -37,7 +35,6 @@ class ConductStyles extends Controller
 					background-position: 8% 0%;
 				}
 			}
-
 			@media (max-height: 823px) { /* for Iphone X */
 				.survey-backdrop {
 					background-repeat: repeat-y;

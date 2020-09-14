@@ -2,7 +2,7 @@
 	<div class="row no-gutters nmp" v-bind:style="{height: height+'px'}">
 		<div class="col-sm col-md-5 d-none d-md-block">
 			<div class="nmp ccenter">		
-				<img :src="infographic" class="img-fluid left_infog" alt="SOPA 2020">
+				<img v-if="infographic!=null" :src="infographic" class="img-fluid left_infog" alt="SOPA 2020">
 			</div>
 		</div>
 		<div class="col-sm col-md-7 bg-white-right g-white" v-bind:style="{height: height+'px'}">
@@ -16,7 +16,7 @@
 				</div>
 
 				<h5 class="mt-3 center" v-html="message"></h5>
-				<h5 class="mt-3 text-muted center" v-html="translated"></h5>
+				<h5 v-if="translated!=null" class="mt-3 text-muted center" v-html="translated_message"></h5>
 			</div>
 		</div>
 	</div>
@@ -137,6 +137,12 @@
 			},
 			
 			translated() {
+			
+				return this.$store.state.survey.thankyou.message	
+			
+			},			
+			
+			translated_message() {
 			
 				return '('+this.$store.state.survey.thankyou.message+')'		
 			

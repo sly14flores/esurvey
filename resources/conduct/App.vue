@@ -1,5 +1,5 @@
 <template>
-	<div class="survey-backdrop">
+	<div>
 		<sly-spinner ref="pSpinner"></sly-spinner>
 		<transition>
 			<router-view></router-view>

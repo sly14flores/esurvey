@@ -1,31 +1,31 @@
 <template>
     <div>
-		<div class="pos-a t-0 l-0 bgc-white w-100 h-100 d-f fxd-r fxw-w ai-c jc-c pos-r p-30">
-			<div class="d-f jc-c fxd-c content-width">
-				<!-- <h1 class="mB-30 fw-900 lh-1 c-red-500" style="font-size:60px">500</h1> -->
-				<h3 class="mB-10 fsz-lg c-grey-900 tt-c">{{content}}</h3>
-				<p class="mB-30 fsz-def c-grey-700" v-if="translated!=null">{{translated}}</p>
-				<div class="mT-20 align-right">
+		<div class="container start-conduct">
+			<steppers></steppers>
+			<b-jumbotron>
+				<template v-slot:lead>{{content}}</template>
+
+				<hr class="my-4">
+
+				<p>{{translated}}</p>
+
+				<div class="mt-5 center-content">
 				    <a href="javascript:;" type="primary" class="btn btn-primary" v-if="showPrevious" @click="previous">Previous</a>
 				    <a href="javascript:;" type="primary" class="btn btn-primary" v-if="showNext" @click="next">Next</a>
 				</div>
-			</div>
+			</b-jumbotron>
 		</div>
     </div>
 </template>
 
 <style scoped>
 
-	.content-width {
-		
-		width: 60%;
-		
+	.start-conduct {
+		margin-top: 8%;
 	}
 	
-	.align-right {
-	
-		text-align: right;
-	
+	.center-content {
+		text-align: center;
 	}
 
 </style>
@@ -34,9 +34,15 @@
 
 	import wizard from './mixins/wizard'
 
+	import steppers from './steppers'
+
     export default {
 	
 		name: 'introduction',
+		
+		components: {
+			steppers
+		},		
 
 		mixins: [wizard],	
         

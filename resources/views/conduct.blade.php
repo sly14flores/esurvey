@@ -7,7 +7,7 @@
 	<link href="{{ mix('conduct/css/index.css') }}" rel="stylesheet">
 	<link href="{{ route('css.conduct') }}" rel="stylesheet">
   </head>
-  <body class="app">
+  <body class="app survey-backdrop">
 	<div id="app"></div>
 	<script type="text/javascript" src="{{ mix('conduct/js/index.js') }}"></script>
 	<script type="text/javascript" src="{{ mix('conduct/vue/conduct.js') }}"></script>
