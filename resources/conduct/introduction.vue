@@ -3,11 +3,11 @@
 		<div class="container start-conduct">
 			<steppers></steppers>
 			<b-jumbotron>
-				<template v-slot:lead>{{content}}</template>
+				<template v-slot:lead><h3>{{content}}</h3></template>
 
 				<hr class="my-4">
 
-				<p>{{translated}}</p>
+				<h3 class="text-muted">{{translated}}</h3>
 
 				<div class="mt-5 center-content">
 				    <a href="javascript:;" type="primary" class="btn btn-primary" v-if="showPrevious" @click="previous">Previous</a>
@@ -21,7 +21,7 @@
 <style scoped>
 
 	.start-conduct {
-		margin-top: 8%;
+		margin-top: 5%;
 	}
 	
 	.center-content {

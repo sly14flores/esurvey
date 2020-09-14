@@ -3373,6 +3373,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -44864,7 +44870,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.start-conduct[data-v-59e72386] {\n\tmargin-top: 8%;\n}\n.center-content[data-v-59e72386] {\n\ttext-align: center;\n}\n\n", ""]);
+exports.push([module.i, "\n.start-conduct[data-v-59e72386] {\n\tmargin-top: 5%;\n}\n.center-content[data-v-59e72386] {\n\ttext-align: center;\n}\n\n", ""]);
 
 // exports
 
@@ -72663,7 +72669,7 @@ var render = function() {
               {
                 key: "lead",
                 fn: function() {
-                  return [_vm._v(_vm._s(_vm.content))]
+                  return [_c("h3", [_vm._v(_vm._s(_vm.content))])]
                 },
                 proxy: true
               }
@@ -72673,7 +72679,9 @@ var render = function() {
             _vm._v(" "),
             _c("hr", { staticClass: "my-4" }),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.translated))]),
+            _c("h3", { staticClass: "text-muted" }, [
+              _vm._v(_vm._s(_vm.translated))
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "mt-5 center-content" }, [
               _vm.showPrevious
@@ -74421,6 +74429,92 @@ var render = function() {
                                     }
                                   }
                                 })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            value.data_type == 4
+                              ? _c(
+                                  "div",
+                                  _vm._l(value.sub_items, function(si) {
+                                    return _c(
+                                      "div",
+                                      {
+                                        key: si.id,
+                                        staticClass:
+                                          "form-check form-check-inline"
+                                      },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: value.answer,
+                                              expression: "value.answer"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-check-input form-control-lg",
+                                          attrs: {
+                                            type: "radio",
+                                            id: "radioItem-" + value.id + si.id,
+                                            name: "radioItems-" + value.id
+                                          },
+                                          domProps: {
+                                            value: si.vsi_value,
+                                            checked: _vm._q(
+                                              value.answer,
+                                              si.vsi_value
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              return _vm.$set(
+                                                value,
+                                                "answer",
+                                                si.vsi_value
+                                              )
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "label",
+                                          {
+                                            staticClass: "form-check-label",
+                                            attrs: {
+                                              for:
+                                                "radioItem-" + value.id + si.id
+                                            }
+                                          },
+                                          [
+                                            _vm._v(_vm._s(si.display) + " "),
+                                            si.display_translated != null
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass: "text-muted",
+                                                    staticStyle: {
+                                                      "font-style": "italic"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "(" +
+                                                        _vm._s(
+                                                          si.display_translated
+                                                        ) +
+                                                        ")"
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e()
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  }),
+                                  0
+                                )
                               : _vm._e()
                           ])
                         }),

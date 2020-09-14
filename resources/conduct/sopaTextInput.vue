@@ -21,6 +21,12 @@
 								<input type="text" class="form-control" v-if="value.data_type==1" v-model="value.answer">
 								<input type="number" class="form-control" v-if="value.data_type==2" v-model="value.answer">
 								<textarea class="form-control" v-if="value.data_type==3" v-model="value.answer"></textarea>
+								<div v-if="value.data_type==4">
+									<div class="form-check form-check-inline" v-for="si in value.sub_items" :key="si.id">
+									  <input type="radio" :id="'radioItem-'+value.id+si.id" class="form-check-input form-control-lg" :name="'radioItems-'+value.id" v-bind:value="si.vsi_value" v-model="value.answer">									  
+									  <label class="form-check-label" :for="'radioItem-'+value.id+si.id">{{ si.display }} <span v-if="si.display_translated!=null" class="text-muted" style="font-style: italic">({{si.display_translated}})</span></label>									  
+									</div>							
+								</div>
 							</div>						
 						</form>
 					</div>
