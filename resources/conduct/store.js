@@ -99,6 +99,8 @@ export default new Vuex.Store({
 
 		},
 		next(state) {
+			
+			state.finish = false
 
 			if (state.currentItemIndex==null) {
 				state.currentItemIndex = 0
@@ -121,7 +123,6 @@ export default new Vuex.Store({
 		finish(state, status) {
 			
 			state.finish = status
-			state.currentItemIndex = -1
 			
 		}
 	},
@@ -301,8 +302,7 @@ export default new Vuex.Store({
 			// return 'sopa-thank-you'
 			
 			// if (state.finish) return 'thank-you'
-			// if ((state.finish) && (state.currentItemIndex == -1)) return 'sopa-thank-you'
-			if (state.finish) return 'sopa-thank-you'
+			if (state.finish && !state.recursive) return 'sopa-thank-you'
 
 			// let currentComponent = 'start-conduct'
 			let currentComponent = 'sopa-start-conduct'

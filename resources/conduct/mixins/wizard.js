@@ -76,6 +76,8 @@ export default {
 
 				}
 				
+				let text = 'Your answer is required'
+				
 				// Text Inputs
 				if (this.item.item_type == 3 && this.item.text_is_multiple) {
 					
@@ -83,13 +85,15 @@ export default {
 					
 					valid = !this.$v.values.$invalid
 					
+					text = 'Please complete required field(s)'
+					
 				}
 				
 				if (!valid) {
 
 					Swal.fire({
 					  title: 'Notification',
-					  text: 'Your answer is required',
+					  text: text,
 					  icon: 'warning',
 					  confirmButtonText: 'Close'
 					})
@@ -115,6 +119,14 @@ export default {
 				 this.$store.commit('load',response.data.data)
 				 this.$store.commit('start')
 				 this.$root.$children[0].$refs.pSpinner.off()
+				 
+				Swal.fire({
+					title: 'Thank You',
+					text: this.$store.state.survey.thankyou.message,
+					icon: 'success',
+					showConfirmButton: false,
+					timer: 3000
+				})				 
 				
 			})
 			
@@ -184,7 +196,11 @@ export default {
 			
 			return axios.post(resource, {survey: this.$store.state.survey, specific: this.$store.state.specific}).then(response => {
 				
-				
+				if (this.$store.state.recursive) {
+					
+					this.anotherSurvey()
+					
+				}
 				
 			}).catch(e => {
 				

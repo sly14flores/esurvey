@@ -16,15 +16,18 @@
 				<div v-if="item.text_is_multiple">
 					<div class="container">
 						<form class="mt-5">
-							<div v-for="value in item.values" class="form-group">
+							<div v-for="(value, vi) in item.values" class="form-group">
 								<label class="h5">{{value.display}} <span v-if="value.display_translated!=null" class="text-muted" style="font-style: italic">({{value.display_translated}})</span></label>									
 								<input type="text" class="form-control" v-if="value.data_type==1" v-model="value.answer">
 								<input type="number" class="form-control" v-if="value.data_type==2" v-model="value.answer">
 								<textarea class="form-control" v-if="value.data_type==3" v-model="value.answer"></textarea>
 								<div v-if="value.data_type==4">
 									<div class="form-check form-check-inline" v-for="si in value.sub_items" :key="si.id">
-									  <input type="radio" :id="'radioItem-'+value.id+si.id" class="form-check-input form-control-lg" :name="'radioItems-'+value.id" v-bind:value="si.vsi_value" v-model="value.answer">									  
+									  <input type="radio" :id="'radioItem-'+value.id+si.id" class="form-check-input form-control-lg" :class="{'is-invalid': $v.values.$each[vi].$error}" :name="'radioItems-'+value.id" v-bind:value="si.vsi_value" v-model="value.answer">
 									  <label class="form-check-label" :for="'radioItem-'+value.id+si.id">{{ si.display }} <span v-if="si.display_translated!=null" class="text-muted" style="font-style: italic">({{si.display_translated}})</span></label>									  
+									</div>
+									<div v-if="$v.values.$each[vi].$error" class="alert alert-danger" role="alert">
+										{{value.display}} is required
 									</div>							
 								</div>
 							</div>						

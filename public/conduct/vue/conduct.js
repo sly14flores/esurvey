@@ -3379,6 +3379,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -74334,7 +74337,7 @@ var render = function() {
                       _c(
                         "form",
                         { staticClass: "mt-5" },
-                        _vm._l(_vm.item.values, function(value) {
+                        _vm._l(_vm.item.values, function(value, vi) {
                           return _c("div", { staticClass: "form-group" }, [
                             _c("label", { staticClass: "h5" }, [
                               _vm._v(_vm._s(value.display) + " "),
@@ -74442,86 +74445,112 @@ var render = function() {
                             value.data_type == 4
                               ? _c(
                                   "div",
-                                  _vm._l(value.sub_items, function(si) {
-                                    return _c(
-                                      "div",
-                                      {
-                                        key: si.id,
-                                        staticClass:
-                                          "form-check form-check-inline"
-                                      },
-                                      [
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: value.answer,
-                                              expression: "value.answer"
-                                            }
-                                          ],
+                                  [
+                                    _vm._l(value.sub_items, function(si) {
+                                      return _c(
+                                        "div",
+                                        {
+                                          key: si.id,
                                           staticClass:
-                                            "form-check-input form-control-lg",
-                                          attrs: {
-                                            type: "radio",
-                                            id: "radioItem-" + value.id + si.id,
-                                            name: "radioItems-" + value.id
-                                          },
-                                          domProps: {
-                                            value: si.vsi_value,
-                                            checked: _vm._q(
-                                              value.answer,
-                                              si.vsi_value
-                                            )
-                                          },
-                                          on: {
-                                            change: function($event) {
-                                              return _vm.$set(
-                                                value,
-                                                "answer",
+                                            "form-check form-check-inline"
+                                        },
+                                        [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: value.answer,
+                                                expression: "value.answer"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "form-check-input form-control-lg",
+                                            class: {
+                                              "is-invalid":
+                                                _vm.$v.values.$each[vi].$error
+                                            },
+                                            attrs: {
+                                              type: "radio",
+                                              id:
+                                                "radioItem-" + value.id + si.id,
+                                              name: "radioItems-" + value.id
+                                            },
+                                            domProps: {
+                                              value: si.vsi_value,
+                                              checked: _vm._q(
+                                                value.answer,
                                                 si.vsi_value
                                               )
+                                            },
+                                            on: {
+                                              change: function($event) {
+                                                return _vm.$set(
+                                                  value,
+                                                  "answer",
+                                                  si.vsi_value
+                                                )
+                                              }
                                             }
-                                          }
-                                        }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass: "form-check-label",
+                                              attrs: {
+                                                for:
+                                                  "radioItem-" +
+                                                  value.id +
+                                                  si.id
+                                              }
+                                            },
+                                            [
+                                              _vm._v(_vm._s(si.display) + " "),
+                                              si.display_translated != null
+                                                ? _c(
+                                                    "span",
+                                                    {
+                                                      staticClass: "text-muted",
+                                                      staticStyle: {
+                                                        "font-style": "italic"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "(" +
+                                                          _vm._s(
+                                                            si.display_translated
+                                                          ) +
+                                                          ")"
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e()
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    _vm.$v.values.$each[vi].$error
+                                      ? _c(
+                                          "div",
                                           {
-                                            staticClass: "form-check-label",
-                                            attrs: {
-                                              for:
-                                                "radioItem-" + value.id + si.id
-                                            }
+                                            staticClass: "alert alert-danger",
+                                            attrs: { role: "alert" }
                                           },
                                           [
-                                            _vm._v(_vm._s(si.display) + " "),
-                                            si.display_translated != null
-                                              ? _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "text-muted",
-                                                    staticStyle: {
-                                                      "font-style": "italic"
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "(" +
-                                                        _vm._s(
-                                                          si.display_translated
-                                                        ) +
-                                                        ")"
-                                                    )
-                                                  ]
-                                                )
-                                              : _vm._e()
+                                            _vm._v(
+                                              "\n\t\t\t\t\t\t\t\t\t\t" +
+                                                _vm._s(value.display) +
+                                                " is required\n\t\t\t\t\t\t\t\t\t"
+                                            )
                                           ]
                                         )
-                                      ]
-                                    )
-                                  }),
-                                  0
+                                      : _vm._e()
+                                  ],
+                                  2
                                 )
                               : _vm._e()
                           ])
@@ -94245,18 +94274,20 @@ __webpack_require__.r(__webpack_exports__);
             });
             return;
           }
-        } // Text Inputs
+        }
 
+        var text = 'Your answer is required'; // Text Inputs
 
         if (this.item.item_type == 3 && this.item.text_is_multiple) {
           this.$v.values.$touch();
           valid = !this.$v.values.$invalid;
+          text = 'Please complete required field(s)';
         }
 
         if (!valid) {
           Swal.fire({
             title: 'Notification',
-            text: 'Your answer is required',
+            text: text,
             icon: 'warning',
             confirmButtonText: 'Close'
           });
@@ -94280,6 +94311,14 @@ __webpack_require__.r(__webpack_exports__);
         _this.$store.commit('start');
 
         _this.$root.$children[0].$refs.pSpinner.off();
+
+        Swal.fire({
+          title: 'Thank You',
+          text: _this.$store.state.survey.thankyou.message,
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000
+        });
       });
     },
     next: function next() {
@@ -94318,12 +94357,18 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     respondent: function respondent() {
+      var _this5 = this;
+
       var resource = '/api/conduct/survey/respondent';
       if (this.$store.state.api_token != null) resource += '?api_token=' + this.$store.state.api_token;
       return axios.post(resource, {
         survey: this.$store.state.survey,
         specific: this.$store.state.specific
-      }).then(function (response) {})["catch"](function (e) {});
+      }).then(function (response) {
+        if (_this5.$store.state.recursive) {
+          _this5.anotherSurvey();
+        }
+      })["catch"](function (e) {});
     }
   }
 });
@@ -95443,6 +95488,8 @@ var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
       state.currentItemIndex = null;
     },
     next: function next(state) {
+      state.finish = false;
+
       if (state.currentItemIndex == null) {
         state.currentItemIndex = 0;
       } else {
@@ -95460,7 +95507,6 @@ var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
     },
     finish: function finish(state, status) {
       state.finish = status;
-      state.currentItemIndex = -1;
     }
   },
   actions: {
@@ -95573,8 +95619,7 @@ var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
     currentComponent: function currentComponent(state, getters) {
       // return 'sopa-thank-you'
       // if (state.finish) return 'thank-you'
-      // if ((state.finish) && (state.currentItemIndex == -1)) return 'sopa-thank-you'
-      if (state.finish) return 'sopa-thank-you'; // let currentComponent = 'start-conduct'
+      if (state.finish && !state.recursive) return 'sopa-thank-you'; // let currentComponent = 'start-conduct'
 
       var currentComponent = 'sopa-start-conduct';
       state.item_types.forEach(function (value) {
