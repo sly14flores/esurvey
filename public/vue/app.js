@@ -2808,7 +2808,7 @@ __webpack_require__.r(__webpack_exports__);
     conductSpecificSurvey: function conductSpecificSurvey() {
       this.$v.conduct.specific.$touch();
       if (this.$v.conduct.specific.$invalid) return;
-      if (this.conduct.specific.recursive) window.open('/survey#/specific/recursive/' + this.conduct.specific.survey);else window.open('/survey#/specific/once/' + this.conduct.specific.survey);
+      if (this.conduct.specific.recursive) window.open('/survey#/specific/recursive/' + this.conduct.specific.survey + '/' + this.$store.state.profile.api_token);else window.open('/survey#/specific/once/' + this.conduct.specific.survey);
     }
   },
   validations: {

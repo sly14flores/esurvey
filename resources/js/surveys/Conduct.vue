@@ -147,7 +147,7 @@
 
 				if (this.$v.conduct.specific.$invalid) return
 				
-				if (this.conduct.specific.recursive) window.open('/survey#/specific/recursive/'+this.conduct.specific.survey)
+				if (this.conduct.specific.recursive) window.open('/survey#/specific/recursive/'+this.conduct.specific.survey+'/'+this.$store.state.profile.api_token)
 				else  window.open('/survey#/specific/once/'+this.conduct.specific.survey)
 			
 			}			

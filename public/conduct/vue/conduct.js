@@ -3710,7 +3710,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuelidate__WEBPACK_IMPORTED_MODUL
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
     next(function (vm) {
       vm.$parent.$refs.pSpinner.on();
-      vm.fetchSurvey(vm.$route.params.token).then(function (response) {
+
+      if (_.has(vm.$route.params, 'api_token')) {
+        vm.$store.commit('api_token', vm.$route.params.api_token);
+      }
+
+      vm.fetchSurvey({
+        token: vm.$route.params.token,
+        api_token: vm.$route.params.api_token
+      }).then(function (response) {
         vm.$store.commit('recursive', vm.$route.params.recursive == 'recursive' ? true : false);
         vm.$store.commit('specific', vm.$route.params.scope == 'specific' ? true : false);
 
@@ -94172,8 +94180,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    fetchSurvey: function fetchSurvey(token) {
-      return axios.post('/api/conduct/' + token);
+    fetchSurvey: function fetchSurvey(tokens) {
+      var resource = '/api/conduct/' + tokens.token;
+      if (tokens.api_token != undefined) resource += '?api_token=' + tokens.api_token;
+      return axios.post(resource);
     }
   }
 });
@@ -94261,7 +94271,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$root.$children[0].$refs.pSpinner.on();
-      this.fetchSurvey(this.$route.params.token).then(function (response) {
+      this.fetchSurvey({
+        token: this.$route.params.token,
+        api_token: this.$route.params.api_token
+      }).then(function (response) {
         _this.$store.commit('load', response.data.data);
 
         _this.$store.commit('start');
@@ -94305,7 +94318,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     respondent: function respondent() {
-      return axios.post('/api/conduct/survey/respondent', {
+      var resource = '/api/conduct/survey/respondent';
+      if (this.$store.state.api_token != null) resource += '?api_token=' + this.$store.state.api_token;
+      return axios.post(resource, {
         survey: this.$store.state.survey,
         specific: this.$store.state.specific
       }).then(function (response) {})["catch"](function (e) {});
@@ -94469,6 +94484,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [{
   path: '/:scope/:recursive/:token',
+  name: 'conduct',
+  component: _start_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+}, {
+  path: '/:scope/:recursive/:token/:api_token',
   name: 'conduct',
   component: _start_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }];
@@ -95397,7 +95416,8 @@ var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
     currentItemIndex: null,
     finish: false,
     recursive: false,
-    specific: false
+    specific: false,
+    api_token: null
   },
   mutations: {
     recursive: function recursive(state, _recursive) {
@@ -95405,6 +95425,9 @@ var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
     },
     specific: function specific(state, _specific) {
       state.specific = _specific;
+    },
+    api_token: function api_token(state, _api_token) {
+      state.api_token = _api_token;
     },
     itemValues: function itemValues(state, values) {
       if (values.aspect == null) {

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class SurveyResource extends JsonResource
 {
@@ -191,8 +192,6 @@ class SurveyResource extends JsonResource
 			$sections[$si]['aspects'] = $aspects;
 			
 		}
-		
-		// Thank you
 
 		return [
 			"id"=>$this->id,
@@ -205,8 +204,9 @@ class SurveyResource extends JsonResource
 			"include_office"=>$this->include_office,
 			"introductions"=>$introductions,
 			"sections"=>$sections,
-			"thankyou"=>(is_null($this->thank_you))?array("id"=>0,"infographic"=>null,"message"=>null,"translated"=>null):$this->thank_you
-			// "start_intro"=>(count($introductions))?true:false
+			"thankyou"=>(is_null($this->thank_you))?array("id"=>0,"infographic"=>null,"message"=>null,"translated"=>null):$this->thank_you,
+			// "start_intro"=>(count($introductions))?true:false,
+			"authenticated"=>Auth::guard('api')->check()
 		];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Respondent;
 use App\SectionItemAnswer;
@@ -22,6 +23,7 @@ class SurveyRespondent extends Controller
 
 		$respondent = new Respondent;
 		$respondent->survey_id = $survey['id'];
+		if (Auth::guard('api')->check()) $respondent->office = Auth::guard('api')->user()->office;
 		if ($specific) {
 
 		}

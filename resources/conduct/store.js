@@ -62,7 +62,8 @@ export default new Vuex.Store({
 		currentItemIndex: null,
 		finish: false,
 		recursive: false,
-		specific: false
+		specific: false,
+		api_token: null
 	},
 	mutations: {
 		recursive(state, recursive) {
@@ -70,6 +71,9 @@ export default new Vuex.Store({
 		},
 		specific(state, specific) {
 			state.specific = specific
+		},
+		api_token(state, api_token) {
+			state.api_token = api_token
 		},
 		itemValues(state, values) {
 			

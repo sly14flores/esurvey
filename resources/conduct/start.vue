@@ -119,10 +119,14 @@
 
                 vm.$parent.$refs.pSpinner.on();
 
-                vm.fetchSurvey(vm.$route.params.token).then(response => {
+				if (_.has(vm.$route.params,'api_token')) {
+					vm.$store.commit('api_token', vm.$route.params.api_token)
+				}
+
+                vm.fetchSurvey({token: vm.$route.params.token, api_token: vm.$route.params.api_token}).then(response => {
 					
 					vm.$store.commit('recursive',(vm.$route.params.recursive=='recursive')?true:false)
-					vm.$store.commit('specific',(vm.$route.params.scope=='specific')?true:false)
+					vm.$store.commit('specific',(vm.$route.params.scope=='specific')?true:false)				
 					
                     if (vm.$store.state.finish) {
 					
