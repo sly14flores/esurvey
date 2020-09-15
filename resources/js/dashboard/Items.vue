@@ -45,9 +45,13 @@
 
 <script>
 
+	import Data from './mixins/Data'
+
 	export default {
 	
 		name: 'Items',
+		
+		mixins: [Data],		
 		
 		props: ['survey'],
 		
@@ -78,7 +82,7 @@
 			let channel = window.Echo.channel('esurvey_dashboard')
 
 			channel.listen('UpdateDashboard', e => {
-				
+
 				this.fetchData()
 
 			})	

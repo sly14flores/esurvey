@@ -2319,6 +2319,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mixins/Data */ "./resources/js/dashboard/mixins/Data.js");
 //
 //
 //
@@ -2364,8 +2365,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Items',
+  mixins: [_mixins_Data__WEBPACK_IMPORTED_MODULE_0__["default"]],
   props: ['survey'],
   data: function data() {
     return {};
@@ -100580,13 +100583,13 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
 
-      this.$parent.show();
+      this.$root.show();
       axios.post('/api/dashboard/data', {
         id: this.$store.state.dashboard.survey
       }, this.$store.state.config).then(function (response) {
         _this.$store.commit('dashboardData', response.data);
 
-        _this.$parent.hide();
+        _this.$root.hide();
       })["catch"](function (e) {});
     }
   }
