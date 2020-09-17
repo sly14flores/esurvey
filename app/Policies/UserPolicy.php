@@ -19,7 +19,7 @@ class UserPolicy
 
 	public function __construct()
 	{
-		var_dump('User');
+
 		self::$m = "User";
 
 		$Authorizations = new Authorizations(Auth::user());
