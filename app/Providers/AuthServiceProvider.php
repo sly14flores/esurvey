@@ -9,6 +9,16 @@ use Illuminate\Auth\Access\Response;
 
 use App\System\Authorizations;
 
+use App\Survey;
+use App\User;
+use App\Office;
+use App\Group;
+
+use App\Policies\SurveyPolicy;
+use App\Policies\UserPolicy;
+use App\Policies\OfficePolicy;
+use App\Policies\GroupPolicy;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -17,10 +27,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Survey' => 'App\Policies\SurveyPolicy',
-        'App\User' => 'App\Policies\UserPolicy',
-        'App\Office' => 'App\Policies\OfficePolicy',
-        'App\Group' => 'App\Policies\GroupPolicy'
+        Survey::class => SurveyPolicy::class,
+        User::class => UserPolicy::class,
+        Office::class => OfficePolicy::class,
+        Group::class => GroupPolicy::class
     ];
 
     /**

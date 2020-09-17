@@ -25,7 +25,7 @@ Route::get('authorizations','AuthorizationsController@get_template');
 
 Route::post('/dashboard/data','DashboardData');
 
-Route::apiResource('user','UserController')->except('index');
+Route::apiResource('user', 'UserController')->except('index');
 Route::apiResource('/users', 'UserController')->only('index');
 
 Route::apiResource('office','OfficeController')->except('index');
