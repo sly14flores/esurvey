@@ -8,12 +8,16 @@ use App\Http\Resources\GroupResource;
 use App\Http\Resources\GroupCollection;
 use App\System\Authorizations;
 
+use Illuminate\Support\Facades\Gate;
+
 class GroupController extends Controller
 {
 	
 	public function __construct()
 	{
 		$this->middleware('auth:api');
+		
+        // $this->authorizeResource(Group::class, 'group');
 	}	
 	
     /**
@@ -23,6 +27,8 @@ class GroupController extends Controller
      */
     public function index()
     {
+		Gate::authorize('viewAny', Group::class);		
+		
 		return new GroupCollection(Group::paginate(15));
     }
 
@@ -45,8 +51,8 @@ class GroupController extends Controller
     public function store(Request $request)
     {
 		
-		Gate::authorize('create', Group::class);			
-
+		Gate::authorize('create', Group::class);		
+		
 		$Authorizations = new Authorizations();
 		$gates_policies = $Authorizations->encode($request->authorizations);
 		
@@ -69,7 +75,11 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
+
+		Gate::authorize('view', $group);		
+		
 		return new GroupResource($group);
+
     }
 
     /**
@@ -92,21 +102,22 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-		
+
 		$Authorizations = new Authorizations();
 		$gates_policies = $Authorizations->encode($request->authorizations);		
-		
+
         $group = Group::find($id);
 		
 		Gate::authorize('update', $group);		
-		
+
 		$group->name = $request->name;
 		$group->description = $request->description;
 		$group->authorizations = $gates_policies;
-		
+
 		$group->save();
-		
+
 		return new GroupResource($group);
+
     }
 
     /**
@@ -117,9 +128,9 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        $group = Group::find($id);
+        $group = Group::find($id);	
 		
-		Gate::authorize('delete', $group);			
+		Gate::authorize('delete', $group);
 		
         $group->delete();
 

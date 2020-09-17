@@ -9,15 +9,14 @@ use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
-
 class UserController extends Controller
 {
 	
 	public function __construct()
 	{
 		$this->middleware('auth:api');
+
+        $this->authorizeResource(User::class, 'user');
 	}
 	
     /**
@@ -48,8 +47,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-		
-		Gate::authorize('create', User::class);		
 
         $user = new User;
 
@@ -106,8 +103,6 @@ class UserController extends Controller
 		
         $user = User::find($id);
 		
-		Gate::authorize('update', $user);		
-		
 		$user->firstname = $request['firstname'];
 		$user->middlename = $request['middlename'];
 		$user->lastname = $request['lastname'];
@@ -131,9 +126,7 @@ class UserController extends Controller
     public function destroy($id)
     {
 		
-        $user = User::find($id);
-
-		Gate::authorize('delete', $user);		
+        $user = User::find($id);	
 		
         $user->delete();
 

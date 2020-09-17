@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Survey;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -10,21 +11,19 @@ use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 
-class UserPolicy
+class SurveyPolicy
 {
     use HandlesAuthorization;
-	
+
 	private static $m;
 	private static $gp;
 
 	public function __construct()
 	{
-		var_dump('User');
-		self::$m = "User";
-
+		self::$m = "Survey";
+		
 		$Authorizations = new Authorizations(Auth::user());
 		self::$gp = $Authorizations->get();
-		
 	}
 	
 	public function before($user, $ability)
@@ -32,7 +31,7 @@ class UserPolicy
 		if ($user->isSuperAdmin()) {
 			return true;
 		}
-	}	
+	}
 
     /**
      * Determine whether the user can view any models.
@@ -42,8 +41,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-		
-		return (self::$gp[self::$m]['Policies']['Items'][__FUNCTION__])
+        return (self::$gp[self::$m]['Policies']['Items'][__FUNCTION__])
 			? Response::allow()
 			: Response::deny("You don't have an access to this feature");
     }
@@ -52,10 +50,10 @@ class UserPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\Survey  $survey
      * @return mixed
      */
-    public function view(User $user, User $model)
+    public function view(User $user, Survey $survey)
     {
         return (self::$gp[self::$m]['Policies']['Items'][__FUNCTION__])
 			? Response::allow()
@@ -79,11 +77,11 @@ class UserPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\Survey  $survey
      * @return mixed
      */
-    public function update(User $user, User $model)
-	{
+    public function update(User $user, Survey $survey)
+    {
         return (self::$gp[self::$m]['Policies']['Items'][__FUNCTION__])
 			? Response::allow()
 			: Response::deny("You don't have an access to this feature");
@@ -93,10 +91,10 @@ class UserPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\Survey  $survey
      * @return mixed
      */
-    public function delete(User $user, User $model)
+    public function delete(User $user, Survey $survey)
     {
         return (self::$gp[self::$m]['Policies']['Items'][__FUNCTION__])
 			? Response::allow()
@@ -107,10 +105,10 @@ class UserPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\Survey  $survey
      * @return mixed
      */
-    public function restore(User $user, User $model)
+    public function restore(User $user, Survey $survey)
     {
         return (self::$gp[self::$m]['Policies']['Items'][__FUNCTION__])
 			? Response::allow()
@@ -121,10 +119,10 @@ class UserPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\Survey  $survey
      * @return mixed
      */
-    public function forceDelete(User $user, User $model)
+    public function forceDelete(User $user, Survey $survey)
     {
         return (self::$gp[self::$m]['Policies']['Items'][__FUNCTION__])
 			? Response::allow()

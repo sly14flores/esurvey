@@ -174,7 +174,7 @@
 					<div class="pcoded-wrapper">
 						<nav class="pcoded-navbar">
 							<div class="pcoded-inner-navbar main-menu">
-							
+								@gate('Dashboard','show-dashboard')
 								<ul class="pcoded-item pcoded-left-item">
 									<li :class="{active: activeRoute=='dashboard'}">
 										<router-link to="/dashboard">
@@ -183,7 +183,8 @@
 										</router-link>
 									</li>
 								</ul>
-								
+								@endgate
+								@gate('Survey','show-surveys')
 								<ul class="pcoded-item pcoded-left-item">
 									<li :class="{ 'pcoded-hasmenu': true, 'pcoded-trigger': activeRoute=='survey_new' || activeRoute=='survey_view' || activeRoute == 'surveys_list' || activeRoute == 'survey_conduct' || activeRoute == 'survey_reports'}"><!-- pcoded-trigger -->
 										<a href="javascript:void(0)">
@@ -214,7 +215,7 @@
 										</ul>
 									</li>									
 								</ul>
-								
+								@endgate
 								<div class="pcoded-navigatio-lavel">Maintenance</div>
 								@gate('User','show-users')
 								<ul class="pcoded-item pcoded-left-item">

@@ -26,7 +26,9 @@ class SurveyController extends Controller
 	public function __construct()
 	{
 		$this->middleware('auth:api');
-	}	
+		
+        $this->authorizeResource(Survey::class, 'survey');		
+	}
 	
     /**
      * Display a listing of the resource.
@@ -212,7 +214,7 @@ class SurveyController extends Controller
     public function update(Request $request, $id)
     {
 		
-		$survey = Survey::find($id);
+		$survey = Survey::find($id);	
 		
 		$survey->name = $request->name;
 		$survey->description = $request->description;
@@ -469,7 +471,7 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
-        $survey = Survey::find($id);		
+        $survey = Survey::find($id);
 		
         $survey->delete();
 

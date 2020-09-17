@@ -24,6 +24,13 @@ class GroupPolicy
 		
 		$Authorizations = new Authorizations(Auth::user());
 		self::$gp = $Authorizations->get();
+	}
+	
+	public function before($user, $ability)
+	{
+		if ($user->isSuperAdmin()) {
+			return true;
+		}
 	}	
 
     /**
@@ -34,6 +41,7 @@ class GroupPolicy
      */
     public function viewAny(User $user)
     {
+
         return (self::$gp[self::$m]['Policies']['Items'][__FUNCTION__])
 			? Response::allow()
 			: Response::deny("You don't have an access to this feature");

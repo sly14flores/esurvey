@@ -8,15 +8,14 @@ use App\Office;
 use App\Http\Resources\OfficeResource;
 use App\Http\Resources\OfficeCollection;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
-
 class OfficeController extends Controller
 {
 	
 	public function __construct()
 	{
 		$this->middleware('auth:api');
+
+        $this->authorizeResource(Office::class, 'office');
 	}	
 	
     /**
@@ -47,8 +46,6 @@ class OfficeController extends Controller
      */
     public function store(Request $request)
     {
-
-		Gate::authorize('create',  Office::class);
 		
         $office = new Office;
 		

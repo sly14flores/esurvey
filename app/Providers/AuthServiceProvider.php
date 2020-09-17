@@ -7,9 +7,6 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\Response;
 
-// use App\Policies\UserPolicy;
-// use App\User;
-
 use App\System\Authorizations;
 
 class AuthServiceProvider extends ServiceProvider
@@ -20,9 +17,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        App\UserPolicy::class => App\Policies\UserPolicy::class,
-        App\OfficePolicy::class => App\Policies\OfficePolicy::class,
-        App\GroupPolicy::class => App\Policies\GroupPolicy::class
+        'App\Survey' => 'App\Policies\SurveyPolicy',
+        'App\User' => 'App\Policies\UserPolicy',
+        'App\Office' => 'App\Policies\OfficePolicy',
+        'App\Group' => 'App\Policies\GroupPolicy'
     ];
 
     /**
@@ -32,8 +30,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         $this->registerPolicies();
-		
+
 		// Allow all gates for Super Administrator
 		Gate::before(function ($user, $ability) {
 			if ($user->isSuperAdmin()) {

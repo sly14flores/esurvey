@@ -20,9 +20,9 @@ class Authorizations
 			
 			if (Schema::hasTable('groups')) {
 			
-				$group = Group::find($user->group);
+				$group = Group::where('id',$user->group);
 		
-				if ($group!=null) $this->id = $group->id;
+				if ($group!=null) $this->id = $group->first()->id;
 			
 			}
 			
@@ -121,10 +121,13 @@ class Authorizations
 			
 			// Gates Labels
 			foreach ($BaseGatesPolicies[$BG_P]['Gates']['Labels'] as $Gate_Label_P => $Gate_Label_V) {
+
 				
-				$BaseGatesPolicies[$BG_P]['Gates']['Labels'][$Gate_Label_P] = (isset($GatesPolicies[$BG_P]['Gates']['Labels'][$Gate_Label_P]))
+				/* $BaseGatesPolicies[$BG_P]['Gates']['Labels'][$Gate_Label_P] = (isset($GatesPolicies[$BG_P]['Gates']['Labels'][$Gate_Label_P]))
 																				?$GatesPolicies[$BG_P]['Gates']['Labels'][$Gate_Label_P]
-																				:$BaseGatesPolicies[$BG_P]['Gates']['Labels'][$Gate_Label_P];
+																				:$BaseGatesPolicies[$BG_P]['Gates']['Labels'][$Gate_Label_P]; */
+																				
+				$BaseGatesPolicies[$BG_P]['Gates']['Labels'][$Gate_Label_P] = $BaseGatesPolicies[$BG_P]['Gates']['Labels'][$Gate_Label_P];																			
 				
 			}
 			
@@ -140,9 +143,11 @@ class Authorizations
 			// Policies Labels
 			foreach ($BaseGatesPolicies[$BG_P]['Policies']['Labels'] as $Policy_Label_P => $Policy_Label_V) {
 				
-				$BaseGatesPolicies[$BG_P]['Policies']['Labels'][$Policy_Label_P] = (isset($GatesPolicies[$BG_P]['Policies']['Labels'][$Policy_Label_P]))
+				/* $BaseGatesPolicies[$BG_P]['Policies']['Labels'][$Policy_Label_P] = (isset($GatesPolicies[$BG_P]['Policies']['Labels'][$Policy_Label_P]))
 																				?$GatesPolicies[$BG_P]['Policies']['Labels'][$Policy_Label_P]
-																				:$BaseGatesPolicies[$BG_P]['Policies']['Labels'][$Policy_Label_P];
+																				:$BaseGatesPolicies[$BG_P]['Policies']['Labels'][$Policy_Label_P]; */
+																				
+				$BaseGatesPolicies[$BG_P]['Policies']['Labels'][$Policy_Label_P] = $BaseGatesPolicies[$BG_P]['Policies']['Labels'][$Policy_Label_P];
 				
 			}
 			
