@@ -395,6 +395,7 @@
 				}).catch(e => {
 					
 					this.$root.hide()
+					if (e.response.status==403) this.$parent.$refs.pnotify.show({type: 'error',title: 'Notification', text: e.response.data.message})					
 					
 				})
 			
@@ -425,6 +426,7 @@
 				}).catch(e => {
 					
 					this.$root.hide()
+					if (e.response.status==403) this.$parent.$refs.pnotify.show({type: 'error',title: 'Notification', text: e.response.data.message})					
 					
 				})				
 			
@@ -448,6 +450,7 @@
 					
 				}).catch(e => {
 					
+					if (e.response.status==403) this.$parent.$refs.pnotify.show({type: 'error',title: 'Notification', text: e.response.data.message})
 					this.$root.hide()
 					
 				})				

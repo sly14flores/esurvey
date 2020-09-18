@@ -16,7 +16,7 @@ use App\Notifications\Sample;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'DashboardController')->middleware(['verified','default.password']);
+Route::get('/', 'DashboardController')->middleware(['verified','default.password','check.group']);
 
 Route::post('/profile','ProfileController@get_profile');
 Route::post('/api_token','ProfileController@api_token');
@@ -37,3 +37,9 @@ Route::get('preview/mail', function() {
 Route::get('/reports/survey', 'Reports\Survey@export');
 
 Route::get('/css/conduct', 'ConductStyles')->name('css.conduct');
+
+Route::get('/account/no_group', function() {
+	
+	return "No Group";
+	
+});

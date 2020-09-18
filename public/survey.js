@@ -2571,6 +2571,12 @@ __webpack_require__.r(__webpack_exports__);
         });
       })["catch"](function (e) {
         _this.$root.hide();
+
+        if (e.response.status == 403) _this.$parent.$refs.pnotify.show({
+          type: 'error',
+          title: 'Notification',
+          text: e.response.data.message
+        });
       });
     },
     confirmUpdate: function confirmUpdate() {
@@ -2597,6 +2603,12 @@ __webpack_require__.r(__webpack_exports__);
         });
       })["catch"](function (e) {
         _this2.$root.hide();
+
+        if (e.response.status == 403) _this2.$parent.$refs.pnotify.show({
+          type: 'error',
+          title: 'Notification',
+          text: e.response.data.message
+        });
       });
     },
     confirmDelete: function confirmDelete() {
@@ -2619,6 +2631,12 @@ __webpack_require__.r(__webpack_exports__);
           name: 'surveys_list'
         });
       })["catch"](function (e) {
+        if (e.response.status == 403) _this3.$parent.$refs.pnotify.show({
+          type: 'error',
+          title: 'Notification',
+          text: e.response.data.message
+        });
+
         _this3.$root.hide();
       });
     },

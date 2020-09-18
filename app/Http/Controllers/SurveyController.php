@@ -20,14 +20,17 @@ use App\AivSubItem;
 use App\Http\Resources\SurveyResource;
 use App\Http\Resources\SurveyCollection;
 
+use App\Customs\AuthorizationMaps;
+use Illuminate\Support\Facades\Gate;
+
 class SurveyController extends Controller
 {
 	
+	use AuthorizationMaps;	
+	
 	public function __construct()
 	{
-		$this->middleware('auth:api');
-		
-        $this->authorizeResource(Survey::class, 'survey');		
+		$this->middleware('auth:api');	
 	}
 	
     /**
@@ -37,6 +40,8 @@ class SurveyController extends Controller
      */
     public function index()
     {
+		Gate::authorize($this->cmpm[__FUNCTION__], Survey::class);			
+		
         return new SurveyCollection(Survey::paginate(15));
     }
 
@@ -58,6 +63,8 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
+
+		Gate::authorize($this->cmpm[__FUNCTION__], Survey::class);
 
 		// $survey = Survey::create($request->all());
 		$survey = new Survey;
@@ -190,6 +197,8 @@ class SurveyController extends Controller
      */
     public function show(Survey $survey)
     {
+		Gate::authorize($this->cmpm[__FUNCTION__], $survey);
+
         return new SurveyResource($survey);
     }
 
@@ -214,7 +223,9 @@ class SurveyController extends Controller
     public function update(Request $request, $id)
     {
 		
-		$survey = Survey::find($id);	
+		$survey = Survey::find($id);
+		
+		Gate::authorize($this->cmpm[__FUNCTION__], $survey);		
 		
 		$survey->name = $request->name;
 		$survey->description = $request->description;
@@ -472,6 +483,8 @@ class SurveyController extends Controller
     public function destroy($id)
     {
         $survey = Survey::find($id);
+		
+		Gate::authorize($this->cmpm[__FUNCTION__], $survey);		
 		
         $survey->delete();
 

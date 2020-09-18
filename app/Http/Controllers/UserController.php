@@ -9,14 +9,17 @@ use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
+use App\Customs\AuthorizationMaps;
+use Illuminate\Support\Facades\Gate;
+
 class UserController extends Controller
 {
+	
+	use AuthorizationMaps;	
 	
 	public function __construct()
 	{
 		$this->middleware('auth:api');
-
-        $this->authorizeResource(User::class, 'user');
 	}
 	
     /**
@@ -26,6 +29,8 @@ class UserController extends Controller
      */
     public function index()
     {
+		Gate::authorize($this->cmpm[__FUNCTION__], User::class);
+		
         return new UserCollection(User::paginate(15));
     }
 
@@ -49,6 +54,8 @@ class UserController extends Controller
     {
 
         $user = new User;
+		
+		Gate::authorize($this->cmpm[__FUNCTION__], User::class);	
 
 		$user->firstname = $request['firstname'];
 		$user->middlename = $request['middlename'];
@@ -75,6 +82,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+		
+		Gate::authorize($this->cmpm[__FUNCTION__], $user);	
 		
 		return new UserResource($user);
 		
@@ -103,6 +112,8 @@ class UserController extends Controller
 		
         $user = User::find($id);
 		
+		Gate::authorize($this->cmpm[__FUNCTION__], $user);		
+		
 		$user->firstname = $request['firstname'];
 		$user->middlename = $request['middlename'];
 		$user->lastname = $request['lastname'];
@@ -126,7 +137,9 @@ class UserController extends Controller
     public function destroy($id)
     {
 		
-        $user = User::find($id);	
+        $user = User::find($id);
+		
+		Gate::authorize($this->cmpm[__FUNCTION__], $user);		
 		
         $user->delete();
 

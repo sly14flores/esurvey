@@ -8,15 +8,18 @@ use App\Office;
 use App\Http\Resources\OfficeResource;
 use App\Http\Resources\OfficeCollection;
 
+use App\Customs\AuthorizationMaps;
+use Illuminate\Support\Facades\Gate;
+
 class OfficeController extends Controller
 {
+	
+	use AuthorizationMaps;	
 	
 	public function __construct()
 	{
 		$this->middleware('auth:api');
-
-        $this->authorizeResource(Office::class, 'office');
-	}	
+	}
 	
     /**
      * Display a listing of the resource.
@@ -25,6 +28,8 @@ class OfficeController extends Controller
      */
     public function index()
     {
+		Gate::authorize($this->cmpm[__FUNCTION__], Office::class);		
+		
 		return new OfficeCollection(Office::paginate(15));
     }
 
@@ -46,6 +51,8 @@ class OfficeController extends Controller
      */
     public function store(Request $request)
     {
+
+		Gate::authorize($this->cmpm[__FUNCTION__], Office::class);			
 		
         $office = new Office;
 		
@@ -66,6 +73,8 @@ class OfficeController extends Controller
      */
     public function show(Office $office)
     {
+		Gate::authorize($this->cmpm[__FUNCTION__], $office);			
+		
 		return new OfficeResource($office);
     }
 
@@ -92,7 +101,7 @@ class OfficeController extends Controller
 
         $office = Office::find($id);
 		
-		Gate::authorize('update', $office);
+		Gate::authorize($this->cmpm[__FUNCTION__], $office);	
 		
 		$office->name = $request->name;
 		$office->description = $request->description;
@@ -113,7 +122,7 @@ class OfficeController extends Controller
     {
         $office = Office::find($id);	
 
-		Gate::authorize('delete', $office);			
+		Gate::authorize($this->cmpm[__FUNCTION__], $office);			
 		
         $office->delete();
 
