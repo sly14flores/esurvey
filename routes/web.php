@@ -38,8 +38,5 @@ Route::get('/reports/survey', 'Reports\Survey@export');
 
 Route::get('/css/conduct', 'ConductStyles')->name('css.conduct');
 
-Route::get('/account/no_group', function() {
-	
-	return "No Group";
-	
-});
+Route::get('/account/no_group', 'NoGroup');
+Route::post('/remind/user/group', 'RemindUserGroup')->name('remind.for.group');

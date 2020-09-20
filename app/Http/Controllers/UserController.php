@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Customs\AuthorizationMaps;
 use Illuminate\Support\Facades\Gate;
 
+use App\Notifications\UserAssignedGroup;
+use App\Group;
+
 class UserController extends Controller
 {
 	
@@ -120,9 +123,21 @@ class UserController extends Controller
 		$user->email = $request['email'];
 		$user->username = $request['username'];
 		$user->office = $request['office'];
-		$user->group = $request['group'];		
+		$user->group = $request['group'];
 
-		$user->save();	
+		$user->save();
+		
+		if (($user->wasChanged('group')) && (!is_null($user->group))) {
+			
+			$user_group = Group::find($user->group);
+			
+			$payload = [
+				"group"=>$user_group->name
+			];			
+			
+			$user->notify(new UserAssignedGroup($payload));
+			
+		}
 
         return new UserResource($user);
 		

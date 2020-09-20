@@ -13,6 +13,8 @@ use Illuminate\Http\Response;
 
 use App\Office;
 
+use App\Notifications\NewUserRegistration;
+
 class RegisterController extends Controller
 {
     /*
@@ -97,8 +99,9 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
-        return User::create([
+    {		
+		
+		$user = User::create([
 			'firstname' => $data['firstname'],
 			'middlename' => $data['middlename'],
 			'lastname' => $data['lastname'],
@@ -108,6 +111,21 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
 			'api_token' => Str::random(80)	
         ]);
+		
+		$user_office = Office::find($data['office']);
+		
+		$payload = [
+			"id"=>$user->id,
+			"name"=>$data['firstname']." ".$data['lastname'],
+			"office"=>$user_office->name,
+			"email"=>$data['email']
+		];
+
+		$super_admin = User::where('is_super_admin',1)->first();
+		
+		if (!is_null($super_admin)) $super_admin->notify(new NewUserRegistration($payload));		
+
+        return $user;
     }
 	
 	public function showRegistrationForm() {
