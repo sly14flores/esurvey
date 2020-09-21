@@ -32,9 +32,23 @@ class Selections extends Controller
 	
 	public function surveys(Request $request)
 	{
-		
-		if (is_null($request->office)) {
 
+		$user = Auth::guard('api')->user();
+		
+		if (!is_null($user)) {
+
+			if (($user->isSuperAdmin()) || ($user->is_admin())) {
+
+				$surveys = Survey::all('id','token','name');
+				
+				return $surveys;
+			
+			}
+		
+		}
+
+		if (is_null($request->office)) {
+			
 			$surveys = Survey::all('id','token','name');
 			
 		} else {

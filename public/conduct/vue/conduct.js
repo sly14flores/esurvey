@@ -3713,15 +3713,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuelidate__WEBPACK_IMPORTED_MODUL
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
     next(function (vm) {
       vm.$parent.$refs.pSpinner.on();
-
-      if (_.has(vm.$route.params, 'api_token')) {
-        vm.$store.commit('api_token', vm.$route.params.api_token);
-      }
-
-      vm.fetchSurvey({
-        token: vm.$route.params.token,
-        api_token: vm.$route.params.api_token
-      }).then(function (response) {
+      vm.fetchSurvey(vm.$route.params.token).then(function (response) {
         vm.$store.commit('recursive', vm.$route.params.recursive == 'recursive' ? true : false);
         vm.$store.commit('specific', vm.$route.params.scope == 'specific' ? true : false);
 
@@ -94209,9 +94201,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    fetchSurvey: function fetchSurvey(tokens) {
-      var resource = '/api/conduct/' + tokens.token;
-      if (tokens.api_token != undefined) resource += '?api_token=' + tokens.api_token;
+    fetchSurvey: function fetchSurvey(token) {
+      var resource = '/api/conduct/' + token;
       return axios.post(resource);
     }
   }
@@ -94302,10 +94293,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$root.$children[0].$refs.pSpinner.on();
-      this.fetchSurvey({
-        token: this.$route.params.token,
-        api_token: this.$route.params.api_token
-      }).then(function (response) {
+      this.fetchSurvey(this.$route.params.token).then(function (response) {
         _this.$store.commit('load', response.data.data);
 
         _this.$store.commit('start');
@@ -94360,10 +94348,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       var resource = '/api/conduct/survey/respondent';
-      if (this.$store.state.api_token != null) resource += '?api_token=' + this.$store.state.api_token;
       return axios.post(resource, {
         survey: this.$store.state.survey,
-        specific: this.$store.state.specific
+        specific: this.$store.state.specific,
+        office: localStorage.survey_office
       }).then(function (response) {
         if (_this5.$store.state.recursive) {
           _this5.anotherSurvey();
@@ -94529,10 +94517,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [{
   path: '/:scope/:recursive/:token',
-  name: 'conduct',
-  component: _start_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-}, {
-  path: '/:scope/:recursive/:token/:api_token',
   name: 'conduct',
   component: _start_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }];

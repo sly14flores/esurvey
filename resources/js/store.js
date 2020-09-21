@@ -182,12 +182,12 @@ const dashboard = {
 	}
 }
 
-import VuexPersist from 'vuex-persist'
+// import VuexPersist from 'vuex-persist'
 
-const vuexPersist = new VuexPersist({
+/* const vuexPersist = new VuexPersist({
   key: 'esurvey',
   storage: window.localStorage
-})
+}) */
 
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -229,6 +229,7 @@ export default new Vuex.Store({
 			axios.post('profile').then(response => {
 
 				context.commit('profile',response.data)
+				localStorage.setItem("survey_office",response.data.office)
 			
 			}).catch(e => {
 

@@ -23,9 +23,9 @@ class SurveyRespondent extends Controller
 
 		$respondent = new Respondent;
 		$respondent->survey_id = $survey['id'];
-		if (Auth::guard('api')->check()) $respondent->office = Auth::guard('api')->user()->office;
-		if ($specific) {
 
+		if ($specific) {
+			$respondent->office = $request->office;
 		}
 		
 		$respondent->save();

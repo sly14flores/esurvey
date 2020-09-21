@@ -24,10 +24,10 @@ export default {
 
 	methods: {
 		
-		fetchSurvey(tokens) {
+		fetchSurvey(token) {
 
-			let resource = '/api/conduct/'+tokens.token;
-			if (tokens.api_token!=undefined) resource+='?api_token='+tokens.api_token
+			let resource = '/api/conduct/'+token;
+
 			return axios.post(resource)
 
 		}

@@ -50,6 +50,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 	
 	use RegistersSuperAdmin;
+	
+	public function is_admin()
+	{
+		return $this->group == 1;
+	}
 
 }
 

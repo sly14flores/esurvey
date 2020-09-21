@@ -114,7 +114,7 @@ export default {
 			
 			this.$root.$children[0].$refs.pSpinner.on();
 
-			this.fetchSurvey({token: this.$route.params.token, api_token: this.$route.params.api_token}).then(response => {
+			this.fetchSurvey(this.$route.params.token).then(response => {
 				
 				 this.$store.commit('load',response.data.data)
 				 this.$store.commit('start')
@@ -192,9 +192,7 @@ export default {
 			
 			let resource = '/api/conduct/survey/respondent'
 			
-			if (this.$store.state.api_token!=null) resource+='?api_token='+this.$store.state.api_token
-			
-			return axios.post(resource, {survey: this.$store.state.survey, specific: this.$store.state.specific}).then(response => {
+			return axios.post(resource, {survey: this.$store.state.survey, specific: this.$store.state.specific, office: localStorage.survey_office}).then(response => {
 				
 				if (this.$store.state.recursive) {
 					
