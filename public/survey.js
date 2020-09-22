@@ -1492,6 +1492,9 @@ __webpack_require__.r(__webpack_exports__);
     text_input_data_type: function text_input_data_type(value) {
       return this.sectionItem.items[this.item].item_type == 3 && value.data_type == 4;
     },
+    multi_row_text: function multi_row_text(value) {
+      return this.sectionItem.items[this.item].item_type == 1 || this.sectionItem.items[this.item].item_type == 2 || this.sectionItem.items[this.item].item_type == 3 && value.data_type == 4 || this.sectionItem.items[this.item].item_type == 4 || this.sectionItem.items[this.item].item_type == 5 || this.sectionItem.items[this.item].item_type == 7 && value.row_type == 1;
+    },
     addSivIg: function addSivIg(s, i, vi) {
       $('#upload-siv-infographic_' + s.toString() + i.toString() + vi.toString())[0].click();
     },
@@ -2395,6 +2398,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2432,6 +2452,16 @@ __webpack_require__.r(__webpack_exports__);
       },
       office: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      privacy_notice: {
+        content: {
+          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+        }
+      },
+      thankyou: {
+        message: {
+          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+        }
       }
     }
   },
@@ -2736,6 +2766,11 @@ __webpack_require__.r(__webpack_exports__);
             id: 0,
             infographic: null,
             message: null,
+            translated: null
+          },
+          privacy_notice: {
+            id: 0,
+            content: null,
             translated: null
           },
           sections: []
@@ -3168,7 +3203,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.sectionItem.items[this.item].item_type == 2 || this.sectionItem.items[this.item].item_type == 3 || this.sectionItem.items[this.item].item_type == 4 || this.sectionItem.items[this.item].item_type == 5 || this.sectionItem.items[this.item].item_type == 7;
     },
     has_value_other: function has_value_other() {
-      return this.sectionItem.items[this.item].item_type == 4;
+      return this.sectionItem.items[this.item].item_type == 3 || this.sectionItem.items[this.item].item_type == 4;
     },
     has_min: function has_min() {
       return this.sectionItem.items[this.item].item_type == 1;
@@ -7521,8 +7556,7 @@ var render = function() {
                         _vm._v(" "),
                         _vm.has_sub
                           ? _c("td", [
-                              _vm.row_type_is_headers(value) ||
-                              _vm.text_input_data_type(value)
+                              _vm.multi_row_text(value)
                                 ? _c(
                                     "div",
                                     [
@@ -9584,6 +9618,100 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
+                    _c("div", { staticClass: "m-b-20" }, [
+                      _c("h4", { staticClass: "sub-title" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\tPrivacy notice\n\t\t\t\t\t\t\t"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "form-group col-lg-6" }, [
+                          _c("label", [_vm._v("Content")]),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model.trim",
+                                value:
+                                  _vm.$v.survey.privacy_notice.content.$model,
+                                expression:
+                                  "$v.survey.privacy_notice.content.$model",
+                                modifiers: { trim: true }
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid":
+                                _vm.$v.survey.privacy_notice.content.$error
+                            },
+                            attrs: {
+                              rows: "5",
+                              disabled: _vm.oldSurvey && !_vm.onEdit
+                            },
+                            domProps: {
+                              value: _vm.$v.survey.privacy_notice.content.$model
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.$v.survey.privacy_notice.content,
+                                  "$model",
+                                  $event.target.value.trim()
+                                )
+                              },
+                              blur: function($event) {
+                                return _vm.$forceUpdate()
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "invalid-feedback" }, [
+                            _vm._v("Content is required")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group col-lg-6" }, [
+                          _c("label", [_vm._v("Translation (Optional)")]),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.survey.privacy_notice.translated,
+                                expression: "survey.privacy_notice.translated"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              rows: "5",
+                              disabled: _vm.oldSurvey && !_vm.onEdit
+                            },
+                            domProps: {
+                              value: _vm.survey.privacy_notice.translated
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.survey.privacy_notice,
+                                  "translated",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
                     _c("introductions", { ref: "introductions" }),
                     _vm._v(" "),
                     _c("div", { staticClass: "m-b-20" }, [
@@ -9685,30 +9813,44 @@ var render = function() {
                             directives: [
                               {
                                 name: "model",
-                                rawName: "v-model",
-                                value: _vm.survey.thankyou.message,
-                                expression: "survey.thankyou.message"
+                                rawName: "v-model.trim",
+                                value: _vm.$v.survey.thankyou.message.$model,
+                                expression: "$v.survey.thankyou.message.$model",
+                                modifiers: { trim: true }
                               }
                             ],
                             staticClass: "form-control",
+                            class: {
+                              "is-invalid":
+                                _vm.$v.survey.thankyou.message.$error
+                            },
                             attrs: {
                               rows: "5",
                               disabled: _vm.oldSurvey && !_vm.onEdit
                             },
-                            domProps: { value: _vm.survey.thankyou.message },
+                            domProps: {
+                              value: _vm.$v.survey.thankyou.message.$model
+                            },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
                                 _vm.$set(
-                                  _vm.survey.thankyou,
-                                  "message",
-                                  $event.target.value
+                                  _vm.$v.survey.thankyou.message,
+                                  "$model",
+                                  $event.target.value.trim()
                                 )
+                              },
+                              blur: function($event) {
+                                return _vm.$forceUpdate()
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "invalid-feedback" }, [
+                            _vm._v("Message is required")
+                          ])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group col-lg-4" }, [
@@ -10528,7 +10670,9 @@ var render = function() {
                                     },
                                     attrs: {
                                       type: "text",
-                                      disabled: _vm.oldSurvey && !_vm.onEdit
+                                      disabled:
+                                        (_vm.oldSurvey && !_vm.onEdit) ||
+                                        sub_item.vsi_value_other
                                     },
                                     domProps: {
                                       value:

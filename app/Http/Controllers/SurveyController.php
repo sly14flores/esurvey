@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App\Survey;
 use App\Introduction;
 use App\ThankYou;
+use App\PrivacyNotice;
 use App\SurveySection;
 use App\SectionItem;
 use App\SectionItemValue;
@@ -94,6 +95,9 @@ class SurveyController extends Controller
 
 		$thankyou = new ThankYou($request->thankyou);
 		$survey->thank_you()->save($thankyou);
+		
+		$privacynotice = new PrivacyNotice($request->privacy_notice);
+		$survey->privacy_notice()->save($privacynotice);
 
 		if ($request->sections!=null) {
 
@@ -255,6 +259,9 @@ class SurveyController extends Controller
 			
 		}		
 		
+		/**
+		 * Thank you
+		 */
 		if ($request->thankyou['id']>0) { # update
 		
 			$thankyou = ThankYou::find($request->thankyou['id']);
@@ -269,6 +276,23 @@ class SurveyController extends Controller
 			$survey->thank_you()->save($thankyou);
 		
 		}
+		
+		/**
+		 * Privacy Notice
+		 */
+		if ($request->privacy_notice['id']>0) { # update
+		
+			$privacynotice = PrivacyNotice::find($request->privacy_notice['id']);
+			$privacynotice->content = $request->privacy_notice['content'];
+			$privacynotice->translated = $request->privacy_notice['translated'];
+			$survey->privacy_notice()->save($privacynotice);
+		
+		} else { # new
+		
+			$privacynotice = new PrivacyNotice($request->privacy_notice);
+			$survey->privacy_notice()->save($privacynotice);
+		
+		}		
 
 		if ($request->sections!=null) {
 

@@ -34,6 +34,12 @@ class Survey extends Model
 		return $this->hasOne('App\ThankYou');
 	
 	}
+	
+	public function privacy_notice() {
+
+		return $this->hasOne('App\PrivacyNotice');
+	
+	}	
 
     /**
      * created_at mutator

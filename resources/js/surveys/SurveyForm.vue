@@ -19,7 +19,7 @@
 								<div class="form-group col-lg-4">
 									<label>Name</label>
 									<input type="text" class="form-control" v-model.trim="$v.survey.name.$model" :class="{'is-invalid': $v.survey.name.$error}" :disabled="oldSurvey && !onEdit">
-									<div class="invalid-feedback">Name is required</div>					  
+									<div class="invalid-feedback">Name is required</div>
 								</div>
 								<div class="form-group col-lg-4">
 									<label>Description</label>
@@ -108,6 +108,22 @@
 									</div>									
 								</div>
 							</div>
+							<div class="m-b-20">
+								<h4 class="sub-title">
+									Privacy notice
+								</h4>
+								<div class="row">
+									<div class="form-group col-lg-6">
+										<label>Content</label>
+										<textarea rows="5" class="form-control" v-model.trim="$v.survey.privacy_notice.content.$model" :class="{'is-invalid': $v.survey.privacy_notice.content.$error}" :disabled="oldSurvey && !onEdit"></textarea>
+										<div class="invalid-feedback">Content is required</div>									
+									</div>
+									<div class="form-group col-lg-6">
+										<label>Translation (Optional)</label>
+										<textarea rows="5" class="form-control" v-model="survey.privacy_notice.translated" :disabled="oldSurvey && !onEdit"></textarea>
+									</div>									
+								</div>
+							</div>
 							<introductions ref="introductions"></introductions>
 							<div class="m-b-20">
 								<h4 class="sub-title">
@@ -137,7 +153,8 @@
 									</div>
 									<div class="form-group col-lg-4">
 										<label>Message</label>
-										<textarea rows="5" class="form-control" v-model="survey.thankyou.message" :disabled="oldSurvey && !onEdit"></textarea>
+										<textarea rows="5" class="form-control" v-model.trim="$v.survey.thankyou.message.$model" :class="{'is-invalid': $v.survey.thankyou.message.$error}" :disabled="oldSurvey && !onEdit"></textarea>
+										<div class="invalid-feedback">Message is required</div>										
 									</div>
 									<div class="form-group col-lg-4">
 										<label>Translated (Optional)</label>
@@ -245,7 +262,13 @@
 		validations: {
 			survey: {
 				name: {required},
-				office: {required}
+				office: {required},
+				privacy_notice: {
+					content: {required}
+				},
+				thankyou: {
+					message: {required}
+				}
 			}
 		},
 		
@@ -587,6 +610,11 @@
 							infographic: null,
 							message: null,
 							translated: null
+						},
+						privacy_notice: {
+							id:0,
+							content: null,
+							translated: null							
 						},
 						sections: []
 					})

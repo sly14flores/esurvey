@@ -1,7 +1,8 @@
 const surveys = {
 	state: {
 		survey: {
-			thankyou: {}
+			thankyou: {},
+			privacy_notice: {}
 		},
 		surveys: []
 	},

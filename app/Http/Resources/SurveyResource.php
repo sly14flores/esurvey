@@ -193,6 +193,9 @@ class SurveyResource extends JsonResource
 			
 		}
 
+		$thankyou = $this->thank_you;
+		$privacy_notice = $this->privacy_notice;
+
 		return [
 			"id"=>$this->id,
 			"name"=>$this->name,
@@ -204,8 +207,8 @@ class SurveyResource extends JsonResource
 			"include_office"=>$this->include_office,
 			"introductions"=>$introductions,
 			"sections"=>$sections,
-			"thankyou"=>(is_null($this->thank_you))?array("id"=>0,"infographic"=>null,"message"=>null,"translated"=>null):$this->thank_you,
-			// "start_intro"=>(count($introductions))?true:false,
+			"thankyou"=>(is_null($thankyou))?array("id"=>0,"infographic"=>null,"message"=>null,"translated"=>null):$thankyou,
+			"privacy_notice"=>(is_null($privacy_notice))?array("id"=>0,"content"=>null,"translated"=>null):$privacy_notice,
 			"authenticated"=>Auth::guard('api')->check()
 		];
     }
