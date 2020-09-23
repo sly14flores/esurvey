@@ -92,7 +92,7 @@
 								</div>						
 							</td>
 							<td v-if="has_sub">
-								<div v-if="row_type_is_headers(value) || text_input_data_type(value)">
+								<div v-if="multi_row_text(value)">
 									<b-button class="btn btn-mini btn-default" v-b-modal="'sub-item-'+section+aspect+item+vi" data-toggle="tooltip" data-placement="top" title="Manage Sub Items for this value" :disabled="!onEdit"><i class="ion-navicon-round"></i></b-button>						
 									<aspect-value-sub-items ref="value-sub-items" :section="section" :aspect="aspect" :item="item" :value="vi" :row_type="value.row_type"></aspect-value-sub-items>
 								</div>
@@ -384,6 +384,17 @@
 			text_input_data_type(value) {
 
 				return (this.aspectItem.items[this.item].item_type == 3) && value.data_type == 4
+			
+			},
+
+			multi_row_text(value) {
+			
+				return this.aspectItem.items[this.item].item_type == 1 ||
+						this.aspectItem.items[this.item].item_type == 2 ||
+						((this.aspectItem.items[this.item].item_type == 3) && value.data_type == 4) ||
+						this.aspectItem.items[this.item].item_type == 4 ||
+						this.aspectItem.items[this.item].item_type == 5 ||			
+						((this.aspectItem.items[this.item].item_type == 7) && value.row_type == 1)			
 			
 			},			
 			

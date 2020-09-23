@@ -70,7 +70,7 @@ class SurveyController extends Controller
 		// $survey = Survey::create($request->all());
 		$survey = new Survey;
 
-		$survey->token = Str::random(10);		
+		$survey->token = Str::random(10);
 		$survey->name = $request->name;
 		$survey->description = $request->description;
 		$survey->office = $request->office;
@@ -249,8 +249,7 @@ class SurveyController extends Controller
 					$intro = new Introduction($introduction);
 				} else {
 					$intro = Introduction::find($introduction['id']);
-					$intro->content = $introduction['content'];
-					$intro->translated = $introduction['translated'];
+					$intro->fill($introduction);
 				}
 				
 				$survey->introductions()->save($intro);
@@ -265,9 +264,7 @@ class SurveyController extends Controller
 		if ($request->thankyou['id']>0) { # update
 		
 			$thankyou = ThankYou::find($request->thankyou['id']);
-			$thankyou->infographic = $request->thankyou['infographic'];
-			$thankyou->message = $request->thankyou['message'];
-			$thankyou->translated = $request->thankyou['translated'];
+			$thankyou->fill($request->thankyou);
 			$survey->thank_you()->save($thankyou);
 		
 		} else { # new
@@ -283,15 +280,14 @@ class SurveyController extends Controller
 		if ($request->privacy_notice['id']>0) { # update
 		
 			$privacynotice = PrivacyNotice::find($request->privacy_notice['id']);
-			$privacynotice->content = $request->privacy_notice['content'];
-			$privacynotice->translated = $request->privacy_notice['translated'];
+			$privacynotice->fill($request->privacy_notice);
 			$survey->privacy_notice()->save($privacynotice);
 		
 		} else { # new
-		
+
 			$privacynotice = new PrivacyNotice($request->privacy_notice);
 			$survey->privacy_notice()->save($privacynotice);
-		
+
 		}		
 
 		if ($request->sections!=null) {
@@ -302,9 +298,7 @@ class SurveyController extends Controller
 					$section = new SurveySection($survey_section);
 				} else {
 					$section = SurveySection::find($survey_section['id']);
-					$section->section_name = $survey_section['section_name'];
-					$section->translated = $survey_section['translated'];
-					$section->is_hidden = $survey_section['is_hidden'];
+					$section->fill($survey_section);
 				}
 				
 				$survey->sections()->save($section);
@@ -318,18 +312,7 @@ class SurveyController extends Controller
 							$item = new SectionItem($section_item);
 						} else {
 							$item = SectionItem::find($section_item['id']);
-							$item->required = $section_item['required'];
-							$item->item_name = $section_item['item_name'];
-							$item->translated = $section_item['translated'];
-							$item->item_type = $section_item['item_type'];
-							$item->item_presentation = $section_item['item_presentation'];
-							$item->max_checkbox_selections = $section_item['max_checkbox_selections'];
-							$item->item_infographic = $section_item['item_infographic'];
-							$item->item_infographic_left = $section_item['item_infographic_left'];
-							$item->item_infographic_right = $section_item['item_infographic_right'];
-							$item->item_infographic_bottom_logo = $section_item['item_infographic_bottom_logo'];
-							$item->use_images = $section_item['use_images'];
-							$item->text_is_multiple = $section_item['text_is_multiple'];
+							$item->fill($section_item);
 						}
 						
 						$section->items()->save($item);
@@ -342,20 +325,7 @@ class SurveyController extends Controller
 									$value = new SectionItemValue($section_item_value);
 								} else {
 									$value = SectionItemValue::find($section_item_value['id']);
-									$value->display = $section_item_value['display'];
-									$value->display_translated = $section_item_value['display_translated'];
-									$value->siv_value = $section_item_value['siv_value'];
-									$value->siv_value_other = $section_item_value['siv_value_other'];
-									$value->siv_min = $section_item_value['siv_min'];
-									$value->min_below = $section_item_value['min_below'];
-									$value->siv_max = $section_item_value['siv_max'];
-									$value->max_above = $section_item_value['max_above'];
-									$value->data_type = $section_item_value['data_type'];
-									$value->row_type = $section_item_value['row_type'];
-									$value->siv_infographic = $section_item_value['siv_infographic'];
-									$value->highest = $section_item_value['highest'];
-									$value->lowest = $section_item_value['lowest'];
-									$value->required = $section_item_value['required'];
+									$value->fill($section_item_value);
 								}
 								
 								$item->values()->save($value);
@@ -368,15 +338,7 @@ class SurveyController extends Controller
 											$siv_sub_item = new SivSubItem($section_item_sub_item);
 										} else {
 											$siv_sub_item = SivSubItem::find($section_item_sub_item['id']);
-											$siv_sub_item->display = $section_item_sub_item['display'];
-											$siv_sub_item->display_translated = $section_item_sub_item['display_translated'];
-											$siv_sub_item->vsi_value = $section_item_sub_item['vsi_value'];
-											$siv_sub_item->vsi_value_other = $section_item_sub_item['vsi_value_other'];
-											$siv_sub_item->vsi_min = $section_item_sub_item['vsi_min'];
-											$siv_sub_item->min_below = $section_item_sub_item['min_below'];
-											$siv_sub_item->vsi_max = $section_item_sub_item['vsi_max'];
-											$siv_sub_item->max_above = $section_item_sub_item['max_above'];
-											// $siv_sub_item->data_type = $section_item_sub_item['data_type'];
+											$siv_sub_item->fill($section_item_sub_item);
 										}
 
 										$value->items()->save($siv_sub_item);
@@ -402,8 +364,7 @@ class SurveyController extends Controller
 							$aspect = new SectionAspect($section_aspect);
 						} else {
 							$aspect = SectionAspect::find($section_aspect['id']);
-							$aspect->aspect_name = $section_aspect['aspect_name'];
-							$aspect->translated = $section_aspect['translated'];
+							$aspect->fill($section_aspect);
 						}
 
 						$section->aspects()->save($aspect);	
@@ -416,17 +377,9 @@ class SurveyController extends Controller
 									$aspect_item = new AspectItem($section_aspect_item);
 								} else {
 									$aspect_item = AspectItem::find($section_aspect_item['id']);
-									$aspect_item->required = $section_aspect_item['required'];
-									$aspect_item->item_name = $section_aspect_item['item_name'];
-									$aspect_item->translated = $section_aspect_item['translated'];
-									$aspect_item->item_type = $section_aspect_item['item_type'];
-									$aspect_item->item_presentation = $section_aspect_item['item_presentation'];
-									$aspect_item->max_checkbox_selections = $section_aspect_item['max_checkbox_selections'];
-									$aspect_item->item_infographic = $section_aspect_item['item_infographic'];
-									$aspect_item->use_images = $section_aspect_item['use_images'];									
-									$aspect_item->text_is_multiple = $section_aspect_item['text_is_multiple'];									
+									$aspect_item->fill($section_aspect_item);
 								}
-								
+
 								$aspect->items()->save($aspect_item);
 								
 								if (isset($section_aspect_item['values'])) {
@@ -437,20 +390,7 @@ class SurveyController extends Controller
 											$aspect_item_value = new AspectItemValue($section_aspect_item_value);
 										} else {
 											$aspect_item_value = AspectItemValue::find($section_aspect_item_value['id']);
-											$aspect_item_value->display = $section_aspect_item_value['display'];
-											$aspect_item_value->display_translated = $section_aspect_item_value['display_translated'];
-											$aspect_item_value->siv_value = $section_aspect_item_value['siv_value'];
-											$aspect_item_value->siv_value_other = $section_aspect_item_value['siv_value_other'];
-											$aspect_item_value->siv_min = $section_aspect_item_value['siv_min'];
-											$aspect_item_value->min_below = $section_aspect_item_value['min_below'];
-											$aspect_item_value->siv_max = $section_aspect_item_value['siv_max'];
-											$aspect_item_value->max_above = $section_aspect_item_value['max_above'];
-											$aspect_item_value->data_type = $section_aspect_item_value['data_type'];
-											$aspect_item_value->row_type = $section_aspect_item_value['row_type'];
-											$aspect_item_value->siv_infographic = $section_aspect_item_value['siv_infographic'];
-											$aspect_item_value->highest = $section_aspect_item_value['highest'];
-											$aspect_item_value->lowest = $section_aspect_item_value['lowest'];
-											$aspect_item_value->required = $section_aspect_item_value['required'];
+											$aspect_item_value->fill($section_aspect_item_value);
 										}
 										
 										$aspect_item->values()->save($aspect_item_value);
@@ -463,15 +403,7 @@ class SurveyController extends Controller
 													$aspect_item_value_sub_item = new AivSubItem($section_aspect_item_value_sub_item);
 												} else {
 													$aspect_item_value_sub_item = AivSubItem::find($section_aspect_item_value_sub_item['id']);
-													$aspect_item_value_sub_item->display = $section_aspect_item_value_sub_item['display'];
-													$aspect_item_value_sub_item->display_translated = $section_aspect_item_value_sub_item['display_translated'];
-													$aspect_item_value_sub_item->vsi_value = $section_aspect_item_value_sub_item['vsi_value'];
-													$aspect_item_value_sub_item->vsi_value_other = $section_aspect_item_value_sub_item['vsi_value_other'];
-													$aspect_item_value_sub_item->vsi_min = $section_aspect_item_value_sub_item['vsi_min'];
-													$aspect_item_value_sub_item->min_below = $section_aspect_item_value_sub_item['min_below'];
-													$aspect_item_value_sub_item->vsi_max = $section_aspect_item_value_sub_item['vsi_max'];
-													$aspect_item_value_sub_item->max_above = $section_aspect_item_value_sub_item['max_above'];
-													// $aspect_item_value_sub_item->data_type = $section_aspect_item_value_sub_item['data_type'];
+													$aspect_item_value_sub_item->fill($section_aspect_item_value_sub_item);
 												}
 												
 												$aspect_item_value->items()->save($aspect_item_value_sub_item);

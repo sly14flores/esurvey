@@ -11,7 +11,33 @@ const surveys = {
 			state.surveys = surveys
 		},
 		survey(state, survey) {
-			state.survey = survey
+			if (_.isEmpty(survey)) {
+				state.survey = {
+					id: 0,
+					name: null,
+					description: null,
+					office: null,
+					background: null,
+					left_infographic: null,
+					right_infographic: null,
+					include_office: false,
+					introductions: [],
+					thankyou: {
+						id: 0,
+						infographic: null,
+						message: null,
+						translated: null
+					},
+					privacy_notice: {
+						id:0,
+						content: null,
+						translated: null							
+					},
+					sections: []
+				}
+			} else {
+				state.survey = survey
+			}
 		},
 		introductions(state, introductions) {
 			state.survey.introductions = introductions

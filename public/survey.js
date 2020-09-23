@@ -337,6 +337,9 @@ __webpack_require__.r(__webpack_exports__);
     text_input_data_type: function text_input_data_type(value) {
       return this.aspectItem.items[this.item].item_type == 3 && value.data_type == 4;
     },
+    multi_row_text: function multi_row_text(value) {
+      return this.aspectItem.items[this.item].item_type == 1 || this.aspectItem.items[this.item].item_type == 2 || this.aspectItem.items[this.item].item_type == 3 && value.data_type == 4 || this.aspectItem.items[this.item].item_type == 4 || this.aspectItem.items[this.item].item_type == 5 || this.aspectItem.items[this.item].item_type == 7 && value.row_type == 1;
+    },
     addSivIg: function addSivIg(s, a, i, vi) {
       $('#upload-saiv-infographic_' + s.toString() + a.toString() + i.toString() + vi.toString())[0].click();
     },
@@ -404,6 +407,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _AspectItemValues__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AspectItemValues */ "./resources/js/surveys/AspectItemValues.vue");
 /* harmony import */ var _mixins_Items__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mixins/Items */ "./resources/js/surveys/mixins/Items.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -628,6 +678,9 @@ __webpack_require__.r(__webpack_exports__);
           item_presentation: null,
           max_checkbox_selections: null,
           item_infographic: null,
+          item_infographic_left: null,
+          item_infographic_right: null,
+          item_infographic_bottom_logo: null,
           use_images: 0,
           values: [],
           is_text: false,
@@ -700,22 +753,20 @@ __webpack_require__.r(__webpack_exports__);
     item_presentation_selected: function item_presentation_selected(item) {
       item.use_images = item.item_presentation == 2;
     },
-    addSsiIg: function addSsiIg(s, a, si) {
-      $('#upload-sai-infographic_' + s.toString() + a.toString() + si.toString())[0].click();
+    addSsiIg: function addSsiIg(s, a, si, prop) {
+      if (!this.onEdit) return;
+      $('#upload-sai-' + prop + '_' + s.toString() + a.toString() + si.toString())[0].click();
     },
-    ssiIg: function ssiIg(s, a, si) {
+    ssiIg: function ssiIg(s, a, si, prop) {
       var _this2 = this;
 
-      var file = $('#upload-sai-infographic_' + s + a + si)[0].files[0];
+      var file = $('#upload-sai-' + prop + '_' + s + a + si)[0].files[0];
       var type = file.type.split("/");
       var valid_files = ["jpeg", "png"];
       if (!valid_files.includes(type[1])) return;
-      var eid = "#sai_" + s + a + si; // let preview = document.querySelector(eid);
-
       var reader = new FileReader();
       reader.addEventListener("load", function () {
-        // preview.src = reader.result;
-        _this2.items[si].item_infographic = reader.result;
+        _this2.items[si][prop] = reader.result;
       }, false);
 
       if (file) {
@@ -724,10 +775,10 @@ __webpack_require__.r(__webpack_exports__);
 
       ;
     },
-    removeSsiIg: function removeSsiIg(s, a, si) {
+    removeSsiIg: function removeSsiIg(s, a, si, prop) {
       if (!this.onEdit) return;
-      this.items[si].item_infographic = null;
-      $('#upload-sai-infographic_' + s + a + si).val(null);
+      this.items[si][prop] = null;
+      $('#upload-sai-' + prop + '_' + s + a + si).val(null);
     },
     checkItems: function checkItems() {
       var _this3 = this;
@@ -879,7 +930,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.aspectItem.items[this.item].item_type == 2 || this.aspectItem.items[this.item].item_type == 3 || this.aspectItem.items[this.item].item_type == 4 || this.aspectItem.items[this.item].item_type == 5 || this.aspectItem.items[this.item].item_type == 7;
     },
     has_value_other: function has_value_other() {
-      return this.aspectItem.items[this.item].item_type == 4;
+      return this.aspectItem.items[this.item].item_type == 3 || this.aspectItem.items[this.item].item_type == 4;
     },
     has_min: function has_min() {
       return this.aspectItem.items[this.item].item_type == 1;
@@ -2752,29 +2803,7 @@ __webpack_require__.r(__webpack_exports__);
           vm.fetchSurvey(vm.$route.params.survey_id);
         }
       } else {
-        vm.$store.commit('survey', {
-          id: 0,
-          name: null,
-          description: null,
-          office: vm.$store.state.profile.office,
-          background: null,
-          left_infographic: null,
-          right_infographic: null,
-          include_office: false,
-          introductions: [],
-          thankyou: {
-            id: 0,
-            infographic: null,
-            message: null,
-            translated: null
-          },
-          privacy_notice: {
-            id: 0,
-            content: null,
-            translated: null
-          },
-          sections: []
-        });
+        vm.$store.commit('survey', {});
       }
     });
   }
@@ -4747,8 +4776,7 @@ var render = function() {
                         _vm._v(" "),
                         _vm.has_sub
                           ? _c("td", [
-                              _vm.row_type_is_headers(value) ||
-                              _vm.text_input_data_type(value)
+                              _vm.multi_row_text(value)
                                 ? _c(
                                     "div",
                                     [
@@ -5670,98 +5698,296 @@ var render = function() {
                             }
                           },
                           [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "images-container images-container-margins"
-                              },
-                              [
-                                item.item_infographic != null
-                                  ? _c(
-                                      "div",
-                                      { staticClass: "image-container" },
-                                      [
-                                        _c("div", { staticClass: "controls" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-lg-4" }, [
+                                _vm._m(0, true),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "images-container" }, [
+                                  item.item_infographic_left != null
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "image-container" },
+                                        [
                                           _c(
-                                            "a",
-                                            {
-                                              staticClass: "control-btn remove",
-                                              attrs: { href: "javascript:;" },
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.removeSsiIg(
-                                                    _vm.section,
-                                                    _vm.aspect,
-                                                    ii
-                                                  )
-                                                }
-                                              }
-                                            },
+                                            "div",
+                                            { staticClass: "controls" },
                                             [
-                                              _c("i", {
-                                                staticClass: "ion-trash-a"
-                                              })
+                                              _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "control-btn remove",
+                                                  attrs: {
+                                                    href: "javascript:;"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.removeSsiIg(
+                                                        _vm.section,
+                                                        _vm.aspect,
+                                                        ii,
+                                                        "item_infographic_left"
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "ion-trash-a"
+                                                  })
+                                                ]
+                                              )
                                             ]
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("img", {
-                                          staticClass: "image ssi-infographic",
-                                          attrs: {
-                                            id:
-                                              "sai_" +
-                                              _vm.section +
-                                              _vm.aspect +
-                                              ii,
-                                            src: item.item_infographic
-                                          }
-                                        })
-                                      ]
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _c("input", {
-                                  staticStyle: { display: "none" },
-                                  attrs: {
-                                    type: "file",
-                                    id:
-                                      "upload-sai-infographic_" +
-                                      _vm.section +
-                                      _vm.aspect +
-                                      ii
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      return _vm.ssiIg(
-                                        _vm.section,
-                                        _vm.aspect,
-                                        ii
+                                          ),
+                                          _vm._v(" "),
+                                          _c("img", {
+                                            staticClass:
+                                              "image ssi-infographic",
+                                            attrs: {
+                                              src: item.item_infographic_left
+                                            }
+                                          })
+                                        ]
                                       )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    staticStyle: { display: "none" },
+                                    attrs: {
+                                      type: "file",
+                                      id:
+                                        "upload-sai-item_infographic_left_" +
+                                        _vm.section +
+                                        _vm.aspect +
+                                        ii
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        return _vm.ssiIg(
+                                          _vm.section,
+                                          _vm.aspect,
+                                          ii,
+                                          "item_infographic_left"
+                                        )
+                                      }
                                     }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                item.item_infographic == null
-                                  ? _c(
-                                      "a",
-                                      {
-                                        attrs: { href: "javascript:;" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.addSsiIg(
-                                              _vm.section,
-                                              _vm.aspect,
-                                              ii
-                                            )
+                                  }),
+                                  _vm._v(" "),
+                                  item.item_infographic_left == null
+                                    ? _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:;" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.addSsiIg(
+                                                _vm.section,
+                                                _vm.aspect,
+                                                ii,
+                                                "item_infographic_left"
+                                              )
+                                            }
                                           }
-                                        }
-                                      },
-                                      [_vm._m(0, true)]
-                                    )
-                                  : _vm._e()
-                              ]
-                            )
+                                        },
+                                        [_vm._m(1, true)]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-4" }, [
+                                _vm._m(2, true),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "images-container" }, [
+                                  item.item_infographic_right != null
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "image-container" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "controls" },
+                                            [
+                                              _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "control-btn remove",
+                                                  attrs: {
+                                                    href: "javascript:;"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.removeSsiIg(
+                                                        _vm.section,
+                                                        _vm.aspect,
+                                                        ii,
+                                                        "item_infographic_right"
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "ion-trash-a"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("img", {
+                                            staticClass:
+                                              "image ssi-infographic",
+                                            attrs: {
+                                              src: item.item_infographic_right
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    staticStyle: { display: "none" },
+                                    attrs: {
+                                      type: "file",
+                                      id:
+                                        "upload-sai-item_infographic_right_" +
+                                        _vm.section +
+                                        _vm.aspect +
+                                        ii
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        return _vm.ssiIg(
+                                          _vm.section,
+                                          _vm.aspect,
+                                          ii,
+                                          "item_infographic_right"
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  item.item_infographic_right == null
+                                    ? _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:;" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.addSsiIg(
+                                                _vm.section,
+                                                _vm.aspect,
+                                                ii,
+                                                "item_infographic_right"
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._m(3, true)]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-4" }, [
+                                _vm._m(4, true),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "images-container" }, [
+                                  item.item_infographic_bottom_logo != null
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "image-container" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "controls" },
+                                            [
+                                              _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "control-btn remove",
+                                                  attrs: {
+                                                    href: "javascript:;"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.removeSsiIg(
+                                                        _vm.section,
+                                                        _vm.aspect,
+                                                        ii,
+                                                        "item_infographic_bottom_logo"
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "ion-trash-a"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("img", {
+                                            staticClass:
+                                              "image ssi-infographic",
+                                            attrs: {
+                                              src:
+                                                item.item_infographic_bottom_logo
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    staticStyle: { display: "none" },
+                                    attrs: {
+                                      type: "file",
+                                      id:
+                                        "upload-sai-item_infographic_bottom_logo_" +
+                                        _vm.section +
+                                        _vm.aspect +
+                                        ii
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        return _vm.ssiIg(
+                                          _vm.section,
+                                          _vm.aspect,
+                                          ii,
+                                          "item_infographic_bottom_logo"
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  item.item_infographic_bottom_logo == null
+                                    ? _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:;" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.addSsiIg(
+                                                _vm.section,
+                                                _vm.aspect,
+                                                ii,
+                                                "item_infographic_bottom_logo"
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._m(5, true)]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ])
+                            ])
                           ]
                         )
                       ])
@@ -5805,6 +6031,50 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "mt-2" }, [
+      _c("strong", [_vm._v("Left")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "image-container new" }, [
+      _c("div", { staticClass: "ssi-infographic" }, [
+        _c("i", { staticClass: "ion-plus" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "mt-2" }, [
+      _c("strong", [_vm._v("Right (Mobile only)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "image-container new" }, [
+      _c("div", { staticClass: "ssi-infographic" }, [
+        _c("i", { staticClass: "ion-plus" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "mt-2" }, [
+      _c("strong", [_vm._v("Logo at bottom (Mobile only)")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -5992,7 +6262,9 @@ var render = function() {
                                     },
                                     attrs: {
                                       type: "text",
-                                      disabled: _vm.oldSurvey && !_vm.onEdit
+                                      disabled:
+                                        (_vm.oldSurvey && !_vm.onEdit) ||
+                                        sub_item.vsi_value_other
                                     },
                                     domProps: {
                                       value:

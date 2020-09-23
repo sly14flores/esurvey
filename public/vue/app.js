@@ -98585,7 +98585,33 @@ var surveys = {
       state.surveys = _surveys;
     },
     survey: function survey(state, _survey) {
-      state.survey = _survey;
+      if (_.isEmpty(_survey)) {
+        state.survey = {
+          id: 0,
+          name: null,
+          description: null,
+          office: null,
+          background: null,
+          left_infographic: null,
+          right_infographic: null,
+          include_office: false,
+          introductions: [],
+          thankyou: {
+            id: 0,
+            infographic: null,
+            message: null,
+            translated: null
+          },
+          privacy_notice: {
+            id: 0,
+            content: null,
+            translated: null
+          },
+          sections: []
+        };
+      } else {
+        state.survey = _survey;
+      }
     },
     introductions: function introductions(state, _introductions) {
       state.survey.introductions = _introductions;

@@ -595,29 +595,7 @@
 					
 				} else {
 				
-					vm.$store.commit('survey',{
-						id: 0,
-						name: null,
-						description: null,
-						office: vm.$store.state.profile.office,
-						background: null,
-						left_infographic: null,
-						right_infographic: null,
-						include_office: false,
-						introductions: [],
-						thankyou: {
-							id: 0,
-							infographic: null,
-							message: null,
-							translated: null
-						},
-						privacy_notice: {
-							id:0,
-							content: null,
-							translated: null							
-						},
-						sections: []
-					})
+					vm.$store.commit('survey',{})
 					
 				}
 

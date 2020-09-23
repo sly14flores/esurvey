@@ -83,24 +83,71 @@
 										<aspect-item-values ref="item-values" :section="section" :aspect="aspect" :item="ii"></aspect-item-values>
 									</div>
 									<div class="tab-pane fade" :id="'infographic-'+section+aspect+ii" role="tabpanel" :aria-labelledby="'infographic-tab-'+section+aspect+ii">
-										<div class="images-container images-container-margins">													
-											<div v-if="item.item_infographic != null" class="image-container">
-												<div class="controls">
-													<a href="javascript:;" class="control-btn remove" @click="removeSsiIg(section,aspect,ii)">
-														<i class="ion-trash-a"></i>
-													</a>
-												</div>														
-												<img :id="'sai_'+section+aspect+ii" class="image ssi-infographic" :src="item.item_infographic">
-											</div>
-											<input type="file" style="display: none;" :id="'upload-sai-infographic_'+section+aspect+ii" @change="ssiIg(section,aspect,ii)">
-											<a v-if="item.item_infographic == null" href="javascript:;" @click="addSsiIg(section,aspect,ii)">
-												<div class="image-container new">
-													<div class="ssi-infographic">
-														<i class="ion-plus"></i>
+										<div class="row">
+											<div class="col-lg-4">
+												<label class="mt-2"><strong>Left</strong></label>
+												<div class="images-container">													
+													<div v-if="item.item_infographic_left != null" class="image-container">
+														<div class="controls">
+															<a href="javascript:;" class="control-btn remove" @click="removeSsiIg(section,aspect,ii,'item_infographic_left')">
+																<i class="ion-trash-a"></i>
+															</a>
+														</div>														
+														<img class="image ssi-infographic" :src="item.item_infographic_left">
 													</div>
-												</div>
-											</a>	
-										</div>										
+													<input type="file" style="display: none;" :id="'upload-sai-item_infographic_left_'+section+aspect+ii" @change="ssiIg(section,aspect,ii,'item_infographic_left')">
+													<a v-if="item.item_infographic_left == null" href="javascript:;" @click="addSsiIg(section,aspect,ii,'item_infographic_left')">
+														<div class="image-container new">
+															<div class="ssi-infographic">
+																<i class="ion-plus"></i>
+															</div>
+														</div>
+													</a>	
+												</div>												
+											</div>
+											<div class="col-lg-4">
+												<label class="mt-2"><strong>Right (Mobile only)</strong></label>
+												<div class="images-container">													
+													<div v-if="item.item_infographic_right != null" class="image-container">
+														<div class="controls">
+															<a href="javascript:;" class="control-btn remove" @click="removeSsiIg(section,aspect,ii,'item_infographic_right')">
+																<i class="ion-trash-a"></i>
+															</a>
+														</div>														
+														<img class="image ssi-infographic" :src="item.item_infographic_right">
+													</div>
+													<input type="file" style="display: none;" :id="'upload-sai-item_infographic_right_'+section+aspect+ii" @change="ssiIg(section,aspect,ii,'item_infographic_right')">
+													<a v-if="item.item_infographic_right == null" href="javascript:;" @click="addSsiIg(section,aspect,ii,'item_infographic_right')">
+														<div class="image-container new">
+															<div class="ssi-infographic">
+																<i class="ion-plus"></i>
+															</div>
+														</div>
+													</a>	
+												</div>												
+											</div>
+											<div class="col-lg-4">
+												<label class="mt-2"><strong>Logo at bottom (Mobile only)</strong></label>
+												<div class="images-container">													
+													<div v-if="item.item_infographic_bottom_logo != null" class="image-container">
+														<div class="controls">
+															<a href="javascript:;" class="control-btn remove" @click="removeSsiIg(section,aspect,ii,'item_infographic_bottom_logo')">
+																<i class="ion-trash-a"></i>
+															</a>
+														</div>														
+														<img class="image ssi-infographic" :src="item.item_infographic_bottom_logo">
+													</div>
+													<input type="file" style="display: none;" :id="'upload-sai-item_infographic_bottom_logo_'+section+aspect+ii" @change="ssiIg(section,aspect,ii,'item_infographic_bottom_logo')">
+													<a v-if="item.item_infographic_bottom_logo == null" href="javascript:;" @click="addSsiIg(section,aspect,ii,'item_infographic_bottom_logo')">
+														<div class="image-container new">
+															<div class="ssi-infographic">
+																<i class="ion-plus"></i>
+															</div>
+														</div>
+													</a>	
+												</div>												
+											</div>											
+										</div>
 									</div>
 								</div>							
 							</div>
@@ -231,6 +278,9 @@
 						item_presentation: null,
 						max_checkbox_selections: null,						
 						item_infographic: null,
+						item_infographic_left: null,
+						item_infographic_right: null,
+						item_infographic_bottom_logo: null,						
 						use_images: 0,
 						values: [],
 						is_text: false,
@@ -321,28 +371,27 @@
 				
 			},
 
-			addSsiIg(s,a,si) {
+			addSsiIg(s,a,si,prop) {
 			
-				$('#upload-sai-infographic_'+s.toString()+a.toString()+si.toString())[0].click();				
+				if (!this.onEdit) return			
+			
+				$('#upload-sai-'+prop+'_'+s.toString()+a.toString()+si.toString())[0].click();				
 			
 			},
 
-			ssiIg(s,a,si) {
+			ssiIg(s,a,si,prop) {
 
-				let file = ($('#upload-sai-infographic_'+s+a+si)[0].files)[0];
+				let file = ($('#upload-sai-'+prop+'_'+s+a+si)[0].files)[0];
 
 				let type = file.type.split("/");
 				
 				let valid_files = ["jpeg","png"];
 				if (!valid_files.includes(type[1])) return;
-				
-				let eid = "#sai_"+s+a+si;
-				// let preview = document.querySelector(eid);
+
 				let reader  = new FileReader();
 
 				reader.addEventListener("load", () => {
-					// preview.src = reader.result;
-					this.items[si].item_infographic = reader.result;
+					this.items[si][prop] = reader.result;
 				}, false);
 
 				if (file) {
@@ -351,12 +400,12 @@
 			
 			},
 
-			removeSsiIg(s,a,si) {
+			removeSsiIg(s,a,si,prop) {
 
 				if (!this.onEdit) return
 			
-				this.items[si].item_infographic = null
-				$('#upload-sai-infographic_'+s+a+si).val(null)
+				this.items[si][prop] = null
+				$('#upload-sai-'+prop+'_'+s+a+si).val(null)
 			
 			},
 			
