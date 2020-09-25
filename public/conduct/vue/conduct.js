@@ -3382,6 +3382,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -74520,7 +74523,25 @@ var render = function() {
                                                   )
                                                 : _vm._e()
                                             ]
-                                          )
+                                          ),
+                                          _vm._v(" "),
+                                          si.vsi_value_other &&
+                                          value.answer == si.vsi_value
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticStyle: {
+                                                    "margin-left": "10px"
+                                                  }
+                                                },
+                                                [
+                                                  _c("input", {
+                                                    staticClass: "form-control",
+                                                    attrs: { type: "text" }
+                                                  })
+                                                ]
+                                              )
+                                            : _vm._e()
                                         ]
                                       )
                                     }),

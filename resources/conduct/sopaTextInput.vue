@@ -24,7 +24,10 @@
 								<div v-if="value.data_type==4">
 									<div class="form-check form-check-inline" v-for="si in value.sub_items" :key="si.id">
 									  <input type="radio" :id="'radioItem-'+value.id+si.id" class="form-check-input form-control-lg" :class="{'is-invalid': $v.values.$each[vi].$error}" :name="'radioItems-'+value.id" v-bind:value="si.vsi_value" v-model="value.answer">
-									  <label class="form-check-label" :for="'radioItem-'+value.id+si.id">{{ si.display }} <span v-if="si.display_translated!=null" class="text-muted" style="font-style: italic">({{si.display_translated}})</span></label>									  
+									  <label class="form-check-label" :for="'radioItem-'+value.id+si.id">{{ si.display }} <span v-if="si.display_translated!=null" class="text-muted" style="font-style: italic">({{si.display_translated}})</span></label>
+									  <div style="margin-left: 10px;" v-if="si.vsi_value_other && (value.answer == si.vsi_value)">
+										<input type="text" class="form-control">
+									  </div>
 									</div>
 									<div v-if="$v.values.$each[vi].$error" class="alert alert-danger" role="alert">
 										{{value.display}} is required
