@@ -33,7 +33,7 @@
 	
 		.survey-logo {
 
-			width: 100px;
+			width: 180px;
 		
 		}
 	

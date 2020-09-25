@@ -39,7 +39,7 @@
 
 		.survey-logo {
 
-			width: 50px;
+			width: 70px;
 
 		}
 
