@@ -3414,6 +3414,7 @@ __webpack_require__.r(__webpack_exports__);
       return !this.$store.getters.currentSection.is_hidden;
     }
   },
+  methods: {},
   created: function created() {},
   validations: {
     values: {
@@ -3423,7 +3424,15 @@ __webpack_require__.r(__webpack_exports__);
       $each: {
         answer: {
           required: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["requiredIf"])(function (model) {
-            return model.required == true;
+            /*
+            const has_other_value = model.sub_items.some(sub_item => {
+            
+            	return sub_item.vsi_value_other
+            	
+            })
+            */
+            // console.log(model)
+            return model.required && model.other_answer == "";
           })
         }
       }
@@ -74536,8 +74545,36 @@ var render = function() {
                                                 },
                                                 [
                                                   _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          value.other_answer,
+                                                        expression:
+                                                          "value.other_answer"
+                                                      }
+                                                    ],
                                                     staticClass: "form-control",
-                                                    attrs: { type: "text" }
+                                                    attrs: { type: "text" },
+                                                    domProps: {
+                                                      value: value.other_answer
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.$set(
+                                                          value,
+                                                          "other_answer",
+                                                          $event.target.value
+                                                        )
+                                                      }
+                                                    }
                                                   })
                                                 ]
                                               )
@@ -95565,24 +95602,28 @@ var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
         state.survey.sections.forEach(function (s, is) {
           var index = {};
           s.items.forEach(function (si, isi) {
-            index.intro = null;
-            index.section = is;
-            index.aspect = null;
-            index.item = isi;
-            indexes.push(index);
-            index = {};
+            if (si.is_shown) {
+              index.intro = null;
+              index.section = is;
+              index.aspect = null;
+              index.item = isi;
+              indexes.push(index);
+              index = {};
+            }
           });
 
           if (s.aspects.length > 0) {
             s.aspects.forEach(function (sa, isa) {
               index = {};
               sa.items.forEach(function (sai, isai) {
-                index.intro = null;
-                index.section = is;
-                index.aspect = isa;
-                index.item = isai;
-                indexes.push(index);
-                index = {};
+                if (sai.is_shown) {
+                  index.intro = null;
+                  index.section = is;
+                  index.aspect = isa;
+                  index.item = isai;
+                  indexes.push(index);
+                  index = {};
+                }
               });
             });
           }

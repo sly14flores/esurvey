@@ -22,7 +22,7 @@
 								</td>								
 								<td v-if="has_value">
 									<div class="form-group">
-										<input type="text" class="form-control" v-model="$v.sub_items.$each[vsi].vsi_value.$model" :class="{'is-invalid': $v.sub_items.$each[vsi].vsi_value.$error}" :disabled="(oldSurvey && !onEdit) || sub_item.vsi_value_other">
+										<input type="text" class="form-control" v-model="$v.sub_items.$each[vsi].vsi_value.$model" :class="{'is-invalid': $v.sub_items.$each[vsi].vsi_value.$error}" :disabled="oldSurvey && !onEdit">
 										<div class="invalid-feedback">Value is required</div>								
 									</div>
 									<span v-if="has_value && has_value_other">Other <input type="checkbox" class="below-above" v-model="sub_item.vsi_value_other" :disabled="oldSurvey && !onEdit"></span>							
@@ -158,7 +158,7 @@
 				$each: {
 					display: {required},
 					vsi_value: {required: requiredIf(function(model) {
-						return this.has_value && !model.vsi_value_other
+						return this.has_value
 					})},
 					vsi_min: {required: requiredIf(function(model) {
 						return this.has_min && !model.min_below

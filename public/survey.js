@@ -596,6 +596,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -672,6 +679,7 @@ __webpack_require__.r(__webpack_exports__);
           index: ++index,
           id: 0,
           required: true,
+          is_shown: true,
           item_name: '',
           translated: '',
           item_type: null,
@@ -950,7 +958,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         vsi_value: {
           required: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["requiredIf"])(function (model) {
-            return this.has_value && !model.vsi_value_other;
+            return this.has_value;
           })
         },
         vsi_min: {
@@ -2024,6 +2032,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2102,6 +2117,7 @@ __webpack_require__.r(__webpack_exports__);
           index: ++index,
           id: 0,
           required: true,
+          is_shown: true,
           item_name: '',
           translated: '',
           item_type: null,
@@ -2252,6 +2268,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SurveysHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SurveysHeader */ "./resources/js/surveys/SurveysHeader.vue");
 /* harmony import */ var _Introductions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Introductions */ "./resources/js/surveys/Introductions.vue");
 /* harmony import */ var _SurveySections__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SurveySections */ "./resources/js/surveys/SurveySections.vue");
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3252,7 +3275,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         vsi_value: {
           required: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["requiredIf"])(function (model) {
-            return this.has_value && !model.vsi_value_other;
+            return this.has_value;
           })
         },
         vsi_min: {
@@ -3389,7 +3412,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ni[data-v-70b78938] {\n\tmargin-right:0!important;\n}\n.header-pads[data-v-70b78938] {\n\tpadding: 5px 0;\n}\n.images-container-margins[data-v-70b78938] {\n\tmargin-top: 25px;\n\tmargin-left: 25px;\n}\n.add-item[data-v-70b78938] {\n\tmargin-top: 10px;\n}\n.ml-20[data-v-70b78938] {\n\tmargin-left: 20px;\n}\t\n\n", ""]);
+exports.push([module.i, "\ni[data-v-70b78938] {\n\tmargin-right:0!important;\n}\n.header-pads[data-v-70b78938] {\n\tpadding: 5px 0;\n}\n.images-container-margins[data-v-70b78938] {\n\tmargin-top: 25px;\n\tmargin-left: 25px;\n}\n.add-item[data-v-70b78938] {\n\tmargin-top: 10px;\n}\n.ml-20[data-v-70b78938] {\n\tmargin-left: 20px;\n}\n.ml5[data-v-70b78938] {\n\tmargin-left: 5px;\n}\t\n\n", ""]);
 
 // exports
 
@@ -3484,7 +3507,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ni[data-v-9462ea22] {\n\tmargin-right:0!important;\n}\n.header-pads[data-v-9462ea22] {\n\tpadding: 5px 0;\n}\n.images-container-margins[data-v-9462ea22] {\n\tmargin-top: 25px;\n\tmargin-left: 25px;\n}\n.add-item[data-v-9462ea22] {\n\tmargin-top: 10px;\n}\n.ml-20[data-v-9462ea22] {\n\tmargin-left: 20px;\n}\n\n", ""]);
+exports.push([module.i, "\ni[data-v-9462ea22] {\n\tmargin-right:0!important;\n}\n.header-pads[data-v-9462ea22] {\n\tpadding: 5px 0;\n}\n.images-container-margins[data-v-9462ea22] {\n\tmargin-top: 25px;\n\tmargin-left: 25px;\n}\n.add-item[data-v-9462ea22] {\n\tmargin-top: 10px;\n}\n.ml-20[data-v-9462ea22] {\n\tmargin-left: 20px;\n}\n.ml5[data-v-9462ea22] {\n\tmargin-left: 5px;\n}\n\n", ""]);
 
 // exports
 
@@ -5053,6 +5076,60 @@ var render = function() {
                             }
                           }),
                           _vm._v(" Required\n\t\t\t\t\t\t\t")
+                        ]),
+                        _vm._v(" "),
+                        _c("label", { staticClass: "form-check-label ml5" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: item.is_shown,
+                                expression: "item.is_shown"
+                              }
+                            ],
+                            staticClass: "form-check-input",
+                            attrs: {
+                              type: "checkbox",
+                              disabled: _vm.oldSurvey && !_vm.onEdit
+                            },
+                            domProps: {
+                              checked: Array.isArray(item.is_shown)
+                                ? _vm._i(item.is_shown, null) > -1
+                                : item.is_shown
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = item.is_shown,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        item,
+                                        "is_shown",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        item,
+                                        "is_shown",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(item, "is_shown", $$c)
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" Show?\n\t\t\t\t\t\t\t")
                         ])
                       ])
                     ])
@@ -6262,9 +6339,7 @@ var render = function() {
                                     },
                                     attrs: {
                                       type: "text",
-                                      disabled:
-                                        (_vm.oldSurvey && !_vm.onEdit) ||
-                                        sub_item.vsi_value_other
+                                      disabled: _vm.oldSurvey && !_vm.onEdit
                                     },
                                     domProps: {
                                       value:
@@ -8398,6 +8473,60 @@ var render = function() {
                           }
                         }),
                         _vm._v(" Required\n\t\t\t\t\t\t\t")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "form-check-label ml5" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: item.is_shown,
+                              expression: "item.is_shown"
+                            }
+                          ],
+                          staticClass: "form-check-input",
+                          attrs: {
+                            type: "checkbox",
+                            disabled: _vm.oldSurvey && !_vm.onEdit
+                          },
+                          domProps: {
+                            checked: Array.isArray(item.is_shown)
+                              ? _vm._i(item.is_shown, null) > -1
+                              : item.is_shown
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = item.is_shown,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      item,
+                                      "is_shown",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      item,
+                                      "is_shown",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(item, "is_shown", $$c)
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" Show?\n\t\t\t\t\t\t\t")
                       ])
                     ])
                   ]
@@ -9830,7 +9959,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-row" }, [
                       _c("div", { staticClass: "form-group col-lg-4" }, [
-                        _c("div", { staticClass: "form-check add-item" }, [
+                        _c("div", { staticClass: "form-check" }, [
                           _c("label", { staticClass: "form-check-label" }, [
                             _c("input", {
                               directives: [
@@ -9885,6 +10014,71 @@ var render = function() {
                               }
                             }),
                             _vm._v(" Include office\n\t\t\t\t\t\t\t\t\t")
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group col-lg-4" }, [
+                        _c("div", { staticClass: "form-check" }, [
+                          _c("label", { staticClass: "form-check-label" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.survey.fullscreen_mobile,
+                                  expression: "survey.fullscreen_mobile"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "checkbox",
+                                disabled: _vm.oldSurvey && !_vm.onEdit
+                              },
+                              domProps: {
+                                checked: Array.isArray(
+                                  _vm.survey.fullscreen_mobile
+                                )
+                                  ? _vm._i(_vm.survey.fullscreen_mobile, null) >
+                                    -1
+                                  : _vm.survey.fullscreen_mobile
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.survey.fullscreen_mobile,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.survey,
+                                          "fullscreen_mobile",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.survey,
+                                          "fullscreen_mobile",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(
+                                      _vm.survey,
+                                      "fullscreen_mobile",
+                                      $$c
+                                    )
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" Fullscreen on mobile\n\t\t\t\t\t\t\t\t\t")
                           ])
                         ])
                       ])
@@ -10942,9 +11136,7 @@ var render = function() {
                                     },
                                     attrs: {
                                       type: "text",
-                                      disabled:
-                                        (_vm.oldSurvey && !_vm.onEdit) ||
-                                        sub_item.vsi_value_other
+                                      disabled: _vm.oldSurvey && !_vm.onEdit
                                     },
                                     domProps: {
                                       value:

@@ -35,6 +35,7 @@ class SurveyResource extends JsonResource
 			$items = $section->items()->get([
 				'id',
 				'required',
+				'is_shown',
 				'item_name',
 				'translated',
 				'item_type',
@@ -94,6 +95,7 @@ class SurveyResource extends JsonResource
 					$item_value_answer = ($item['item_type'] == 3)?"":false;
 					
 					$values[$vi]['answer'] = $item_value_answer;
+					$values[$vi]['other_answer'] = "";
 					
 				}
 				
@@ -117,6 +119,7 @@ class SurveyResource extends JsonResource
 					'id',
 					'required',
 					'item_name',
+					'is_shown',
 					'translated',
 					'item_type',
 					'item_presentation',
@@ -174,7 +177,8 @@ class SurveyResource extends JsonResource
 						
 						$aspect_item_value_answer = ($aspect_item['item_type'] == 3)?"":false;
 					
-						$aspect_item_values[$aivi]['answer'] = $aspect_item_value_answer;						
+						$aspect_item_values[$aivi]['answer'] = $aspect_item_value_answer;
+						$aspect_item_values[$aivi]['other_answer'] = "";
 						
 					}
 					
@@ -208,6 +212,7 @@ class SurveyResource extends JsonResource
 			"left_infographic"=>$this->left_infographic,
 			"right_infographic"=>$this->right_infographic,
 			"include_office"=>$this->include_office,
+			"fullscreen_mobile"=>$this->fullscreen_mobile,
 			"introductions"=>$introductions,
 			"sections"=>$sections,
 			"thankyou"=>(is_null($thankyou))?array("id"=>0,"infographic"=>null,"message"=>null,"translated"=>null):$thankyou,

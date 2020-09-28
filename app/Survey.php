@@ -9,7 +9,16 @@ use App\Events\UpdateDashboard;
 class Survey extends Model
 {
 
-    protected $fillable = ['name','description','office','background','left_infographic','right_infographic','include_office'];
+    protected $fillable = [
+		'name',
+		'description',
+		'office',
+		'background',
+		'left_infographic',
+		'right_infographic',
+		'include_office',
+		'fullscreen_mobile'
+	];
 
 	public function introductions() {
 		
@@ -57,7 +66,8 @@ class Survey extends Model
 	}
 	
     protected $casts = [
-		'include_office' => 'boolean'
+		'include_office' => 'boolean',
+		'fullscreen_mobile' => 'boolean'
     ];	
 	
     protected $dispatchesEvents = [

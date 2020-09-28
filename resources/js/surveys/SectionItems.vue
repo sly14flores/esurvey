@@ -17,6 +17,9 @@
 								<label class="form-check-label">
 									<input class="form-check-input" type="checkbox" v-model="item.required" :disabled="oldSurvey && !onEdit"> Required
 								</label>
+								<label class="form-check-label ml5">
+									<input class="form-check-input" type="checkbox" v-model="item.is_shown" :disabled="oldSurvey && !onEdit"> Show?
+								</label>								
 							</div>						  
 						</div>
 						<div :id="'item-'+section+ii" class="collapse" :class="{'show': ii==active_item}" :aria-labelledby="'item-heading-'+section+ii" data-parent="#accordion">
@@ -185,6 +188,10 @@
 		margin-left: 20px;
 	}
 
+	.ml5 {
+		margin-left: 5px;
+	}
+
 </style>
 
 <script>
@@ -275,6 +282,7 @@
 						index: ++index,
 						id: 0,
 						required: true,						
+						is_shown: true,			
 						item_name: '',
 						translated: '',
 						item_type: null,

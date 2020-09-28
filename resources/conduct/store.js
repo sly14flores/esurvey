@@ -210,14 +210,18 @@ export default new Vuex.Store({
 					let index = {};
 
 					s.items.forEach((si,isi) => {
+						
+						if (si.is_shown) {
 
-						index.intro = null;
-						index.section = is;						
-						index.aspect = null;
-						index.item = isi;
+							index.intro = null;
+							index.section = is;						
+							index.aspect = null;
+							index.item = isi;
 
-						indexes.push(index);
-						index = {};
+							indexes.push(index);
+							index = {};
+							
+						}
 
 					});
 
@@ -229,13 +233,17 @@ export default new Vuex.Store({
 
 							sa.items.forEach((sai,isai) => {
 
-								index.intro = null;
-								index.section = is;						
-								index.aspect = isa;
-								index.item = isai;								
+								if (sai.is_shown) {
 
-								indexes.push(index);
-								index = {};										
+									index.intro = null;
+									index.section = is;						
+									index.aspect = isa;
+									index.item = isai;								
+
+									indexes.push(index);
+									index = {};
+
+								}
 		
 							});			
 

@@ -26,7 +26,7 @@
 									  <input type="radio" :id="'radioItem-'+value.id+si.id" class="form-check-input form-control-lg" :class="{'is-invalid': $v.values.$each[vi].$error}" :name="'radioItems-'+value.id" v-bind:value="si.vsi_value" v-model="value.answer">
 									  <label class="form-check-label" :for="'radioItem-'+value.id+si.id">{{ si.display }} <span v-if="si.display_translated!=null" class="text-muted" style="font-style: italic">({{si.display_translated}})</span></label>
 									  <div style="margin-left: 10px;" v-if="si.vsi_value_other && (value.answer == si.vsi_value)">
-										<input type="text" class="form-control">
+										<input type="text" class="form-control" v-model="value.other_answer">
 									  </div>
 									</div>
 									<div v-if="$v.values.$each[vi].$error" class="alert alert-danger" role="alert">
@@ -180,6 +180,10 @@
 			}
 
 		},
+		
+		methods: {
+		
+		},
 
         created() {
 
@@ -192,9 +196,21 @@
 				}),
 				$each: {
 					answer: {required: requiredIf((model) => {
-						return model.required == true
+						
+						/*
+						const has_other_value = model.sub_items.some(sub_item => {
+						
+							return sub_item.vsi_value_other
+							
+						})
+						*/
+						
+						// console.log(model)
+						
+						return model.required && model.other_answer == ""
+
 					})}
-				}				
+				}		
 			}
 		},
 

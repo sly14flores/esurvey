@@ -10,6 +10,7 @@ class AspectItem extends Model
     protected $fillable = [
 		'aspect_id',
 		'required',		
+		'is_shown',		
 		'item_name',
 		'translated',
 		'item_type',
@@ -32,7 +33,8 @@ class AspectItem extends Model
     protected $casts = [
 		'use_images' => 'boolean',
 		'text_is_multiple' => 'boolean',
-		'required' => 'boolean'
+		'required' => 'boolean',
+		'is_shown' => 'boolean'
     ];	
 
 }

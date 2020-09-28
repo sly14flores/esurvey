@@ -98595,6 +98595,7 @@ var surveys = {
           left_infographic: null,
           right_infographic: null,
           include_office: false,
+          fullscreen_mobile: false,
           introductions: [],
           thankyou: {
             id: 0,
