@@ -78,6 +78,7 @@ class SurveyController extends Controller
 		$survey->left_infographic = $request->left_infographic;
 		$survey->right_infographic = $request->right_infographic;
 		$survey->include_office = $request->include_office;
+		$survey->fullscreen_mobile = $request->fullscreen_mobile;
 
 		$survey->save();
 		
@@ -238,6 +239,7 @@ class SurveyController extends Controller
 		$survey->left_infographic = $request->left_infographic;
 		$survey->right_infographic = $request->right_infographic;		
 		$survey->include_office = $request->include_office;
+		$survey->fullscreen_mobile = $request->fullscreen_mobile;
 		
 		$survey->save();
 		

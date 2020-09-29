@@ -10036,11 +10036,14 @@ var render = function() {
                                 disabled: _vm.oldSurvey && !_vm.onEdit
                               },
                               domProps: {
+                                value: _vm.survey.fullscreen_mobile,
                                 checked: Array.isArray(
                                   _vm.survey.fullscreen_mobile
                                 )
-                                  ? _vm._i(_vm.survey.fullscreen_mobile, null) >
-                                    -1
+                                  ? _vm._i(
+                                      _vm.survey.fullscreen_mobile,
+                                      _vm.survey.fullscreen_mobile
+                                    ) > -1
                                   : _vm.survey.fullscreen_mobile
                               },
                               on: {
@@ -10049,7 +10052,7 @@ var render = function() {
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
-                                    var $$v = null,
+                                    var $$v = _vm.survey.fullscreen_mobile,
                                       $$i = _vm._i($$a, $$v)
                                     if ($$el.checked) {
                                       $$i < 0 &&

@@ -170,6 +170,7 @@ export default {
 					
 					this.$store.dispatch('finish').then(response => {
 
+						this.$store.commit('agree', false)
 						this.$root.$children[0].$refs.pSpinner.off()
 
 					});

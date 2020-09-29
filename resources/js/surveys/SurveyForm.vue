@@ -110,7 +110,7 @@
 								<div class="form-group col-lg-4">
 									<div class="form-check">
 										<label class="form-check-label">
-											<input class="form-check-input" type="checkbox" v-model="survey.fullscreen_mobile" :disabled="oldSurvey && !onEdit"> Fullscreen on mobile
+											<input class="form-check-input" type="checkbox" v-model="survey.fullscreen_mobile" :value="survey.fullscreen_mobile" :disabled="oldSurvey && !onEdit"> Fullscreen on mobile
 										</label>
 									</div>									
 								</div>								

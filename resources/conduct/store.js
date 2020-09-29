@@ -58,12 +58,18 @@ export default new Vuex.Store({
 				component: "multi-rows"
 			}
 		],
-		survey: {},
+		survey: {
+			introductions: [],
+			privacy_notice: {},
+			sections: [],
+			thankyou: {}
+		},
 		currentItemIndex: null,
 		finish: false,
 		recursive: false,
 		specific: false,
-		api_token: null
+		api_token: null,
+		agreed: false
 	},
 	mutations: {
 		recursive(state, recursive) {
@@ -124,6 +130,11 @@ export default new Vuex.Store({
 			
 			state.finish = status
 			
+		},
+		agree(state, agree) {
+		
+			state.agreed = agree
+		
 		}
 	},
 	actions: {
@@ -178,7 +189,21 @@ export default new Vuex.Store({
 
 			});
 
-		}		
+		},
+		agree(context) {
+			
+			return new Promise((resolve,reject) => {
+
+				setTimeout(() => {
+
+					context.commit('agree', true);		
+					resolve(true)
+
+				}, 500);
+
+			});			
+			
+		}
 	},
 	getters: {
 		itemsIndexes: state => {
@@ -307,8 +332,6 @@ export default new Vuex.Store({
 		},
 		currentComponent: (state, getters) => {
 			
-			// return 'sopa-thank-you'
-			
 			// if (state.finish) return 'thank-you'
 			if (state.finish && !state.recursive) return 'sopa-thank-you'
 
@@ -317,7 +340,16 @@ export default new Vuex.Store({
 
 			state.item_types.forEach((value) => {
 
-				if (value.id === getters.currentItem.item_type) currentComponent = value.component
+				if (value.id === getters.currentItem.item_type) {
+					
+					if (getters.currentItem.item_type === 'intro') {
+						if (!state.agreed) currentComponent = 'notice'
+						else currentComponent = value.component
+					} else {
+						currentComponent = value.component
+					}
+					
+				}
 
 			})
 

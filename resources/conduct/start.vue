@@ -52,6 +52,7 @@
 	
 	import introduction from './introduction'
 	import thankYou from './thankYou'
+	import notice from './notice'
 	
 	import survey from './mixins/survey'
 	
@@ -80,6 +81,7 @@
             multiRows,
 			introduction,
 			thankYou,
+			notice,
 			sopaStartConduct,
 			sopaRadios,
 			sopaTextInput,
@@ -104,6 +106,31 @@
             }
 
         },
+		
+		methods: {
+		
+			fullscreen() {
+		 
+				function requestFullScreen(element) {
+					// Supports most browsers and their versions.
+					var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+
+					if (requestMethod) { // Native full screen.
+						requestMethod.call(element);
+					} else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+						var wscript = new ActiveXObject("WScript.Shell");
+						if (wscript !== null) {
+							wscript.SendKeys("{F11}");
+						}
+					}
+				}
+
+				var elem = document.body; // Make the body go full screen.
+				requestFullScreen(elem);		 
+		 
+			}
+			
+		},
         
         created() {
 
@@ -131,6 +158,8 @@
 					} else {
 					
 						vm.$store.commit('load',response.data.data)
+						
+						if (response.data.data.fullscreen_mobile) vm.fullscreen()
 						
 					}
                    vm.$parent.$refs.pSpinner.off();
