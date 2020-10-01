@@ -47,9 +47,13 @@
 
 <script>
 
+import OfficeSurveys from './mixins/OfficeSurveys'
+
 export default {
 
 	name: 'SurveysReports',
+
+	mixins: [OfficeSurveys],
  
 	computed: {
 	
@@ -78,19 +82,6 @@ export default {
 	}, 
 
 	methods: {
-	
-		fetchOfficeSurveys() {
-		
-			axios.get('/api/selections/surveys/'+this.$store.state.profile.office, {}, this.$store.state.config).then(response => {
-				
-				this.$store.commit('dashboardSurveys', response.data)
-				if (_.size(response.data)) this.$store.commit('dashboardSurvey', this.surveys[0].id)
-				
-			}).catch(e => {
-				
-			})
-		
-		},
 
 		getReports() {
 
@@ -110,7 +101,14 @@ export default {
 	
 		this.$store.dispatch('async_profile').then(() => {
 
-			this.fetchOfficeSurveys()
+			this.fetchOfficeSurveys().then(response => {
+
+				this.$store.commit('dashboardSurveys', response.data)
+				if (_.size(response.data)) this.$store.commit('dashboardSurvey', this.surveys[0].id)		
+
+			}).catch(e => {
+
+			})
 			
 		})
 

@@ -186,7 +186,7 @@
 								@endgate
 								@gate('Survey','show-surveys')
 								<ul class="pcoded-item pcoded-left-item">
-									<li :class="{ 'pcoded-hasmenu': true, 'pcoded-trigger': activeRoute=='survey_new' || activeRoute=='survey_view' || activeRoute == 'surveys_list' || activeRoute == 'survey_conduct' || activeRoute == 'survey_reports'}"><!-- pcoded-trigger -->
+									<li :class="{ 'pcoded-hasmenu': true, 'pcoded-trigger': activeRoute=='survey_new' || activeRoute=='survey_view' || activeRoute == 'surveys_list' || activeRoute == 'survey_conduct' || activeRoute == 'survey_reports' || activeRoute == 'survey_respondents'}"><!-- pcoded-trigger -->
 										<a href="javascript:void(0)">
 											<span class="pcoded-micon"><i class="feather icon-menu"></i></span>
 											<span class="pcoded-mtext">Surveys</span>
@@ -207,6 +207,11 @@
 													<span class="pcoded-mtext">Conduct</span>
 												</router-link>
 											</li>
+											<li :class="{active: activeRoute=='survey_respondents'}">
+												<router-link to="/survey/show/respondents">
+													<span class="pcoded-mtext">Respondents</span>
+												</router-link>
+											</li>											
 											<li :class="{active: activeRoute=='survey_reports'}">
 												<router-link to="/survey/show/reports">
 													<span class="pcoded-mtext">Reports</span>

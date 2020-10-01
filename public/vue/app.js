@@ -2838,6 +2838,143 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/surveys/Respondents.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/surveys/Respondents.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_OfficeSurveys__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mixins/OfficeSurveys */ "./resources/js/surveys/mixins/OfficeSurveys.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'SurveyRespondents',
+  mixins: [_mixins_OfficeSurveys__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  data: function data() {
+    return {
+      dataFetched: false
+    };
+  },
+  components: {
+    SurveysHeader: function SurveysHeader() {
+      return __webpack_require__.e(/*! import() | SurveysHeader */ "SurveysHeader").then(__webpack_require__.bind(null, /*! ./SurveysHeader */ "./resources/js/surveys/SurveysHeader.vue"));
+    },
+    SlyPagination: function SlyPagination() {
+      return __webpack_require__.e(/*! import() | SlyPagination */ "SlyPagination").then(__webpack_require__.bind(null, /*! ../components/SlyPagination */ "./resources/js/components/SlyPagination.vue"));
+    }
+  },
+  computed: {
+    survey: {
+      get: function get() {
+        return this.$store.state.dashboard.survey;
+      },
+      set: function set(value) {
+        this.$store.commit('dashboardSurvey', value);
+      }
+    },
+    surveys: function surveys() {
+      return this.$store.state.dashboard.surveys;
+    }
+  },
+  methods: {
+    respondents: function respondents() {
+      // this.$store.state.dashboard.survey
+      this.dataFetched = false;
+    }
+  },
+  created: function created() {},
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$parent.hide();
+    this.$store.dispatch('async_profile').then(function () {
+      _this.fetchOfficeSurveys().then(function (response) {
+        _this.$store.commit('dashboardSurveys', response.data);
+
+        if (_.size(response.data)) _this.$store.commit('dashboardSurvey', _this.surveys[0].id);
+      })["catch"](function (e) {});
+    });
+    this.dataFetched = true;
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/surveys/SurveysList.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/surveys/SurveysList.vue?vue&type=script&lang=js& ***!
@@ -3135,6 +3272,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_OfficeSurveys__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mixins/OfficeSurveys */ "./resources/js/surveys/mixins/OfficeSurveys.js");
 //
 //
 //
@@ -3182,8 +3320,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SurveysReports',
+  mixins: [_mixins_OfficeSurveys__WEBPACK_IMPORTED_MODULE_0__["default"]],
   computed: {
     survey: {
       get: function get() {
@@ -3198,26 +3338,21 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    fetchOfficeSurveys: function fetchOfficeSurveys() {
-      var _this = this;
-
-      axios.get('/api/selections/surveys/' + this.$store.state.profile.office, {}, this.$store.state.config).then(function (response) {
-        _this.$store.commit('dashboardSurveys', response.data);
-
-        if (_.size(response.data)) _this.$store.commit('dashboardSurvey', _this.surveys[0].id);
-      })["catch"](function (e) {});
-    },
     getReports: function getReports() {
       window.open('/reports/survey');
     }
   },
   created: function created() {},
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     this.$parent.hide();
     this.$store.dispatch('async_profile').then(function () {
-      _this2.fetchOfficeSurveys();
+      _this.fetchOfficeSurveys().then(function (response) {
+        _this.$store.commit('dashboardSurveys', response.data);
+
+        if (_.size(response.data)) _this.$store.commit('dashboardSurvey', _this.surveys[0].id);
+      })["catch"](function (e) {});
     });
   }
 });
@@ -46704,6 +46839,25 @@ exports.push([module.i, "\n.cursorize[data-v-30e0e340] {\n\tcursor: pointer;\n}\
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/surveys/Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--8-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/surveys/Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.cursorize[data-v-3b504199] {\n\tcursor: pointer;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/surveys/SurveysList.vue?vue&type=style&index=0&lang=css&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--8-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/surveys/SurveysList.vue?vue&type=style&index=0&lang=css& ***!
@@ -77103,6 +77257,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/surveys/Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--8-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/surveys/Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--8-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--8-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/surveys/Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/surveys/SurveysList.vue?vue&type=style&index=0&lang=css&":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--8-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/surveys/SurveysList.vue?vue&type=style&index=0&lang=css& ***!
@@ -78825,6 +79009,165 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h5", [_vm._v("Office Specific Survey")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/surveys/Respondents.vue?vue&type=template&id=3b504199&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/surveys/Respondents.vue?vue&type=template&id=3b504199&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "page-wrapper" }, [
+      _c("div", { staticClass: "page-header" }, [
+        _c("div", { staticClass: "row align-items-end" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-4" }, [
+            _c("div", { staticClass: "page-header-breadcrumb" }, [
+              _c("ul", { staticClass: "breadcrumb-title" }, [
+                _c(
+                  "li",
+                  { staticClass: "breadcrumb-item" },
+                  [
+                    _c("router-link", { attrs: { to: "/surveys" } }, [
+                      _c("i", { staticClass: "feather icon-home" })
+                    ])
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c("form", { staticClass: "form-inline mt-4" }, [
+              _c("label", { staticClass: "my-1 mr-2" }, [_vm._v("Surveys")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.survey,
+                      expression: "survey"
+                    }
+                  ],
+                  staticClass: "custom-select my-1 mr-sm-2",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.survey = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                _vm._l(_vm.surveys, function(survey) {
+                  return _c(
+                    "option",
+                    { key: survey.id, domProps: { value: survey.id } },
+                    [_vm._v(_vm._s(survey.name))]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary my-1",
+                  attrs: { type: "button" },
+                  on: { click: _vm.respondents }
+                },
+                [_vm._v("Go!")]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "page-body" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-block" },
+            [
+              _c("transition", [
+                !_vm.dataFetched
+                  ? _c("div", { staticClass: "preloader3 loader-block" }, [
+                      _c("div", { staticClass: "circ1" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "circ2" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "circ3" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "circ4" })
+                    ])
+                  : _c("div", { staticClass: "table-responsive" }, [
+                      _c("table", { staticClass: "table table-xs" }, [
+                        _c("thead"),
+                        _vm._v(" "),
+                        _c("tbody")
+                      ])
+                    ])
+              ])
+            ],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-8" }, [
+      _c("div", { staticClass: "page-header-title" }, [
+        _c("div", { staticClass: "d-inline" }, [
+          _c("h4", [_vm._v("Respondents")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", [_vm._v("List")])
     ])
   }
 ]
@@ -98191,6 +98534,44 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/dashboard/dashboard.js":
+/*!*********************************************!*\
+  !*** ./resources/js/dashboard/dashboard.js ***!
+  \*********************************************/
+/*! exports provided: dashboard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dashboard", function() { return dashboard; });
+var dashboard = {
+  state: {
+    data: {
+      info: {
+        survey: {},
+        answered: {}
+      }
+    },
+    survey: null,
+    surveys: []
+  },
+  mutations: {
+    dashboardData: function dashboardData(state, data) {
+      state.data = data;
+    },
+    dashboardSurvey: function dashboardSurvey(state, survey) {
+      state.survey = survey;
+    },
+    dashboardSurveys: function dashboardSurveys(state, surveys) {
+      state.surveys = surveys;
+    }
+  },
+  actions: {},
+  getters: {}
+};
+
+/***/ }),
+
 /***/ "./resources/js/dashboard/mixins/Data.js":
 /*!***********************************************!*\
   !*** ./resources/js/dashboard/mixins/Data.js ***!
@@ -98303,6 +98684,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupsList_vue_vue_type_template_id_44419abf___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/groups/groups.js":
+/*!***************************************!*\
+  !*** ./resources/js/groups/groups.js ***!
+  \***************************************/
+/*! exports provided: groups */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groups", function() { return groups; });
+var groups = {
+  state: {
+    group: {},
+    groups: []
+  },
+  mutations: {
+    group: function group(state, _group) {
+      if (_.isEmpty(_group)) {
+        state.group = {
+          name: null,
+          description: null
+        };
+      } else {
+        state.group = _group;
+      }
+    },
+    groups: function groups(state, _groups) {
+      state.groups = _groups;
+    },
+    authorizations: function authorizations(state, _authorizations) {
+      Vue.set(state.group, 'authorizations', _authorizations);
+    }
+  },
+  actions: {},
+  getters: {}
+};
 
 /***/ }),
 
@@ -98429,6 +98849,42 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/offices/offices.js":
+/*!*****************************************!*\
+  !*** ./resources/js/offices/offices.js ***!
+  \*****************************************/
+/*! exports provided: offices */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "offices", function() { return offices; });
+var offices = {
+  state: {
+    office: {},
+    offices: []
+  },
+  mutations: {
+    offices: function offices(state, _offices) {
+      state.offices = _offices;
+    },
+    office: function office(state, _office) {
+      if (_.isEmpty(_office)) {
+        state.office = {
+          name: null,
+          description: null
+        };
+      } else {
+        state.office = _office;
+      }
+    }
+  },
+  actions: {},
+  getters: {}
+};
+
+/***/ }),
+
 /***/ "./resources/js/router.js":
 /*!********************************!*\
   !*** ./resources/js/router.js ***!
@@ -98444,10 +98900,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _groups_GroupsList_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./groups/GroupsList.vue */ "./resources/js/groups/GroupsList.vue");
 /* harmony import */ var _surveys_SurveysList_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./surveys/SurveysList.vue */ "./resources/js/surveys/SurveysList.vue");
 /* harmony import */ var _surveys_SurveysReports_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./surveys/SurveysReports.vue */ "./resources/js/surveys/SurveysReports.vue");
-/* harmony import */ var _surveys_Conduct_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./surveys/Conduct.vue */ "./resources/js/surveys/Conduct.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _surveys_Respondents_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./surveys/Respondents.vue */ "./resources/js/surveys/Respondents.vue");
+/* harmony import */ var _surveys_Conduct_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./surveys/Conduct.vue */ "./resources/js/surveys/Conduct.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 // Routes
 
 var dashboard = _dashboard_Dashboard_vue__WEBPACK_IMPORTED_MODULE_0__["default"]; // Forms
@@ -98469,6 +98926,7 @@ var SurveyForm = function SurveyForm() {
 }; // Lists
 // const UsersList = () => import(/* webpackChunkName: "user" */'./users/UsersList.vue')
 // const OfficesList = () => import(/* webpackChunkName: "office" */'./offices/OfficesList.vue')
+
 
 
 
@@ -98534,18 +98992,23 @@ var routes = [{
   name: 'survey_view',
   component: SurveyForm
 }, {
+  path: '/survey/show/respondents',
+  name: 'survey_respondents',
+  component: _surveys_Respondents_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+}, {
   path: '/survey/show/reports',
   name: 'survey_reports',
   component: _surveys_SurveysReports_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/conduct/survey',
   name: 'survey_conduct',
-  component: _surveys_Conduct_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  component: _surveys_Conduct_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }];
 
 
-vue__WEBPACK_IMPORTED_MODULE_7___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]);
-/* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]({
+vue__WEBPACK_IMPORTED_MODULE_8___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]({
+  // mode: 'history',
   routes: routes // short for `routes: routes`
 
 }));
@@ -98563,196 +99026,25 @@ vue__WEBPACK_IMPORTED_MODULE_7___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _surveys_surveys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./surveys/surveys */ "./resources/js/surveys/surveys.js");
+/* harmony import */ var _users_users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users/users */ "./resources/js/users/users.js");
+/* harmony import */ var _offices_offices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./offices/offices */ "./resources/js/offices/offices.js");
+/* harmony import */ var _groups_groups__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./groups/groups */ "./resources/js/groups/groups.js");
+/* harmony import */ var _dashboard_dashboard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dashboard/dashboard */ "./resources/js/dashboard/dashboard.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var surveys = {
-  state: {
-    survey: {
-      thankyou: {},
-      privacy_notice: {}
-    },
-    surveys: []
-  },
-  mutations: {
-    surveys: function surveys(state, _surveys) {
-      state.surveys = _surveys;
-    },
-    survey: function survey(state, _survey) {
-      if (_.isEmpty(_survey)) {
-        state.survey = {
-          id: 0,
-          name: null,
-          description: null,
-          office: null,
-          background: null,
-          left_infographic: null,
-          right_infographic: null,
-          include_office: false,
-          fullscreen_mobile: false,
-          introductions: [],
-          thankyou: {
-            id: 0,
-            infographic: null,
-            message: null,
-            translated: null
-          },
-          privacy_notice: {
-            id: 0,
-            content: null,
-            translated: null
-          },
-          sections: []
-        };
-      } else {
-        state.survey = _survey;
-      }
-    },
-    introductions: function introductions(state, _introductions) {
-      state.survey.introductions = _introductions;
-    },
-    sections: function sections(state, _sections) {
-      state.survey.sections = _sections;
-    },
-    items: function items(state, section) {
-      state.survey.sections[section.section].items = section.items;
-    },
-    values: function values(state, item) {
-      state.survey.sections[item.section].items[item.item].values = item.values;
-    },
-    sub_items: function sub_items(state, sub_item) {
-      state.survey.sections[sub_item.section].items[sub_item.item].values[sub_item.value].sub_items = sub_item.sub_items;
-    },
-    aspects: function aspects(state, section) {
-      state.survey.sections[section.section].aspects = section.aspects;
-    },
-    aspect_items: function aspect_items(state, aspect) {
-      state.survey.sections[aspect.section].aspects[aspect.aspect].items = aspect.items;
-    },
-    aspect_item_values: function aspect_item_values(state, item) {
-      state.survey.sections[item.section].aspects[item.aspect].items[item.item].values = item.values;
-    },
-    aspect_item_value_sub_items: function aspect_item_value_sub_items(state, sub_item) {
-      state.survey.sections[sub_item.section].aspects[sub_item.aspect].items[sub_item.item].values[sub_item.value].sub_items = sub_item.sub_items;
-    }
-  },
-  actions: {
-    fetchSurvey: function fetchSurvey(context) {
-      axios.get('/api/survey/' + context.state.survey.id, context.rootState.config).then(function (response) {
-        context.commit('survey', response.data.data);
-      })["catch"](function (e) {});
-    }
-  },
-  getters: {}
-};
-var users = {
-  state: {
-    user: {},
-    users: []
-  },
-  mutations: {
-    users: function users(state, _users) {
-      state.users = _users;
-    },
-    user: function user(state, _user) {
-      if (_.isEmpty(_user)) {
-        state.user = {
-          firstname: null,
-          middlename: null,
-          lastname: null,
-          email: null,
-          username: null,
-          office: null,
-          group: null
-        };
-      } else {
-        state.user = _user;
-      }
-    }
-  },
-  actions: {},
-  getters: {}
-};
-var offices = {
-  state: {
-    office: {},
-    offices: []
-  },
-  mutations: {
-    offices: function offices(state, _offices) {
-      state.offices = _offices;
-    },
-    office: function office(state, _office) {
-      if (_.isEmpty(_office)) {
-        state.office = {
-          name: null,
-          description: null
-        };
-      } else {
-        state.office = _office;
-      }
-    }
-  },
-  actions: {},
-  getters: {}
-};
-var groups = {
-  state: {
-    group: {},
-    groups: []
-  },
-  mutations: {
-    group: function group(state, _group) {
-      if (_.isEmpty(_group)) {
-        state.group = {
-          name: null,
-          description: null
-        };
-      } else {
-        state.group = _group;
-      }
-    },
-    groups: function groups(state, _groups) {
-      state.groups = _groups;
-    },
-    authorizations: function authorizations(state, _authorizations) {
-      vue__WEBPACK_IMPORTED_MODULE_1___default.a.set(state.group, 'authorizations', _authorizations);
-    }
-  },
-  actions: {},
-  getters: {}
-};
-var dashboard = {
-  state: {
-    data: {
-      info: {
-        survey: {},
-        answered: {}
-      }
-    },
-    survey: null,
-    surveys: []
-  },
-  mutations: {
-    dashboardData: function dashboardData(state, data) {
-      state.data = data;
-    },
-    dashboardSurvey: function dashboardSurvey(state, survey) {
-      state.survey = survey;
-    },
-    dashboardSurveys: function dashboardSurveys(state, surveys) {
-      state.surveys = surveys;
-    }
-  },
-  actions: {},
-  getters: {}
-}; // import VuexPersist from 'vuex-persist'
+
+
+
+
+ // import VuexPersist from 'vuex-persist'
 
 /* const vuexPersist = new VuexPersist({
   key: 'esurvey',
@@ -98761,15 +99053,15 @@ var dashboard = {
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__["default"]);
-/* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_7__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_7__["default"].Store({
   // plugins: [vuexPersist.plugin],
   modules: {
-    surveys: surveys,
-    users: users,
-    offices: offices,
-    groups: groups,
-    dashboard: dashboard
+    surveys: _surveys_surveys__WEBPACK_IMPORTED_MODULE_1__["surveys"],
+    users: _users_users__WEBPACK_IMPORTED_MODULE_2__["users"],
+    offices: _offices_offices__WEBPACK_IMPORTED_MODULE_3__["offices"],
+    groups: _groups_groups__WEBPACK_IMPORTED_MODULE_4__["groups"],
+    dashboard: _dashboard_dashboard__WEBPACK_IMPORTED_MODULE_5__["dashboard"]
   },
   state: {
     profile: {},
@@ -98952,6 +99244,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/surveys/Respondents.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/surveys/Respondents.vue ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Respondents_vue_vue_type_template_id_3b504199_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Respondents.vue?vue&type=template&id=3b504199&scoped=true& */ "./resources/js/surveys/Respondents.vue?vue&type=template&id=3b504199&scoped=true&");
+/* harmony import */ var _Respondents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Respondents.vue?vue&type=script&lang=js& */ "./resources/js/surveys/Respondents.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Respondents_vue_vue_type_style_index_0_id_3b504199_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css& */ "./resources/js/surveys/Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Respondents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Respondents_vue_vue_type_template_id_3b504199_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Respondents_vue_vue_type_template_id_3b504199_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "3b504199",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/surveys/Respondents.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/surveys/Respondents.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/surveys/Respondents.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Respondents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Respondents.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/surveys/Respondents.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Respondents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/surveys/Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/surveys/Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css& ***!
+  \*******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_8_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Respondents_vue_vue_type_style_index_0_id_3b504199_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--8-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--8-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/surveys/Respondents.vue?vue&type=style&index=0&id=3b504199&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_8_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Respondents_vue_vue_type_style_index_0_id_3b504199_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_8_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Respondents_vue_vue_type_style_index_0_id_3b504199_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_8_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Respondents_vue_vue_type_style_index_0_id_3b504199_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_8_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Respondents_vue_vue_type_style_index_0_id_3b504199_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_8_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Respondents_vue_vue_type_style_index_0_id_3b504199_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/surveys/Respondents.vue?vue&type=template&id=3b504199&scoped=true&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/surveys/Respondents.vue?vue&type=template&id=3b504199&scoped=true& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Respondents_vue_vue_type_template_id_3b504199_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Respondents.vue?vue&type=template&id=3b504199&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/surveys/Respondents.vue?vue&type=template&id=3b504199&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Respondents_vue_vue_type_template_id_3b504199_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Respondents_vue_vue_type_template_id_3b504199_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/surveys/SurveysList.vue":
 /*!**********************************************!*\
   !*** ./resources/js/surveys/SurveysList.vue ***!
@@ -99108,6 +99487,117 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/surveys/mixins/OfficeSurveys.js":
+/*!******************************************************!*\
+  !*** ./resources/js/surveys/mixins/OfficeSurveys.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    fetchOfficeSurveys: function fetchOfficeSurveys() {
+      return axios.get('/api/selections/surveys/' + this.$store.state.profile.office, this.$store.state.config);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/surveys/surveys.js":
+/*!*****************************************!*\
+  !*** ./resources/js/surveys/surveys.js ***!
+  \*****************************************/
+/*! exports provided: surveys */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "surveys", function() { return surveys; });
+var surveys = {
+  state: {
+    survey: {
+      thankyou: {},
+      privacy_notice: {}
+    },
+    surveys: []
+  },
+  mutations: {
+    surveys: function surveys(state, _surveys) {
+      state.surveys = _surveys;
+    },
+    survey: function survey(state, _survey) {
+      if (_.isEmpty(_survey)) {
+        state.survey = {
+          id: 0,
+          name: null,
+          description: null,
+          office: null,
+          background: null,
+          left_infographic: null,
+          right_infographic: null,
+          include_office: false,
+          fullscreen_mobile: false,
+          introductions: [],
+          thankyou: {
+            id: 0,
+            infographic: null,
+            message: null,
+            translated: null
+          },
+          privacy_notice: {
+            id: 0,
+            content: null,
+            translated: null
+          },
+          sections: []
+        };
+      } else {
+        state.survey = _survey;
+      }
+    },
+    introductions: function introductions(state, _introductions) {
+      state.survey.introductions = _introductions;
+    },
+    sections: function sections(state, _sections) {
+      state.survey.sections = _sections;
+    },
+    items: function items(state, section) {
+      state.survey.sections[section.section].items = section.items;
+    },
+    values: function values(state, item) {
+      state.survey.sections[item.section].items[item.item].values = item.values;
+    },
+    sub_items: function sub_items(state, sub_item) {
+      state.survey.sections[sub_item.section].items[sub_item.item].values[sub_item.value].sub_items = sub_item.sub_items;
+    },
+    aspects: function aspects(state, section) {
+      state.survey.sections[section.section].aspects = section.aspects;
+    },
+    aspect_items: function aspect_items(state, aspect) {
+      state.survey.sections[aspect.section].aspects[aspect.aspect].items = aspect.items;
+    },
+    aspect_item_values: function aspect_item_values(state, item) {
+      state.survey.sections[item.section].aspects[item.aspect].items[item.item].values = item.values;
+    },
+    aspect_item_value_sub_items: function aspect_item_value_sub_items(state, sub_item) {
+      state.survey.sections[sub_item.section].aspects[sub_item.aspect].items[sub_item.item].values[sub_item.value].sub_items = sub_item.sub_items;
+    }
+  },
+  actions: {
+    fetchSurvey: function fetchSurvey(context) {
+      axios.get('/api/survey/' + context.state.survey.id, context.rootState.config).then(function (response) {
+        context.commit('survey', response.data.data);
+      })["catch"](function (e) {});
+    }
+  },
+  getters: {}
+};
+
+/***/ }),
+
 /***/ "./resources/js/users/UsersList.vue":
 /*!******************************************!*\
   !*** ./resources/js/users/UsersList.vue ***!
@@ -99192,6 +99682,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersList_vue_vue_type_template_id_7e8a4bd1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/users/users.js":
+/*!*************************************!*\
+  !*** ./resources/js/users/users.js ***!
+  \*************************************/
+/*! exports provided: users */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "users", function() { return users; });
+var users = {
+  state: {
+    user: {},
+    users: []
+  },
+  mutations: {
+    users: function users(state, _users) {
+      state.users = _users;
+    },
+    user: function user(state, _user) {
+      if (_.isEmpty(_user)) {
+        state.user = {
+          firstname: null,
+          middlename: null,
+          lastname: null,
+          email: null,
+          username: null,
+          office: null,
+          group: null
+        };
+      } else {
+        state.user = _user;
+      }
+    }
+  },
+  actions: {},
+  getters: {}
+};
 
 /***/ }),
 
