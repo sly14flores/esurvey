@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Survey;
 use App\Respondent;
 use App\SectionItemAnswer;
 use App\SectionItemValueAnswer;
@@ -12,10 +13,12 @@ use App\SectionItemSubItemAnswer;
 use App\AspectItemAnswer;
 use App\AspectItemSubItemAnswer;
 
+use App\Http\Resources\RespondentResource;
+
 class SurveyRespondent extends Controller
 {
 
-	public function __invoke(Request $request)
+	public function update(Request $request)
 	{
 
 		$survey = $request->survey;
@@ -73,6 +76,14 @@ class SurveyRespondent extends Controller
 			
 		}
 		
+	}
+
+	public function show(Request $request, $survey_id) {
+
+		$survey = Survey::find($survey_id);
+
+		return new RespondentResource($survey);
+
 	}
 
 }

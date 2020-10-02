@@ -59,8 +59,13 @@ Route::prefix('selections')->group(function() {
 
 });
 
-Route::post('/conduct/{token}', 'FetchSurvey');
-Route::post('/conduct/survey/respondent', 'SurveyRespondent');
+Route::prefix('conduct')->group(function() {
+
+	Route::post('/{token}', 'FetchSurvey');
+	Route::post('/survey/respondent', 'SurveyRespondent@update');
+	Route::get('/survey/respondent/{survey_id}', 'SurveyRespondent@show');
+
+});
 
 /*
 * trigger/broadcast an event
@@ -71,8 +76,6 @@ Route::get('send/message/{message}', function($message) {
 	broadcast(new SendMessage($message));	
 	
 });
-
-
 
 /*
 * Redis set/get tests

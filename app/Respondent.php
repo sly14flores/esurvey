@@ -67,4 +67,21 @@ class Respondent extends Model
         'created' => UpdateDashboard::class
     ];	
 
+
+	/**
+	 * Custom Attributes
+	 */
+
+	// Attributes
+	protected $attributes = ['my_attr'];
+
+	// JSON Response
+	protected $appends = ['my_attr'];
+
+	// Mutator
+	public function getMyAttrAttribute()
+	{
+		return "Hello, World";
+	}
+
 }
