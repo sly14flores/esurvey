@@ -15,8 +15,6 @@ class RespondentResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
-        return [
-            "respondents" => $this->respondents()->get()
-        ];
+        return $this->respondents()->get();
     }
 }

@@ -35,6 +35,11 @@ class SectionItem extends Model
 		'text_is_multiple' => 'boolean',
 		'required' => 'boolean',
 		'is_shown' => 'boolean'
-    ];	
+	];
+	
+	public function item_answers()
+	{
+		return $this->hasMany('App\SectionItemAnswer');
+	}
 
 }

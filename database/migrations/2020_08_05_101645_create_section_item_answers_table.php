@@ -18,7 +18,7 @@ class CreateSectionItemAnswersTable extends Migration
 			$table->foreignId('respondent_id')->constrained()
 				  ->onDelete('cascade')
 				  ->onUpdate('no action');
-            $table->bigInteger('section_item_id')->nullable();
+            $table->unsignedBigInteger('section_item_id')->nullable();
 			$table->string('answer')->nullable();
             $table->timestamps();
         });

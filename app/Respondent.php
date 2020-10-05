@@ -9,7 +9,15 @@ use App\Events\UpdateDashboard;
 class Respondent extends Model
 {
 
-    protected $fillable = ['survey_id'];
+	protected $fillable = ['survey_id'];
+	
+	protected $hidden = [
+		'anon_id',
+		'survey_id',
+		'survey',
+		'created_at',
+		'updated_at'
+	];
 	
     protected $casts = [];
 	
@@ -48,6 +56,13 @@ class Respondent extends Model
 		
 	}
 	
+	public function survey()
+	{
+
+		return $this->belongsTo('App\Survey');
+
+	}
+
     /**
      * created_at mutator
      *
@@ -58,6 +73,11 @@ class Respondent extends Model
         return date("F j, Y h:i A",strtotime($value));
     }
 	
+    public function getUpdatedAtAttribute($value)
+    {
+        return date("F j, Y h:i A",strtotime($value));
+    }	
+
 	public function last_update()
 	{
         return date("M j, Y h:i A",strtotime($this->created_at));
@@ -73,15 +93,33 @@ class Respondent extends Model
 	 */
 
 	// Attributes
-	protected $attributes = ['my_attr'];
+	protected $attributes = [
+		'survey_name',
+		'item_answers',
+		'date'
+	];
 
 	// JSON Response
-	protected $appends = ['my_attr'];
+	protected $appends = [
+		'survey_name',
+		'item_answers',
+		'date'
+	];
 
-	// Mutator
-	public function getMyAttrAttribute()
+	// Survey Name
+	public function getSurveyNameAttribute()
 	{
-		return "Hello, World";
+		return $this->survey->name;
+	}
+
+	public function getDateAttribute()
+	{
+        return date("M j, Y h:i A",strtotime($this->created_at));
+	}
+
+	public function getItemAnswersAttribute()
+	{
+		return $this->section_item_answers()->get();
 	}
 
 }
