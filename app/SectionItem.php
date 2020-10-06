@@ -41,5 +41,10 @@ class SectionItem extends Model
 	{
 		return $this->hasMany('App\SectionItemAnswer');
 	}
+	
+	public function section()
+	{
+		return $this->belongsTo('App\SurveySection','section_id','id');
+	}
 
 }

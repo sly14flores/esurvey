@@ -30,9 +30,9 @@ class SurveyRespondent extends Controller
 		if ($specific) {
 			$respondent->office = $request->office;
 		}
-		
+
 		$respondent->save();
-		
+
 		foreach ($survey['sections'] as $section) {
 			
 			foreach ($section['aspects'] as $section_aspect) {
@@ -52,6 +52,8 @@ class SurveyRespondent extends Controller
 			}
 			
 			foreach ($section['items'] as $section_item) {
+
+				if (!$section_item['is_shown']) continue;
 				
 				$section_item['section_item_id'] = $section_item['id'];
 				$section_item_answer = new SectionItemAnswer($section_item);

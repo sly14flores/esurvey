@@ -11,7 +11,7 @@ class SectionItemAnswer extends Model
     
     protected $hidden = [
         'respondent_id',
-        //'section_item_id',
+        'section_item_id',
 		'created_at',
         'updated_at',
         'section_item'
@@ -23,6 +23,11 @@ class SectionItemAnswer extends Model
     {
         return $this->belongsTo('App\SectionItem','section_item_id','id');
     }
+	
+	public function respondent()
+	{
+		return $this->belongsTo('App\Respondent');
+	}
 
     /**
      * created_at mutator
@@ -42,17 +47,31 @@ class SectionItemAnswer extends Model
 	/**
 	 * Custom Attributes
 	 */
-    protected $attributes = [
-        'item_name',
-    ];
-    
 	protected $appends = [
-        'item_name'
+        'item_name',
+		'section_name',
+		'item_type',
+		'answers'
     ];
 
     public function getItemNameAttribute()
     {
         return $this->section_item->item_name;
     }
+	
+	public function getSectionNameAttribute()
+	{
+		return $this->section_item->section->section_name;
+	}
+	
+	public function getItemTypeAttribute()
+	{
+		return $this->section_item->item_type;
+	}
+
+	public function getAnswersAttribute()
+	{
+
+	}
 
 }

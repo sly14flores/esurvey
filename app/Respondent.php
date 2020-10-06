@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Events\UpdateDashboard;
 
+use App\Office;
+
 class Respondent extends Model
 {
 
@@ -15,6 +17,7 @@ class Respondent extends Model
 		'anon_id',
 		'survey_id',
 		'survey',
+		'office',
 		'created_at',
 		'updated_at'
 	];
@@ -93,18 +96,22 @@ class Respondent extends Model
 	 */
 
 	// Attributes
-	protected $attributes = [
+	// JSON Response
+	protected $appends = [
+		'office_name',
 		'survey_name',
-		'item_answers',
+		'answers',
 		'date'
 	];
 
-	// JSON Response
-	protected $appends = [
-		'survey_name',
-		'item_answers',
-		'date'
-	];
+	public function getOfficeNameAttribute()
+	{
+		$office = Office::find($this->office);
+		$office_name = null;
+		if (!is_null($office)) $office_name = $office->name;
+		
+		return $office_name;
+	}
 
 	// Survey Name
 	public function getSurveyNameAttribute()
@@ -117,7 +124,7 @@ class Respondent extends Model
         return date("M j, Y h:i A",strtotime($this->created_at));
 	}
 
-	public function getItemAnswersAttribute()
+	public function getAnswersAttribute()
 	{
 		return $this->section_item_answers()->get();
 	}
