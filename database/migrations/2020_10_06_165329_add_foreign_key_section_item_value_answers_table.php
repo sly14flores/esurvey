@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIndexSectionItemIdSectionItemAnswersTable extends Migration
+class AddForeignKeySectionItemValueAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddIndexSectionItemIdSectionItemAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::table('section_item_answers', function (Blueprint $table) {
-            $table->index('section_item_id');
-            $table->foreign('section_item_id')->references('id')->on('section_items');
+        Schema::table('section_item_value_answers', function (Blueprint $table) {
+			$table->unsignedBigInteger('section_item_answer_id')->after('section_item_value_id')->nullable();
         });
     }
 
@@ -26,7 +25,7 @@ class AddIndexSectionItemIdSectionItemAnswersTable extends Migration
      */
     public function down()
     {
-        Schema::table('section_item_answers', function (Blueprint $table) {
+        Schema::table('section_item_value_answers', function (Blueprint $table) {
             //
         });
     }
