@@ -100,7 +100,7 @@ class Respondent extends Model
 	protected $appends = [
 		'office_name',
 		'survey_name',
-		'answers',
+		'item_answers',
 		'date'
 	];
 
@@ -124,7 +124,7 @@ class Respondent extends Model
         return date("M j, Y h:i A",strtotime($this->created_at));
 	}
 
-	public function getAnswersAttribute()
+	public function getItemAnswersAttribute()
 	{
 		return $this->section_item_answers()->get();
 	}

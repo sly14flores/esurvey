@@ -26,7 +26,7 @@ class SectionItemAnswer extends Model
 	
 	public function respondent()
 	{
-		return $this->belongsTo('App\Respondent');
+		return $this->belongsTo('App\Respondent','respondent_id','id');
 	}
 
     /**
@@ -51,7 +51,7 @@ class SectionItemAnswer extends Model
         'item_name',
 		'section_name',
 		'item_type',
-		'answers'
+		'value_answers'
     ];
 
     public function getItemNameAttribute()
@@ -69,7 +69,7 @@ class SectionItemAnswer extends Model
 		return $this->section_item->item_type;
 	}
 
-	public function getAnswersAttribute()
+	public function getValueAnswersAttribute()
 	{
 
 	}
