@@ -58,13 +58,14 @@ class SurveyRespondent extends Controller
 				$section_item['section_item_id'] = $section_item['id'];
 				$section_item_answer = new SectionItemAnswer($section_item);
 				$respondent->section_item_answers()->save($section_item_answer);
-				
+
 				# section item value answers
 				if ( ($section_item['item_type']==2) || (($section_item['item_type']==3)&&($section_item['text_is_multiple'])) ) {
 					
 					foreach ($section_item['values'] as $section_item_value) {
 						
 						$section_item_value['section_item_value_id'] = $section_item_value['id'];
+						$section_item_value['section_item_answer_id'] = $section_item_answer->id;
 						$section_item_value_answer = new SectionItemValueAnswer($section_item_value);
 						$respondent->section_item_value_answers()->save($section_item_value_answer);
 						

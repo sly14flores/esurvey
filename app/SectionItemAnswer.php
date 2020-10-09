@@ -29,6 +29,11 @@ class SectionItemAnswer extends Model
 		return $this->belongsTo('App\Respondent','respondent_id','id');
 	}
 
+    public function item_value_answers()
+    {
+		return $this->hasMany('App\SectionItemValueAnswer','section_item_answer_id','id');      
+    }
+
     /**
      * created_at mutator
      *
@@ -50,8 +55,8 @@ class SectionItemAnswer extends Model
 	protected $appends = [
         'item_name',
 		'section_name',
-		'item_type',
-		'value_answers'
+        'item_type',
+        'item_value_answers',
     ];
 
     public function getItemNameAttribute()
@@ -67,11 +72,11 @@ class SectionItemAnswer extends Model
 	public function getItemTypeAttribute()
 	{
 		return $this->section_item->item_type;
-	}
-
-	public function getValueAnswersAttribute()
-	{
-
-	}
+    }
+    
+    public function getItemValueAnswersAttribute()
+    {
+        return $this->item_value_answers()->get();
+    }
 
 }
