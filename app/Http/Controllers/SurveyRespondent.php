@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Survey;
+use App\SurveySection;
+use App\SectionItem;
+use App\SectionItemValue;
+use App\SivSubItem;
 use App\Respondent;
 use App\SectionItemAnswer;
 use App\SectionItemValueAnswer;
@@ -81,11 +85,57 @@ class SurveyRespondent extends Controller
 		
 	}
 
-	public function show(Request $request, $survey_id) {
+	public function show(Request $request, $survey_id)
+	{
 
-		$survey = Survey::find($survey_id);
+		// $survey = Survey::find($survey_id);
+		// return new RespondentResource($survey);
 
-		return new RespondentResource($survey);
+		$columns = $this->columns($survey_id);
+
+		$data = ['columns'=>$columns,'rows'=>[]];
+
+		return $data;
+
+	}
+
+	public function columns($id)
+	{
+
+        $columns = [];
+
+		$survey = Survey::find($id);
+
+        return $columns;
+	}
+
+	public function rows()
+	{
+
+		$respondents = Respondent::where('survey_id', $survey_id);
+		$respondents->get();
+
+		$rows = [];		
+
+        foreach ($respondents as $respondent) {
+
+            foreach ($respondent->item_answers as $item_answer) {
+
+                $columns[] = $item_answer->item_name;
+
+                foreach ($item_answer->item_value_answers as $item_value_answer) {
+
+                    // return $item_value_answer;
+
+                }
+
+            }
+
+            break;
+
+        }
+
+        return $rows;		
 
 	}
 
