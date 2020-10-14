@@ -5,11 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Survey;
-use App\SurveySection;
-use App\SectionItem;
-use App\SectionItemValue;
-use App\SivSubItem;
 use App\Respondent;
 use App\SectionItemAnswer;
 use App\SectionItemValueAnswer;
@@ -18,9 +13,12 @@ use App\AspectItemAnswer;
 use App\AspectItemSubItemAnswer;
 
 use App\Http\Resources\RespondentResource;
+use App\Customs\Respondents;
 
 class SurveyRespondent extends Controller
 {
+
+	use Respondents;
 
 	public function update(Request $request)
 	{
@@ -88,54 +86,14 @@ class SurveyRespondent extends Controller
 	public function show(Request $request, $survey_id)
 	{
 
-		// $survey = Survey::find($survey_id);
-		// return new RespondentResource($survey);
+		$this->columns($survey_id);
 
 		$columns = $this->columns($survey_id);
+		$rows = $this->rows($survey_id);
 
-		$data = ['columns'=>$columns,'rows'=>[]];
+		$data = ['columns'=>$columns,'rows'=>$rows];
 
 		return $data;
-
-	}
-
-	public function columns($id)
-	{
-
-        $columns = [];
-
-		$survey = Survey::find($id);
-
-        return $columns;
-	}
-
-	public function rows()
-	{
-
-		$respondents = Respondent::where('survey_id', $survey_id);
-		$respondents->get();
-
-		$rows = [];		
-
-        foreach ($respondents as $respondent) {
-
-            foreach ($respondent->item_answers as $item_answer) {
-
-                $columns[] = $item_answer->item_name;
-
-                foreach ($item_answer->item_value_answers as $item_value_answer) {
-
-                    // return $item_value_answer;
-
-                }
-
-            }
-
-            break;
-
-        }
-
-        return $rows;		
 
 	}
 

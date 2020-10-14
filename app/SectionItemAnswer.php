@@ -56,6 +56,7 @@ class SectionItemAnswer extends Model
         'item_name',
 		'section_name',
         'item_type',
+        'text_is_multiple',
         'item_value_answers',
     ];
 
@@ -74,6 +75,11 @@ class SectionItemAnswer extends Model
 		return $this->section_item->item_type;
     }
     
+    public function getTextIsMultipleAttribute()
+    {
+		return $this->section_item->text_is_multiple;
+    }
+
     public function getItemValueAnswersAttribute()
     {
         return $this->item_value_answers()->get();
