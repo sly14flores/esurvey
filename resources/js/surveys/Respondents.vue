@@ -37,7 +37,7 @@
 			<div class="page-body">
 				<div class="card">
 					<div class="card-header">
-						<h5>List</h5>			
+						<h5>Responses</h5>			
 					</div>
 					<div class="card-block">
 						<transition>
@@ -50,8 +50,14 @@
 							<div class="table-responsive" v-else>
 								<table class="table table-xs">
 									<thead>
+										<tr>
+											<th v-for="(header, i) in responses.columns" :key="i">{{header}}</th>
+										</tr>
 									</thead>
 									<tbody>
+										<tr v-for="row in responses.rows">
+											<td v-for="value in row" :key="i">{{value}}</td>										
+										</tr>
 									</tbody>
 								</table>
 							</div>							
@@ -84,7 +90,8 @@
 		data() {
 
 			return {
-				dataFetched: false
+				dataFetched: false,
+				responses: [],
 			}
 
 		},
@@ -124,11 +131,20 @@
 
 			respondents() {
 
-				// this.$store.state.dashboard.survey
+				// 
 
 				this.dataFetched = false
-
 				
+				axios.get('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey, this.$store.state.config).then(response => {
+				
+					this.responses = response.data;
+					this.dataFetched = true;
+				
+				}).catch(e => {
+				
+					this.dataFetched = true;				
+				
+				});
 
 			}
 

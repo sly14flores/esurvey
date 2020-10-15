@@ -109,7 +109,7 @@ trait Respondents
 					if ($item_answer->item_type == ItemType::CHECKBOX) # Checkboxes
 					{
 
-						$row[] = (intval($item_value_answer->answer))?true:false;
+						$row[] = (intval($item_value_answer->answer))?'Yes':'No';
 
 					}
 

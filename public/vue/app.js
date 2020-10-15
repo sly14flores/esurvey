@@ -2921,13 +2921,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SurveyRespondents',
   mixins: [_mixins_OfficeSurveys__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
-      dataFetched: false
+      dataFetched: false,
+      responses: []
     };
   },
   components: {
@@ -2953,20 +2960,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     respondents: function respondents() {
-      // this.$store.state.dashboard.survey
+      var _this = this;
+
+      // 
       this.dataFetched = false;
+      axios.get('api/conduct/survey/respondent/' + this.$store.state.dashboard.survey, this.$store.state.config).then(function (response) {
+        _this.responses = response.data;
+        _this.dataFetched = true;
+      })["catch"](function (e) {
+        _this.dataFetched = true;
+      });
     }
   },
   created: function created() {},
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     this.$parent.hide();
     this.$store.dispatch('async_profile').then(function () {
-      _this.fetchOfficeSurveys().then(function (response) {
-        _this.$store.commit('dashboardSurveys', response.data);
+      _this2.fetchOfficeSurveys().then(function (response) {
+        _this2.$store.commit('dashboardSurveys', response.data);
 
-        if (_.size(response.data)) _this.$store.commit('dashboardSurvey', _this.surveys[0].id);
+        if (_.size(response.data)) _this2.$store.commit('dashboardSurvey', _this2.surveys[0].id);
       })["catch"](function (e) {});
     });
     this.dataFetched = true;
@@ -79135,9 +79150,33 @@ var render = function() {
                     ])
                   : _c("div", { staticClass: "table-responsive" }, [
                       _c("table", { staticClass: "table table-xs" }, [
-                        _c("thead"),
+                        _c("thead", [
+                          _c(
+                            "tr",
+                            _vm._l(_vm.responses.columns, function(header, i) {
+                              return _c("th", { key: i }, [
+                                _vm._v(_vm._s(header))
+                              ])
+                            }),
+                            0
+                          )
+                        ]),
                         _vm._v(" "),
-                        _c("tbody")
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.responses.rows, function(row) {
+                            return _c(
+                              "tr",
+                              _vm._l(row, function(value) {
+                                return _c("td", { key: _vm.i }, [
+                                  _vm._v(_vm._s(value))
+                                ])
+                              }),
+                              0
+                            )
+                          }),
+                          0
+                        )
                       ])
                     ])
               ])
@@ -79167,7 +79206,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h5", [_vm._v("List")])
+      _c("h5", [_vm._v("Responses")])
     ])
   }
 ]
