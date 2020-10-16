@@ -2927,6 +2927,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SurveyRespondents',
@@ -2934,7 +2935,13 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       dataFetched: false,
-      responses: []
+      pagination: {},
+      responses: {
+        columns: [],
+        rows: {
+          data: []
+        }
+      }
     };
   },
   components: {
@@ -2959,13 +2966,19 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    respondents: function respondents() {
+    respondents: function respondents(currentPage) {
       var _this = this;
 
       // 
       this.dataFetched = false;
-      axios.get('api/conduct/survey/respondent/' + this.$store.state.dashboard.survey, this.$store.state.config).then(function (response) {
+      axios.get('api/conduct/survey/respondent/' + this.$store.state.dashboard.survey + '?page=' + currentPage, this.$store.state.config).then(function (response) {
         _this.responses = response.data;
+        _this.pagination = {
+          current_page: response.data.rows.current_page,
+          per_page: response.data.rows.per_page,
+          last_page: response.data.rows.last_page,
+          total: response.data.rows.total
+        };
         _this.dataFetched = true;
       })["catch"](function (e) {
         _this.dataFetched = true;
@@ -79120,7 +79133,11 @@ var render = function() {
                 {
                   staticClass: "btn btn-primary my-1",
                   attrs: { type: "button" },
-                  on: { click: _vm.respondents }
+                  on: {
+                    click: function($event) {
+                      return _vm.respondents(1)
+                    }
+                  }
                 },
                 [_vm._v("Go!")]
               )
@@ -79149,35 +79166,52 @@ var render = function() {
                       _c("div", { staticClass: "circ4" })
                     ])
                   : _c("div", { staticClass: "table-responsive" }, [
-                      _c("table", { staticClass: "table table-xs" }, [
-                        _c("thead", [
-                          _c(
-                            "tr",
-                            _vm._l(_vm.responses.columns, function(header, i) {
-                              return _c("th", { key: i }, [
-                                _vm._v(_vm._s(header))
-                              ])
-                            }),
-                            0
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.responses.rows, function(row) {
-                            return _c(
+                      _c(
+                        "table",
+                        { staticClass: "table table-xs" },
+                        [
+                          _c("thead", [
+                            _c(
                               "tr",
-                              _vm._l(row, function(value) {
-                                return _c("td", { key: _vm.i }, [
-                                  _vm._v(_vm._s(value))
+                              _vm._l(_vm.responses.columns, function(header) {
+                                return _c("th", { key: header.index }, [
+                                  _vm._v(_vm._s(header.value))
                                 ])
                               }),
                               0
                             )
-                          }),
-                          0
-                        )
-                      ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(_vm.responses.rows.data, function(row, r) {
+                              return _c(
+                                "tr",
+                                { key: r },
+                                _vm._l(row, function(column, c) {
+                                  return _c("td", { key: c }, [
+                                    _vm._v(_vm._s(column.value))
+                                  ])
+                                }),
+                                0
+                              )
+                            }),
+                            0
+                          ),
+                          _vm._v(" "),
+                          _c("sly-pagination", {
+                            staticStyle: { "margin-top": "50px" },
+                            attrs: {
+                              currentPage: _vm.pagination.current_page,
+                              perPage: _vm.pagination.per_page,
+                              lastPage: _vm.pagination.last_page,
+                              totalItems: _vm.pagination.total,
+                              fetchData: _vm.respondents
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ])
               ])
             ],
@@ -79206,7 +79240,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h5", [_vm._v("Responses")])
+      _c("h5", [_vm._v("Datasets")])
     ])
   }
 ]

@@ -17,7 +17,6 @@ class Respondent extends Model
 		'anon_id',
 		'survey_id',
 		'survey',
-		'office',
 		'created_at',
 		'updated_at'
 	];

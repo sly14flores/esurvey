@@ -47,7 +47,7 @@
 										</tr>
 									</tbody>								
 								</table>
-								<sly-pagination style="margin-top: 50px;" :currentPage="pagination.current_page" :perPage="pagination.per_page" :lastPage="pagination.last_page" :totalItems="pagination.total" :fetchData="fetchUsers"></sly-pagination>						
+								<sly-pagination style="margin-top: 50px;" :currentPage="pagination.current_page" :perPage="pagination.per_page" :lastPage="pagination.last_page" :totalItems="pagination.total" :fetchData="fetchUsers"></sly-pagination>
 							</div>
 						</transition>
 					</div>						

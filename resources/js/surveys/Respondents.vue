@@ -29,7 +29,7 @@
 						  <select class="custom-select my-1 mr-sm-2" v-model="survey">
 							<option v-for="survey in surveys" :value="survey.id" :key="survey.id">{{survey.name}}</option>
 						  </select>
-						  <button type="button" class="btn btn-primary my-1" @click="respondents">Go!</button>
+						  <button type="button" class="btn btn-primary my-1" @click="respondents(1)">Go!</button>
 						</form>					
 					</div>
 				</div>								
@@ -37,7 +37,7 @@
 			<div class="page-body">
 				<div class="card">
 					<div class="card-header">
-						<h5>Responses</h5>			
+						<h5>Datasets</h5>			
 					</div>
 					<div class="card-block">
 						<transition>
@@ -51,14 +51,15 @@
 								<table class="table table-xs">
 									<thead>
 										<tr>
-											<th v-for="(header, i) in responses.columns" :key="i">{{header}}</th>
+											<th v-for="(header) in responses.columns" :key="header.index">{{header.value}}</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr v-for="row in responses.rows">
-											<td v-for="value in row" :key="i">{{value}}</td>										
+										<tr v-for="(row, r) in responses.rows.data" :key="r">
+											<td v-for="(column, c) in row" :key="c">{{column.value}}</td>
 										</tr>
 									</tbody>
+									<sly-pagination style="margin-top: 50px;" :currentPage="pagination.current_page" :perPage="pagination.per_page" :lastPage="pagination.last_page" :totalItems="pagination.total" :fetchData="respondents"></sly-pagination>									
 								</table>
 							</div>							
 						</transition>
@@ -91,7 +92,13 @@
 
 			return {
 				dataFetched: false,
-				responses: [],
+				pagination: {},
+				responses: {
+					columns: [],
+					rows: {
+						data: []
+					}
+				},
 			}
 
 		},
@@ -129,15 +136,21 @@
 		
 		methods: {
 
-			respondents() {
+			respondents(currentPage) {
 
 				// 
 
 				this.dataFetched = false
 				
-				axios.get('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey, this.$store.state.config).then(response => {
+				axios.get('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'?page='+currentPage, this.$store.state.config).then(response => {
 				
 					this.responses = response.data;
+					this.pagination = {
+						current_page: response.data.rows.current_page,
+						per_page: response.data.rows.per_page,
+						last_page: response.data.rows.last_page,
+						total: response.data.rows.total
+					}
 					this.dataFetched = true;
 				
 				}).catch(e => {

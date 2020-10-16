@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 use App\Respondent;
 use App\SectionItemAnswer;
 use App\SectionItemValueAnswer;
@@ -89,12 +93,27 @@ class SurveyRespondent extends Controller
 		$this->columns($survey_id);
 
 		$columns = $this->columns($survey_id);
-		$rows = $this->rows($survey_id);
+		$responses = $this->rows($survey_id);
 
-		$data = ['columns'=>$columns,'rows'=>$rows];
+		$page = (is_null($request->page))?1:$request->page;
+		$rows = $this->paginate($responses, 25, $page);
+
+		$data = ['columns'=>$columns,'rows'=>$rows->toArray()];
 
 		return $data;
 
 	}
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    public function paginate($items, $perPage = 5, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }	
 
 }

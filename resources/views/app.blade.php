@@ -212,11 +212,11 @@
 													<span class="pcoded-mtext">Respondents</span>
 												</router-link>
 											</li>											
-											<li :class="{active: activeRoute=='survey_reports'}">
-												<router-link to="/survey/show/reports">
-													<span class="pcoded-mtext">Reports</span>
+											<li :class="{active: activeRoute=='survey_analytics'}">
+												<router-link to="/survey/show/analytics">
+													<span class="pcoded-mtext">Analytics</span>
 												</router-link>
-											</li>																					
+											</li>
 										</ul>
 									</li>									
 								</ul>
