@@ -37,7 +37,13 @@
 			<div class="page-body">
 				<div class="card">
 					<div class="card-header">
-						<h5>Datasets</h5>			
+						<h5>Datasets</h5>
+						<p v-if="pagination.total">{{pagination.total}} total respondents</p>
+						<form class="f-right">
+							<div class="right-icon-control">
+								<a href="javascript:;" class="btn-mini btn-success" @click="toExcel"><i class="fa fa-file-excel-o"></i>&nbsp;Export</a>
+							</div>
+						</form>									
 					</div>
 					<div class="card-block">
 						<transition>
@@ -158,6 +164,12 @@
 					this.dataFetched = true;				
 				
 				});
+
+			},
+
+			toExcel() {
+
+				if (this.pagination && this.pagination.total) window.open('/export/excel/'+this.$store.state.dashboard.survey)
 
 			}
 

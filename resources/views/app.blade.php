@@ -28,6 +28,8 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/ionicons.min.css') }}">
 	<!-- ico font -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/icofont.css') }}">
+	<!-- font awesome -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
     <!-- Pnotify css -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/pnotify.css') }}">	
     
@@ -212,8 +214,8 @@
 													<span class="pcoded-mtext">Respondents</span>
 												</router-link>
 											</li>											
-											<li :class="{active: activeRoute=='survey_analytics'}">
-												<router-link to="/survey/show/analytics">
+											<li :class="{active: activeRoute=='cfcf_analytics'}">
+												<router-link to="/survey/show/cfcf">
 													<span class="pcoded-mtext">Analytics</span>
 												</router-link>
 											</li>

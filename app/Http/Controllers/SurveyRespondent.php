@@ -90,8 +90,6 @@ class SurveyRespondent extends Controller
 	public function show(Request $request, $survey_id)
 	{
 
-		$this->columns($survey_id);
-
 		$columns = $this->columns($survey_id);
 		$responses = $this->rows($survey_id);
 

@@ -21,6 +21,7 @@ mix.copy('resources/assets/icon/icofont/css/icofont.css','public/css');
 mix.copy('resources/assets/icon/ion-icon/css/ionicons.min.css','public/css');
 mix.copy('resources/assets/css/style.css','public/css');
 mix.copy('resources/assets/icon/feather/css/feather.css','public/css');
+mix.copy('resources/assets/icon/font-awesome/css/font-awesome.min.css','public/css');
 mix.copy('resources/assets/css/jquery.mCustomScrollbar.css','public/css');
 
 // Pnotify
