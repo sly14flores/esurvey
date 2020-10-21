@@ -79342,8 +79342,8 @@ var render = function() {
                               return _c(
                                 "tr",
                                 { key: r },
-                                _vm._l(row, function(column, c) {
-                                  return _c("td", { key: c }, [
+                                _vm._l(row, function(column) {
+                                  return _c("td", { key: column.index }, [
                                     _vm._v(_vm._s(column.value))
                                   ])
                                 }),

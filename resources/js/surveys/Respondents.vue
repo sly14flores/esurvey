@@ -62,7 +62,7 @@
 									</thead>
 									<tbody>
 										<tr v-for="(row, r) in responses.rows.data" :key="r">
-											<td v-for="(column, c) in row" :key="c">{{column.value}}</td>
+											<td v-for="column in row" :key="column.index">{{column.value}}</td>
 										</tr>
 									</tbody>
 									<sly-pagination style="margin-top: 50px;" :currentPage="pagination.current_page" :perPage="pagination.per_page" :lastPage="pagination.last_page" :totalItems="pagination.total" :fetchData="respondents"></sly-pagination>									

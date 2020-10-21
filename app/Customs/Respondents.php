@@ -22,7 +22,7 @@ trait Respondents
 
 		if ($survey->include_office) {
 
-			$columns[] = array('index'=>++$sii,'value'=>'Office');
+			$columns[] = array('index'=>++$sii,'section'=>null,'item'=>null,'item_value'=>null,'value'=>'Office');
 
 		}		
 
@@ -37,14 +37,14 @@ trait Respondents
 					|| ($section_item->item_type == ItemType::SELECTIONS)
 					|| ($section_item->item_type == ItemType::SINGLE_ROW)) {
 
-					$columns[] = array('index'=>++$sii,'value'=>$section_item->item_name);
+					$columns[] = array('index'=>++$sii,'section'=>$survey_section->id,'item'=>$section_item->id,'item_value'=>null,'value'=>$section_item->item_name);
 
 				}
 
 				if (($section_item->item_type == ItemType::TEXT_INPUT)
 					&& ($section_item->text_is_multiple == 0)) {
 
-					$columns[] = array('index'=>++$sii,'value'=>$section_item->item_name);
+					$columns[] = array('index'=>++$sii,'section'=>$survey_section->id,'item'=>$section_item->id,'item_value'=>null,'value'=>$section_item->item_name);
 
 				}
 
@@ -56,14 +56,14 @@ trait Respondents
 					&& ($section_item->text_is_multiple == 1)) {
 
 						// $columns[] = $item_value->display;
-						$columns[] = array('index'=>++$sii,'value'=>$item_value->display);
+						$columns[] = array('index'=>++$sii,'section'=>$survey_section->id,'item'=>$section_item->id,'item_value'=>$item_value->id,'value'=>$item_value->display);
 
 					}
 					
 					if ($section_item->item_type == ItemType::CHECKBOX) # Checkboxes
 					{
 
-						$columns[] = array('index'=>++$sii,'value'=>$item_value->display);
+						$columns[] = array('index'=>++$sii,'section'=>$survey_section->id,'item'=>$section_item->id,'item_value'=>$item_value->id,'value'=>$item_value->display);
 
 					}						
 
@@ -73,7 +73,7 @@ trait Respondents
 
 		}
 
-		$columns[] = array('index'=>++$sii,'value'=>'Date');
+		$columns[] = array('index'=>++$sii,'section'=>null,'item'=>null,'item_value'=>null,'value'=>'Date');
 
         return $columns;
 	}
@@ -84,17 +84,16 @@ trait Respondents
 		$survey_respondents = Respondent::where('survey_id', $id);
 		$respondents = $survey_respondents->get();
 
-		$rows = [];		
-
-		$iai = 0;
+		$rows = [];
 
         foreach ($respondents as $respondent) {
 
 			$row = [];
+			$iai = 0;
 
 			if ($respondent->office!=null) {
 
-				$row[] = array('name'=>'office','value'=>$respondent->office_name);
+				$row[] = array('index'=>++$iai,'section'=>null,'item'=>null,'item_value'=>null,'name'=>'office','value'=>$respondent->office_name);
 
 			}
 
@@ -105,14 +104,14 @@ trait Respondents
 					|| ($item_answer->item_type == ItemType::SELECTIONS)
 					|| ($item_answer->item_type == ItemType::SINGLE_ROW)) {
 
-					$row[] = array('name'=>$item_answer->item_name,'value'=>$item_answer->answer);
+					$row[] = array('index'=>++$iai,'section'=>$item_answer->section,'item'=>$item_answer->item,'item_value'=>null,'name'=>$item_answer->item_name,'value'=>$item_answer->answer);
 
 				}
 
 				if (($item_answer->item_type == ItemType::TEXT_INPUT)
 					&& ($item_answer->text_is_multiple == 0)) {
 
-					$row[] = array('name'=>$item_answer->item_name,'value'=>$item_answer->answer);
+					$row[] = array('index'=>++$iai,'section'=>$item_answer->section,'item'=>$item_answer->item,'item_value'=>null,'name'=>$item_answer->item_name,'value'=>$item_answer->answer);
 
 				}				
 
@@ -125,14 +124,14 @@ trait Respondents
 						if ($item_value_answer->other_answer!=null) {
 							$value = $item_value_answer->other_answer;
 						}
-						$row[] = array('name'=>$item_value_answer->item_value_name,'value'=>$value);
+						$row[] = array('index'=>++$iai,'section'=>$item_answer->section,'item'=>$item_answer->item,'item_value'=>$item_value_answer->item_value,'name'=>$item_value_answer->item_value_name,'value'=>$value);
 
 					}
 					
 					if ($item_answer->item_type == ItemType::CHECKBOX) # Checkboxes
 					{
 
-						$row[] = array('name'=>$item_value_answer->item_value_name,'value'=>(intval($item_value_answer->answer))?'Yes':'No');						
+						$row[] = array('index'=>++$iai,'section'=>$item_answer->section,'item'=>$item_answer->item,'item_value'=>$item_value_answer->item_value,'name'=>$item_value_answer->item_value_name,'value'=>(intval($item_value_answer->answer))?'Yes':'No');						
 
 					}
 
@@ -140,7 +139,7 @@ trait Respondents
 
 			}
 
-			$row[] = array('name'=>'Date','value'=>$respondent->created_at);
+			$row[] = array('index'=>++$iai,'section'=>null,'item'=>null,'item_value'=>null,'name'=>'Date','value'=>$respondent->created_at);
 			
 			$rows[] = $row;
 

@@ -28,8 +28,14 @@ class SectionItemValueAnswer extends Model
 	 * Custom Attributes
 	 */
 	protected $appends = [
+		'item_value',
         'item_value_name',
     ];
+
+	public function getItemValueAttribute()
+	{
+		return $this->section_item_value->id;
+	}
 
     public function getItemValueNameAttribute()
     {

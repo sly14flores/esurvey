@@ -53,17 +53,29 @@ class SectionItemAnswer extends Model
 	 * Custom Attributes
 	 */
 	protected $appends = [
+		'item',
         'item_name',
+		'section',
 		'section_name',
         'item_type',
         'text_is_multiple',
         'item_value_answers',
     ];
 
+    public function getItemAttribute()
+    {
+        return $this->section_item->id;
+    }
+
     public function getItemNameAttribute()
     {
         return $this->section_item->item_name;
     }
+	
+	public function getSectionAttribute()
+	{
+		return $this->section_item->section->id;
+	}
 	
 	public function getSectionNameAttribute()
 	{
