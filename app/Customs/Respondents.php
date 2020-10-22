@@ -6,8 +6,28 @@ use App\Customs\ItemType;
 use App\Survey;
 use App\Respondent;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+
 trait Respondents
 {
+	
+	public function visible($id,$show_hide_columns)
+	{
+
+		$user_id = Auth::guard('api')->id();
+		
+		$key = "$user_id-$id"."-visible-columns";
+		$visible_columns = Cache::get($key);
+
+		if (is_null($visible_columns)) {
+			
+			Cache::put($key, serialize([]));
+		}
+
+		return (is_null($visible_columns))?[]:unserialize($visible_columns);
+
+	}
 
 	public function columns($id)
 	{
@@ -74,6 +94,11 @@ trait Respondents
 		}
 
 		$columns[] = array('index'=>++$sii,'section'=>null,'item'=>null,'item_value'=>null,'value'=>'Date');
+
+		$show_hide_columns = [];
+
+		$visible_columns = $this->visible($id,$show_hide_columns);
+		return $visible_columns;		
 
         return $columns;
 	}
