@@ -20,7 +20,7 @@ class Survey extends Controller
 
 		$id = $request->survey_id;
 		
-		$columns = $this->columns($id);
+		$columns = $this->columns($id,[]);
 		$rows = $this->rows($id);	
 
         return Excel::download(new SurveyReport($columns,$rows), 'Survey_data.xlsx');

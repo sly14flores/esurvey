@@ -22,14 +22,14 @@ trait Respondents
 
 		if (is_null($visible_columns)) {
 			
-			Cache::put($key, serialize([]));
+			Cache::put($key, serialize($show_hide_columns));
 		}
 
 		return (is_null($visible_columns))?[]:unserialize($visible_columns);
 
 	}
 
-	public function columns($id)
+	public function columns($id,$toggle_columns)
 	{
 
         $columns = [];
@@ -95,12 +95,18 @@ trait Respondents
 
 		$columns[] = array('index'=>++$sii,'section'=>null,'item'=>null,'item_value'=>null,'value'=>'Date');
 
-		$show_hide_columns = [];
+		$show_hide_columns = collect($columns);
+		
+		if ($survey->include_office) {
+			$show_hide_columns = $show_hide_columns->splice(1);
+		}
+		
+		$show_hide_columns = $show_hide_columns->splice(0,$show_hide_columns->count()-1);
 
 		$visible_columns = $this->visible($id,$show_hide_columns);
-		return $visible_columns;		
-
-        return $columns;
+		return $visible_columns;
+        // return $columns;
+	
 	}
 
 	public function rows($id)
