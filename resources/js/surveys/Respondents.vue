@@ -41,9 +41,10 @@
 						<p v-if="pagination.total">{{pagination.total}} total respondents</p>
 						<form class="f-right">
 							<div class="right-icon-control">
+								<a href="javascript:;" class="btn-mini btn-info" @click="filterByTags"><i class="fa fa-refresh"></i>&nbsp;Refresh</a>
 								<a href="javascript:;" class="btn-mini btn-success" @click="toExcel"><i class="fa fa-file-excel-o"></i>&nbsp;Export</a>
 							</div>
-						</form>									
+						</form>								
 					</div>
 					<div class="card-block">
 						<transition>
@@ -54,6 +55,12 @@
 								<div class="circ4"></div>
 							</div>
 							<div class="table-responsive" v-else>
+								<div class="border-checkbox-section mb-4">
+									<div v-for="(tag, i) in tags" :key="i" class="border-checkbox-group border-checkbox-group-danger">
+										<input class="border-checkbox" type="checkbox" :id="'tag-'+i" v-model="tag.show">
+										<label class="border-checkbox-label" :for="'tag-'+i">{{tag.value}}</label>
+									</div>
+								</div>
 								<table class="table table-xs">
 									<thead>
 										<tr>
@@ -105,6 +112,7 @@
 						data: []
 					}
 				},
+				tags: []
 			}
 
 		},
@@ -142,13 +150,26 @@
 		
 		methods: {
 
+			async getTags() {
+
+				axios.post('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/tags', {tags: this.tags}, this.$store.state.config).then(response => {
+
+					this.tags = response.data;
+
+				}).catch(e => {
+
+				});
+
+			},
+
 			respondents(currentPage) {
 
 				// 
-
 				this.dataFetched = false
+
+				this.getTags();
 				
-				axios.get('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'?page='+currentPage, this.$store.state.config).then(response => {
+				axios.get('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/get?page='+currentPage, this.$store.state.config).then(response => {
 				
 					this.responses = response.data;
 					this.pagination = {
@@ -164,6 +185,31 @@
 					this.dataFetched = true;				
 				
 				});
+
+			},
+
+			filterByTags() {
+
+				this.dataFetched = false
+
+				this.getTags();
+
+				axios.get('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/get?page='+this.pagination.current_page, this.$store.state.config).then(response => {
+				
+					this.responses = response.data;
+					this.pagination = {
+						current_page: response.data.rows.current_page,
+						per_page: response.data.rows.per_page,
+						last_page: response.data.rows.last_page,
+						total: response.data.rows.total
+					}
+					this.dataFetched = true
+				
+				}).catch(e => {		
+				
+					this.dataFetched = true				
+
+				});				
 
 			},
 

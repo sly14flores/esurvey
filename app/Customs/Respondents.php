@@ -11,25 +11,41 @@ use Illuminate\Support\Facades\Cache;
 
 trait Respondents
 {
-	
-	public function visible($id,$show_hide_columns)
+
+	public function get_tags($id,$toggles)
 	{
 
 		$user_id = Auth::guard('api')->id();
-		
 		$key = "$user_id-$id"."-visible-columns";
-		$visible_columns = Cache::get($key);
 
-		if (is_null($visible_columns)) {
-			
-			Cache::put($key, serialize($show_hide_columns));
+		$columns = $this->columns($id);
+		$show_hide_columns = collect($columns);		
+
+		if (is_null($show_hide_columns[0]['section']) && is_null($show_hide_columns[0]['item']) && is_null($show_hide_columns[0]['item_value'])) {
+			$show_hide_columns = $show_hide_columns->splice(1);
+		}
+		
+		$show_hide_columns = $show_hide_columns->splice(0,$show_hide_columns->count()-1);
+		
+		$show_hide_columns = $show_hide_columns->map(function($col) {
+			$col['show'] = true;
+			return $col;
+		});
+
+		if (count($toggles)) {
+			Cache::put($key, serialize($toggles));
+		} else {
+			Cache::put($key, serialize($show_hide_columns));			
 		}
 
-		return (is_null($visible_columns))?[]:unserialize($visible_columns);
+		$cached_toggles = Cache::get($key);	
+		$cached_toggles = unserialize($cached_toggles);
+
+		return $cached_toggles;
 
 	}
 
-	public function columns($id,$toggle_columns)
+	public function columns($id)
 	{
 
         $columns = [];
@@ -95,17 +111,7 @@ trait Respondents
 
 		$columns[] = array('index'=>++$sii,'section'=>null,'item'=>null,'item_value'=>null,'value'=>'Date');
 
-		$show_hide_columns = collect($columns);
-		
-		if ($survey->include_office) {
-			$show_hide_columns = $show_hide_columns->splice(1);
-		}
-		
-		$show_hide_columns = $show_hide_columns->splice(0,$show_hide_columns->count()-1);
-
-		$visible_columns = $this->visible($id,$show_hide_columns);
-		return $visible_columns;
-        // return $columns;
+        return $columns;
 	
 	}
 

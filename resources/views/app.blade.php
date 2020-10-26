@@ -188,7 +188,7 @@
 								@endgate
 								@gate('Survey','show-surveys')
 								<ul class="pcoded-item pcoded-left-item">
-									<li :class="{ 'pcoded-hasmenu': true, 'pcoded-trigger': activeRoute=='survey_new' || activeRoute=='survey_view' || activeRoute == 'surveys_list' || activeRoute == 'survey_conduct' || activeRoute == 'survey_reports' || activeRoute == 'survey_respondents'}"><!-- pcoded-trigger -->
+									<li :class="{ 'pcoded-hasmenu': true, 'pcoded-trigger': activeRoute=='survey_new' || activeRoute=='survey_view' || activeRoute == 'surveys_list' || activeRoute == 'survey_conduct' || activeRoute == 'cfcf_analytics' || activeRoute == 'survey_respondents'}"><!-- pcoded-trigger -->
 										<a href="javascript:void(0)">
 											<span class="pcoded-micon"><i class="feather icon-menu"></i></span>
 											<span class="pcoded-mtext">Surveys</span>

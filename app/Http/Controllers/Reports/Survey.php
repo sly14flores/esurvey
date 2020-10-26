@@ -18,10 +18,11 @@ class Survey extends Controller
     public function export(Request $request)
     {
 
-		$id = $request->survey_id;
-		
-		$columns = $this->columns($id,[]);
-		$rows = $this->rows($id);	
+		$survey_id = $request->survey_id;
+        
+        $tags = [];
+		$columns = $this->columns($survey_id);
+		$rows = $this->rows($survey_id);
 
         return Excel::download(new SurveyReport($columns,$rows), 'Survey_data.xlsx');
 

@@ -87,10 +87,17 @@ class SurveyRespondent extends Controller
 		
 	}
 
+	public function tags(Request $request, $survey_id)
+	{
+		$tags = $this->get_tags($survey_id, $request->tags);
+
+		return $tags;
+	}
+
 	public function show(Request $request, $survey_id)
 	{
 
-		$columns = $this->columns($survey_id,[]);
+		$columns = $this->columns($survey_id);
 		$responses = $this->rows($survey_id);
 
 		$page = (is_null($request->page))?1:$request->page;

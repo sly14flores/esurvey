@@ -2943,7 +2943,22 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mixins_OfficeSurveys__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mixins/OfficeSurveys */ "./resources/js/surveys/mixins/OfficeSurveys.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mixins_OfficeSurveys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mixins/OfficeSurveys */ "./resources/js/surveys/mixins/OfficeSurveys.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3033,7 +3048,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SurveyRespondents',
-  mixins: [_mixins_OfficeSurveys__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  mixins: [_mixins_OfficeSurveys__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {
       dataFetched: false,
@@ -3043,7 +3058,8 @@ __webpack_require__.r(__webpack_exports__);
         rows: {
           data: []
         }
-      }
+      },
+      tags: []
     };
   },
   components: {
@@ -3068,22 +3084,63 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    respondents: function respondents(currentPage) {
+    getTags: function getTags() {
       var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                axios.post('api/conduct/survey/respondent/' + _this.$store.state.dashboard.survey + '/tags', {
+                  tags: _this.tags
+                }, _this.$store.state.config).then(function (response) {
+                  _this.tags = response.data;
+                })["catch"](function (e) {});
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    respondents: function respondents(currentPage) {
+      var _this2 = this;
 
       // 
       this.dataFetched = false;
-      axios.get('api/conduct/survey/respondent/' + this.$store.state.dashboard.survey + '?page=' + currentPage, this.$store.state.config).then(function (response) {
-        _this.responses = response.data;
-        _this.pagination = {
+      this.getTags();
+      axios.get('api/conduct/survey/respondent/' + this.$store.state.dashboard.survey + '/get?page=' + currentPage, this.$store.state.config).then(function (response) {
+        _this2.responses = response.data;
+        _this2.pagination = {
           current_page: response.data.rows.current_page,
           per_page: response.data.rows.per_page,
           last_page: response.data.rows.last_page,
           total: response.data.rows.total
         };
-        _this.dataFetched = true;
+        _this2.dataFetched = true;
       })["catch"](function (e) {
-        _this.dataFetched = true;
+        _this2.dataFetched = true;
+      });
+    },
+    filterByTags: function filterByTags() {
+      var _this3 = this;
+
+      this.dataFetched = false;
+      this.getTags();
+      axios.get('api/conduct/survey/respondent/' + this.$store.state.dashboard.survey + '/get?page=' + this.pagination.current_page, this.$store.state.config).then(function (response) {
+        _this3.responses = response.data;
+        _this3.pagination = {
+          current_page: response.data.rows.current_page,
+          per_page: response.data.rows.per_page,
+          last_page: response.data.rows.last_page,
+          total: response.data.rows.total
+        };
+        _this3.dataFetched = true;
+      })["catch"](function (e) {
+        _this3.dataFetched = true;
       });
     },
     toExcel: function toExcel() {
@@ -3092,14 +3149,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {},
   mounted: function mounted() {
-    var _this2 = this;
+    var _this4 = this;
 
     this.$parent.hide();
     this.$store.dispatch('async_profile').then(function () {
-      _this2.fetchOfficeSurveys().then(function (response) {
-        _this2.$store.commit('dashboardSurveys', response.data);
+      _this4.fetchOfficeSurveys().then(function (response) {
+        _this4.$store.commit('dashboardSurveys', response.data);
 
-        if (_.size(response.data)) _this2.$store.commit('dashboardSurvey', _this2.surveys[0].id);
+        if (_.size(response.data)) _this4.$store.commit('dashboardSurvey', _this4.surveys[0].id);
       })["catch"](function (e) {});
     });
     this.dataFetched = true;
@@ -79291,6 +79348,19 @@ var render = function() {
                 _c(
                   "a",
                   {
+                    staticClass: "btn-mini btn-info",
+                    attrs: { href: "javascript:;" },
+                    on: { click: _vm.filterByTags }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-refresh" }),
+                    _vm._v(" Refresh")
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
                     staticClass: "btn-mini btn-success",
                     attrs: { href: "javascript:;" },
                     on: { click: _vm.toExcel }
@@ -79320,6 +79390,80 @@ var render = function() {
                       _c("div", { staticClass: "circ4" })
                     ])
                   : _c("div", { staticClass: "table-responsive" }, [
+                      _c(
+                        "div",
+                        { staticClass: "border-checkbox-section mb-4" },
+                        _vm._l(_vm.tags, function(tag, i) {
+                          return _c(
+                            "div",
+                            {
+                              key: i,
+                              staticClass:
+                                "border-checkbox-group border-checkbox-group-danger"
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: tag.show,
+                                    expression: "tag.show"
+                                  }
+                                ],
+                                staticClass: "border-checkbox",
+                                attrs: { type: "checkbox", id: "tag-" + i },
+                                domProps: {
+                                  checked: Array.isArray(tag.show)
+                                    ? _vm._i(tag.show, null) > -1
+                                    : tag.show
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = tag.show,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = null,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            tag,
+                                            "show",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            tag,
+                                            "show",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(tag, "show", $$c)
+                                    }
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "border-checkbox-label",
+                                  attrs: { for: "tag-" + i }
+                                },
+                                [_vm._v(_vm._s(tag.value))]
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      ),
+                      _vm._v(" "),
                       _c(
                         "table",
                         { staticClass: "table table-xs" },
