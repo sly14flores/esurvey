@@ -56,7 +56,7 @@
 							</div>
 							<div class="table-responsive" v-else>
 								<div class="border-checkbox-section mb-4">
-									<div v-for="(tag, i) in tags" :key="i" class="border-checkbox-group border-checkbox-group-danger">
+									<div v-for="(tag, i) in tags.headers" :key="i" class="border-checkbox-group border-checkbox-group-danger">
 										<input class="border-checkbox" type="checkbox" :id="'tag-'+i" v-model="tag.show">
 										<label class="border-checkbox-label" :for="'tag-'+i">{{tag.value}}</label>
 									</div>
@@ -112,7 +112,10 @@
 						data: []
 					}
 				},
-				tags: []
+				tags: {
+					id: null,
+					headers: []
+				}
 			}
 
 		},

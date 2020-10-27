@@ -19,26 +19,35 @@ trait Respondents
 		$key = "$user_id-$id"."-visible-columns";
 
 		$columns = $this->columns($id);
-		$show_hide_columns = collect($columns);		
+		$show_hide_columns = collect($columns);
 
+		/*
 		if (is_null($show_hide_columns[0]['section']) && is_null($show_hide_columns[0]['item']) && is_null($show_hide_columns[0]['item_value'])) {
 			$show_hide_columns = $show_hide_columns->splice(1);
 		}
 		
 		$show_hide_columns = $show_hide_columns->splice(0,$show_hide_columns->count()-1);
+		*/
 		
 		$show_hide_columns = $show_hide_columns->map(function($col) {
 			$col['show'] = true;
 			return $col;
 		});
 
-		if (count($toggles)) {
-			Cache::put($key, serialize($toggles));
-		} else {
-			Cache::put($key, serialize($show_hide_columns));			
-		}
+		$cache = [];
 
-		$cached_toggles = Cache::get($key);	
+		if (count($toggles['headers'])) {
+			if (intval($toggles['id'])==$id) {
+				$cache = $toggles;
+			} else {
+				$cache = array('id'=>$id,'headers'=>$show_hide_columns->toArray());
+			}
+		} else {
+			$cache = array('id'=>$id,'headers'=>$show_hide_columns->toArray());
+		}
+		Cache::put($key, serialize($cache));		
+
+		$cached_toggles = Cache::get($key);
 		$cached_toggles = unserialize($cached_toggles);
 
 		return $cached_toggles;

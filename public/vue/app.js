@@ -3059,7 +3059,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           data: []
         }
       },
-      tags: []
+      tags: {
+        id: null,
+        headers: []
+      }
     };
   },
   components: {
@@ -79393,7 +79396,7 @@ var render = function() {
                       _c(
                         "div",
                         { staticClass: "border-checkbox-section mb-4" },
-                        _vm._l(_vm.tags, function(tag, i) {
+                        _vm._l(_vm.tags.headers, function(tag, i) {
                           return _c(
                             "div",
                             {
