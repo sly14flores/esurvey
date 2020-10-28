@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Reports;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 use App\Exports\SurveyReport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,10 +20,16 @@ class Survey extends Controller
     {
 
 		$survey_id = $request->survey_id;
-        
+        $user_id = $request->user_id;
+
         $tags = [];
-		$columns = $this->columns($survey_id);
-		$rows = $this->rows($survey_id);
+
+        $key = "$user_id-$survey_id"."-visible-columns";
+		$cached_toggles = Cache::get($key);
+        $toggles = unserialize($cached_toggles);
+
+		$columns = $this->columns($survey_id,$toggles);
+		$rows = $this->rows($survey_id,$toggles);
 
         return Excel::download(new SurveyReport($columns,$rows), 'Survey_data.xlsx');
 

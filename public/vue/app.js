@@ -3115,7 +3115,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // 
       this.dataFetched = false;
       this.getTags();
-      axios.get('api/conduct/survey/respondent/' + this.$store.state.dashboard.survey + '/get?page=' + currentPage, this.$store.state.config).then(function (response) {
+      axios.post('api/conduct/survey/respondent/' + this.$store.state.dashboard.survey + '/get', {
+        page: currentPage,
+        toggles: this.tags
+      }, this.$store.state.config).then(function (response) {
         _this2.responses = response.data;
         _this2.pagination = {
           current_page: response.data.rows.current_page,
@@ -3133,7 +3136,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       this.dataFetched = false;
       this.getTags();
-      axios.get('api/conduct/survey/respondent/' + this.$store.state.dashboard.survey + '/get?page=' + this.pagination.current_page, this.$store.state.config).then(function (response) {
+      axios.post('api/conduct/survey/respondent/' + this.$store.state.dashboard.survey + '/get', {
+        page: this.pagination.current_page,
+        toggles: this.tags
+      }, this.$store.state.config).then(function (response) {
         _this3.responses = response.data;
         _this3.pagination = {
           current_page: response.data.rows.current_page,
@@ -3147,7 +3153,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     toExcel: function toExcel() {
-      if (this.pagination && this.pagination.total) window.open('/export/excel/' + this.$store.state.dashboard.survey);
+      if (this.pagination && this.pagination.total) window.open('/export/excel/' + this.$store.state.dashboard.survey + '/' + this.$store.state.profile.id);
     }
   },
   created: function created() {},

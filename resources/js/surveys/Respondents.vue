@@ -172,7 +172,7 @@
 
 				this.getTags();
 				
-				axios.get('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/get?page='+currentPage, this.$store.state.config).then(response => {
+				axios.post('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/get', {page: currentPage, toggles: this.tags}, this.$store.state.config).then(response => {
 				
 					this.responses = response.data;
 					this.pagination = {
@@ -197,7 +197,7 @@
 
 				this.getTags();
 
-				axios.get('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/get?page='+this.pagination.current_page, this.$store.state.config).then(response => {
+				axios.post('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/get', {page: this.pagination.current_page, toggles: this.tags}, this.$store.state.config).then(response => {
 				
 					this.responses = response.data;
 					this.pagination = {
@@ -218,7 +218,7 @@
 
 			toExcel() {
 
-				if (this.pagination && this.pagination.total) window.open('/export/excel/'+this.$store.state.dashboard.survey)
+				if (this.pagination && this.pagination.total) window.open('/export/excel/'+this.$store.state.dashboard.survey+'/'+this.$store.state.profile.id)
 
 			}
 

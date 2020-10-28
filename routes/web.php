@@ -34,7 +34,7 @@ Route::get('preview/mail', function() {
 	
 });
 
-Route::get('/export/excel/{survey_id}', 'Reports\Survey@export');
+Route::get('/export/excel/{survey_id}/{user_id}', 'Reports\Survey@export');
 
 Route::get('/css/conduct', 'ConductStyles')->name('css.conduct');
 
