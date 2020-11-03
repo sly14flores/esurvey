@@ -2489,6 +2489,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -9745,31 +9773,85 @@ var render = function() {
                           },
                           [
                             _vm.survey.background != null
-                              ? _c("div", { staticClass: "image-container" }, [
-                                  _c("div", { staticClass: "controls" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "control-btn remove",
-                                        attrs: { href: "javascript:;" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.removeSIg(
-                                              "upload-background-infographic",
-                                              "background"
-                                            )
+                              ? _c(
+                                  "div",
+                                  { staticClass: "image-container" },
+                                  [
+                                    _c("div", { staticClass: "controls" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "control-btn remove",
+                                          attrs: { href: "javascript:;" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.removeSIg(
+                                                "upload-background-infographic",
+                                                "background"
+                                              )
+                                            }
                                           }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "ion-trash-a"
+                                          })
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "b-modal",
+                                            rawName:
+                                              "v-b-modal.preview-background-image",
+                                            modifiers: {
+                                              "preview-background-image": true
+                                            }
+                                          }
+                                        ],
+                                        staticClass: "uploaded-ssi-infographic"
+                                      },
+                                      [
+                                        _c("img", {
+                                          staticClass: "image",
+                                          attrs: { src: _vm.survey.background }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-modal",
+                                      {
+                                        attrs: {
+                                          id: "preview-background-image",
+                                          size: "lg",
+                                          title: "Background Image",
+                                          "ok-only": "",
+                                          "ok-title": "Close"
                                         }
                                       },
-                                      [_c("i", { staticClass: "ion-trash-a" })]
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticStyle: { overflow: "auto" } },
+                                          [
+                                            _c("img", {
+                                              staticClass: "image",
+                                              attrs: {
+                                                src: _vm.survey.background
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
                                     )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("img", {
-                                    staticClass: "image ssi-infographic",
-                                    attrs: { src: _vm.survey.background }
-                                  })
-                                ])
+                                  ],
+                                  1
+                                )
                               : _vm._e(),
                             _vm._v(" "),
                             _c("input", {
@@ -9819,31 +9901,87 @@ var render = function() {
                           },
                           [
                             _vm.survey.left_infographic != null
-                              ? _c("div", { staticClass: "image-container" }, [
-                                  _c("div", { staticClass: "controls" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "control-btn remove",
-                                        attrs: { href: "javascript:;" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.removeSIg(
-                                              "upload-left_infographic-infographic",
-                                              "left_infographic"
-                                            )
+                              ? _c(
+                                  "div",
+                                  { staticClass: "image-container" },
+                                  [
+                                    _c("div", { staticClass: "controls" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "control-btn remove",
+                                          attrs: { href: "javascript:;" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.removeSIg(
+                                                "upload-left_infographic-infographic",
+                                                "left_infographic"
+                                              )
+                                            }
                                           }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "ion-trash-a"
+                                          })
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "b-modal",
+                                            rawName:
+                                              "v-b-modal.preview-left-infographic",
+                                            modifiers: {
+                                              "preview-left-infographic": true
+                                            }
+                                          }
+                                        ],
+                                        staticClass: "uploaded-ssi-infographic"
+                                      },
+                                      [
+                                        _c("img", {
+                                          staticClass: "image",
+                                          attrs: {
+                                            src: _vm.survey.left_infographic
+                                          }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-modal",
+                                      {
+                                        attrs: {
+                                          id: "preview-left-infographic",
+                                          size: "lg",
+                                          title: "Welcome Left Infographic",
+                                          "ok-only": "",
+                                          "ok-title": "Close"
                                         }
                                       },
-                                      [_c("i", { staticClass: "ion-trash-a" })]
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticStyle: { overflow: "auto" } },
+                                          [
+                                            _c("img", {
+                                              staticClass: "image",
+                                              attrs: {
+                                                src: _vm.survey.left_infographic
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
                                     )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("img", {
-                                    staticClass: "image ssi-infographic",
-                                    attrs: { src: _vm.survey.left_infographic }
-                                  })
-                                ])
+                                  ],
+                                  1
+                                )
                               : _vm._e(),
                             _vm._v(" "),
                             _c("input", {
@@ -9893,31 +10031,88 @@ var render = function() {
                           },
                           [
                             _vm.survey.right_infographic != null
-                              ? _c("div", { staticClass: "image-container" }, [
-                                  _c("div", { staticClass: "controls" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "control-btn remove",
-                                        attrs: { href: "javascript:;" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.removeSIg(
-                                              "upload-right_infographic-infographic",
-                                              "right_infographic"
-                                            )
+                              ? _c(
+                                  "div",
+                                  { staticClass: "image-container" },
+                                  [
+                                    _c("div", { staticClass: "controls" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "control-btn remove",
+                                          attrs: { href: "javascript:;" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.removeSIg(
+                                                "upload-right_infographic-infographic",
+                                                "right_infographic"
+                                              )
+                                            }
                                           }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "ion-trash-a"
+                                          })
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "b-modal",
+                                            rawName:
+                                              "v-b-modal.preview-right-infographic",
+                                            modifiers: {
+                                              "preview-right-infographic": true
+                                            }
+                                          }
+                                        ],
+                                        staticClass: "uploaded-ssi-infographic"
+                                      },
+                                      [
+                                        _c("img", {
+                                          staticClass: "image",
+                                          attrs: {
+                                            src: _vm.survey.right_infographic
+                                          }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-modal",
+                                      {
+                                        attrs: {
+                                          id: "preview-right-infographic",
+                                          size: "lg",
+                                          title: "Welcome Right Infographic",
+                                          "ok-only": "",
+                                          "ok-title": "Close"
                                         }
                                       },
-                                      [_c("i", { staticClass: "ion-trash-a" })]
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticStyle: { overflow: "auto" } },
+                                          [
+                                            _c("img", {
+                                              staticClass: "image",
+                                              attrs: {
+                                                src:
+                                                  _vm.survey.right_infographic
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
                                     )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("img", {
-                                    staticClass: "image ssi-infographic",
-                                    attrs: { src: _vm.survey.right_infographic }
-                                  })
-                                ])
+                                  ],
+                                  1
+                                )
                               : _vm._e(),
                             _vm._v(" "),
                             _c("input", {
@@ -10229,13 +10424,65 @@ var render = function() {
                                         )
                                       ]),
                                       _vm._v(" "),
-                                      _c("img", {
-                                        staticClass: "image ssi-infographic",
-                                        attrs: {
-                                          src: _vm.survey.thankyou.infographic
-                                        }
-                                      })
-                                    ]
+                                      _c(
+                                        "div",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "b-modal",
+                                              rawName:
+                                                "v-b-modal.preview-thank-you-infographic",
+                                              modifiers: {
+                                                "preview-thank-you-infographic": true
+                                              }
+                                            }
+                                          ],
+                                          staticClass:
+                                            "uploaded-ssi-infographic"
+                                        },
+                                        [
+                                          _c("img", {
+                                            staticClass: "image",
+                                            attrs: {
+                                              src:
+                                                _vm.survey.thankyou.infographic
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "b-modal",
+                                        {
+                                          attrs: {
+                                            id: "preview-thank-you-infographic",
+                                            size: "lg",
+                                            title: "Thank You Infographic",
+                                            "ok-only": "",
+                                            "ok-title": "Close"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticStyle: { overflow: "auto" }
+                                            },
+                                            [
+                                              _c("img", {
+                                                staticClass: "image",
+                                                attrs: {
+                                                  src:
+                                                    _vm.survey.thankyou
+                                                      .infographic
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
                                   )
                                 : _vm._e(),
                               _vm._v(" "),

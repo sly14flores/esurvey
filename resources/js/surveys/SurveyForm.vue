@@ -43,9 +43,16 @@
 												<a href="javascript:;" class="control-btn remove" @click="removeSIg('upload-background-infographic','background')">
 													<i class="ion-trash-a"></i>
 												</a>
-											</div>														
-											<img class="image ssi-infographic" :src="survey.background">
-										</div>
+											</div>
+											<div class="uploaded-ssi-infographic" v-b-modal.preview-background-image>
+												<img class="image" :src="survey.background">
+											</div>
+											<b-modal id="preview-background-image" size="lg" title="Background Image" ok-only ok-title="Close">
+												<div style="overflow: auto;">
+													<img class="image" :src="survey.background">
+												</div>
+											</b-modal>
+										</div>										
 										<input type="file" style="display: none;" id="upload-background-infographic" @change="sSIg('upload-background-infographic','background')">
 										<a v-if="survey.background == null" href="javascript:;" @click="addSIg('upload-background-infographic')">
 											<div class="image-container new">
@@ -64,8 +71,15 @@
 												<a href="javascript:;" class="control-btn remove" @click="removeSIg('upload-left_infographic-infographic','left_infographic')">
 													<i class="ion-trash-a"></i>
 												</a>
-											</div>														
-											<img class="image ssi-infographic" :src="survey.left_infographic">
+											</div>
+											<div class="uploaded-ssi-infographic" v-b-modal.preview-left-infographic>																											
+												<img class="image" :src="survey.left_infographic">
+											</div>
+											<b-modal id="preview-left-infographic" size="lg" title="Welcome Left Infographic" ok-only ok-title="Close">
+												<div style="overflow: auto;">
+													<img class="image" :src="survey.left_infographic">
+												</div>
+											</b-modal>											
 										</div>
 										<input type="file" style="display: none;" id="upload-left_infographic-infographic" @change="sSIg('upload-left_infographic-infographic','left_infographic')">
 										<a v-if="survey.left_infographic == null" href="javascript:;" @click="addSIg('upload-left_infographic-infographic')">
@@ -85,8 +99,15 @@
 												<a href="javascript:;" class="control-btn remove" @click="removeSIg('upload-right_infographic-infographic','right_infographic')">
 													<i class="ion-trash-a"></i>
 												</a>
-											</div>														
-											<img class="image ssi-infographic" :src="survey.right_infographic">
+											</div>
+											<div class="uploaded-ssi-infographic" v-b-modal.preview-right-infographic>																									
+												<img class="image" :src="survey.right_infographic">
+											</div>
+											<b-modal id="preview-right-infographic" size="lg" title="Welcome Right Infographic" ok-only ok-title="Close">
+												<div style="overflow: auto;">
+													<img class="image" :src="survey.right_infographic">
+												</div>
+											</b-modal>											
 										</div>
 										<input type="file" style="display: none;" id="upload-right_infographic-infographic" @change="sSIg('upload-right_infographic-infographic','right_infographic')">
 										<a v-if="survey.right_infographic == null" href="javascript:;" @click="addSIg('upload-right_infographic-infographic')">
@@ -145,8 +166,15 @@
 													<a href="javascript:;" class="control-btn remove" @click="removeSIg('upload-survey-infographic','infographic')">
 														<i class="ion-trash-a"></i>
 													</a>
-												</div>														
-												<img class="image ssi-infographic" :src="survey.thankyou.infographic">
+												</div>
+												<div class="uploaded-ssi-infographic" v-b-modal.preview-thank-you-infographic>																							
+													<img class="image" :src="survey.thankyou.infographic">
+												</div>
+												<b-modal id="preview-thank-you-infographic" size="lg" title="Thank You Infographic" ok-only ok-title="Close">
+													<div style="overflow: auto;">
+														<img class="image" :src="survey.thankyou.infographic">
+													</div>
+												</b-modal>													
 											</div>
 											<input type="file" style="display: none;" id="upload-survey-infographic" @change="sSIg('upload-survey-infographic','infographic')">
 											<a v-if="survey.thankyou.infographic == null" href="javascript:;" @click="addSIg('upload-survey-infographic')">
@@ -559,7 +587,7 @@
 
 				$('#'+el).val(null)
 			
-			},	
+			},
 		
 		},
 		
