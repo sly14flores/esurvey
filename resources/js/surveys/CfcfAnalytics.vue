@@ -29,29 +29,48 @@
 						  <select class="custom-select my-1 mr-sm-2" v-model="survey">
 							<option v-for="survey in surveys" :value="survey.id" :key="survey.id">{{survey.name}}</option>
 						  </select>
-						  <button type="button" class="btn btn-primary my-1" @click="getReports">Go!</button>
+						  <button type="button" class="btn btn-primary my-1" @click="getAnalytics">Go!</button>
 						</form>					
 					</div>
 				</div>				                
 			</div>
 			<div class="page-body">
-
+				<div class="small">
+					<bar-chart :chart-data="datacollection"></bar-chart>
+					<button @click="fillData()">Randomize</button>
+				</div>
 			</div>			
         </div>        
     </div>
 </template>
 
 <style scoped>
-
+  .small {
+    max-width: 600px;
+    margin:  150px auto;
+  }
 </style>
 
 <script>
 
 import OfficeSurveys from './mixins/OfficeSurveys'
+import LineChart from './charts/LineChart.js'
+import BarChart from './charts/BarChart.js'
 
 export default {
 
+    components: {
+	  LineChart,
+	  BarChart
+    },	
+
 	name: 'SurveysReports',
+
+    data () {
+      return {
+        datacollection: null
+      }
+    },
 
 	mixins: [OfficeSurveys],
  
@@ -83,11 +102,41 @@ export default {
 
 	methods: {
 
-		getReports() {
+		getAnalytics() {
 
 			window.open('/reports/survey')
 
-		}
+		},
+
+		fillData () {
+			this.datacollection = {
+				labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+				datasets: [{
+					label: '# of Votes',
+					data: [100, 19, 3, 5, 2, 3],
+					backgroundColor: [
+						'rgba(255, 99, 132, 0.2)',
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(75, 192, 192, 0.2)',
+						'rgba(153, 102, 255, 0.2)',
+						'rgba(255, 159, 64, 0.2)'
+					],
+					borderColor: [
+						'rgba(255, 99, 132, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(255, 159, 64, 1)'
+					],
+					borderWidth: 1
+				}]				
+			}
+		},
+		getRandomInt () {
+			return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+		}		
 	
 	},
 
