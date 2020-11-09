@@ -147,7 +147,7 @@ trait Respondents
 
 		$lazy_columns = LazyCollection::make(function() use ($id,$toggles) {
 
-			$survey = Survey::find($id);
+			$survey = Survey::with(['sections','sections.items'])->find($id);
 
 			$survey_sections = $survey->sections()->get();
 	
@@ -226,7 +226,7 @@ trait Respondents
 
 		$lazy_rows = LazyCollection::make(function() use ($id,$toggles) {		
 
-			$survey_respondents = Respondent::where('survey_id', $id);
+			$survey_respondents = Respondent::where('survey_id', $id)->with(['section_item_answers','section_item_value_answers','section_item_sub_item_answers','survey']);
 			$respondents = $survey_respondents->get();
 
 			foreach ($respondents as $respondent) {

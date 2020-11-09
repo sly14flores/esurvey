@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Faker\Factory as Faker;
 
 class PopRespondents extends Command
 {
@@ -50,12 +51,26 @@ class PopRespondents extends Command
 		
 		}
 
-		// var_dump($response->body());
+		echo "SOPA Respondents populated (1000)";
 		
         // return 0;
     }
 	
 	private function populate() {
+		
+		$faker = Faker::create();
+		
+		$dates = [
+			1 => "2020-08-31 ",
+			2 => "2020-09-01 ",
+			3 => "2020-09-02 ",
+			4 => "2020-09-03 ",
+			5 => "2020-09-04 ",
+			6 => "2020-09-05 ",
+			7 => "2020-09-06 ",
+			8 => "2020-09-07 ",
+		];
+		$time = $faker->time($format = 'H:i:s', $max = 'now');		
 		
 		$genders = [
 			1 => "Male",
@@ -546,8 +561,12 @@ class PopRespondents extends Command
 			]
 		];
 		
-		$survey['id'] = 1;		
+		$datetime = $dates[rand(1,8)].$time;
+		$survey['id'] = 1;
 		$survey['sections'] = $sections;
+		$survey['created_at'] = $datetime;
+		$survey['updated_at'] = $datetime;
+		$survey['test'] = true;
 
 		return $survey;
 		

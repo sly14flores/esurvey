@@ -32,6 +32,11 @@ class SurveyRespondent extends Controller
 
 		$respondent = new Respondent;
 		$respondent->survey_id = $survey['id'];
+		
+		if (isset($survey['test']) && $survey['test']) {
+			$respondent->created_at = $survey['created_at'];
+			$respondent->updated_at = $survey['updated_at'];
+		}
 
 		if ($specific) {
 			$respondent->office = $request->office;
