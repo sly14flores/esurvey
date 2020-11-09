@@ -14,14 +14,26 @@ class SurveyList extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
+        $app_url = env('APP_URL');
+        $once_link = "";
+        $recursive_link = "";
+        if (is_null($this->office)) {
+            $once_link = $app_url.'/survey#/general/once/'.$this->token;
+            $recursive_link = $app_url.'/survey#/general/recursive/'.$this->token;
+        } else {
+            $once_link = $app_url.'/survey#/specific/once/'.$this->token;
+            $recursive_link = $app_url.'/survey#/specific/recursive/'.$this->token;
+        }
+
 		return [
 			"id"=>$this->id,
 			"name"=>$this->name,
 			"description"=>$this->description,
 			"office"=>$this->office,
 			"office_name"=>$this->survey_office->name,
-			"created_at"=>$this->created_at
+            "created_at"=>$this->created_at,
+            "once_link"=>$once_link,
+            "recursive_link"=>$recursive_link,
 		];
     }
 }

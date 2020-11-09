@@ -40,8 +40,23 @@
 											<td>{{ survey.office_name }}</td>
 											<td>{{ survey.created_at }}</td>
 											<td>
+												<label class="label label-success cursorize" @click="$bvModal.show('survey-links-'+survey.id)" data-toggle="tooltip" data-placement="top" title="Copy Survey Links"><i class="ion-ios-browsers"></i></label>
+												<b-modal :id="'survey-links-'+survey.id" title="Survey Conduct Links" ok-only>
+													<form>
+														<div class="form-group">
+															<label>Conduct Once</label>
+															<input type="text" :id="'copy-once-'+survey.id" class="form-control" v-model="survey.once_link" @click="copyOnce(survey.id)">
+															<!-- <small class="form-text text-muted">Click on link to copy</small> -->
+														</div>
+														<div class="form-group">
+															<label>Conduct Recursively</label>
+															<input type="text" :id="'copy-recursive-'+survey.id" class="form-control" v-model="survey.recursive_link" @click="copyRecursive(survey.id)">
+															<!-- <small class="form-text text-muted">Click on link to copy</small> -->
+														</div>														
+													</form>
+												</b-modal>
 												<label class="label label-info cursorize" @click="view(survey)" data-toggle="tooltip" data-placement="top" title="View Survey"><i class="ion-search"></i></label>
-												<label class="label label-warning cursorize" @click="clone(survey)" data-toggle="tooltip" data-placement="top" title="Close Survey"><i class="ion-ios-copy-outline"></i></label>
+												<label class="label label-warning cursorize" @click="clone(survey)" data-toggle="tooltip" data-placement="top" title="Clone Survey"><i class="ion-ios-copy-outline"></i></label>
 												<label class="label label-danger cursorize" @click="confirmDelete(survey)" data-toggle="tooltip" data-placement="top" title="Delete Survey"><i class="ion-close"></i></label>
 												<b-modal :id="'confirm-survey-delete-'+i" title="Confirmation" @ok="deleteItem(survey)">
 													Are you sure you want to delete this section survey?
@@ -99,6 +114,8 @@
 <script>
 
 	import { required, email, minLength, requiredIf, requiredUnless } from "vuelidate/lib/validators";
+
+	window.Swal = require('sweetalert2')
 
 	export default {
 
@@ -292,7 +309,47 @@
 					
 				})			
 			
-			},			
+			},
+
+			copyOnce(id) {
+
+				let copyText = document.getElementById("copy-once-"+id);
+
+				/* Select the text field */
+				copyText.select();
+				copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+				/* Copy the text inside the text field */
+				document.execCommand("copy");
+				
+				Swal.fire({
+					title: 'Notification',
+					text: 'Survey link copied to clipboard',
+					icon: 'success',
+					confirmButtonText: 'Close'
+				})					
+
+			},
+
+			copyRecursive(id) {
+
+				let copyText = document.getElementById("copy-recursive-"+id);
+
+				/* Select the text field */
+				copyText.select();
+				copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+				/* Copy the text inside the text field */
+				document.execCommand("copy");
+				
+				Swal.fire({
+					title: 'Notification',
+					text: 'Survey link copied to clipboard',
+					icon: 'success',
+					confirmButtonText: 'Close'
+				})		
+
+			}
 		
 		},
 
