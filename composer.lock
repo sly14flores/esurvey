@@ -4,8 +4,69 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1c58ceb28fba2c0f2f73169001a69c2",
+    "content-hash": "c1078ff4f81e96b236e1268e15b0115c",
     "packages": [
+        {
+            "name": "antoineaugusti/laravel-sentiment-analysis",
+            "version": "v4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AntoineAugusti/laravel-sentiment-analysis.git",
+                "reference": "2db86cfaa398cd413a886d18b8d96831ee761dc0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AntoineAugusti/laravel-sentiment-analysis/zipball/2db86cfaa398cd413a886d18b8d96831ee761dc0",
+                "reference": "2db86cfaa398cd413a886d18b8d96831ee761dc0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^6 || ^7",
+                "jwhennessey/phpinsight": "~2.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Antoineaugusti\\LaravelSentimentAnalysis\\LaravelSentimentAnalysisServiceProvider"
+                    ],
+                    "aliases": {
+                        "SentimentAnalysis": "Antoineaugusti\\LaravelSentimentAnalysis\\Facades\\SentimentAnalysis"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Antoineaugusti\\LaravelSentimentAnalysis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Antoine Augusti",
+                    "email": "antoine.augusti@gmail.com"
+                }
+            ],
+            "description": "A Laravel wrapper that performs sentiment analysis over an English sentence",
+            "keywords": [
+                "Antoine Augusti",
+                "AntoineAugusti",
+                "Augusti",
+                "analysis",
+                "framework",
+                "laravel",
+                "sentiment",
+                "sentiment analysis"
+            ],
+            "time": "2020-05-04T15:10:55+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "1.3.0",
@@ -738,6 +799,48 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "jwhennessey/phpinsight",
+            "version": "v2.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JWHennessey/phpInsight.git",
+                "reference": "b89e7a7f418ebd88ae330b889be4dd1d47d4ceaa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JWHennessey/phpInsight/zipball/b89e7a7f418ebd88ae330b889be4dd1d47d4ceaa",
+                "reference": "b89e7a7f418ebd88ae330b889be4dd1d47d4ceaa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPInsight": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPLv3 or later"
+            ],
+            "authors": [
+                {
+                    "name": "James Hennessey"
+                }
+            ],
+            "description": "Sentiment analysis tool for PHP",
+            "homepage": "https://github.com/JWHennessey/phpInsight",
+            "keywords": [
+                "insight",
+                "phpinsight",
+                "sentiment"
+            ],
+            "abandoned": true,
+            "time": "2015-06-20T03:38:20+00:00"
         },
         {
             "name": "laravel/framework",

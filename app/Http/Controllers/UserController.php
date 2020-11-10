@@ -8,6 +8,7 @@ use App\Http\Resources\UserCollection;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 use App\Customs\AuthorizationMaps;
 use Illuminate\Support\Facades\Gate;
@@ -34,6 +35,11 @@ class UserController extends Controller
     {
 		Gate::authorize($this->cmpm[__FUNCTION__], User::class);
 		
+		// DB::enableQueryLog();		
+		
+		// $all = User::paginate(10);
+		
+		// var_dump(DB::getQueryLog()); // Show results of log
         return new UserCollection(User::paginate(15));
     }
 
