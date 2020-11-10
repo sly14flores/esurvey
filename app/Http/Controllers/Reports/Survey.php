@@ -31,7 +31,8 @@ class Survey extends Controller
 		$columns = $this->columns($survey_id,$toggles);
 		$rows = $this->rows($survey_id,$toggles);
 
-        return Excel::download(new SurveyReport($columns,$rows), 'Survey_data.xlsx');
+        return Excel::download(new SurveyReport($columns,$rows), 'Survey_data.csv');
+		// return (new SurveyReport($columns,$rows))->download('Survey_data.csv', Excel::CSV, ['Content-Type' => 'text/csv']);		
 
     }
 

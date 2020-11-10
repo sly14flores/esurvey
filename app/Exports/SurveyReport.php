@@ -14,9 +14,12 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Concerns\Exportable;
 
 class SurveyReport implements FromArray, WithHeadings, ShouldAutoSize, WithStyles, WithEvents
 {
+	
+    use Exportable;	
 	
 	private $columns;
 	private $rows;
