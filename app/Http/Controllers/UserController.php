@@ -34,12 +34,7 @@ class UserController extends Controller
     public function index()
     {
 		Gate::authorize($this->cmpm[__FUNCTION__], User::class);
-		
-		// DB::enableQueryLog();		
-		
-		// $all = User::paginate(10);
-		
-		// var_dump(DB::getQueryLog()); // Show results of log
+
         return new UserCollection(User::paginate(15));
     }
 
