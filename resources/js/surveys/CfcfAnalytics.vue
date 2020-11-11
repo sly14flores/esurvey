@@ -25,17 +25,39 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<form class="form-inline mt-4">
-						  <label class="my-1 mr-2">Surveys</label>
+						  <label class="my-1 mr-2">Survey</label>
 						  <select class="custom-select my-1 mr-sm-2" v-model="survey">
 							<option v-for="survey in surveys" :value="survey.id" :key="survey.id">{{survey.name}}</option>
 						  </select>
-						  <button type="button" class="btn btn-primary my-1" @click="getAnalytics">Go!</button>
+						  <!-- <button type="button" class="btn btn-primary my-1">Go!</button> -->
 						</form>					
 					</div>
-				</div>				                
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<form class="form-inline mt-4">
+						  <label class="my-1 mr-2">Chart</label>
+						  <select class="custom-select my-1 mr-sm-2" v-model="chart">
+							<option v-for="chart in charts" :value="chart.id" :key="chart.id">{{chart.name}}</option>
+						  </select>
+						  <button type="button" class="btn btn-sm btn-warning my-1" @click="addChart">Add</button>
+						</form>						
+					</div>
+				</div>				         
 			</div>
 			<div class="page-body">
-				<bar-chart :chartdata="chartdata" :options="options"></bar-chart>
+				<div v-if="true">
+				</div>
+				<div>
+					<component v-bind:is="chartComponent"></component>
+				</div>
+				<div>
+					<component v-bind:is="chartComponent"></component>
+				</div>
+				<div>
+					<component v-bind:is="chartComponent"></component>
+				</div>								
+				<!-- <bar-chart></bar-chart> -->
 			</div>			
         </div>        
     </div>
@@ -52,40 +74,41 @@
 
 import OfficeSurveys from './mixins/OfficeSurveys'
 
-// import LineChart from './charts/LineChart.js'
-// import BarChart from './charts/BarChart'
-import { Bar } from 'vue-chartjs'
+import BarChart from './charts/BarChart'
 
 export default {
 
-	extends: Bar,
+	name: 'SurveysReports', 
 
-    components: {
-	  // LineChart,
-	  // BarChart
-    },	
+	data() {
 
-	name: 'SurveysReports',
-
-	  data: () => ({
-		chartdata: {
-		  labels: ['January', 'February'],
-		  datasets: [
-			{
-			  label: 'Data One',
-			  backgroundColor: '#f87979',
-			  data: [40, 20]
-			}
-		  ]
-		},
-		options: {
-		  responsive: true,
-		  maintainAspectRatio: false
+		return {
+			chart: 1,
+			charts: [
+				{id: 1, type: 'bar', name: 'Bar'},
+				{id: 2, type: 'pie', name: 'Pie'},
+			],
+			chartComponent: 'bar-chart',
 		}
-	  }),
+
+	},
 
 	mixins: [OfficeSurveys],
- 
+
+	components: {
+		BarChart,
+	},
+
+	methods: {
+
+		addChart() {
+
+
+
+		},
+	
+	},
+	
 	computed: {
 	
 		survey: {
@@ -110,21 +133,11 @@ export default {
 		
 		}
 	
-	}, 
-
-	methods: {
-
-		getAnalytics() {
-
-			window.open('/reports/survey')
-
-		},		
-	
-	},
+	},	
 
     created() {		
 
-    },
+	},
 
     mounted() {
 
@@ -141,9 +154,7 @@ export default {
 
 			})
 			
-		})
-
-		this.renderChart(this.chartdata, this.options)
+		})	
 
     }
  
