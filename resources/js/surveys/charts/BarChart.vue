@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="card-block">
-            <canvas id="myChart" width="400" height="400"></canvas>						
+            <canvas :id="'bar-'+barIndex" width="400" height="400"></canvas>						
         </div>
     </div>
 </template>
@@ -23,14 +23,16 @@ import Chart from 'chart.js';
 
 export default {
 
+	props: ['barIndex'],
+
     created() {
 
     },
 
     mounted() {
 
-		const ctx = document.getElementById('myChart');
-		const myChart = new Chart(ctx, {
+		const ctx = document.getElementById('bar-'+this.barIndex);
+		const barChart = new Chart(ctx, {
 			type: 'bar',
 			data: {
 				labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],

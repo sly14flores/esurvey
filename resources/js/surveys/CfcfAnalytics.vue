@@ -48,16 +48,14 @@
 			<div class="page-body">
 				<div v-if="true">
 				</div>
-				<div>
-					<component v-bind:is="chartComponent"></component>
+				<bar-chart :barIndex=1></bar-chart>
+				<bar-chart :barIndex=2></bar-chart>				
+				<bar-chart :barIndex=3></bar-chart>
+				<div class="row">
+					<div class="col-6">
+						<pie-chart :pieIndex=1></pie-chart>
+					</div>
 				</div>
-				<div>
-					<component v-bind:is="chartComponent"></component>
-				</div>
-				<div>
-					<component v-bind:is="chartComponent"></component>
-				</div>								
-				<!-- <bar-chart></bar-chart> -->
 			</div>			
         </div>        
     </div>
@@ -75,6 +73,7 @@
 import OfficeSurveys from './mixins/OfficeSurveys'
 
 import BarChart from './charts/BarChart'
+import PieChart from './charts/PieChart'
 
 export default {
 
@@ -85,8 +84,8 @@ export default {
 		return {
 			chart: 1,
 			charts: [
-				{id: 1, type: 'bar', name: 'Bar'},
-				{id: 2, type: 'pie', name: 'Pie'},
+				{id: 1, type: 'pie', name: 'Pie'},
+				{id: 2, type: 'bar', name: 'Bar'},
 			],
 			chartComponent: 'bar-chart',
 		}
@@ -97,16 +96,15 @@ export default {
 
 	components: {
 		BarChart,
+		PieChart,
 	},
 
 	methods: {
 
 		addChart() {
 
-
-
 		},
-	
+
 	},
 	
 	computed: {
