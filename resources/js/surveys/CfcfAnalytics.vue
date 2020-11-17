@@ -40,20 +40,15 @@
 						  <select class="custom-select my-1 mr-sm-2" v-model="chart">
 							<option v-for="chart in charts" :value="chart.id" :key="chart.id">{{chart.name}}</option>
 						  </select>
-						  <button type="button" class="btn btn-sm btn-warning my-1" @click="addChart">Add</button>
+						  <button type="button" class="btn btn-sm btn-warning my-1" @click="showFieldsForChart">Show Fields</button>
 						</form>						
 					</div>
 				</div>				         
 			</div>
 			<div class="page-body">
-				<div v-if="true">
-				</div>
-				<bar-chart :barIndex=1></bar-chart>
-				<bar-chart :barIndex=2></bar-chart>				
-				<bar-chart :barIndex=3></bar-chart>
 				<div class="row">
-					<div class="col-6">
-						<pie-chart :pieIndex=1></pie-chart>
+					<div class="col-6" v-for="pie in pies" :key="pie.no">
+						<pie-chart :pieIndex="pie.no" :pieData="pie.data" :pieOptions="pie.options"></pie-chart>
 					</div>
 				</div>
 			</div>			
@@ -88,6 +83,16 @@ export default {
 				{id: 2, type: 'bar', name: 'Bar'},
 			],
 			chartComponent: 'bar-chart',
+			pies: [],
+            chartColors: {
+                red: 'rgb(255, 99, 132)',
+                orange: 'rgb(255, 159, 64)',
+                yellow: 'rgb(255, 205, 86)',
+                green: 'rgb(75, 192, 192)',
+                blue: 'rgb(54, 162, 235)',
+                purple: 'rgb(153, 102, 255)',
+                grey: 'rgb(201, 203, 207)'
+            },		
 		}
 
 	},
@@ -97,14 +102,6 @@ export default {
 	components: {
 		BarChart,
 		PieChart,
-	},
-
-	methods: {
-
-		addChart() {
-
-		},
-
 	},
 	
 	computed: {
@@ -131,9 +128,56 @@ export default {
 		
 		}
 	
-	},	
+	},
 
-    created() {		
+	methods: {
+
+		showFieldsForChart() {
+
+			
+
+		},
+
+		addChart() {
+
+			const data = {
+				datasets: [{
+					data: [
+						5,
+						5,
+						5,
+						5,
+						5,
+					],
+					backgroundColor: [
+						this.chartColors.red,
+						this.chartColors.orange,
+						this.chartColors.yellow,
+						this.chartColors.green,
+						this.chartColors.blue,
+					],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'Red',
+					'Orange',
+					'Yellow',
+					'Green',
+					'Blue'
+				]
+			}
+
+			const options = {
+				responsive: true
+			}
+
+			this.pies.push({no: this.pies.length+1, data, options});
+
+		},
+
+	},
+
+    created() {
 
 	},
 
