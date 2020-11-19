@@ -18,14 +18,21 @@ new Vue({
 
 		login() {
 			
-			axios.post('/login',this.auth).then(response => {
+			axios.post('/api/login',this.auth).then(response => {
 				
+				localStorage.setItem('esurveyAccessToken',response.data.api_token)
 				window.location.href = "/"
 				
 			}).catch(e => {
-				
-				this.validation = e.response.data.errors
-				
+
+				localStorage.removeItem("esurveyAccessToken")
+
+				if (e.response.status == 422) {
+					this.validation = e.response.data.message
+				} else {
+
+				}
+
 			})
 			
 		}

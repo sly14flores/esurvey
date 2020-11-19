@@ -23,6 +23,8 @@ Route::middleware('auth:api')->get('/profile', function (Request $request) {
 
 Route::get('authorizations','AuthorizationsController@get_template');
 
+Route::post('/login','LoginApiController@login');
+
 Route::post('/dashboard/data','DashboardData');
 
 Route::apiResource('user', 'UserController')->except('index');

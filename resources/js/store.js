@@ -1,22 +1,23 @@
-import { surveys } from './surveys/surveys'
-import { users } from './users/users'
-import { offices } from './offices/offices'
-import { groups } from './groups/groups'
-import { dashboard } from './dashboard/dashboard'
+import { surveys } from './stores/surveys'
+import { users } from './stores/users'
+import { offices } from './stores/offices'
+import { groups } from './stores/groups'
+import { dashboard } from './stores/dashboard'
 
-// import VuexPersist from 'vuex-persist'
+import VuexPersist from 'vuex-persist'
 
-/* const vuexPersist = new VuexPersist({
+const vuexPersist = new VuexPersist({
   key: 'esurvey',
-  storage: window.localStorage
-}) */
+  storage: window.localStorage,
+  reducer: (state) => ({ profile: state.profile, config: state.config }),
+})
 
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-	// plugins: [vuexPersist.plugin],
+	plugins: [vuexPersist.plugin],
 	modules: {
 		surveys,
 		users,

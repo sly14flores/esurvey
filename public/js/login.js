@@ -14411,10 +14411,15 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     login: function login() {
       var _this = this;
 
-      axios.post('/login', this.auth).then(function (response) {
+      axios.post('/api/login', this.auth).then(function (response) {
+        localStorage.setItem('esurveyAccessToken', response.data.api_token);
         window.location.href = "/";
       })["catch"](function (e) {
-        _this.validation = e.response.data.errors;
+        localStorage.removeItem("esurveyAccessToken");
+
+        if (e.response.status == 422) {
+          _this.validation = e.response.data.message;
+        } else {}
       });
     }
   },

@@ -101,12 +101,20 @@
 			}
 		
 		},
+
+		watch: {
+
+			loaded(loaded) {
+				console.log(loaded)
+			}
+
+		},
 	
 		methods: {
 		
 			fetchOfficeSurveys() {
 
-				axios.get('/api/selections/surveys/'+this.$store.state.profile.office, this.$store.state.config).then(response => {
+				axios.get('/api/selections/surveys/'+this.$store.state.profile.office).then(response => {
 					
 					this.$store.commit('dashboardSurveys', response.data)
 					if (_.size(response.data)) this.$store.commit('dashboardSurvey', this.surveys[0].id)
@@ -129,11 +137,7 @@
 		
 			this.$parent.hide()
 		
-			this.$store.dispatch('async_profile').then(() => {
-
-				this.fetchOfficeSurveys()
-				
-			})	
+			this.fetchOfficeSurveys()
 		
 		}
 	
