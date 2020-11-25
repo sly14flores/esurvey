@@ -139,7 +139,7 @@
 			
 				let index = this.introductions.indexOf(intro)				
 			
-				axios.delete('api/survey/introduction/'+intro.id, this.$store.state.config).then(response => {
+				axios.delete('api/survey/introduction/'+intro.id).then(response => {
 					
 					// this.$store.dispatch('fetchSurvey')
 					this.introductions.splice(index,1)				

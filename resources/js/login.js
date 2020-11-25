@@ -20,10 +20,12 @@ new Vue({
 			
 			axios.post('/login',this.auth).then(response => {
 				
+				localStorage.setItem('esurvey', JSON.stringify(response.data))
 				window.location.href = "/"
 				
 			}).catch(e => {
 				
+				localStorage.removeItem("esurvey")	
 				this.validation = e.response.data.errors
 				
 			})

@@ -4,7 +4,7 @@ export default {
 
         fetchOfficeSurveys() {
 
-            return axios.get('/api/selections/surveys/'+this.$store.state.profile.office, this.$store.state.config)
+            return axios.get('/api/selections/surveys/'+this.$store.state.profile.office)
 
         }
 

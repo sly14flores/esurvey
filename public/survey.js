@@ -326,7 +326,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var index = this.values.indexOf(value);
-      axios["delete"]('api/survey/section/aspect/item/value/' + value.id, this.$store.state.config).then(function (response) {
+      axios["delete"]('api/survey/section/aspect/item/value/' + value.id).then(function (response) {
         // this.$store.dispatch('fetchSurvey')
         _this.values.splice(index, 1);
       })["catch"](function (e) {});
@@ -753,7 +753,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var index = this.items.indexOf(item);
-      axios["delete"]('api/survey/section/aspect/item/' + item.id, this.$store.state.config).then(function (response) {
+      axios["delete"]('api/survey/section/aspect/item/' + item.id).then(function (response) {
         // this.$store.dispatch('fetchSurvey'
         _this.items.splice(index, 1);
       })["catch"](function (e) {});
@@ -1043,7 +1043,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       var index = this.sub_items.indexOf(sub_item);
-      axios["delete"]('api/survey/section/aspect/item/value/sub_item/' + sub_item.id, this.$store.state.config).then(function (response) {
+      axios["delete"]('api/survey/section/aspect/item/value/sub_item/' + sub_item.id).then(function (response) {
         // this.$store.dispatch('fetchSurvey')
         _this3.sub_items.splice(index, 1);
       })["catch"](function (e) {});
@@ -1194,7 +1194,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var index = this.introductions.indexOf(intro);
-      axios["delete"]('api/survey/introduction/' + intro.id, this.$store.state.config).then(function (response) {
+      axios["delete"]('api/survey/introduction/' + intro.id).then(function (response) {
         // this.$store.dispatch('fetchSurvey')
         _this.introductions.splice(index, 1);
       })["catch"](function (e) {});
@@ -1540,7 +1540,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var index = this.values.indexOf(value);
-      axios["delete"]('api/survey/section/item/value/' + value.id, this.$store.state.config).then(function (response) {
+      axios["delete"]('api/survey/section/item/value/' + value.id).then(function (response) {
         // this.$store.dispatch('fetchSurvey')
         _this.values.splice(index, 1);
       })["catch"](function (e) {});
@@ -1807,7 +1807,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var index = this.aspects.indexOf(aspect);
-      axios["delete"]('api/survey/section/aspect/' + aspect.id, this.$store.state.config).then(function (response) {
+      axios["delete"]('api/survey/section/aspect/' + aspect.id).then(function (response) {
         // this.$store.dispatch('fetchSurvey')
         _this2.aspects.splice(index, 1);
 
@@ -2191,7 +2191,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var index = this.items.indexOf(item);
-      axios["delete"]('api/survey/section/item/' + item.id, this.$store.state.config).then(function (response) {
+      axios["delete"]('api/survey/section/item/' + item.id).then(function (response) {
         // this.$store.dispatch('fetchSurvey')
         _this.items.splice(index, 1);
       })["catch"](function (e) {});
@@ -2689,7 +2689,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$root.show();
-      axios.post('api/survey', this.$store.state.surveys.survey, this.$store.state.config).then(function (response) {
+      axios.post('api/survey', this.$store.state.surveys.survey).then(function (response) {
         _this.$root.hide();
 
         _this.$router.push({
@@ -2720,7 +2720,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.$root.show();
-      axios.put('api/survey/' + this.$store.state.surveys.survey.id, this.$store.state.surveys.survey, this.$store.state.config).then(function (response) {
+      axios.put('api/survey/' + this.$store.state.surveys.survey.id, this.$store.state.surveys.survey).then(function (response) {
         _this2.$root.hide(); // this.$router.push({name: 'surveys_list'})
 
 
@@ -2750,7 +2750,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       this.$root.show();
-      axios["delete"]('api/survey/' + this.$store.state.surveys.survey.id, this.$store.state.config).then(function (response) {
+      axios["delete"]('api/survey/' + this.$store.state.surveys.survey.id).then(function (response) {
         _this3.$root.hide();
 
         _this3.$parent.$refs.pnotify.show({
@@ -2775,7 +2775,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchSurvey: function fetchSurvey(survey_id) {
       var _this4 = this;
 
-      axios.get('api/survey/' + survey_id, this.$store.state.config).then(function (response) {
+      axios.get('api/survey/' + survey_id).then(function (response) {
         _this4.$store.commit('survey', response.data.data);
       })["catch"](function (e) {
         _this4.$router.push({
@@ -2786,7 +2786,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchOffices: function fetchOffices() {
       var _this5 = this;
 
-      axios.get('api/selections/offices', this.$store.state.config).then(function (response) {
+      axios.get('api/selections/offices').then(function (response) {
         _this5.offices = response.data;
       })["catch"](function (e) {});
     },
@@ -3085,7 +3085,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var index = this.sections.indexOf(section);
-      axios["delete"]('api/survey/section/' + section.id, this.$store.state.config).then(function (response) {
+      axios["delete"]('api/survey/section/' + section.id).then(function (response) {
         // this.$store.dispatch('fetchSurvey')
         _this2.sections.splice(index, 1);
 
@@ -3388,7 +3388,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       var index = this.sub_items.indexOf(sub_item);
-      axios["delete"]('api/survey/section/item/value/sub_item/' + sub_item.id, this.$store.state.config).then(function (response) {
+      axios["delete"]('api/survey/section/item/value/sub_item/' + sub_item.id).then(function (response) {
         // this.$store.dispatch('fetchSurvey')
         _this3.sub_items.splice(index, 1);
       })["catch"](function (e) {});

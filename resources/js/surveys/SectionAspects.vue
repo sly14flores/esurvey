@@ -220,7 +220,7 @@
 			
 				let index = this.aspects.indexOf(aspect)		
 			
-				axios.delete('api/survey/section/aspect/'+aspect.id, this.$store.state.config).then(response => {
+				axios.delete('api/survey/section/aspect/'+aspect.id).then(response => {
 					
 					// this.$store.dispatch('fetchSurvey')
 					this.aspects.splice(index,1)

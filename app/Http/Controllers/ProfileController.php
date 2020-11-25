@@ -14,8 +14,6 @@ class ProfileController extends Controller
 	
 	public function get_profile(Request $request) {
 		
-		// return $request->user();
-		
 		$user = $request->user();
 		
 		/**

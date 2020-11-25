@@ -167,7 +167,7 @@
 		
 			fetchSurvey(survey_id) {
 			
-				return axios.get('api/survey/'+survey_id, this.$store.state.config)
+				return axios.get('api/survey/'+survey_id)
 			
 			},		
 
@@ -175,7 +175,7 @@
 		
 				this.dataFetched = false
 		
-				axios.get('api/surveys?page='+currentPage, this.$store.state.config).then(response => {
+				axios.get('api/surveys?page='+currentPage).then(response => {
 					
 					this.$store.commit('surveys',response.data.data)
 					this.pagination = response.data.meta
@@ -192,7 +192,7 @@
 			
 			fetchOffices() {
 			
-				axios.get('api/selections/offices', this.$store.state.config).then(response => {
+				axios.get('api/selections/offices').then(response => {
 				
 					this.offices = response.data
 				
@@ -269,7 +269,7 @@
 				
 				})
 
-				axios.post('api/survey', this.survey, this.$store.state.config).then(response => {
+				axios.post('api/survey', this.survey).then(response => {
 
 					this.fetchSurveys(1)
 					this.$root.hide()
@@ -298,7 +298,7 @@
 			
 				let index = this.surveys.indexOf(survey)				
 			
-				axios.delete('api/survey/'+survey.id, this.$store.state.config).then(response => {
+				axios.delete('api/survey/'+survey.id).then(response => {
 					
 					this.fetchSurveys(1)
 					this.$parent.hide()

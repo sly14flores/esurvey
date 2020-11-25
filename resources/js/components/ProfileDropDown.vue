@@ -14,7 +14,7 @@
 					<form id="logout-form" action="logout" method="POST" style="display: none;">
 						<input type="hidden" name="_token" :value="csrf">
 					</form>					
-				</li>				
+				</li>
 			</ul>
 		</div>
 		<b-modal ref="confirm-logout" title="Confirmation" @ok="logout">
@@ -57,6 +57,7 @@
 			
 			logout() {
 				
+				localStorage.removeItem("esurvey")				
 				document.querySelector('#logout-form').submit()
 			
 			}
@@ -64,7 +65,7 @@
 		},
 		
 		created() {
-			
+
 		},
 		
 		mounted() {

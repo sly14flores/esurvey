@@ -16,11 +16,13 @@ use App\Notifications\Sample;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'DashboardController')->middleware(['verified','default.password','check.group']);
+Route::get('/', 'DashboardController')->middleware(['auth','verified','default.password','check.group']);
 
+//
 Route::post('/profile','ProfileController@get_profile');
 Route::post('/api_token','ProfileController@api_token');
 Route::post('/username','Username');
+//
 
 Route::get('/change/password','DefaultPassword@show')->name('change.password.show');
 Route::post('/change/password','DefaultPassword@update')->name('change.password');

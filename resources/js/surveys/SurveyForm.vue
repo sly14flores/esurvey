@@ -444,7 +444,7 @@
 				
 				this.$root.show()
 
-				axios.post('api/survey', this.$store.state.surveys.survey, this.$store.state.config).then(response => {
+				axios.post('api/survey', this.$store.state.surveys.survey).then(response => {
 
 					this.$root.hide()
 					this.$router.push({name: 'surveys_list'})
@@ -473,7 +473,7 @@
 			
 				this.$root.show()
 
-				axios.put('api/survey/'+this.$store.state.surveys.survey.id, this.$store.state.surveys.survey, this.$store.state.config).then(response => {
+				axios.put('api/survey/'+this.$store.state.surveys.survey.id, this.$store.state.surveys.survey).then(response => {
 
 					this.$root.hide()
 					// this.$router.push({name: 'surveys_list'})
@@ -500,7 +500,7 @@
 			
 				this.$root.show()
 
-				axios.delete('api/survey/'+this.$store.state.surveys.survey.id, this.$store.state.config).then(response => {
+				axios.delete('api/survey/'+this.$store.state.surveys.survey.id).then(response => {
 
 					this.$root.hide()
 					this.$parent.$refs.pnotify.show({type: 'success',title: 'Notification', text: "Survey info successfully deleted"})
@@ -517,7 +517,7 @@
 		
 			fetchSurvey(survey_id) {
 			
-				axios.get('api/survey/'+survey_id, this.$store.state.config).then(response => {
+				axios.get('api/survey/'+survey_id).then(response => {
 
 					this.$store.commit('survey',response.data.data)
 					
@@ -533,7 +533,7 @@
 
 			fetchOffices() {
 			
-				axios.get('api/selections/offices', this.$store.state.config).then(response => {
+				axios.get('api/selections/offices').then(response => {
 				
 					this.offices = response.data
 				

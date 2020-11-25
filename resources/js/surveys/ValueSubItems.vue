@@ -249,7 +249,7 @@
 			
 				let index = this.sub_items.indexOf(sub_item)
 			
-				axios.delete('api/survey/section/item/value/sub_item/'+sub_item.id, this.$store.state.config).then(response => {
+				axios.delete('api/survey/section/item/value/sub_item/'+sub_item.id).then(response => {
 					
 					// this.$store.dispatch('fetchSurvey')
 					this.sub_items.splice(index,1)

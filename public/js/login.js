@@ -14412,8 +14412,10 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
       var _this = this;
 
       axios.post('/login', this.auth).then(function (response) {
+        localStorage.setItem('esurvey', JSON.stringify(response.data));
         window.location.href = "/";
       })["catch"](function (e) {
+        localStorage.removeItem("esurvey");
         _this.validation = e.response.data.errors;
       });
     }

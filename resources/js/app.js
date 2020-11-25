@@ -91,8 +91,6 @@ const app = new Vue({
 	},
 	created() {
 		
-		this.$store.dispatch('profile')			
-		
 	},
 	mounted() {
 		

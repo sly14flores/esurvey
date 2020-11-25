@@ -155,7 +155,7 @@
 
 			async getTags() {
 
-				axios.post('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/tags', {tags: this.tags}, this.$store.state.config).then(response => {
+				axios.post('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/tags', {tags: this.tags}).then(response => {
 
 					this.tags = response.data;
 
@@ -172,7 +172,7 @@
 
 				this.getTags();
 				
-				axios.post('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/get', {page: currentPage, toggles: this.tags}, this.$store.state.config).then(response => {
+				axios.post('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/get', {page: currentPage, toggles: this.tags}).then(response => {
 				
 					this.responses = response.data;
 					this.pagination = {
@@ -197,7 +197,7 @@
 
 				this.getTags();
 
-				axios.post('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/get', {page: this.pagination.current_page, toggles: this.tags}, this.$store.state.config).then(response => {
+				axios.post('api/conduct/survey/respondent/'+this.$store.state.dashboard.survey+'/get', {page: this.pagination.current_page, toggles: this.tags}).then(response => {
 				
 					this.responses = response.data;
 					this.pagination = {

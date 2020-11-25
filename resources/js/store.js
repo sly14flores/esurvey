@@ -1,8 +1,8 @@
-import { surveys } from './surveys/surveys'
-import { users } from './users/users'
-import { offices } from './offices/offices'
-import { groups } from './groups/groups'
-import { dashboard } from './dashboard/dashboard'
+import { surveys } from './stores/surveys'
+import { users } from './stores/users'
+import { offices } from './stores/offices'
+import { groups } from './stores/groups'
+import { dashboard } from './stores/dashboard'
 
 // import VuexPersist from 'vuex-persist'
 
@@ -15,6 +15,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
+const esurveyStr = localStorage.getItem('esurvey')
+const profile = JSON.parse(esurveyStr)
+const config = {
+	headers: {
+		'Authorization': 'Bearer '+profile.api_token
+	}
+}
+
 export default new Vuex.Store({
 	// plugins: [vuexPersist.plugin],
 	modules: {
@@ -25,8 +33,8 @@ export default new Vuex.Store({
 		dashboard,
 	},
 	state: {
-		profile: {},
-		config: {}
+		profile,
+		config
 	},
 	mutations: {
 		profile(state, profile) {
@@ -47,15 +55,9 @@ export default new Vuex.Store({
 	},
 	actions: {
 		profile(context) {
-			
-			axios.post('profile').then(response => {
 
-				context.commit('profile',response.data)
-				localStorage.setItem("survey_office",response.data.office)
-			
-			}).catch(e => {
-
-			})
+			const esurvey = localStorage.esurvey
+			context.commit('profile',JSON.parse(esurvey))
 			
 		},
 		async async_profile(context) {
