@@ -61,6 +61,8 @@
 
 <script>
 
+	import { mapActions } from 'vuex'
+
 	export default {
 	
 		name: 'GroupsList',
@@ -102,21 +104,11 @@
 			fetchGroups(currentPage) {
 		
 				this.dataFetched = false
-		
-				axios.get('api/groups?page='+currentPage, this.$store.state.config).then(response => {
-					
-					this.$store.commit('groups',response.data.data)
-					this.pagination = response.data.meta
-					
-					this.dataFetched = true
-					
-				}).catch(e => {
-				
-				
-					this.dataFetched = true
-					
-					
-				})
+
+				this.$store.dispatch('getAllGroups');
+
+				this.dataFetched = true
+
 			},
 			
 			view(group) {
@@ -133,7 +125,7 @@
 	
 		mounted() {
 		
-			this.$parent.hide()		
+			this.$parent.hide()
 		
 		},
 		
@@ -141,21 +133,7 @@
 
 			next(vm => {
 
-				const refresh = from.fullPath == '/'
-				
-				if (refresh) {
-				
-					vm.$store.dispatch('api_token').then(() => {
-					
-						vm.fetchGroups(1)
-					
-					})
-				
-				} else {
-				
-					vm.fetchGroups(1)
-				
-				}				
+				vm.fetchGroups(1)
 
 			})
 
