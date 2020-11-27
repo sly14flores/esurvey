@@ -11,7 +11,8 @@ const GET_GROUP_URL = ':id'
   * APIs
   */
 const getAllGroups = async() => {
-	return await axios.get('api/groups?page=1')
+	const response = await axios.get('api/groups?page=1')
+	return response.data.data
 }
 
 const getGroup = async() => {
@@ -45,9 +46,7 @@ export const groups = {
 	},
 	actions: {
 		getAllGroups(context) {
-			getAllGroups().then(response => {
-				console.log(response.data)
-			})
+			console.log(getAllGroups())
 			context.commit('groups',[])
 		}
 	},
