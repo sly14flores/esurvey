@@ -105,7 +105,7 @@
 		
 				this.dataFetched = false
 
-				this.$store.dispatch('getAllGroups');
+				this.$store.dispatch('groups/all', {page: currentPage});
 
 				this.dataFetched = true
 

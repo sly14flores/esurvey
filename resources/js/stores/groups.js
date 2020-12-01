@@ -4,29 +4,11 @@ import route from '../library/route'
 /**
  * URLSs
  */
-const GET_ALL_GROUPS_URL = ''
+const GET_ALL_GROUPS_URL = 'api/groups'
 const GET_GROUP_URL = ':id'
 
- /**
-  * APIs
-  */
-async function getAllGroupsApi() {
-	try {
-		const response = await axios.get('api/groups?page=1')
-		console.log(response.data)
-		return response.data
-	} catch(error) {
-
-	}
-}
-
-const getGroup = async() => {
-	// const url =  route(GET_GROUP_URL, { id })
-	// const resposnse = await axios
-	// return response
-}
-
 export const groups = {
+	namespaced: true,	
 	state: {
 		group: {},
 		groups: []
@@ -50,13 +32,21 @@ export const groups = {
 		}
 	},
 	actions: {
-		getAllGroups(context) {
-			const data = getAllGroupsApi()
-			console.log(data)
-			// const data = getAllGroups().then(response => {
-			// 	console.log(response)
-			// })
-			// context.commit('groups',[])
+		async all({commit}, {page}) {
+			try {
+				const response = await axios.get(GET_ALL_GROUPS_URL,{params: {page}})
+				commit('groups',response.data)
+			} catch(error) {
+		
+			}
+		},
+		async get({commit}, {id}) {
+			try {
+				const url =  route(GET_GROUP_URL, { id })
+				const response = await axios.get(url)
+			} catch(error) {
+
+			}
 		}
 	},
 	getters: {
