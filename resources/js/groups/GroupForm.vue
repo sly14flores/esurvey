@@ -114,6 +114,8 @@
 	import Vue from 'vue'
 	Vue.use(AsyncComputed)
 
+	import { mapState } from 'vuex'
+
 	export default {
 	
 		name: 'GroupForm',
@@ -140,7 +142,7 @@
 					return this.$store.state.groups.group
 				},
 				set(value) {
-					this.$store.commit('group',value)
+					this.$store.commit('groups/group',value)
 				}
 			},
 			
@@ -155,7 +157,7 @@
 					return this.$store.state.groups.group.authorizations				
 				},
 				set(value) {
-					this.$store.commit('authorizations',value)				
+					this.$store.commit('groups/authorizations',value)				
 				}
 			}
 		
@@ -172,9 +174,9 @@
 			
 			fetchGroup(group_id) {
 			
-				axios.get('api/group/'+group_id, this.$store.state.config).then(response => {
+				axios.get('api/group/'+group_id).then(response => {
 
-					this.$store.commit('group',response.data.data)
+					this.$store.commit('groups/group',response.data.data)
 					if (this.oldGroup) {
 						this.parentGatesPolicies()
 						response.data.data.authorizations.forEach((model) => this.parentModelGP(model))
@@ -182,7 +184,7 @@
 					
 				}).catch(e => {
 					
-					this.$router.push({name: 'groups_list'})
+					// this.$router.push({name: 'groups_list'})
 					
 				})	
 			
@@ -190,7 +192,7 @@
 			
 			getGpTemplate() {
 			
-				return axios.get('api/authorizations', this.$store.state.config);	
+				return axios.get('api/authorizations');
 			
 			},
 			
@@ -260,7 +262,7 @@
 
 			close() {
 
-				this.$store.commit('group',{})
+				this.$store.commit('groups/group',{})
 				this.$router.push({name: 'groups_list'})
 			
 			},
@@ -382,28 +384,16 @@
 				const refresh = from.fullPath == '/'
 
 				if (vm.$route.params.hasOwnProperty('group_id')) {
-				
-					if (refresh) {
 					
-						vm.$store.dispatch('api_token').then(() => {			
-
-							vm.fetchGroup(vm.$route.params.group_id)
-						
-						})
-						
-					} else {
-					
-						vm.fetchGroup(vm.$route.params.group_id)
-					
-					}
+					vm.fetchGroup(vm.$route.params.group_id)
 					
 				} else {
 				
-					vm.$store.commit('group',{})
+					vm.$store.commit('groups/group',{})
 				
 					vm.getGpTemplate().then(response => {
 					
-						vm.$store.commit('authorizations',response.data)
+						vm.$store.commit('groups/authorizations',response.data)
 					
 					}).catch(e => {
 					

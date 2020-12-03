@@ -61,7 +61,7 @@
 
 <script>
 
-	import { mapActions } from 'vuex'
+	import { mapState } from 'vuex'
 
 	export default {
 	
@@ -75,39 +75,39 @@
 		data() {
 			
 			return {
-				
+
 				search: '',
-				pagination: {},
-				dataFetched: false
-			
+
 			}
 			
 		},		
 
 		computed: {
-		
-			groups() {
-				
-				return this.$store.state.groups.groups.filter(group => {
-				
-					return group.name.toLowerCase().includes(this.search.toLowerCase()) ||
-						   group.description.toLowerCase().includes(this.search.toLowerCase())
-				
-				})
 			
-			}
-		
+			...mapState({
+
+				pagination: state => state.groups.groups.pagination,
+				
+				dataFetched: state => state.groups.groups.fetched,
+			
+				groups (state) {
+					return state.groups.groups.data.filter(group => {
+
+						return group.name.toLowerCase().includes(this.search.toLowerCase()) ||
+							group.description.toLowerCase().includes(this.search.toLowerCase())
+					
+					})					
+				}
+
+			}),
+
 		},
 		
 		methods: {
 
 			fetchGroups(currentPage) {
-		
-				this.dataFetched = false
 
-				this.$store.dispatch('groups/all', {page: currentPage});
-
-				this.dataFetched = true
+				this.$store.dispatch('groups/ALL', {page: currentPage});
 
 			},
 			

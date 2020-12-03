@@ -15,6 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_async_computed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-async-computed */ "./node_modules/vue-async-computed/dist/vue-async-computed.esm.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -127,6 +128,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_async_computed__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GroupForm',
   components: {
@@ -144,7 +146,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_async_computed__WEBPACK_IMPOR
         return this.$store.state.groups.group;
       },
       set: function set(value) {
-        this.$store.commit('group', value);
+        this.$store.commit('groups/group', value);
       }
     },
     oldGroup: function oldGroup() {
@@ -155,7 +157,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_async_computed__WEBPACK_IMPOR
         return this.$store.state.groups.group.authorizations;
       },
       set: function set(value) {
-        this.$store.commit('authorizations', value);
+        this.$store.commit('groups/authorizations', value);
       }
     }
   },
@@ -173,8 +175,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_async_computed__WEBPACK_IMPOR
     fetchGroup: function fetchGroup(group_id) {
       var _this = this;
 
-      axios.get('api/group/' + group_id, this.$store.state.config).then(function (response) {
-        _this.$store.commit('group', response.data.data);
+      axios.get('api/group/' + group_id).then(function (response) {
+        _this.$store.commit('groups/group', response.data.data);
 
         if (_this.oldGroup) {
           _this.parentGatesPolicies();
@@ -183,14 +185,11 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_async_computed__WEBPACK_IMPOR
             return _this.parentModelGP(model);
           });
         }
-      })["catch"](function (e) {
-        _this.$router.push({
-          name: 'groups_list'
-        });
+      })["catch"](function (e) {// this.$router.push({name: 'groups_list'})
       });
     },
     getGpTemplate: function getGpTemplate() {
-      return axios.get('api/authorizations', this.$store.state.config);
+      return axios.get('api/authorizations');
     },
     confirmAdd: function confirmAdd() {
       this.$v.group.$touch();
@@ -256,7 +255,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_async_computed__WEBPACK_IMPOR
       });
     },
     close: function close() {
-      this.$store.commit('group', {});
+      this.$store.commit('groups/group', {});
       this.$router.push({
         name: 'groups_list'
       });
@@ -358,17 +357,11 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_async_computed__WEBPACK_IMPOR
       var refresh = from.fullPath == '/';
 
       if (vm.$route.params.hasOwnProperty('group_id')) {
-        if (refresh) {
-          vm.$store.dispatch('api_token').then(function () {
-            vm.fetchGroup(vm.$route.params.group_id);
-          });
-        } else {
-          vm.fetchGroup(vm.$route.params.group_id);
-        }
+        vm.fetchGroup(vm.$route.params.group_id);
       } else {
-        vm.$store.commit('group', {});
+        vm.$store.commit('groups/group', {});
         vm.getGpTemplate().then(function (response) {
-          vm.$store.commit('authorizations', response.data);
+          vm.$store.commit('groups/authorizations', response.data);
         })["catch"](function (e) {});
       }
     });
