@@ -1,4 +1,5 @@
 export const offices = {
+	namespaced: true,	
 	state: {
 		office: {},
 		offices: []

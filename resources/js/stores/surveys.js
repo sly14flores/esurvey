@@ -1,4 +1,5 @@
 export const surveys = {
+	namespaced: true,	
 	state: {
 		survey: {
 			thankyou: {},

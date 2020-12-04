@@ -176,7 +176,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.surveys.survey.sections[this.section].aspects[this.aspect].items[this.item].values;
       },
       set: function set(value) {
-        this.$store.commit('aspect_item_values', {
+        this.$store.commit('surveys/aspect_item_values', {
           section: this.section,
           aspect: this.aspect,
           item: this.item,
@@ -632,7 +632,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.surveys.survey.sections[this.section].aspects[this.aspect].items;
       },
       set: function set(value) {
-        this.$store.commit('aspect_items', {
+        this.$store.commit('surveys/aspect_items', {
           section: this.section,
           aspect: this.aspect,
           items: value
@@ -925,7 +925,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.surveys.survey.sections[this.section].aspects[this.aspect].items[this.item].values[this.value].sub_items;
       },
       set: function set(value) {
-        this.$store.commit('aspect_item_value_sub_items', {
+        this.$store.commit('surveys/aspect_item_value_sub_items', {
           section: this.section,
           aspect: this.aspect,
           item: this.item,
@@ -1143,7 +1143,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.surveys.survey.introductions;
       },
       set: function set(value) {
-        this.$store.commit('introductions', value);
+        this.$store.commit('surveys/introductions', value);
       }
     }
   },
@@ -1391,7 +1391,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.surveys.survey.sections[this.section].items[this.item].values;
       },
       set: function set(value) {
-        this.$store.commit('values', {
+        this.$store.commit('surveys/values', {
           section: this.section,
           item: this.item,
           values: value
@@ -1700,7 +1700,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.surveys.survey.sections[this.section].aspects;
       },
       set: function set(value) {
-        this.$store.commit('aspects', {
+        this.$store.commit('surveys/aspects', {
           section: this.section,
           aspects: value
         });
@@ -2068,7 +2068,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.surveys.survey.sections[this.section].items;
       },
       set: function set(value) {
-        this.$store.commit('items', {
+        this.$store.commit('surveys/items', {
           section: this.section,
           items: value
         });
@@ -2540,7 +2540,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.surveys.survey;
       },
       set: function set(value) {
-        this.$store.commit('survey', value);
+        this.$store.commit('surveys/survey', value);
       }
     },
     oldSurvey: function oldSurvey() {
@@ -2572,7 +2572,7 @@ __webpack_require__.r(__webpack_exports__);
       this.onEdit = !this.onEdit;
     },
     close: function close() {
-      this.$store.commit('survey', {});
+      this.$store.commit('surveys/survey', {});
       this.$router.push({
         name: 'surveys_list'
       });
@@ -2776,7 +2776,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       axios.get('api/survey/' + survey_id).then(function (response) {
-        _this4.$store.commit('survey', response.data.data);
+        _this4.$store.commit('surveys/survey', response.data.data);
       })["catch"](function (e) {
         _this4.$router.push({
           name: 'surveys_list'
@@ -2846,15 +2846,9 @@ __webpack_require__.r(__webpack_exports__);
       var refresh = from.fullPath == '/';
 
       if (vm.$route.params.hasOwnProperty('survey_id')) {
-        if (refresh) {
-          vm.$store.dispatch('api_token').then(function () {
-            vm.fetchSurvey(vm.$route.params.survey_id);
-          });
-        } else {
-          vm.fetchSurvey(vm.$route.params.survey_id);
-        }
+        vm.fetchSurvey(vm.$route.params.survey_id);
       } else {
-        vm.$store.commit('survey', {});
+        vm.$store.commit('surveys/survey', {});
       }
     });
   }
@@ -2963,7 +2957,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.surveys.survey.sections;
       },
       set: function set(value) {
-        this.$store.commit('sections', value);
+        this.$store.commit('surveys/sections', value);
       }
     }
   },
@@ -3271,7 +3265,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.surveys.survey.sections[this.section].items[this.item].values[this.value].sub_items;
       },
       set: function set(value) {
-        this.$store.commit('sub_items', {
+        this.$store.commit('surveys/sub_items', {
           section: this.section,
           item: this.item,
           value: this.value,

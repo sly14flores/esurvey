@@ -83,7 +83,7 @@
 					return this.$store.state.offices.office
 				},
 				set(value) {
-					this.$store.commit('office',value)
+					this.$store.commit('offices/office',value)
 				}
 			},
 			
@@ -108,7 +108,7 @@
 			
 				axios.get('api/office/'+office_id, this.$store.state.config).then(response => {
 
-					this.$store.commit('office',response.data.data)
+					this.$store.commit('offices/office',response.data.data)
 					
 				}).catch(e => {
 					
@@ -184,7 +184,7 @@
 
 			close() {
 
-				this.$store.commit('office',{})
+				this.$store.commit('offices/office',{})
 				this.$router.push({name: 'offices_list'})
 			
 			},
@@ -252,7 +252,7 @@
 					
 				} else {
 				
-					vm.$store.commit('office',{})
+					vm.$store.commit('offices/office',{})
 					
 				}
 

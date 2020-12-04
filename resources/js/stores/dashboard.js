@@ -1,4 +1,5 @@
 export const dashboard = {
+	namespaced: true,	
 	state: {
 		data: {
 			info: {

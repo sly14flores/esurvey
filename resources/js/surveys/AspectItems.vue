@@ -241,7 +241,7 @@
 					return this.$store.state.surveys.survey.sections[this.section].aspects[this.aspect].items
 				},
 				set(value) {
-					this.$store.commit('aspect_items',{section: this.section, aspect: this.aspect, items: value})
+					this.$store.commit('surveys/aspect_items',{section: this.section, aspect: this.aspect, items: value})
 				}
 			}
 			

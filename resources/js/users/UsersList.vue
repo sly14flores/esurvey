@@ -112,7 +112,7 @@
 		
 				axios.get('api/users?page='+currentPage, this.$store.state.config).then(response => {
 					
-					this.$store.commit('users',response.data.data)
+					this.$store.commit('users/users',response.data.data)
 					this.pagination = response.data.meta
 					
 					this.dataFetched = true

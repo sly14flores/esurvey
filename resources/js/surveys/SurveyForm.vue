@@ -282,7 +282,7 @@
 					return this.$store.state.surveys.survey
 				},
 				set(value) {
-					this.$store.commit('survey',value)
+					this.$store.commit('surveys/survey',value)
 				}
 			},
 			
@@ -317,7 +317,7 @@
 			
 			close() {
 			
-				this.$store.commit('survey',{})
+				this.$store.commit('surveys/survey',{})
 				this.$router.push({name: 'surveys_list'})			
 			
 			},
@@ -519,7 +519,7 @@
 			
 				axios.get('api/survey/'+survey_id).then(response => {
 
-					this.$store.commit('survey',response.data.data)
+					this.$store.commit('surveys/survey',response.data.data)
 					
 					
 					
@@ -613,24 +613,12 @@
 				const refresh = from.fullPath == '/'
 
 				if (vm.$route.params.hasOwnProperty('survey_id')) {
-				
-					if (refresh) {
-					
-						vm.$store.dispatch('api_token').then(() => {			
 
-							vm.fetchSurvey(vm.$route.params.survey_id)
-						
-						})
-						
-					} else {
-					
-						vm.fetchSurvey(vm.$route.params.survey_id)
-					
-					}
+					vm.fetchSurvey(vm.$route.params.survey_id)
 					
 				} else {
 				
-					vm.$store.commit('survey',{})
+					vm.$store.commit('surveys/survey',{})
 					
 				}
 

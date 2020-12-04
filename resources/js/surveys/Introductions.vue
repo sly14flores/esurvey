@@ -83,7 +83,7 @@
 					return this.$store.state.surveys.survey.introductions
 				},
 				set(value) {
-					this.$store.commit('introductions', value)
+					this.$store.commit('surveys/introductions', value)
 				}
 			}			
 		

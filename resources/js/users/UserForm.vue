@@ -121,7 +121,7 @@
 					return this.$store.state.users.user
 				},
 				set(value) {
-					this.$store.commit('user',value)
+					this.$store.commit('users/user',value)
 				}
 			},
 			
@@ -185,7 +185,7 @@
 			
 				axios.get('api/user/'+user_id, this.$store.state.config).then(response => {
 
-					this.$store.commit('user',response.data.data)
+					this.$store.commit('users/user',response.data.data)
 					
 				}).catch(e => {
 					
@@ -265,7 +265,7 @@
 
 			close() {
 
-				this.$store.commit('user',{})
+				this.$store.commit('users/user',{})
 				this.$router.push({name: 'users_list'})
 			
 			},
@@ -368,7 +368,7 @@
 					
 				} else {
 				
-					vm.$store.commit('user',{})
+					vm.$store.commit('users/user',{})
 					
 				}
 

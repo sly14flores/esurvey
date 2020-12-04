@@ -67,7 +67,7 @@ export default {
 			
 			set(value) {
 			
-				this.$store.commit('dashboardSurvey', value)
+				this.$store.commit('surveys/dashboardSurvey', value)
 			
 			}
 		
@@ -103,8 +103,8 @@ export default {
 
 			this.fetchOfficeSurveys().then(response => {
 
-				this.$store.commit('dashboardSurveys', response.data)
-				if (_.size(response.data)) this.$store.commit('dashboardSurvey', this.surveys[0].id)		
+				this.$store.commit('surveys/dashboardSurveys', response.data)
+				if (_.size(response.data)) this.$store.commit('surveys/dashboardSurvey', this.surveys[0].id)		
 
 			}).catch(e => {
 

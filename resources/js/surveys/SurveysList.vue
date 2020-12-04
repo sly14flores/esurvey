@@ -177,7 +177,7 @@
 		
 				axios.get('api/surveys?page='+currentPage).then(response => {
 					
-					this.$store.commit('surveys',response.data.data)
+					this.$store.commit('surveys/surveys',response.data.data)
 					this.pagination = response.data.meta
 					
 					this.dataFetched = true

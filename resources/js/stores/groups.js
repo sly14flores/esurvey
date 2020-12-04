@@ -5,7 +5,7 @@ import route from '../library/route'
  * URLSs
  */
 const GET_ALL_GROUPS_URL = 'api/groups'
-const GET_GROUP_URL = ':id'
+const GET_GROUP_URL = 'api/group/:id'
 
 export const groups = {
 	namespaced: true,	

@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.users.user;
       },
       set: function set(value) {
-        this.$store.commit('user', value);
+        this.$store.commit('users/user', value);
       }
     },
     oldUser: function oldUser() {
@@ -189,7 +189,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('api/user/' + user_id, this.$store.state.config).then(function (response) {
-        _this2.$store.commit('user', response.data.data);
+        _this2.$store.commit('users/user', response.data.data);
       })["catch"](function (e) {
         _this2.$router.push({
           name: 'users_list'
@@ -262,7 +262,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     close: function close() {
-      this.$store.commit('user', {});
+      this.$store.commit('users/user', {});
       this.$router.push({
         name: 'users_list'
       });
@@ -343,7 +343,7 @@ __webpack_require__.r(__webpack_exports__);
           vm.fetchUser(vm.$route.params.user_id);
         }
       } else {
-        vm.$store.commit('user', {});
+        vm.$store.commit('users/user', {});
       }
     });
   }

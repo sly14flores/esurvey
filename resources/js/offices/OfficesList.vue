@@ -105,7 +105,7 @@
 		
 				axios.get('api/offices?page='+currentPage, this.$store.state.config).then(response => {
 					
-					this.$store.commit('offices',response.data.data)
+					this.$store.commit('offices/offices',response.data.data)
 					this.pagination = response.data.meta
 					
 					this.dataFetched = true

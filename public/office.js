@@ -85,7 +85,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.$store.state.offices.office;
       },
       set: function set(value) {
-        this.$store.commit('office', value);
+        this.$store.commit('offices/office', value);
       }
     },
     oldOffice: function oldOffice() {
@@ -107,7 +107,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('api/office/' + office_id, this.$store.state.config).then(function (response) {
-        _this.$store.commit('office', response.data.data);
+        _this.$store.commit('offices/office', response.data.data);
       })["catch"](function (e) {
         _this.$router.push({
           name: 'offices_list'
@@ -178,7 +178,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     close: function close() {
-      this.$store.commit('office', {});
+      this.$store.commit('offices/office', {});
       this.$router.push({
         name: 'offices_list'
       });
@@ -234,7 +234,7 @@ __webpack_require__.r(__webpack_exports__);
           vm.fetchOffice(vm.$route.params.office_id);
         }
       } else {
-        vm.$store.commit('office', {});
+        vm.$store.commit('offices/office', {});
       }
     });
   }
