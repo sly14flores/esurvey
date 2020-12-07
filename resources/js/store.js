@@ -3,6 +3,7 @@ import { users } from './stores/users'
 import { offices } from './stores/offices'
 import { groups } from './stores/groups'
 import { dashboard } from './stores/dashboard'
+import { analytics } from './stores/analytics'
 
 // import VuexPersist from 'vuex-persist'
 
@@ -31,6 +32,7 @@ export default new Vuex.Store({
 		offices,
 		groups,
 		dashboard,
+		analytics,
 	},
 	state: {
 		profile,

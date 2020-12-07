@@ -1,5 +1,5 @@
 export const users = {
-	namespaced: true,	
+	namespaced: true,
 	state: {
 		user: {},
 		users: []

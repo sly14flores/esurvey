@@ -40,12 +40,24 @@
 						  <select class="custom-select my-1 mr-sm-2" v-model="chart">
 							<option v-for="chart in charts" :value="chart.id" :key="chart.id">{{chart.name}}</option>
 						  </select>
-						  <button type="button" class="btn btn-sm btn-warning my-1" @click="showFieldsForChart">Show Fields</button>
+						  <button type="button" class="btn btn-sm btn-warning my-1" @click="showFieldsForChart">Select</button>
 						</form>						
 					</div>
 				</div>				         
 			</div>
 			<div class="page-body">
+				<div class="row">
+					<div class="col-12">
+						<p>Select Field</p>
+						<div class="border-checkbox-section mb-4">
+							<div class="border-checkbox-group border-checkbox-group-danger">
+								<input class="border-checkbox" type="checkbox" id="tag-">
+								<label class="border-checkbox-label" for="tag-">Field</label>
+							</div>
+						</div>
+						<button type="button" class="btn btn-sm btn-danger my-1" @click="addChart">Add</button>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-6" v-for="pie in pies" :key="pie.no">
 						<pie-chart :pieIndex="pie.no" :pieData="pie.data" :pieOptions="pie.options"></pie-chart>
@@ -77,12 +89,10 @@ export default {
 	data() {
 
 		return {
-			chart: 1,
 			charts: [
 				{id: 1, type: 'pie', name: 'Pie'},
 				{id: 2, type: 'bar', name: 'Bar'},
 			],
-			chartComponent: 'bar-chart',
 			pies: [],
             chartColors: {
                 red: 'rgb(255, 99, 132)',
@@ -92,7 +102,7 @@ export default {
                 blue: 'rgb(54, 162, 235)',
                 purple: 'rgb(153, 102, 255)',
                 grey: 'rgb(201, 203, 207)'
-            },		
+            },	
 		}
 
 	},
@@ -105,27 +115,22 @@ export default {
 	},
 	
 	computed: {
-	
-		survey: {
-			
-			get() {
 
-				return this.$store.state.dashboard.survey
-				
+		survey: {
+			get() {
+				return this.$store.state.analytics.survey
 			},
-			
 			set(value) {
-			
-				this.$store.commit('surveys/dashboardSurvey', value)
-			
+				this.$store.dispatch('analytics/survey', value)
 			}
-		
 		},
-	
+
 		surveys() {
-		
-			return this.$store.state.dashboard.surveys
-		
+			return this.$store.state.analytics.surveys
+		},
+
+		chart() {
+			return this.$store.state.analytics.chart
 		}
 	
 	},
@@ -133,8 +138,6 @@ export default {
 	methods: {
 
 		showFieldsForChart() {
-
-			
 
 		},
 
@@ -184,19 +187,7 @@ export default {
     mounted() {
 
 		this.$parent.hide()
-	
-		this.$store.dispatch('async_profile').then(() => {
-
-			this.fetchOfficeSurveys().then(response => {
-
-				this.$store.commit('dashboard/dashboardSurveys', response.data)
-				if (_.size(response.data)) this.$store.commit('dashboard/dashboardSurvey', this.surveys[0].id)		
-
-			}).catch(e => {
-
-			})
-			
-		})	
+		this.$store.dispatch('analytics/surveys')
 
     }
  
