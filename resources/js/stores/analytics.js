@@ -5,6 +5,7 @@ import route from '../library/route'
  * API URLSs
  */
 const GET_SURVEYS_SELECTIONS_URL = '/api/selections/surveys/:id'
+const GET_FIELDS_URL = '/api/conduct/survey/respondent/:survey_id/tags/only'
 
 export const analytics = {
     namespaced: true,
@@ -12,7 +13,8 @@ export const analytics = {
         survey: null,
         surveys: [],
         chart: null,
-        pies: []
+        pies: [],
+        fields: [],
     },
     mutations: {
 		survey(state, survey) {
@@ -20,11 +22,17 @@ export const analytics = {
         },
 		surveys(state, surveys) {
 			state.surveys = surveys
-		},        
+        },
+        chart(state, chart) {
+            state.chart = chart
+        },
+        fields(state, fields) {
+            state.fields = fields
+        }
     },
 	actions: {
-        survey({commit},survey) {
-            commit('survey',survey)
+        survey({commit},payload) {
+            commit('survey',payload)
         },
         async surveys({commit, state, rootState}) {
             try {
@@ -35,6 +43,18 @@ export const analytics = {
                     commit('survey', state.surveys[0].id)
                 }
             } catch(error) {
+
+            }
+        },
+        chart({commit},payload) {
+            commit('chart',payload)
+        },
+        async fields({commit,state}) { // 
+            try {
+                const url = route(GET_FIELDS_URL, { survey_id: state.survey })
+                const response = await axios.get(url)
+                commit('fields',response.data)
+            } catch (error) {
 
             }
         }

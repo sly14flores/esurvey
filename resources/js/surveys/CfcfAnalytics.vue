@@ -129,8 +129,13 @@ export default {
 			return this.$store.state.analytics.surveys
 		},
 
-		chart() {
-			return this.$store.state.analytics.chart
+		chart: {
+			get() {
+				return this.$store.state.analytics.chart
+			},
+			set(value) {
+				this.$store.dispatch('analytics/chart', value)
+			}
 		}
 	
 	},
@@ -138,6 +143,8 @@ export default {
 	methods: {
 
 		showFieldsForChart() {
+
+			this.$store.dispatch('analytics/fields')
 
 		},
 

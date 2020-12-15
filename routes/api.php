@@ -64,6 +64,7 @@ Route::prefix('conduct')->group(function() {
 	Route::post('/{token}', 'FetchSurvey');
 	Route::post('/survey/respondent', 'SurveyRespondent@update');
 	Route::post('/survey/respondent/{survey_id}/tags', 'SurveyRespondent@tags');
+	Route::get('/survey/respondent/{survey_id}/tags/only', 'SurveyRespondent@tagsOnly');
 	Route::post('/survey/respondent/{survey_id}/get', 'SurveyRespondent@show');
 
 });

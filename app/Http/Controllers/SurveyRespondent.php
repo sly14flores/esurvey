@@ -99,6 +99,13 @@ class SurveyRespondent extends Controller
 		return $tags;
 	}
 
+	public function tagsOnly($survey_id)
+	{
+		$tags = $this->get_tags_only($survey_id);
+
+		return $tags;
+	}	
+
 	public function show(Request $request, $survey_id)
 	{
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1078ff4f81e96b236e1268e15b0115c",
+    "content-hash": "c79ae8e8cdf4e6e45c3bc946aa4d92c6",
     "packages": [
         {
             "name": "antoineaugusti/laravel-sentiment-analysis",
@@ -1887,6 +1887,57 @@
                 }
             ],
             "time": "2020-08-24T12:35:58+00:00"
+        },
+        {
+            "name": "netojose/laravel-api-explorer",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/netojose/laravel-api-explorer.git",
+                "reference": "20cac3096d8327283b68aead834a226d76d9a170"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/netojose/laravel-api-explorer/zipball/20cac3096d8327283b68aead834a226d76d9a170",
+                "reference": "20cac3096d8327283b68aead834a226d76d9a170",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NetoJose\\LaravelApiExplorer\\LaravelApiExplorerServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelApiExplorer": "NetoJose\\LaravelApiExplorer\\Facades\\LaravelApiExplorer"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NetoJose\\LaravelApiExplorer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "José Neto",
+                    "email": "sputinykster@gmail.com",
+                    "homepage": "https://netojose.github.io/"
+                }
+            ],
+            "description": "API explorer for laravel application",
+            "homepage": "https://github.com/netojose/laravel-api-explorer",
+            "keywords": [
+                "api",
+                "laravel",
+                "laravel-api-explorer",
+                "rest"
+            ],
+            "time": "2019-12-12T11:28:24+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -5903,6 +5954,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {

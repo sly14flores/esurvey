@@ -55,6 +55,20 @@ trait Respondents
 
 	}
 
+	public function get_tags_only($survey_id)
+	{
+		$columns = $this->generateColumns($survey_id);
+
+		$fields = collect($columns)->filter(function($column) {
+
+			return $column['value'] != "Office" &&
+				$column['value'] != "Date";
+
+		});
+
+		return $fields;
+	}
+
 	private function toggleColumn($id,$field,$toggles)
 	{
 		$show = true;		
