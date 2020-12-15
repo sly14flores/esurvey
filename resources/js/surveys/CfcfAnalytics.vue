@@ -37,28 +37,37 @@
 					<div class="col-lg-12">
 						<form class="form-inline mt-4">
 						  <label class="my-1 mr-2">Chart</label>
-						  <select class="custom-select my-1 mr-sm-2" v-model="chart">
+						  <select class="custom-select my-1 mr-sm-2" :class="{'is-invalid': $v.chart.$error}" v-model="chart">
 							<option v-for="chart in charts" :value="chart.id" :key="chart.id">{{chart.name}}</option>
 						  </select>
-						  <button type="button" class="btn btn-sm btn-warning my-1" @click="showFieldsForChart">Select</button>
+						  <div class="invalid-feedback">Please select chart&nbsp;</div>
+						  <button type="button" class="btn btn-sm btn-warning my-1" @click="showFieldsForChart">Show Fields</button>
 						</form>						
 					</div>
 				</div>				         
 			</div>
 			<div class="page-body">
 				<div class="row">
-					<div class="col-12">
-						<p>Select Field</p>
-						<div class="border-checkbox-section mb-4">
-							<div class="border-checkbox-group border-checkbox-group-danger">
-								<input class="border-checkbox" type="checkbox" id="tag-">
-								<label class="border-checkbox-label" for="tag-">Field</label>
+					<div class="preloader3 loader-block" v-if="!dataFetched">
+						<div class="circ1"></div>
+						<div class="circ2"></div>
+						<div class="circ3"></div>
+						<div class="circ4"></div>
+					</div>
+					<div class="col-12" v-else>
+						<div v-if="fieldsFetched">
+							<p>Select Field</p>
+							<div class="border-checkbox-section mb-4">
+								<div v-for="(tag, i) in fields" :key="i" class="border-checkbox-group border-checkbox-group-danger">
+									<input class="border-checkbox" type="checkbox" :id="'tag-'+i" v-model="tag.show">
+									<label class="border-checkbox-label" :for="'tag-'+i">{{tag.value}}</label>
+								</div>
 							</div>
+							<button type="button" class="btn btn-sm btn-danger my-1" @click="generateChart">Generate</button>
 						</div>
-						<button type="button" class="btn btn-sm btn-danger my-1" @click="addChart">Add</button>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row mt-4">
 					<div class="col-6" v-for="pie in pies" :key="pie.no">
 						<pie-chart :pieIndex="pie.no" :pieData="pie.data" :pieOptions="pie.options"></pie-chart>
 					</div>
@@ -77,6 +86,7 @@
 
 <script>
 
+import { required } from "vuelidate/lib/validators";
 import OfficeSurveys from './mixins/OfficeSurveys'
 
 import BarChart from './charts/BarChart'
@@ -89,20 +99,7 @@ export default {
 	data() {
 
 		return {
-			charts: [
-				{id: 1, type: 'pie', name: 'Pie'},
-				{id: 2, type: 'bar', name: 'Bar'},
-			],
-			pies: [],
-            chartColors: {
-                red: 'rgb(255, 99, 132)',
-                orange: 'rgb(255, 159, 64)',
-                yellow: 'rgb(255, 205, 86)',
-                green: 'rgb(75, 192, 192)',
-                blue: 'rgb(54, 162, 235)',
-                purple: 'rgb(153, 102, 255)',
-                grey: 'rgb(201, 203, 207)'
-            },	
+
 		}
 
 	},
@@ -115,6 +112,18 @@ export default {
 	},
 	
 	computed: {
+
+		dataFetched() {
+			return this.$store.state.analytics.dataFetched
+		},
+
+		fieldsFetched() {
+			return this.$store.state.analytics.fieldsFetched
+		},
+
+		fields() {
+			return this.$store.state.analytics.fields
+		},
 
 		survey: {
 			get() {
@@ -129,6 +138,10 @@ export default {
 			return this.$store.state.analytics.surveys
 		},
 
+		charts() {
+			return this.$store.state.analytics.charts
+		},
+
 		chart: {
 			get() {
 				return this.$store.state.analytics.chart
@@ -136,6 +149,10 @@ export default {
 			set(value) {
 				this.$store.dispatch('analytics/chart', value)
 			}
+		},
+
+		pies() {
+			return this.$store.state.analytics.pies
 		}
 	
 	},
@@ -144,51 +161,28 @@ export default {
 
 		showFieldsForChart() {
 
+			this.$v.chart.$touch()
+			
+			if (this.$v.chart.$invalid) return
+
 			this.$store.dispatch('analytics/fields')
 
 		},
 
-		addChart() {
+		generateChart() {
 
-			const data = {
-				datasets: [{
-					data: [
-						5,
-						5,
-						5,
-						5,
-						5,
-					],
-					backgroundColor: [
-						this.chartColors.red,
-						this.chartColors.orange,
-						this.chartColors.yellow,
-						this.chartColors.green,
-						this.chartColors.blue,
-					],
-					label: 'Dataset 1'
-				}],
-				labels: [
-					'Red',
-					'Orange',
-					'Yellow',
-					'Green',
-					'Blue'
-				]
-			}
-
-			const options = {
-				responsive: true
-			}
-
-			this.pies.push({no: this.pies.length+1, data, options});
+			this.$store.dispatch('analytics/addPie')
 
 		},
 
 	},
 
-    created() {
+	validations: {
+		chart: {required}
+	},
 
+    created() {
+		this.$store.dispatch('analytics/resetState')
 	},
 
     mounted() {
