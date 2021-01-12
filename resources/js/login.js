@@ -21,7 +21,9 @@ new Vue({
 			axios.post('/login',this.auth).then(response => {
 				
 				localStorage.setItem('esurvey', JSON.stringify(response.data))
-				window.location.href = "/"
+				setTimeout(function() {
+					window.location.href = "/"
+				},1000)
 				
 			}).catch(e => {
 				
