@@ -1899,10 +1899,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/conduct/sopaHijack.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/conduct/sopaHijack.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/conduct/themes/default/sopaHijack.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/conduct/themes/default/sopaHijack.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -67494,10 +67494,10 @@ var e=function(){return(e=Object.assign||function(e){for(var t,r=1,s=arguments.l
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/conduct/sopaHijack.vue?vue&type=template&id=1be9cb70&scoped=true&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/conduct/sopaHijack.vue?vue&type=template&id=1be9cb70&scoped=true& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/conduct/themes/default/sopaHijack.vue?vue&type=template&id=3a3bca26&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/conduct/themes/default/sopaHijack.vue?vue&type=template&id=3a3bca26&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79707,10 +79707,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/conduct/sopa.js":
-/*!***********************************!*\
-  !*** ./resources/conduct/sopa.js ***!
-  \***********************************/
+/***/ "./resources/conduct/themes/default/sopa.js":
+/*!**************************************************!*\
+  !*** ./resources/conduct/themes/default/sopa.js ***!
+  \**************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79718,7 +79718,7 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _sopaHijack_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sopaHijack.vue */ "./resources/conduct/sopaHijack.vue");
+/* harmony import */ var _sopaHijack_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sopaHijack.vue */ "./resources/conduct/themes/default/sopaHijack.vue");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -79733,18 +79733,18 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 
 /***/ }),
 
-/***/ "./resources/conduct/sopaHijack.vue":
-/*!******************************************!*\
-  !*** ./resources/conduct/sopaHijack.vue ***!
-  \******************************************/
+/***/ "./resources/conduct/themes/default/sopaHijack.vue":
+/*!*********************************************************!*\
+  !*** ./resources/conduct/themes/default/sopaHijack.vue ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _sopaHijack_vue_vue_type_template_id_1be9cb70_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sopaHijack.vue?vue&type=template&id=1be9cb70&scoped=true& */ "./resources/conduct/sopaHijack.vue?vue&type=template&id=1be9cb70&scoped=true&");
-/* harmony import */ var _sopaHijack_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sopaHijack.vue?vue&type=script&lang=js& */ "./resources/conduct/sopaHijack.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _sopaHijack_vue_vue_type_template_id_3a3bca26_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sopaHijack.vue?vue&type=template&id=3a3bca26&scoped=true& */ "./resources/conduct/themes/default/sopaHijack.vue?vue&type=template&id=3a3bca26&scoped=true&");
+/* harmony import */ var _sopaHijack_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sopaHijack.vue?vue&type=script&lang=js& */ "./resources/conduct/themes/default/sopaHijack.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -79754,62 +79754,62 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _sopaHijack_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _sopaHijack_vue_vue_type_template_id_1be9cb70_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _sopaHijack_vue_vue_type_template_id_1be9cb70_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _sopaHijack_vue_vue_type_template_id_3a3bca26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _sopaHijack_vue_vue_type_template_id_3a3bca26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "1be9cb70",
+  "3a3bca26",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/conduct/sopaHijack.vue"
+component.options.__file = "resources/conduct/themes/default/sopaHijack.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/conduct/sopaHijack.vue?vue&type=script&lang=js&":
-/*!*******************************************************************!*\
-  !*** ./resources/conduct/sopaHijack.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************/
+/***/ "./resources/conduct/themes/default/sopaHijack.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/conduct/themes/default/sopaHijack.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_sopaHijack_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib??ref--4-0!../../node_modules/vue-loader/lib??vue-loader-options!./sopaHijack.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/conduct/sopaHijack.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_sopaHijack_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./sopaHijack.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/conduct/themes/default/sopaHijack.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_sopaHijack_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/conduct/sopaHijack.vue?vue&type=template&id=1be9cb70&scoped=true&":
-/*!*************************************************************************************!*\
-  !*** ./resources/conduct/sopaHijack.vue?vue&type=template&id=1be9cb70&scoped=true& ***!
-  \*************************************************************************************/
+/***/ "./resources/conduct/themes/default/sopaHijack.vue?vue&type=template&id=3a3bca26&scoped=true&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/conduct/themes/default/sopaHijack.vue?vue&type=template&id=3a3bca26&scoped=true& ***!
+  \****************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_sopaHijack_vue_vue_type_template_id_1be9cb70_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./sopaHijack.vue?vue&type=template&id=1be9cb70&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/conduct/sopaHijack.vue?vue&type=template&id=1be9cb70&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_sopaHijack_vue_vue_type_template_id_1be9cb70_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_sopaHijack_vue_vue_type_template_id_3a3bca26_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./sopaHijack.vue?vue&type=template&id=3a3bca26&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/conduct/themes/default/sopaHijack.vue?vue&type=template&id=3a3bca26&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_sopaHijack_vue_vue_type_template_id_3a3bca26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_sopaHijack_vue_vue_type_template_id_1be9cb70_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_sopaHijack_vue_vue_type_template_id_3a3bca26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
 /***/ 5:
-/*!*****************************************!*\
-  !*** multi ./resources/conduct/sopa.js ***!
-  \*****************************************/
+/*!********************************************************!*\
+  !*** multi ./resources/conduct/themes/default/sopa.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\esurvey\resources\conduct\sopa.js */"./resources/conduct/sopa.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\esurvey\resources\conduct\themes\default\sopa.js */"./resources/conduct/themes/default/sopa.js");
 
 
 /***/ })

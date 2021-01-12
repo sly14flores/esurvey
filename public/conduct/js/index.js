@@ -18051,16 +18051,16 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./resources/conduct/index.js":
-/*!************************************!*\
-  !*** ./resources/conduct/index.js ***!
-  \************************************/
+/***/ "./resources/conduct/themes/default/index.js":
+/*!***************************************************!*\
+  !*** ./resources/conduct/themes/default/index.js ***!
+  \***************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./jquery */ "./resources/conduct/jquery.js");
+/* harmony import */ var _jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./jquery */ "./resources/conduct/themes/default/jquery.js");
 /* harmony import */ var _jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);
@@ -18069,10 +18069,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/conduct/jquery.js":
-/*!*************************************!*\
-  !*** ./resources/conduct/jquery.js ***!
-  \*************************************/
+/***/ "./resources/conduct/themes/default/jquery.js":
+/*!****************************************************!*\
+  !*** ./resources/conduct/themes/default/jquery.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18085,13 +18085,13 @@ try {
 /***/ }),
 
 /***/ 3:
-/*!******************************************!*\
-  !*** multi ./resources/conduct/index.js ***!
-  \******************************************/
+/*!*********************************************************!*\
+  !*** multi ./resources/conduct/themes/default/index.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\esurvey\resources\conduct\index.js */"./resources/conduct/index.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\esurvey\resources\conduct\themes\default\index.js */"./resources/conduct/themes/default/index.js");
 
 
 /***/ })

@@ -112,12 +112,18 @@ mix.copyDirectory('resources/assets/pages/widget/amchart', 'public/amcharts')
 ** Conduct Survey
 **
 */
-mix.sass('resources/conduct/sass/index.scss', 'public/conduct/css').version()
-mix.js('resources/conduct/index.js', 'public/conduct/js').version()
-mix.js('resources/conduct/conduct.js', 'public/conduct/vue').version()
-mix.copyDirectory('resources/conduct/static/images', 'public/conduct/images')
+mix.sass('resources/conduct/themes/default/sass/index.scss', 'public/conduct/themes/default/css').version()
+mix.js('resources/conduct/themes/default/index.js', 'public/conduct/themes/default/js').version()
+mix.js('resources/conduct/themes/default/conduct.js', 'public/conduct/themes/default/vue').version()
+mix.copyDirectory('resources/conduct/themes/default/static/images', 'public/conduct/themes/default/images')
 
 /*
  * SOPA 2020
 */
-mix.js('resources/conduct/sopa.js', 'public/conduct/js')
+mix.js('resources/conduct/themes/default/sopa.js', 'public/conduct/themes/default/js')
+
+
+/**
+ * NAPANAM
+ */
+mix.js('resources/conduct/themes/napanam/index.js', 'public/conduct/themes/napanam/js')
