@@ -56,6 +56,7 @@ Route::prefix('selections')->group(function() {
 	Route::get('surveys/{office}','Selections@surveys');
 	Route::get('general/surveys','Selections@generalSurveys');
 	Route::get('specific/surveys','Selections@specificSurveys');
+	Route::get('themes','Selections@conductThemes');
 
 });
 

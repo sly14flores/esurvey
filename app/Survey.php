@@ -17,7 +17,8 @@ class Survey extends Model
 		'left_infographic',
 		'right_infographic',
 		'include_office',
-		'fullscreen_mobile'
+		'fullscreen_mobile',
+		'theme',
 	];
 
 	public function introductions() {

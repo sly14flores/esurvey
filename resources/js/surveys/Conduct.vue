@@ -136,8 +136,8 @@
 
 				if (this.$v.conduct.general.$invalid) return
 				
-				if (this.conduct.general.recursive) window.open('/survey#/general/recursive/'+this.conduct.general.survey)
-				else window.open('/survey#/general/once/'+this.conduct.general.survey)
+				if (this.conduct.general.recursive) window.open('/survey/'+this.conduct.general.survey+'#/general/recursive/'+this.conduct.general.survey)
+				else window.open('/survey/'+this.conduct.general.survey+'#/general/once/'+this.conduct.general.survey)
 			
 			},
 			
@@ -147,8 +147,8 @@
 
 				if (this.$v.conduct.specific.$invalid) return
 				
-				if (this.conduct.specific.recursive) window.open('/survey#/specific/recursive/'+this.conduct.specific.survey)
-				else  window.open('/survey#/specific/once/'+this.conduct.specific.survey)
+				if (this.conduct.specific.recursive) window.open('/survey/'+this.conduct.specific.survey+'#/specific/recursive/'+this.conduct.specific.survey)
+				else  window.open('/survey/'+this.conduct.specific.survey+'#/specific/once/'+this.conduct.specific.survey)
 			
 			}			
 		

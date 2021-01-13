@@ -213,6 +213,7 @@ class SurveyResource extends JsonResource
 			"right_infographic"=>$this->right_infographic,
 			"include_office"=>$this->include_office,
 			"fullscreen_mobile"=>$this->fullscreen_mobile,
+			"theme"=>$this->theme,
 			"introductions"=>$introductions,
 			"sections"=>$sections,
 			"thankyou"=>(is_null($thankyou))?array("id"=>0,"infographic"=>null,"message"=>null,"translated"=>null):$thankyou,

@@ -18,11 +18,11 @@ class SurveyList extends JsonResource
         $once_link = "";
         $recursive_link = "";
         if (is_null($this->office)) {
-            $once_link = $app_url.'/survey#/general/once/'.$this->token;
-            $recursive_link = $app_url.'/survey#/general/recursive/'.$this->token;
+            $once_link = $app_url.'/survey/'.$this->token.'#/general/once/'.$this->token;
+            $recursive_link = $app_url.'/survey/'.$this->token.'#/general/recursive/'.$this->token;
         } else {
-            $once_link = $app_url.'/survey#/specific/once/'.$this->token;
-            $recursive_link = $app_url.'/survey#/specific/recursive/'.$this->token;
+            $once_link = $app_url.'/survey/'.$this->token.'#/specific/once/'.$this->token;
+            $recursive_link = $app_url.'/survey/'.$this->token.'#/specific/recursive/'.$this->token;
         }
 
 		return [

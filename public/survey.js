@@ -2517,6 +2517,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2531,7 +2541,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       onEdit: false,
-      offices: []
+      offices: [],
+      themes: []
     };
   },
   computed: {
@@ -2553,6 +2564,9 @@ __webpack_require__.r(__webpack_exports__);
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
       },
       office: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      theme: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
       },
       privacy_notice: {
@@ -2790,12 +2804,19 @@ __webpack_require__.r(__webpack_exports__);
         _this5.offices = response.data;
       })["catch"](function (e) {});
     },
+    fetchThemes: function fetchThemes() {
+      var _this6 = this;
+
+      axios.get('api/selections/themes').then(function (response) {
+        _this6.themes = response.data;
+      })["catch"](function (e) {});
+    },
     addSIg: function addSIg(el) {
       if (!this.onEdit) return;
       $('#' + el)[0].click();
     },
     sSIg: function sSIg(el, p) {
-      var _this6 = this;
+      var _this7 = this;
 
       var file = $('#' + el)[0].files[0];
       var type = file.type.split("/");
@@ -2804,9 +2825,9 @@ __webpack_require__.r(__webpack_exports__);
       var reader = new FileReader();
       reader.addEventListener("load", function () {
         if (p == 'infographic') {
-          _this6.survey.thankyou.infographic = reader.result;
+          _this7.survey.thankyou.infographic = reader.result;
         } else {
-          _this6.survey[p] = reader.result;
+          _this7.survey[p] = reader.result;
         }
       }, false);
 
@@ -2830,12 +2851,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.fetchOffices();
+    this.fetchThemes();
   },
   mounted: function mounted() {
-    var _this7 = this;
+    var _this8 = this;
 
     this.$nextTick(function () {
-      if (!_this7.oldSurvey) _this7.onEdit = true;
+      if (!_this8.oldSurvey) _this8.onEdit = true;
       $('[data-toggle="tooltip"]').tooltip({
         trigger: 'hover'
       });
@@ -9751,6 +9773,72 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "invalid-feedback" }, [
                           _vm._v("Office is required")
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-row" }, [
+                      _c("div", { staticClass: "form-group col-lg-4" }, [
+                        _c("label", [_vm._v("Theme")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model.trim",
+                                value: _vm.$v.survey.theme.$model,
+                                expression: "$v.survey.theme.$model",
+                                modifiers: { trim: true }
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: { "is-invalid": _vm.$v.survey.theme.$error },
+                            attrs: { disabled: _vm.oldSurvey && !_vm.onEdit },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.$v.survey.theme,
+                                  "$model",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              {
+                                attrs: { disabled: "" },
+                                domProps: { value: null }
+                              },
+                              [_vm._v("Select Theme")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.themes, function(theme, i) {
+                              return _c(
+                                "option",
+                                { key: i, domProps: { value: theme.file } },
+                                [_vm._v(_vm._s(theme.name))]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "invalid-feedback" }, [
+                          _vm._v("Theme is required")
                         ])
                       ])
                     ]),

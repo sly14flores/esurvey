@@ -36,6 +36,16 @@
 							</div>
 							<div class="form-row">
 								<div class="form-group col-lg-4">
+									<label>Theme</label>
+									<select class="form-control" v-model.trim="$v.survey.theme.$model" :class="{'is-invalid': $v.survey.theme.$error}" :disabled="oldSurvey && !onEdit">
+										<option disabled :value="null">Select Theme</option>
+										<option v-for="(theme,i) in themes" :value="theme.file" :key="i">{{theme.name}}</option>
+									</select>
+									<div class="invalid-feedback">Theme is required</div>
+								</div>								
+							</div>							
+							<div class="form-row">
+								<div class="form-group col-lg-4">
 									<label>Background Image (1536x864)</label>
 									<div class="images-container images-container-margins">													
 										<div v-if="survey.background != null" class="image-container">
@@ -269,7 +279,8 @@
 			return {
 		
 				onEdit: false,
-				offices: []
+				offices: [],
+				themes: [],
 				
 			}
 		
@@ -298,6 +309,7 @@
 			survey: {
 				name: {required},
 				office: {required},
+				theme: {required},
 				privacy_notice: {
 					content: {required}
 				},
@@ -542,6 +554,18 @@
 				})
 			
 			},
+
+			fetchThemes() {
+
+				axios.get('api/selections/themes').then(response => {
+				
+					this.themes = response.data
+				
+				}).catch(e => {
+				
+				})
+
+			},
 			
 			addSIg(el) {
 			
@@ -593,7 +617,8 @@
 		
 		created() {
 		
-			this.fetchOffices()		
+			this.fetchOffices()
+			this.fetchThemes()
 		
 		},
 	

@@ -27,7 +27,7 @@ Route::post('/username','Username');
 Route::get('/change/password','DefaultPassword@show')->name('change.password.show');
 Route::post('/change/password','DefaultPassword@update')->name('change.password');
 
-Route::get('/survey', 'ConductSurvey');
+Route::get('/survey/{token}', 'ConductSurvey');
 
 Route::get('preview/mail', function() {
 	

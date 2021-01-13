@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use App\Office;
 use App\Group;
 use App\Survey;
+use App\Customs\Themes;
 
 use Illuminate\Support\Facades\Auth;
 
 class Selections extends Controller
 {
+
+	use Themes;
 
 	public function offices()
 	{
@@ -77,6 +80,11 @@ class Selections extends Controller
 
 		return $surveys;
 
-	}	
+	}
+
+	public function conductThemes()
+	{
+		return $this->themes();
+	}
 
 }
