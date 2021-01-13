@@ -1,63 +1,67 @@
 <template>
-  <a-layout id="components-layout-demo-custom-trigger">
-    <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
-      <div class="logo" />
-      <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
-        <a-menu-item key="1">
-          <a-icon type="user" />
-          <span>nav 1</span>
-        </a-menu-item>
-        <a-menu-item key="2">
-          <a-icon type="video-camera" />
-          <span>nav 2</span>
-        </a-menu-item>
-        <a-menu-item key="3">
-          <a-icon type="upload" />
-          <span>nav 3</span>
-        </a-menu-item>
-      </a-menu>
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
-        <a-icon
-          class="trigger"
-          :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-          @click="() => (collapsed = !collapsed)"
+  <div>
+    <a-switch :checked="!loading" @change="onChange" />
+
+    <a-list item-layout="vertical" size="large" :data-source="listData">
+      <a-list-item slot="renderItem" key="item.title" slot-scope="item, index">
+        <template v-for="{ type, text } in actions" v-if="!loading" slot="actions">
+          <span :key="type">
+            <a-icon :type="type" style="margin-right: 8px" />
+            {{ text }}
+          </span>
+        </template>
+        <img
+          v-if="!loading"
+          slot="extra"
+          width="272"
+          alt="logo"
+          src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
         />
-      </a-layout-header>
-      <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
-      >
-        Content
-      </a-layout-content>
-    </a-layout>
-  </a-layout>
+        <a-skeleton :loading="loading" active avatar>
+          <a-list-item-meta :description="item.description">
+            <a slot="title" :href="item.href">{{ item.title }}</a>
+            <a-avatar slot="avatar" :src="item.avatar" />
+          </a-list-item-meta>
+          {{ item.content }}
+        </a-skeleton>
+      </a-list-item>
+    </a-list>
+  </div>
 </template>
 <script>
+const listData = [];
+for (let i = 0; i < 3; i++) {
+  listData.push({
+    href: 'https://www.antdv.com/',
+    title: `ant design vue part ${i}`,
+    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+    description:
+      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+    content:
+      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+  });
+}
 export default {
   data() {
     return {
-      collapsed: false,
+      loading: true,
+      listData,
+      actions: [
+        { type: 'star-o', text: '156' },
+        { type: 'like-o', text: '156' },
+        { type: 'message', text: '2' },
+      ],
     };
+  },
+  methods: {
+    onChange(checked) {
+      this.loading = !checked;
+    },
   },
 };
 </script>
 <style>
-#components-layout-demo-custom-trigger .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-#components-layout-demo-custom-trigger .trigger:hover {
-  color: #1890ff;
-}
-
-#components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
+.skeleton-demo {
+  border: 1px solid #f4f4f4;
 }
 </style>
