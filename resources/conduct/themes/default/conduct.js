@@ -12,7 +12,7 @@ window.Swal = require('sweetalert2')
 
 import App from './App.vue'
 
-import store from './store.js'	
+import store from '../../store.js'	
 
 const app = new Vue({
 	store,
