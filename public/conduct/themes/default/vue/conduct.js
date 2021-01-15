@@ -1930,7 +1930,7 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SlySpinner_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SlySpinner.vue */ "./resources/conduct/themes/default/SlySpinner.vue");
-/* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router.js */ "./resources/conduct/themes/default/router.js");
+/* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router.js */ "./resources/conduct/themes/default/router.js");
 //
 //
 //
@@ -1949,7 +1949,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  router: _router_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  router: _router_js__WEBPACK_IMPORTED_MODULE_2__["default"],
   components: {
     SlySpinner: _SlySpinner_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -94319,284 +94319,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/conduct/store.js":
-/*!************************************!*\
-  !*** ./resources/conduct/store.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vuex_persist__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex-persist */ "./node_modules/vuex-persist/dist/esm/index.js");
-
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
-
-var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
-  key: 'sopa_survey',
-  storage: window.localStorage
-});
-/* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
-  // plugins: [vuexPersist.plugin],
-  state: {
-    item_types: [{
-      id: 'intro',
-      description: 'Introduction',
-      component: 'introduction'
-    }, {
-      id: 1,
-      description: "Bracket",
-      component: "bracket"
-    }, {
-      id: 2,
-      description: "Checkbox",
-      // component: "checkbox"
-      component: "sopa-checkbox"
-    }, {
-      id: 3,
-      description: "Text Input",
-      // component: "text-input"
-      component: "sopa-text-input"
-    }, {
-      id: 4,
-      description: "Radios",
-      // component: "radios"
-      component: "sopa-radios"
-    }, {
-      id: 5,
-      description: "Selections",
-      component: "selections"
-    }, {
-      id: 6,
-      description: "Single Row",
-      component: "single-row"
-    }, {
-      id: 7,
-      description: "Multi Rows",
-      component: "multi-rows"
-    }],
-    survey: {
-      introductions: [],
-      privacy_notice: {},
-      sections: [],
-      thankyou: {}
-    },
-    currentItemIndex: null,
-    finish: false,
-    recursive: false,
-    specific: false,
-    api_token: null,
-    agreed: false
-  },
-  mutations: {
-    recursive: function recursive(state, _recursive) {
-      state.recursive = _recursive;
-    },
-    specific: function specific(state, _specific) {
-      state.specific = _specific;
-    },
-    api_token: function api_token(state, _api_token) {
-      state.api_token = _api_token;
-    },
-    itemValues: function itemValues(state, values) {
-      if (values.aspect == null) {
-        state.survey.sections[values.section].items[values.item].values = values.values;
-      } else {
-        state.survey.sections[values.section].aspects[values.aspect].items[values.item] = values.values;
-      }
-    },
-    load: function load(state, survey) {
-      state.survey = survey;
-    },
-    start: function start(state) {
-      state.currentItemIndex = null;
-    },
-    next: function next(state) {
-      state.finish = false;
-
-      if (state.currentItemIndex == null) {
-        state.currentItemIndex = 0;
-      } else {
-        state.currentItemIndex++;
-      }
-    },
-    previous: function previous(state) {
-      if (state.currentItemIndex != null) {
-        if (state.currentItemIndex == 0) {
-          state.currentItemIndex = null;
-        } else {
-          state.currentItemIndex--;
-        }
-      }
-    },
-    finish: function finish(state, status) {
-      state.finish = status;
-    },
-    agree: function agree(state, _agree) {
-      state.agreed = _agree;
-    }
-  },
-  actions: {
-    next: function next(context) {
-      return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-          if (context.state.currentItemIndex != null) {
-            if (context.state.currentItemIndex + 1 < context.getters.itemsIndexes.length) context.commit('next');else context.commit('start');
-          } else {
-            context.commit('next');
-          }
-
-          resolve(true);
-        }, 1000);
-      });
-    },
-    previous: function previous(context) {
-      return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-          context.commit('previous');
-          resolve(true);
-        }, 500);
-      });
-    },
-    finish: function finish(context) {
-      return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-          context.commit('finish', true);
-          resolve(true);
-        }, 500);
-      });
-    },
-    agree: function agree(context) {
-      return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-          context.commit('agree', true);
-          resolve(true);
-        }, 500);
-      });
-    }
-  },
-  getters: {
-    itemsIndexes: function itemsIndexes(state) {
-      var indexes = [];
-
-      if (_.size(state.survey.introductions) > 0) {
-        state.survey.introductions.forEach(function (introduction, ii) {
-          var index = {};
-          index.intro = ii;
-          index.section = null;
-          index.aspect = null;
-          index.item = null;
-          indexes.push(index);
-          index = {};
-        });
-      }
-
-      if (state.survey.sections != undefined) {
-        state.survey.sections.forEach(function (s, is) {
-          var index = {};
-          s.items.forEach(function (si, isi) {
-            if (si.is_shown) {
-              index.intro = null;
-              index.section = is;
-              index.aspect = null;
-              index.item = isi;
-              indexes.push(index);
-              index = {};
-            }
-          });
-
-          if (s.aspects.length > 0) {
-            s.aspects.forEach(function (sa, isa) {
-              index = {};
-              sa.items.forEach(function (sai, isai) {
-                if (sai.is_shown) {
-                  index.intro = null;
-                  index.section = is;
-                  index.aspect = isa;
-                  index.item = isai;
-                  indexes.push(index);
-                  index = {};
-                }
-              });
-            });
-          }
-        });
-      }
-
-      return indexes;
-    },
-    currentItemIndexes: function currentItemIndexes(state, getters) {
-      var currentItemIndexes = {};
-
-      if (state.currentItemIndex != null) {
-        if (state.currentItemIndex < getters.itemsIndexes.length) currentItemIndexes = getters.itemsIndexes[state.currentItemIndex];
-      }
-
-      return currentItemIndexes;
-    },
-    currentItem: function currentItem(state, getters) {
-      var currentItem = {};
-
-      if (Object.keys(getters.currentItemIndexes).length > 0) {
-        // Introductions
-        if (_.size(getters.introductions) > 0) {
-          if (getters.currentItemIndexes.intro != null) {
-            currentItem = state.survey.introductions[getters.currentItemIndexes.intro];
-            return currentItem;
-          }
-        }
-
-        if (getters.currentItemIndexes.aspect == null) {
-          currentItem = state.survey.sections[getters.currentItemIndexes.section].items[getters.currentItemIndexes.item];
-        } else {
-          currentItem = state.survey.sections[getters.currentItemIndexes.section].aspects[getters.currentItemIndexes.aspect].items[getters.currentItemIndexes.item];
-        }
-      }
-
-      return currentItem;
-    },
-    currentComponent: function currentComponent(state, getters) {
-      // if (state.finish) return 'thank-you'
-      if (state.finish && !state.recursive) return 'sopa-thank-you'; // let currentComponent = 'start-conduct'
-
-      var currentComponent = 'sopa-start-conduct';
-      state.item_types.forEach(function (value) {
-        if (value.id === getters.currentItem.item_type) {
-          if (getters.currentItem.item_type === 'intro') {
-            if (!state.agreed) currentComponent = 'notice';else currentComponent = value.component;
-          } else {
-            currentComponent = value.component;
-          }
-        }
-      });
-      return currentComponent;
-    },
-    currentSection: function currentSection(state, getters) {
-      var section = state.survey.sections[getters.currentItemIndexes.section];
-      return section;
-    },
-    currentAspect: function currentAspect(state, getters) {
-      var section = state.survey.sections[getters.currentItemIndexes.section];
-      var aspect = {};
-
-      if (getters.currentItemIndexes.aspect != null) {
-        aspect = section.aspects[getters.currentItemIndexes.aspect];
-      }
-
-      return aspect;
-    },
-    introductions: function introductions(state, getters) {
-      return state.survey.introductions;
-    }
-  }
-}));
-
-/***/ }),
-
 /***/ "./resources/conduct/themes/default/App.vue":
 /*!**************************************************!*\
   !*** ./resources/conduct/themes/default/App.vue ***!
@@ -94904,7 +94626,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap-vue */ "./node_modules/bootstrap-vue/esm/index.js");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue */ "./resources/conduct/themes/default/App.vue");
-/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store.js */ "./resources/conduct/store.js");
+/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store.js */ "./resources/conduct/themes/default/store.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -96113,6 +95835,284 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_steppers_vue_vue_type_template_id_558f83bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/conduct/themes/default/store.js":
+/*!***************************************************!*\
+  !*** ./resources/conduct/themes/default/store.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex_persist__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex-persist */ "./node_modules/vuex-persist/dist/esm/index.js");
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+var vuexPersist = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({
+  key: 'sopa_survey',
+  storage: window.localStorage
+});
+/* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
+  // plugins: [vuexPersist.plugin],
+  state: {
+    item_types: [{
+      id: 'intro',
+      description: 'Introduction',
+      component: 'introduction'
+    }, {
+      id: 1,
+      description: "Bracket",
+      component: "bracket"
+    }, {
+      id: 2,
+      description: "Checkbox",
+      // component: "checkbox"
+      component: "sopa-checkbox"
+    }, {
+      id: 3,
+      description: "Text Input",
+      // component: "text-input"
+      component: "sopa-text-input"
+    }, {
+      id: 4,
+      description: "Radios",
+      // component: "radios"
+      component: "sopa-radios"
+    }, {
+      id: 5,
+      description: "Selections",
+      component: "selections"
+    }, {
+      id: 6,
+      description: "Single Row",
+      component: "single-row"
+    }, {
+      id: 7,
+      description: "Multi Rows",
+      component: "multi-rows"
+    }],
+    survey: {
+      introductions: [],
+      privacy_notice: {},
+      sections: [],
+      thankyou: {}
+    },
+    currentItemIndex: null,
+    finish: false,
+    recursive: false,
+    specific: false,
+    api_token: null,
+    agreed: false
+  },
+  mutations: {
+    recursive: function recursive(state, _recursive) {
+      state.recursive = _recursive;
+    },
+    specific: function specific(state, _specific) {
+      state.specific = _specific;
+    },
+    api_token: function api_token(state, _api_token) {
+      state.api_token = _api_token;
+    },
+    itemValues: function itemValues(state, values) {
+      if (values.aspect == null) {
+        state.survey.sections[values.section].items[values.item].values = values.values;
+      } else {
+        state.survey.sections[values.section].aspects[values.aspect].items[values.item] = values.values;
+      }
+    },
+    load: function load(state, survey) {
+      state.survey = survey;
+    },
+    start: function start(state) {
+      state.currentItemIndex = null;
+    },
+    next: function next(state) {
+      state.finish = false;
+
+      if (state.currentItemIndex == null) {
+        state.currentItemIndex = 0;
+      } else {
+        state.currentItemIndex++;
+      }
+    },
+    previous: function previous(state) {
+      if (state.currentItemIndex != null) {
+        if (state.currentItemIndex == 0) {
+          state.currentItemIndex = null;
+        } else {
+          state.currentItemIndex--;
+        }
+      }
+    },
+    finish: function finish(state, status) {
+      state.finish = status;
+    },
+    agree: function agree(state, _agree) {
+      state.agreed = _agree;
+    }
+  },
+  actions: {
+    next: function next(context) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          if (context.state.currentItemIndex != null) {
+            if (context.state.currentItemIndex + 1 < context.getters.itemsIndexes.length) context.commit('next');else context.commit('start');
+          } else {
+            context.commit('next');
+          }
+
+          resolve(true);
+        }, 1000);
+      });
+    },
+    previous: function previous(context) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          context.commit('previous');
+          resolve(true);
+        }, 500);
+      });
+    },
+    finish: function finish(context) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          context.commit('finish', true);
+          resolve(true);
+        }, 500);
+      });
+    },
+    agree: function agree(context) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          context.commit('agree', true);
+          resolve(true);
+        }, 500);
+      });
+    }
+  },
+  getters: {
+    itemsIndexes: function itemsIndexes(state) {
+      var indexes = [];
+
+      if (_.size(state.survey.introductions) > 0) {
+        state.survey.introductions.forEach(function (introduction, ii) {
+          var index = {};
+          index.intro = ii;
+          index.section = null;
+          index.aspect = null;
+          index.item = null;
+          indexes.push(index);
+          index = {};
+        });
+      }
+
+      if (state.survey.sections != undefined) {
+        state.survey.sections.forEach(function (s, is) {
+          var index = {};
+          s.items.forEach(function (si, isi) {
+            if (si.is_shown) {
+              index.intro = null;
+              index.section = is;
+              index.aspect = null;
+              index.item = isi;
+              indexes.push(index);
+              index = {};
+            }
+          });
+
+          if (s.aspects.length > 0) {
+            s.aspects.forEach(function (sa, isa) {
+              index = {};
+              sa.items.forEach(function (sai, isai) {
+                if (sai.is_shown) {
+                  index.intro = null;
+                  index.section = is;
+                  index.aspect = isa;
+                  index.item = isai;
+                  indexes.push(index);
+                  index = {};
+                }
+              });
+            });
+          }
+        });
+      }
+
+      return indexes;
+    },
+    currentItemIndexes: function currentItemIndexes(state, getters) {
+      var currentItemIndexes = {};
+
+      if (state.currentItemIndex != null) {
+        if (state.currentItemIndex < getters.itemsIndexes.length) currentItemIndexes = getters.itemsIndexes[state.currentItemIndex];
+      }
+
+      return currentItemIndexes;
+    },
+    currentItem: function currentItem(state, getters) {
+      var currentItem = {};
+
+      if (Object.keys(getters.currentItemIndexes).length > 0) {
+        // Introductions
+        if (_.size(getters.introductions) > 0) {
+          if (getters.currentItemIndexes.intro != null) {
+            currentItem = state.survey.introductions[getters.currentItemIndexes.intro];
+            return currentItem;
+          }
+        }
+
+        if (getters.currentItemIndexes.aspect == null) {
+          currentItem = state.survey.sections[getters.currentItemIndexes.section].items[getters.currentItemIndexes.item];
+        } else {
+          currentItem = state.survey.sections[getters.currentItemIndexes.section].aspects[getters.currentItemIndexes.aspect].items[getters.currentItemIndexes.item];
+        }
+      }
+
+      return currentItem;
+    },
+    currentComponent: function currentComponent(state, getters) {
+      // if (state.finish) return 'thank-you'
+      if (state.finish && !state.recursive) return 'sopa-thank-you'; // let currentComponent = 'start-conduct'
+
+      var currentComponent = 'sopa-start-conduct';
+      state.item_types.forEach(function (value) {
+        if (value.id === getters.currentItem.item_type) {
+          if (getters.currentItem.item_type === 'intro') {
+            if (!state.agreed) currentComponent = 'notice';else currentComponent = value.component;
+          } else {
+            currentComponent = value.component;
+          }
+        }
+      });
+      return currentComponent;
+    },
+    currentSection: function currentSection(state, getters) {
+      var section = state.survey.sections[getters.currentItemIndexes.section];
+      return section;
+    },
+    currentAspect: function currentAspect(state, getters) {
+      var section = state.survey.sections[getters.currentItemIndexes.section];
+      var aspect = {};
+
+      if (getters.currentItemIndexes.aspect != null) {
+        aspect = section.aspects[getters.currentItemIndexes.aspect];
+      }
+
+      return aspect;
+    },
+    introductions: function introductions(state, getters) {
+      return state.survey.introductions;
+    }
+  }
+}));
 
 /***/ }),
 

@@ -10,7 +10,7 @@ Vue.config.productionTip = false;
 
 Vue.use(Antd);
 
-import store from '../../store.js'
+import store from './store.js'
 
 /* eslint-disable no-new */
 new Vue({

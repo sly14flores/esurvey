@@ -1,15 +1,29 @@
 <template>
-  <div id="survey-content">
+  <a-layout>
+    <a-layout-header>
+      
+    </a-layout-header>
     <a-layout>
-      <a-layout-content>Content</a-layout-content>
+      <a-layout-content>
+			  <router-view></router-view>        
+      </a-layout-content>
     </a-layout>
-  </div>
+    <a-layout-footer>
+
+    </a-layout-footer>
+  </a-layout>
 </template>
 
-<style>
+<script>
 
-#survey-content {
+import router from './router.js'
 
+export default {
+  router,
 }
+
+</script>
+
+<style>
 
 </style>
