@@ -59,7 +59,6 @@ window.Echo = new Echo({
 });
 */
 
-
 /**
  * Using Socket.io with Redis
  */
@@ -69,7 +68,7 @@ window.io = require('socket.io-client');
 window.Echo = new Echo({
     broadcaster: 'socket.io',
     // host: window.location.hostname + ':6001'
-    host: 'https://echo.launion.gov.ph:6001'
+    host: 'http://survey.launion.gov.ph:6001'
 });
 
 /*

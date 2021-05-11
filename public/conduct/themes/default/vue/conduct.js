@@ -1930,7 +1930,7 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SlySpinner_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SlySpinner.vue */ "./resources/conduct/themes/default/SlySpinner.vue");
-/* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router.js */ "./resources/conduct/themes/default/router.js");
+/* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router.js */ "./resources/conduct/themes/default/router.js");
 //
 //
 //
@@ -1949,7 +1949,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  router: _router_js__WEBPACK_IMPORTED_MODULE_2__["default"],
+  router: _router_js__WEBPACK_IMPORTED_MODULE_1__["default"],
   components: {
     SlySpinner: _SlySpinner_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
