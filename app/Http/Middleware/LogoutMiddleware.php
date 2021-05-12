@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 
+use Illuminate\Support\Facades\Auth;
+
 class LogoutMiddleware
 {
     /**
@@ -15,7 +17,18 @@ class LogoutMiddleware
      */
     public function handle($request, Closure $next)
     {
-        var_dump($request->header('Authorization'));
+        /**
+         * For api request only
+         */
+        if ($request->wantsJson()) {
+
+            if ($request->header('Authorization') == "Bearer null") {
+                Auth::guard()->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();            
+            }
+
+        }
 
         $response = $next($request);
 
