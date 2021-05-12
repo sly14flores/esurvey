@@ -6,24 +6,21 @@
 
 require('./bootstrap');
 
-/*
-** axios response interceptor in case CSRF token refreshes 
-*/
-axios.interceptors.response.use(function (response) {
-	
-		// Any status code that lie within the range of 2xx cause this function to trigger
-		// Do something with response data
-		
+/**
+ * Validation sequence
+ * 401 for invalid token e.g., expired or non-passport token
+ */
+ window.axios.interceptors.response.use(
+    (response) => {
 		return response
-		
-	}, function (error) {
-		
-		// Any status codes that falls outside the range of 2xx cause this function to trigger
-		// Do something with response error
-		
-	return Promise.reject(error);
-
-})
+	},
+    async function(error) {
+        if (error?.response?.status === 401) {
+            window.open('/login','_self');
+        }
+        return Promise.reject(error);
+    },
+);
 
 window.Vue = require('vue');
 
