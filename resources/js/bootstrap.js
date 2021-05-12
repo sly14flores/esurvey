@@ -28,7 +28,7 @@ window.axios.interceptors.request.use(function (config) {
 
   const esurveyStr = localStorage.getItem('esurvey')
 
-  const esurvey = JSON.parse(esurveyStr)
+  const esurvey = JSON.parse(esurveyStr) || {}
 
   const token = esurvey.api_token || null
 
