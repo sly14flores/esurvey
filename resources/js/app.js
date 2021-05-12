@@ -15,6 +15,7 @@ require('./bootstrap');
 		return response
 	},
     async function(error) {
+		console.log(error)
         if (error?.response?.status === 401) {
             window.open('/login','_self');
         }
