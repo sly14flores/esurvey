@@ -72,7 +72,11 @@ return [
 		
         'sendinblue' => [
             'transport' => 'sendinblue',
-        ],		
+        ],
+        
+        'mailjet' => [
+            'transport' => 'mailjet',
+        ],        
     ],
 
     /*
