@@ -18,7 +18,7 @@ class LogoutMiddleware
         $response = $next($request);
 
         // Perform action
-        var_dump(111);
+        var_dump($response);
 
         return $response;
     }
