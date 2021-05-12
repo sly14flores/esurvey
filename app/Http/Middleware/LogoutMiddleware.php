@@ -23,7 +23,7 @@ class LogoutMiddleware
         if ($request->wantsJson()) {
 
             if ($request->header('Authorization') == "Bearer null") {
-                Auth::guard()->logout();           
+                Auth::logout();     
             }
 
         }
