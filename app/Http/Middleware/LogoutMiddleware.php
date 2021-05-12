@@ -18,8 +18,8 @@ class LogoutMiddleware
         $response = $next($request);
 
         // Perform action
-        if (isset($response['statusCode'])) {
-            var_dump($response['statusCode']);
+        if (isset($response->statusCode)) {
+            var_dump($response);
         }
 
         return $response;
