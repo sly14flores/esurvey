@@ -15,12 +15,9 @@ class LogoutMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $response = $next($request);
+        var_dump($request->header('Authorization'));
 
-        // Perform action
-        if (isset($response->statusCode)) {
-            var_dump($response);
-        }
+        $response = $next($request);
 
         return $response;
     }
