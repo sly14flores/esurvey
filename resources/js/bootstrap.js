@@ -38,6 +38,23 @@ window.axios.interceptors.request.use(function (config) {
 });
 
 /**
+ * Validation sequence
+ * 401 for invalid token e.g., expired or non-passport token
+ */
+window.axios.interceptors.response.use(
+  (response) => {
+  return response
+},
+  async function(error) {
+  console.log(error)
+      if (error?.response?.status === 401) {
+          window.open('/login','_self');
+      }
+      return Promise.reject(error);
+  },
+);
+
+/**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.

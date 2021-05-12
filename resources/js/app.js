@@ -6,23 +6,6 @@
 
 require('./bootstrap');
 
-/**
- * Validation sequence
- * 401 for invalid token e.g., expired or non-passport token
- */
- window.axios.interceptors.response.use(
-    (response) => {
-		return response
-	},
-    async function(error) {
-		console.log(error)
-        if (error?.response?.status === 401) {
-            window.open('/login','_self');
-        }
-        return Promise.reject(error);
-    },
-);
-
 window.Vue = require('vue');
 
 // Register BootstrapVue
