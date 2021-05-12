@@ -17,10 +17,12 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const esurveyStr = localStorage.getItem('esurvey')
-const profile = JSON.parse(esurveyStr)
+const profile = JSON.parse(esurveyStr) || {}
+const api_token = profile.api_token || null
+
 const config = {
 	headers: {
-		'Authorization': 'Bearer '+profile.api_token
+		'Authorization': 'Bearer '+api_token
 	}
 }
 
@@ -43,7 +45,7 @@ export default new Vuex.Store({
 			state.profile = profile
 			state.config = {
 				headers: {
-					'Authorization': 'Bearer '+profile.api_token
+					'Authorization': 'Bearer '+api_token
 				}
 			}
 		},
