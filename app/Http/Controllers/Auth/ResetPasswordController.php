@@ -34,6 +34,24 @@ class ResetPasswordController extends Controller
         return view('reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
-    }	
+    }
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $password
+     * @return void
+     */
+    protected function resetPassword($user, $password)
+    {
+        $this->setUserPassword($user, $password);
+
+        $user->setRememberToken(Str::random(60));
+
+        $user->save();
+
+        event(new PasswordReset($user));
+    }    
 	
 }
