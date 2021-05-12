@@ -18,7 +18,7 @@ class LogoutMiddleware
         $response = $next($request);
 
         // Perform action
-        var_dump($response);
+        var_dump($response->statusCode);
 
         return $response;
     }
