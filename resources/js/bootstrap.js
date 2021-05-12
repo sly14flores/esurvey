@@ -30,7 +30,7 @@ window.axios.interceptors.request.use(function (config) {
 
   const esurvey = JSON.parse(esurveyStr)
 
-  const token = esurvey.api_token
+  const token = esurvey.api_token || null
 
   config.headers.Authorization =  `Bearer ${token}`;
 
@@ -68,7 +68,7 @@ window.io = require('socket.io-client');
 window.Echo = new Echo({
     broadcaster: 'socket.io',
     // host: window.location.hostname + ':6001'
-    host: 'http://survey.launion.gov.ph:6001'
+    host: 'https://survey.launion.gov.ph:6001'
 });
 
 /*
