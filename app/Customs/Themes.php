@@ -6,7 +6,7 @@ trait Themes {
 
     private function themes() {
 
-        $themes_path = base_path()."\\resources\\views\\conduct\\themes";
+        $themes_path = base_path()."/resources/views/conduct/themes";
 
         $themes_files = scandir($themes_path);
 
